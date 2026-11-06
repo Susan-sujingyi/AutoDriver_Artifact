@@ -1,0 +1,31 @@
+{
+  "profile": "autodriver.model/sht3x/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_stable_idle",
+    "observation_us": 250000,
+    "initialization_observation_us": 100000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "conversion_us": [
+      8000,
+      12500,
+      15000,
+      15500
+    ],
+    "stable_input_progress_us": 1000000,
+    "deadline_semantics": "Absolute stable-input deadline passed into request execution; guard and polling clamped to deadline. Request window bounds completion, guard included when time remains."
+  },
+  "limitations": [
+    "SHT30 exact part; finite digital model, no physical humidity/thermal accuracy.",
+    "Core temperature within -40..125C; other encoding probes diagnostics only.",
+    "Per-word CRC required by selected task integrity function, not universally mandatory for SHT30.",
+    "CRC fault cases test bounded no-invalid-success, not mandatory immediate error or complete recovery.",
+    "Allow retained validated values and caches; no automatic history invalidation on later bus errors.",
+    "NACK before ready, reset and 1ms inter-command timing modeled; not bit-level electrical validation.",
+    "Alert/serial/other unmodeled commands are model_unsupported.",
+    "Not an OS sandbox for hostile candidate code."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "driverbench.numeric-vectors/v2",
+  "vectors": [
+    {
+      "id": "zero",
+      "raw_count": 0
+    },
+    {
+      "id": "positive",
+      "raw_count": 3200
+    },
+    {
+      "id": "negative",
+      "raw_count": -1600
+    },
+    {
+      "id": "min",
+      "raw_count": -7040
+    },
+    {
+      "id": "max",
+      "raw_count": 19200
+    },
+    {
+      "id": "lsb",
+      "raw_count": 1
+    },
+    {
+      "id": "negative_lsb",
+      "raw_count": -1
+    },
+    {
+      "id": "fraction",
+      "raw_count": 123
+    },
+    {
+      "id": "negative_fraction",
+      "raw_count": -123
+    },
+    {
+      "id": "byte_carry",
+      "raw_count": 256
+    },
+    {
+      "id": "negative_byte_carry",
+      "raw_count": -256
+    },
+    {
+      "id": "hot",
+      "raw_count": 12608
+    },
+    {
+      "id": "cold",
+      "raw_count": -5120
+    },
+    {
+      "id": "near_zero",
+      "raw_count": 3
+    },
+    {
+      "id": "negative_near_zero",
+      "raw_count": -3
+    },
+    {
+      "id": "uneven",
+      "raw_count": 15731
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+schema: autodriver.task/v1
+task_id: zephyr-nuttx-sht3x-i2c
+revision: 2
+sensor: sht3x
+source:
+  selection: benchmark/sht3x/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/sht3x/target/nuttx/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/sht3x/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    data_integrity: CRC
+  connection:
+    i2c:
+      address_7bit: 68
+    interrupt_pin: null
+  sensor_settings:
+    clock_stretching: disabled
+    heater: disabled
+reference:
+  files:
+    drivers/sensors/sht3x.c: benchmark/sht3x/reference/nuttx/i2c/sht3x.c
+evaluation:
+  suite: benchmark/sht3x/evaluation/suite.yaml

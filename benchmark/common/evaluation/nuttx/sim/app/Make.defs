@@ -1,0 +1,3 @@
+ifeq ($(CONFIG_SYSTEM_BENCH_EVALUATOR),y)
+CONFIGURED_APPS += $(APPDIR)/system/bench_evaluator
+endif

@@ -1,0 +1,36 @@
+schema: autodriver.target/v1
+os: tock
+snapshot: tock
+board: nrf52840dk
+bus: i2c
+module: bh1750
+editable_paths:
+- capsules/extra/src/bh1750.rs
+- capsules/extra/src/bh1750/
+board_patch: benchmark/bh1750/target/tock/i2c/board.patch
+application: benchmark/common/applications/tock
+native_interface:
+  type: Bh1750<'a, I, A>
+  constructor: 'pub fn new(i2c: &''a I, alarm: &''a A, buffer: &''static mut [u8])
+    -> Self'
+  startup: pub fn startup(&self) -> Result<(), ErrorCode>
+  buffer_bytes: 2
+  traits:
+  - kernel::hil::sensors::AmbientLight
+  - kernel::hil::i2c::I2CClient
+  - kernel::hil::time::AlarmClient
+  status: specified
+  hil_path: kernel/src/hil/sensors.rs
+  notes: 'I: I2CDevice; A: Alarm<''a>. Export pub const BUFFER_SIZE: usize = 2. Fixture
+    wires native I2C/Alarm/AmbientLight clients, supplies exactly two bytes and calls
+    startup. It contains no sensor command, conversion or wait algorithm.'
+output: null
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 10000
+  request_timeout_ms: 10000
+  serial_baud: 115200
+remove_paths:
+- capsules/extra/src/bh1750.rs
+- capsules/extra/src/bh1750/

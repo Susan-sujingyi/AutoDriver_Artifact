@@ -1,0 +1,31 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/infineon/dps310/dps310.c
+      sha256: a50a580151db5884f73c6234e4ce8beecaef732eb8e990a8eb1e7d05882fc880
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/infineon/dps310/Kconfig
+      sha256: 26b9bd470307fb77e25f36dc8c8f3ddd2b0da3ccb0b621ba7d2bfaba741d2ec8
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/infineon/dps310/CMakeLists.txt
+      sha256: a37f37adff087b316fc10b0ce06c7e49b42202f4a29175c0184a9253774c7181
+      role: build_configuration
+    configuration_files:
+    - benchmark/dps310/source/zephyr/configuration.yaml
+    - benchmark/dps310/source/zephyr/board.overlay
+    validation: benchmark/dps310/source/zephyr/validation
+    source_entrypoints:
+      init: dps310_init
+      sample_fetch: dps310_sample_fetch
+      channel_get: dps310_channel_get
+    dependencies: []
+    devicetree:
+      compatible: infineon,dps310
+      bus: i2c
+      reg: 119
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

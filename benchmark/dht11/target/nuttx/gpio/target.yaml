@@ -1,0 +1,36 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: gpio
+module: dht11
+editable_paths:
+- drivers/sensors/dht11.c
+- drivers/sensors/dht11/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: sensor_temp
+    field: temperature
+    unit: degC
+  - structure: sensor_humi
+    field: humidity
+    unit: percent_RH
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: dht11
+sanitizer: benchmark/dht11/target/nuttx/gpio/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/dht11/target/nuttx/gpio/board-support/driver_api.h
+    target: include/nuttx/sensors/dht11.h
+  resources:
+  - gpio_waveform

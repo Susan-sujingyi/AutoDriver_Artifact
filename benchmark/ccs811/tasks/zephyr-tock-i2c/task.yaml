@@ -1,0 +1,33 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-ccs811-i2c
+revision: 2
+sensor: ccs811
+source:
+  selection: benchmark/ccs811/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/ccs811/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/ccs811/documents/datasheet.pdf
+requirements:
+  firmware:
+    application_version: 2.0.0
+    installation: already_installed
+  functions:
+    channels:
+    - equivalent_co2
+    - equivalent_tvoc
+    acquisition: continuous_polling
+  connection:
+    i2c:
+      address_7bit: 90
+      nwake: held_low
+      nreset: deasserted
+    interrupt_pin: null
+reference:
+  files:
+    capsules/extra/src/ccs811.rs: benchmark/ccs811/reference/tock/i2c/ccs811.rs
+evaluation:
+  suite: benchmark/ccs811/evaluation/suite.yaml

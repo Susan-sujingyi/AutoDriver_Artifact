@@ -1,0 +1,9 @@
+{
+  "schema": "autodriver.source-validation/v1",
+  "source_os": "zephyr",
+  "variant": "gpio",
+  "input_identity": "8c2490fcf8f99f46942ec644f317736de573cd42df2242eadb67bfdbec0668a4",
+  "status": "pass",
+  "compiler": "cc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "scope": "Native configuration, selected driver and API link; not target behavior or hardware"
+}

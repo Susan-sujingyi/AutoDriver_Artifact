@@ -1,0 +1,35 @@
+schema: autodriver.task/v1
+task_id: zephyr-nuttx-bmp388-i2c
+revision: 2
+sensor: bmp388
+source:
+  selection: benchmark/bmp388/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/bmp388/target/nuttx/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/bmp388/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - pressure
+    acquisition: continuous
+  connection:
+    i2c:
+      address_7bit: 118
+    interrupt_pin: null
+  sensor_settings:
+    power_mode: normal
+    output_rate_hz: 25
+    pressure_oversampling: 4
+    temperature_oversampling: 1
+    iir_filter: disabled
+    fifo: disabled
+reference:
+  files:
+    drivers/sensors/bmp388.c: benchmark/bmp388/reference/nuttx/i2c/bmp388.c
+evaluation:
+  suite: benchmark/bmp388/evaluation/suite.yaml

@@ -1,0 +1,33 @@
+schema: autodriver.task/v1
+task_id: riot-tock-sht3x-i2c
+revision: 2
+sensor: sht3x
+source:
+  selection: benchmark/sht3x/source/riot/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/sht3x/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/sht3x/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    acquisition: single_shot
+    data_integrity: CRC
+  connection:
+    i2c:
+      address_7bit: 68
+    interrupt_pin: null
+  sensor_settings:
+    repeatability: high
+    clock_stretching: disabled
+    heater: disabled
+reference:
+  files:
+    capsules/extra/src/sht3x.rs: benchmark/sht3x/reference/tock/i2c/sht3x.rs
+evaluation:
+  suite: benchmark/sht3x/evaluation/suite.yaml

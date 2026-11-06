@@ -1,0 +1,116 @@
+--- a/boards/components/src/lib.rs
++++ b/boards/components/src/lib.rs
+@@ -91,3 +91,5 @@
+ pub mod udp_driver;
+ pub mod udp_mux;
+ pub mod usb;
++
++pub mod mpu6050;
+--- /dev/null
++++ b/boards/components/src/mpu6050.rs
+@@ -0,0 +1,56 @@
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// SPDX-License-Identifier: Apache-2.0 OR MIT
++// Resource wiring derived from Tock Contributors' sensor components.
++//! Public MPU6050 fixture: resources and client wiring only.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
++use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
++use capsules_extra::mpu6050::Mpu6050;
++use core::mem::MaybeUninit;
++
++use kernel::component::Component;
++use kernel::hil::i2c;
++use kernel::hil::time::{self, Alarm};
++
++#[macro_export]
++macro_rules! mpu6050_component_static {
++    ($A:ty, $I:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>);
++        let i2c = kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
++        let buffer = kernel::static_buf!([u8; 14]);
++        let driver = kernel::static_buf!(capsules_extra::mpu6050::Mpu6050<
++            'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
++        >);
++        (alarm, i2c, buffer, driver)
++    }};
++}
++pub struct Mpu6050Component<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
++    i2c_mux: &'static MuxI2C<'static, I>,
++    alarm_mux: &'static MuxAlarm<'static, A>,
++}
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Mpu6050Component<A, I> {
++    pub fn new(i2c_mux: &'static MuxI2C<'static, I>, alarm_mux: &'static MuxAlarm<'static, A>) -> Self {
++        Self { i2c_mux, alarm_mux }
++    }
++}
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component for Mpu6050Component<A, I> {
++    type StaticInput = (
++        &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
++        &'static mut MaybeUninit<I2CDevice<'static, I>>,
++        &'static mut MaybeUninit<[u8; 14]>,
++        &'static mut MaybeUninit<Mpu6050<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
++    );
++    type Output = &'static Mpu6050<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    fn finalize(self, s: Self::StaticInput) -> Self::Output {
++        let alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
++        alarm.setup();
++        let bus = s.1.write(I2CDevice::new(self.i2c_mux, 0x68));
++        let buffer = s.2.write([0; 14]);
++        let driver = s.3.write(Mpu6050::new(bus, alarm, buffer));
++        bus.set_client(driver);
++        alarm.set_alarm_client(driver);
++        let _ = driver.startup();
++        driver
++    }
++}
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -233,6 +233,7 @@
+     ambient_light: &'static AmbientLightDriver,
+     pressure: &'static PressureDriver,
+     proximity: &'static ProximityDriver,
++    ninedof: &'static capsules_extra::ninedof::NineDof<'static>,
+     ipc: kernel::ipc::IPC<{ NUM_PROCS as u8 }>,
+     analog_comparator: &'static capsules_extra::analog_comparator::AnalogComparator<
+         'static,
+@@ -277,6 +278,7 @@
+             capsules_extra::ambient_light::DRIVER_NUM => f(Some(self.ambient_light)),
+             capsules_extra::pressure::DRIVER_NUM => f(Some(self.pressure)),
+             capsules_extra::proximity::DRIVER_NUM => f(Some(self.proximity)),
++            capsules_extra::ninedof::DRIVER_NUM => f(Some(self.ninedof)),
+             capsules_extra::analog_comparator::DRIVER_NUM => f(Some(self.analog_comparator)),
+             capsules_extra::net::udp::DRIVER_NUM => f(Some(self.udp_driver)),
+             kernel::ipc::DRIVER_NUM => f(Some(&self.ipc)),
+@@ -802,6 +804,14 @@
+     let sensors_i2c = components::i2c::I2CMuxComponent::new(&base_peripherals.twi1, None)
+         .finalize(components::i2c_mux_component_static!(nrf52840::i2c::TWI));
+ 
++    // Benchmark fixture: allocate/wire native interfaces; candidate owns all sensor state.
++    let mpu6050 = components::mpu6050::Mpu6050Component::new(sensors_i2c, mux_alarm)
++        .finalize(components::mpu6050_component_static!(nrf52840::rtc::Rtc,nrf52840::i2c::TWI));
++    let ninedof = components::ninedof::NineDofComponent::new(
++        board_kernel, capsules_extra::ninedof::DRIVER_NUM,
++    )
++        .finalize(components::ninedof_component_static!(mpu6050));
++
+     let ccs811 = components::ccs811::Ccs811Component::new(sensors_i2c, mux_alarm, 0x5A)
+         .finalize(components::ccs811_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
+ 
+@@ -966,6 +976,7 @@
+         ambient_light,
+         pressure,
+         proximity,
++        ninedof,
+         alarm,
+         analog_comparator,
+         thread_driver,
+--- a/capsules/extra/src/lib.rs
++++ b/capsules/extra/src/lib.rs
+@@ -100,3 +100,5 @@
+ pub mod usb;
+ pub mod usb_hid_driver;
+ pub mod virtual_kv;
++
++pub mod mpu6050;

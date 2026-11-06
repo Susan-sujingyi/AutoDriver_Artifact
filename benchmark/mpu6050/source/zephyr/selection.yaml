@@ -1,0 +1,40 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/tdk/mpu6050/mpu6050.c
+      sha256: c36c1d46a8b5b8096d28c77be3cd19ba8802914d5aaa4e09d3cdde891ca8db53
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/tdk/mpu6050/mpu6050.h
+      sha256: c36c1d02066ad844d7c721770e34f5e4ee46fb79477adf35eef5a62376a82a78
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/tdk/mpu6050/mpu6050_trigger.c
+      sha256: e7222bf2e48aaaa1e383b6c66fb7cb46435aaaeb71568bed32546f6550b3b5bc
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/tdk/mpu6050/Kconfig
+      sha256: 32952eef74a238118dd348dcdc6e16ebdb9c2b4875fed31963d7babff7f26eb4
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/tdk/mpu6050/CMakeLists.txt
+      sha256: 5b3571593c982a6cb9f175cc0241e13bbc445dd744beec4c03879d4f0b2002fe
+      role: build_configuration
+    configuration_files:
+    - benchmark/mpu6050/source/zephyr/configuration.yaml
+    - benchmark/mpu6050/source/zephyr/board.overlay
+    validation: benchmark/mpu6050/source/zephyr/validation
+    source_entrypoints:
+      init: mpu6050_init
+      sample_fetch: mpu6050_sample_fetch
+      channel_get: mpu6050_channel_get
+    dependencies: []
+    devicetree:
+      compatible: invensense,mpu6050
+      bus: i2c
+      reg: 104
+      status: okay
+      accel-fs: 2
+      gyro-fs: 250
+      smplrt-div: 9
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

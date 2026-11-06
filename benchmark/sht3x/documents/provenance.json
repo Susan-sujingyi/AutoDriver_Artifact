@@ -1,0 +1,58 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "SHT30",
+  "task_alias": "sht3x",
+  "manufacturer": "Sensirion AG",
+  "document_title": "Datasheet SHT3x-DIS Humidity and Temperature Sensor",
+  "revision": "December 2022 Version 7",
+  "page_count": 22,
+  "official_url": "https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf",
+  "retrieved_from": "https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf",
+  "retrieved_date": "2026-09-24",
+  "retrieval_note": "Official PDF reacquired and matched existing material byte-for-byte. Exact SHT30 selected by user; SHT31/SHT35 accuracy specifications are not applied to this task.",
+  "extraction": {
+    "tool": "pdftotext",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true
+  },
+  "visually_checked_pages": [
+    7,
+    10,
+    14
+  ],
+  "text_checked_pages": [
+    1,
+    2,
+    3,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14
+  ],
+  "copyright": "Unmodified manufacturer technical literature; original notices retained, no open-source license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "095b1853e7f4328f5897c9ca6c392a7dd8b0202eda66b0a2629f9cb840dd496d",
+      "bytes": 810136
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "d33ab87b3f1f84655cd44a9088a73d68e867c43f55a324c7cd713297409f6f4e",
+      "bytes": 97418
+    },
+    {
+      "path": "pages.json",
+      "sha256": "edc4641262f67cbe421fe15b2950ee42738215bf143329edac552a513f6de92d",
+      "bytes": 2083
+    },
+    {
+      "path": "retrieval.json",
+      "sha256": "f97169b1bf07ef64d97f996acb2f2d31a7e1079bdbbfde73e1ff809741432705",
+      "bytes": 301
+    }
+  ]
+}

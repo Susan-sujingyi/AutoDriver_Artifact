@@ -1,0 +1,35 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: i2c
+module: sht3x
+editable_paths:
+- drivers/sensors/sht3x.c
+- drivers/sensors/sht3x/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: sensor_temp
+    field: temperature
+    unit: degC
+  - structure: sensor_humi
+    field: humidity
+    unit: percent_RH
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: sht3x
+sanitizer: benchmark/sht3x/target/nuttx/i2c/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/sht3x/target/nuttx/i2c/board-support/driver_api.h
+    target: include/nuttx/sensors/sht3x.h
+  resources: []

@@ -1,0 +1,2924 @@
+{
+  "schema": "driverbench.numeric_cases/v1",
+  "device": "DPS310",
+  "authority": "Infineon DPS310 V1.2 2020-10-15 pp14-15,37",
+  "note": "Synthetic witnesses; selected 8x kP=kT=7864320; not measured factory trim. Last two width extrema are oracle-only, outside ordinary physical output range.",
+  "calibration_profiles": {
+    "zero_adc": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 100000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        24,
+        106,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "temperature_zero": {
+      "coefficients": {
+        "c0": 0,
+        "c1": 40,
+        "c00": 100000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        0,
+        0,
+        40,
+        24,
+        106,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "negative_fraction": {
+      "coefficients": {
+        "c0": 0,
+        "c1": 2047,
+        "c00": 100000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        0,
+        7,
+        255,
+        24,
+        106,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c0_negative": {
+      "coefficients": {
+        "c0": -33,
+        "c1": 40,
+        "c00": 100000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        253,
+        240,
+        40,
+        24,
+        106,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c1_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": -49,
+        "c00": 100000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        47,
+        207,
+        24,
+        106,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c00_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": -65537,
+        "c10": 160001,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        239,
+        255,
+        242,
+        113,
+        1,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c10_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 100000,
+        "c10": -10001,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        24,
+        106,
+        15,
+        216,
+        239,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c01_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": -32001,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        130,
+        255,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c01_positive": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 32001,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        125,
+        1,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c11_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": -32001,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        130,
+        255,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c11_positive": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 32001,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        125,
+        1,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c20_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -32001,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        130,
+        255,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c20_positive": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": 32001,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        125,
+        1,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "c21_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": -32001,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        130,
+        255,
+        255,
+        236
+      ]
+    },
+    "c21_positive": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 32001,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        125,
+        1,
+        255,
+        236
+      ]
+    },
+    "c30_negative": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -32001
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        130,
+        255
+      ]
+    },
+    "c30_positive": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 90000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": 32001
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        21,
+        249,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        125,
+        1
+      ]
+    },
+    "packed_shared_nibbles": {
+      "coefficients": {
+        "c0": -17,
+        "c1": 49,
+        "c00": 100015,
+        "c10": -10015,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        254,
+        240,
+        49,
+        24,
+        106,
+        255,
+        216,
+        225,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "pressure_minimum": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 30000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        7,
+        83,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "pressure_maximum": {
+      "coefficients": {
+        "c0": 50,
+        "c1": 40,
+        "c00": 120000,
+        "c10": 10000,
+        "c01": 500,
+        "c11": 1200,
+        "c20": -200,
+        "c21": 300,
+        "c30": -20
+      },
+      "bytes": [
+        3,
+        32,
+        40,
+        29,
+        76,
+        0,
+        39,
+        16,
+        1,
+        244,
+        4,
+        176,
+        255,
+        56,
+        1,
+        44,
+        255,
+        236
+      ]
+    },
+    "all_minimum_fields": {
+      "coefficients": {
+        "c0": -2048,
+        "c1": -2048,
+        "c00": -524288,
+        "c10": -524288,
+        "c01": -32768,
+        "c11": -32768,
+        "c20": -32768,
+        "c21": -32768,
+        "c30": -32768
+      },
+      "bytes": [
+        128,
+        8,
+        0,
+        128,
+        0,
+        8,
+        0,
+        0,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0
+      ]
+    },
+    "all_maximum_fields": {
+      "coefficients": {
+        "c0": 2047,
+        "c1": 2047,
+        "c00": 524287,
+        "c10": 524287,
+        "c01": 32767,
+        "c11": 32767,
+        "c20": 32767,
+        "c21": 32767,
+        "c30": 32767
+      },
+      "bytes": [
+        127,
+        247,
+        255,
+        127,
+        255,
+        247,
+        255,
+        255,
+        127,
+        255,
+        127,
+        255,
+        127,
+        255,
+        127,
+        255,
+        127,
+        255
+      ]
+    }
+  },
+  "vectors": [
+    {
+      "id": "zero_adc",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 0,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 1000
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 25,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 100000,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "positive_half",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 1055
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 105535,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "negative_half",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": -3932160,
+        "temperature": -3932160
+      },
+      "raw_bytes": [
+        196,
+        0,
+        0,
+        196,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 500,
+        "pressure_hpa": 949
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": -1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 5,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 94965,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": -5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": -250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": -75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "positive_one",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 7864320,
+        "temperature": 7864320
+      },
+      "raw_bytes": [
+        120,
+        0,
+        0,
+        120,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 6500,
+        "pressure_hpa": 1117
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 65,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 111780,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 10000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -200,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -20,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 500,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 1200,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 300,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "negative_one",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": -7864320,
+        "temperature": -7864320
+      },
+      "raw_bytes": [
+        136,
+        0,
+        0,
+        136,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": -1500,
+        "pressure_hpa": 902
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -1,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": -1,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": -15,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 90220,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": -10000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -200,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 20,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": -500,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 1200,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": -300,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "raw_maximum",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 8388607,
+        "temperature": 8388607
+      },
+      "raw_bytes": [
+        127,
+        255,
+        255,
+        127,
+        255,
+        255
+      ],
+      "expected": {
+        "temperature_centi_c": 6766,
+        "pressure_hpa": 1126
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 8388607,
+          "denominator": 7864320
+        },
+        "scaled_pressure": {
+          "numerator": 8388607,
+          "denominator": 7864320
+        },
+        "temperature_c": {
+          "numerator": 13303807,
+          "denominator": 196608
+        },
+        "pressure_pa": {
+          "numerator": 1370127859838256305143801,
+          "denominator": 12159718993900339200
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 1048575875,
+            "denominator": 98304
+          },
+          "quadratic_pressure": {
+            "numerator": -70368727400449,
+            "denominator": 309237645312
+          },
+          "cubic_pressure": {
+            "numerator": -590295599252498284543,
+            "denominator": 24319437987800678400
+          },
+          "temperature": {
+            "numerator": 209715175,
+            "denominator": 393216
+          },
+          "linear_cross": {
+            "numerator": 70368727400449,
+            "denominator": 51539607552
+          },
+          "quadratic_cross": {
+            "numerator": 590295599252498284543,
+            "denominator": 1621295865853378560
+          }
+        }
+      }
+    },
+    {
+      "id": "raw_minimum",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": -8388608,
+        "temperature": -8388608
+      },
+      "raw_bytes": [
+        128,
+        0,
+        0,
+        128,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": -1766,
+        "pressure_hpa": 895
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -16,
+          "denominator": 15
+        },
+        "scaled_pressure": {
+          "numerator": -16,
+          "denominator": 15
+        },
+        "temperature_c": {
+          "numerator": -53,
+          "denominator": 3
+        },
+        "pressure_pa": {
+          "numerator": 60478624,
+          "denominator": 675
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": -32000,
+            "denominator": 3
+          },
+          "quadratic_pressure": {
+            "numerator": -2048,
+            "denominator": 9
+          },
+          "cubic_pressure": {
+            "numerator": 16384,
+            "denominator": 675
+          },
+          "temperature": {
+            "numerator": -1600,
+            "denominator": 3
+          },
+          "linear_cross": {
+            "numerator": 4096,
+            "denominator": 3
+          },
+          "quadratic_cross": {
+            "numerator": -16384,
+            "denominator": 45
+          }
+        }
+      }
+    },
+    {
+      "id": "raw_mixed_bytes",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 6636321,
+        "temperature": -1193046
+      },
+      "raw_bytes": [
+        101,
+        67,
+        33,
+        237,
+        203,
+        170
+      ],
+      "expected": {
+        "temperature_centi_c": 1893,
+        "pressure_hpa": 1080
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -198841,
+          "denominator": 1310720
+        },
+        "scaled_pressure": {
+          "numerator": 2212107,
+          "denominator": 2621440
+        },
+        "temperature_c": {
+          "numerator": 620359,
+          "denominator": 32768
+        },
+        "pressure_pa": {
+          "numerator": 97297752725935642553487,
+          "denominator": 900719925474099200
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 276513375,
+            "denominator": 32768
+          },
+          "quadratic_pressure": {
+            "numerator": -4893417379449,
+            "denominator": 34359738368
+          },
+          "cubic_pressure": {
+            "numerator": -10824762839000789043,
+            "denominator": 900719925474099200
+          },
+          "temperature": {
+            "numerator": -4971025,
+            "denominator": 65536
+          },
+          "linear_cross": {
+            "numerator": -1319572703961,
+            "denominator": 8589934592
+          },
+          "quadratic_cross": {
+            "numerator": -2919036015441055827,
+            "denominator": 90071992547409920
+          }
+        }
+      }
+    },
+    {
+      "id": "same_pressure_cold",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": -7864320
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        136,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": -1500,
+        "pressure_hpa": 1037
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -1,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": -15,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 207545,
+          "denominator": 2
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": -500,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": -600,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": -75,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "same_pressure_hot",
+      "profile": "zero_adc",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 7864320
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        120,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 6500,
+        "pressure_hpa": 1061
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 65,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 212245,
+          "denominator": 2
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 500,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 600,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "temperature_zero",
+      "profile": "temperature_zero",
+      "raw": {
+        "pressure": 0,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 1000
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 100000,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "negative_fraction",
+      "profile": "negative_fraction",
+      "raw": {
+        "pressure": 0,
+        "temperature": -1
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        255,
+        255,
+        255
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 999
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -1,
+          "denominator": 7864320
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": -2047,
+          "denominator": 7864320
+        },
+        "pressure_pa": {
+          "numerator": 39321599975,
+          "denominator": 393216
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": -25,
+            "denominator": 393216
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "positive_fraction",
+      "profile": "negative_fraction",
+      "raw": {
+        "pressure": 0,
+        "temperature": 1
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 1000
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 7864320
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 2047,
+          "denominator": 7864320
+        },
+        "pressure_pa": {
+          "numerator": 39321600025,
+          "denominator": 393216
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 25,
+            "denominator": 393216
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "c0_negative",
+      "profile": "c0_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 350,
+        "pressure_hpa": 1055
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 7,
+          "denominator": 2
+        },
+        "pressure_pa": {
+          "numerator": 105535,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c1_negative",
+      "profile": "c1_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 50,
+        "pressure_hpa": 1055
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "pressure_pa": {
+          "numerator": 105535,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c00_negative",
+      "profile": "c00_negative",
+      "raw": {
+        "pressure": 7864320,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        120,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 942
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 25,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 94244,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": -65537,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 160001,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -200,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -20,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "c10_negative",
+      "profile": "c10_negative",
+      "raw": {
+        "pressure": -7864320,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        136,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 1098
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": -1,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 25,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 109821,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 10001,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -200,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 20,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "c01_negative",
+      "profile": "c01_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 792
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 158569,
+          "denominator": 2
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": -32001,
+            "denominator": 2
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c01_positive",
+      "profile": "c01_positive",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 1112
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 222571,
+          "denominator": 2
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 32001,
+            "denominator": 2
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c11_negative",
+      "profile": "c11_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 872
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 348939,
+          "denominator": 4
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": -32001,
+            "denominator": 4
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c11_positive",
+      "profile": "c11_positive",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 1032
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 412941,
+          "denominator": 4
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 32001,
+            "denominator": 4
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c20_negative",
+      "profile": "c20_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 875
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 350339,
+          "denominator": 4
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -32001,
+            "denominator": 4
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c20_positive",
+      "profile": "c20_positive",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 1035
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 414341,
+          "denominator": 4
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 32001,
+            "denominator": 4
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c21_negative",
+      "profile": "c21_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 914
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 731979,
+          "denominator": 8
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": -32001,
+            "denominator": 8
+          }
+        }
+      }
+    },
+    {
+      "id": "c21_positive",
+      "profile": "c21_positive",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 994
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 795981,
+          "denominator": 8
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -5,
+            "denominator": 2
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 32001,
+            "denominator": 8
+          }
+        }
+      }
+    },
+    {
+      "id": "c30_negative",
+      "profile": "c30_negative",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 915
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 732299,
+          "denominator": 8
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": -32001,
+            "denominator": 8
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "c30_positive",
+      "profile": "c30_positive",
+      "raw": {
+        "pressure": 3932160,
+        "temperature": 3932160
+      },
+      "raw_bytes": [
+        60,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 4500,
+        "pressure_hpa": 995
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "temperature_c": {
+          "numerator": 45,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 796301,
+          "denominator": 8
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 90000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 5000,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": -50,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 32001,
+            "denominator": 8
+          },
+          "temperature": {
+            "numerator": 250,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 300,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 75,
+            "denominator": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "packed_shared_nibbles",
+      "profile": "packed_shared_nibbles",
+      "raw": {
+        "pressure": 2621440,
+        "temperature": 1966080
+      },
+      "raw_bytes": [
+        40,
+        0,
+        0,
+        30,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 375,
+        "pressure_hpa": 968
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "scaled_pressure": {
+          "numerator": 1,
+          "denominator": 3
+        },
+        "temperature_c": {
+          "numerator": 15,
+          "denominator": 4
+        },
+        "pressure_pa": {
+          "numerator": 2615950,
+          "denominator": 27
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 100015,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": -10015,
+            "denominator": 3
+          },
+          "quadratic_pressure": {
+            "numerator": -200,
+            "denominator": 9
+          },
+          "cubic_pressure": {
+            "numerator": -20,
+            "denominator": 27
+          },
+          "temperature": {
+            "numerator": 125,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 100,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 25,
+            "denominator": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "pressure_minimum",
+      "profile": "pressure_minimum",
+      "raw": {
+        "pressure": 0,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 300
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 25,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 30000,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 30000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "pressure_maximum",
+      "profile": "pressure_maximum",
+      "raw": {
+        "pressure": 0,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 1200
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "scaled_pressure": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "temperature_c": {
+          "numerator": 25,
+          "denominator": 1
+        },
+        "pressure_pa": {
+          "numerator": 120000,
+          "denominator": 1
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 120000,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "cubic_pressure": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "temperature": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "linear_cross": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "quadratic_cross": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      }
+    }
+  ],
+  "oracle_only_vectors": [
+    {
+      "id": "all_minimum_fields",
+      "profile": "all_minimum_fields",
+      "raw": {
+        "pressure": -8388608,
+        "temperature": -8388608
+      },
+      "raw_bytes": [
+        128,
+        0,
+        0,
+        128,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": 116053,
+        "pressure_hpa": 748
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": -16,
+          "denominator": 15
+        },
+        "scaled_pressure": {
+          "numerator": -16,
+          "denominator": 15
+        },
+        "temperature_c": {
+          "numerator": 17408,
+          "denominator": 15
+        },
+        "pressure_pa": {
+          "numerator": 252706816,
+          "denominator": 3375
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": -524288,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 8388608,
+            "denominator": 15
+          },
+          "quadratic_pressure": {
+            "numerator": -8388608,
+            "denominator": 225
+          },
+          "cubic_pressure": {
+            "numerator": 134217728,
+            "denominator": 3375
+          },
+          "temperature": {
+            "numerator": 524288,
+            "denominator": 15
+          },
+          "linear_cross": {
+            "numerator": -8388608,
+            "denominator": 225
+          },
+          "quadratic_cross": {
+            "numerator": 134217728,
+            "denominator": 3375
+          }
+        }
+      }
+    },
+    {
+      "id": "all_maximum_fields",
+      "profile": "all_maximum_fields",
+      "raw": {
+        "pressure": 8388607,
+        "temperature": 8388607
+      },
+      "raw_bytes": [
+        127,
+        255,
+        255,
+        127,
+        255,
+        255
+      ],
+      "expected": {
+        "temperature_centi_c": 320696,
+        "pressure_hpa": 12725
+      },
+      "exact": {
+        "scaled_temperature": {
+          "numerator": 8388607,
+          "denominator": 7864320
+        },
+        "scaled_pressure": {
+          "numerator": 8388607,
+          "denominator": 7864320
+        },
+        "temperature_c": {
+          "numerator": 25220610049,
+          "denominator": 7864320
+        },
+        "pressure_pa": {
+          "numerator": 309483075647308280491376641,
+          "denominator": 243194379878006784000
+        },
+        "pressure_terms": {
+          "offset": {
+            "numerator": 524287,
+            "denominator": 1
+          },
+          "linear_pressure": {
+            "numerator": 4398037598209,
+            "denominator": 7864320
+          },
+          "quadratic_pressure": {
+            "numerator": 2305772090730512383,
+            "denominator": 61847529062400
+          },
+          "cubic_pressure": {
+            "numerator": 19342215900706611289620481,
+            "denominator": 486388759756013568000
+          },
+          "temperature": {
+            "numerator": 274869485569,
+            "denominator": 7864320
+          },
+          "linear_cross": {
+            "numerator": 2305772090730512383,
+            "denominator": 61847529062400
+          },
+          "quadratic_cross": {
+            "numerator": 19342215900706611289620481,
+            "denominator": 486388759756013568000
+          }
+        }
+      }
+    }
+  ],
+  "manual_witnesses": [
+    {
+      "id": "zero_adc",
+      "reason": "p=t=0: T=c0/2=25 C and P=c00=100000 Pa; outputs2500/1000."
+    },
+    {
+      "id": "positive_half",
+      "reason": "p=t=1/2: T=45 C; P=100000+5000-50-2.5+250+300+37.5=105535 Pa; outputs4500/1055."
+    }
+  ]
+}

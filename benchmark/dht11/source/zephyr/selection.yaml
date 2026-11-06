@@ -1,0 +1,40 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  gpio:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/aosong/dht/dht.c
+      sha256: 55a2cef573a1be109bef8a00d4b07de4d0d408e2b2fa310c9282b62b2310fa8c
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/aosong/dht/dht.h
+      sha256: e4a82bc9464aa9bf8d3af992ee8ff7144bb70e028ec658a5a6f0f089cae0c22f
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/aosong/dht/CMakeLists.txt
+      sha256: 334caaeb096f739d7924ec99c1bd57f931d6bf9dd8f8ecffa2f90754bc7f5f5b
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/aosong/dht/Kconfig
+      sha256: 251f90db9e5023a922f65ce2938d952a7422dfe44626e50523c57385f8be5ca4
+      role: build_configuration
+    configuration_files:
+    - benchmark/dht11/source/zephyr/configuration.yaml
+    - benchmark/dht11/source/zephyr/board.overlay
+    validation: benchmark/dht11/source/zephyr/validation
+    source_entrypoints:
+      init: dht_init
+      sample_fetch: dht_sample_fetch
+      channel_get: dht_channel_get
+    dependencies: []
+    devicetree:
+      compatible: aosong,dht
+      bus: gpio
+      reg: null
+      status: okay
+      dht22: false
+      fixture_gpio:
+        property: dio-gpios
+        controller: gpio0
+        pin: 6
+        active_low: true
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

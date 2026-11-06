@@ -1,0 +1,82 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "LPS22HB",
+  "manufacturer": "STMicroelectronics",
+  "document_title": "MEMS nano pressure sensor: 260-1260 hPa absolute digital output barometer",
+  "document_id": "DocID027083",
+  "revision": "6",
+  "revision_date": "2017-06-29",
+  "cover_date": "June 2017",
+  "page_count": 49,
+  "official_url": "https://www.st.com/resource/en/datasheet/dm00140895.pdf",
+  "official_alias_url": "https://www.st.com/resource/en/datasheet/lps22hb.pdf",
+  "retrieved_from": "https://www.electrokit.com/upload/quick/54/ed/819e_41035997-tds.pdf",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Official ST document obtained unchanged from distributor mirror after direct ST-host downloads failed (HTTP/2 INTERNAL_ERROR and HTTP/1.1 timeout). Official ST web document was independently opened and its title, revision and 49-page identity checked. No byte-for-byte claim against the unavailable ST download is made.",
+  "pdf_metadata": {
+    "author": "STMICROELECTRONICS",
+    "creator": "C2 v4.2.0220 build 670 - c2_rendition_config : Techlit_Active",
+    "modified": "2017-07-24"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    10,
+    37,
+    45
+  ],
+  "text_checked_pages": [
+    1,
+    10,
+    15,
+    26,
+    27,
+    32,
+    33,
+    36,
+    37,
+    38,
+    43,
+    45,
+    46,
+    48
+  ],
+  "copyright": "Copyright 2017 STMicroelectronics. All rights reserved. See unmodified notice on PDF page 49. No open-source license asserted for this technical literature.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "b64e342cb6f703926efaba1a6924fa3312a5b4d8ef811f54bc2d98b72e80d4fa",
+      "bytes": 1527385
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "e14e32b6a3d5b692990822424a53d1f00c5c9d58af3b23899caa4988d14ae0da",
+      "bytes": 109649
+    },
+    {
+      "path": "pages.json",
+      "sha256": "28ef380ffdf9a19008cf59846293aa6b7e32867f01433d8a5a4fd5079ab2996c",
+      "bytes": 4481
+    }
+  ],
+  "supplementary_web_reference": {
+    "title": "AN4833: Measuring pressure data from ST’s LPS22HB digital pressure sensor",
+    "document_id": "DocID029003",
+    "revision": "2",
+    "date": "September 2017",
+    "page_count": 34,
+    "url": "https://www.st.com/resource/en/application_note/an4833-measuring-pressure-data-from-sts-lps22hb-digital-pressure-sensor-stmicroelectronics.pdf",
+    "checked_pages": [
+      6,
+      20,
+      21
+    ],
+    "local_copy": null,
+    "use": "Non-scoring context only: 3 ms power-on boot, BDU, new-data generation; startup fixture assumes powered device. Direct PDF retrieval failed."
+  }
+}

@@ -1,0 +1,25 @@
+"""Private compiling semantic controls, exported through ordinary submissions."""
+def mutations():
+    return {
+        'percent_instead_of_raw': ('sample.raw=value;', 'sample.raw=value*100/255;'),
+        'high_bit_lost': ('sample.raw=value;', 'sample.raw=value&0x7f;'),
+        'zero_treated_as_failure': ('sample.raw=value;', 'sample.raw=value;if(value==0){ret=-EIO;goto done;}'),
+        'saturation_treated_as_failure': ('sample.raw=value;', 'sample.raw=value;if(value==255){ret=-EIO;goto done;}'),
+        'pint_instead_of_pvalid': ('if (status&2) break;', 'if (status&0x20) break;'),
+        'readiness_ignored': ('if (status&2) break;', 'if (true) break;'),
+        'por_wait_missing': ('timestamp()+6000', 'timestamp()+0'),
+        'wrong_pulse_length': ('{0x8e,0x47}', '{0x8e,0x07}'),
+        'wrong_gain': ('{0x8f,0x04}', '{0x8f,0x00}'),
+        'wrong_boost': ('{0x90,0x11}', '{0x90,0x01}'),
+        'engine_enabled_before_configuration': ('{0x80,0x00}', '{0x80,0x05}'),
+        'als_enabled': ('{0x80,0x05}', '{0x80,0x07}'),
+        'identity_ignored': ('if (value!=0xab)', 'if (false)'),
+        'event_size_wrong': ('path,sizeof(struct custom_proximity_raw)', 'path,sizeof(struct custom_proximity_raw)-1'),
+        'event_node_wrong': ('"/dev/uorb/proximity_raw%d"', '"/dev/uorb/sensor_prox%d"'),
+        'timestamp_zero': ('sample.timestamp=sensor_get_timestamp();', 'sample.timestamp=0;'),
+        'deadline_exceeded': ('timestamp()+100000;\n  uint8_t status', 'timestamp()+200000;\n  uint8_t status'),
+        'native_sleep_margin_missing': ('if (now+30000>=end)', 'if (now+2000>=end)'),
+        'swallowed_transport_error': ('return ret<0 ? ret : 0;', 'return 0;'),
+        'lock_leaked': ('done:\n  nxmutex_unlock(&dev->lock);return ret;', 'done:\n  return ret;'),
+        'factory_allocation_leaked': ('nxmutex_destroy(&dev->lock);kmm_free(dev);return ret;', 'nxmutex_destroy(&dev->lock);return ret;'),
+    }

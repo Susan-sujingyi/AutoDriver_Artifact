@@ -1,0 +1,24 @@
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -191,7 +191,7 @@
+ type Lps22hbI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type Lps22hbSensor = capsules_extra::lps22hb::Lps22hb<'static, Lps22hbI2CDevice>;
+-type PressureDriver = capsules_extra::pressure::PressureSensor<'static, Lps22hbSensor>;
++type PressureDriver = capsules_extra::pressure::PressureSensor<'static, BME280Sensor>;
+ type ProximityDriver = capsules_extra::proximity::ProximitySensor<'static>;
+ 
+ type Ieee802154MacDevice = components::ieee802154::Ieee802154ComponentMacDeviceType<
+@@ -849,9 +849,9 @@
+     let pressure = components::pressure::PressureComponent::new(
+         board_kernel,
+         capsules_extra::pressure::DRIVER_NUM,
+-        lps22hb,
+-    )
+-    .finalize(components::pressure_component_static!(Lps22hbSensor));
++        bme280,
++    )
++    .finalize(components::pressure_component_static!(BME280Sensor));
+ 
+     let apds9960 = components::apds9960::Apds9960Component::new(
+         sensors_i2c,

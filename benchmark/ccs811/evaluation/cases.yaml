@@ -1,0 +1,581 @@
+{
+  "schema": "driverbench.ccs811.numeric-cases/v1",
+  "device": "CCS811",
+  "document": "ams DS000459 v1-06, 2019-02-07",
+  "evidence_pages": [
+    12,
+    20
+  ],
+  "units": {
+    "co2_ppm": "whole equivalent CO2 parts per million",
+    "tvoc_ppb": "whole equivalent total VOC parts per billion"
+  },
+  "rounding": "none; unsigned big-endian words already have native callback units",
+  "algorithm_output_ranges": {
+    "co2_ppm": [
+      400,
+      29206
+    ],
+    "tvoc_ppb": [
+      0,
+      32768
+    ]
+  },
+  "notes": [
+    "Gas values are calculated by device application firmware, not from RAW_DATA on the host.",
+    "Output ranges and byte width are separate checks. Out-of-range words remain decodable and are fault vectors, not clamped results.",
+    "Embedded STATUS and ERROR_ID validity checks belong to the protocol model. The optional ADC/current bytes do not affect either gas output.",
+    "The physical quantity is an equivalent gas estimate; these vectors do not establish absolute gas accuracy."
+  ],
+  "vectors": [
+    {
+      "id": "minimum_clean_air",
+      "raw": {
+        "co2": 400,
+        "tvoc": 0
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        1,
+        144,
+        0,
+        0,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 400,
+        "tvoc_ppb": 0
+      },
+      "in_output_range": true,
+      "manual": "1*256+144=400 ppm; 0 ppb is valid."
+    },
+    {
+      "id": "small_nonzero_tvoc",
+      "raw": {
+        "co2": 401,
+        "tvoc": 1
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 1
+      },
+      "raw_bytes": [
+        1,
+        145,
+        0,
+        1,
+        152,
+        0,
+        0,
+        1
+      ],
+      "expected": {
+        "co2_ppm": 401,
+        "tvoc_ppb": 1
+      },
+      "in_output_range": true,
+      "manual": "1*256+145=401 ppm; 1 ppb has no scaling."
+    },
+    {
+      "id": "low_byte_maximum",
+      "raw": {
+        "co2": 511,
+        "tvoc": 255
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 2
+      },
+      "raw_bytes": [
+        1,
+        255,
+        0,
+        255,
+        152,
+        0,
+        0,
+        2
+      ],
+      "expected": {
+        "co2_ppm": 511,
+        "tvoc_ppb": 255
+      },
+      "in_output_range": true,
+      "manual": "1*256+255=511; 0*256+255=255."
+    },
+    {
+      "id": "low_byte_carry",
+      "raw": {
+        "co2": 512,
+        "tvoc": 256
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 3
+      },
+      "raw_bytes": [
+        2,
+        0,
+        1,
+        0,
+        152,
+        0,
+        0,
+        3
+      ],
+      "expected": {
+        "co2_ppm": 512,
+        "tvoc_ppb": 256
+      },
+      "in_output_range": true,
+      "manual": "2*256=512; 1*256=256."
+    },
+    {
+      "id": "distinct_byte_order",
+      "raw": {
+        "co2": 4660,
+        "tvoc": 9029
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 4
+      },
+      "raw_bytes": [
+        18,
+        52,
+        35,
+        69,
+        152,
+        0,
+        0,
+        4
+      ],
+      "expected": {
+        "co2_ppm": 4660,
+        "tvoc_ppb": 9029
+      },
+      "in_output_range": true,
+      "manual": "18*256+52=4660; 35*256+69=9029."
+    },
+    {
+      "id": "above_legacy_co2_ceiling",
+      "raw": {
+        "co2": 8193,
+        "tvoc": 1188
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 5
+      },
+      "raw_bytes": [
+        32,
+        1,
+        4,
+        164,
+        152,
+        0,
+        0,
+        5
+      ],
+      "expected": {
+        "co2_ppm": 8193,
+        "tvoc_ppb": 1188
+      },
+      "in_output_range": true,
+      "manual": "32*256+1=8193; 4*256+164=1188, both within this fixed revision."
+    },
+    {
+      "id": "tvoc_signed_low",
+      "raw": {
+        "co2": 16384,
+        "tvoc": 32767
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 6
+      },
+      "raw_bytes": [
+        64,
+        0,
+        127,
+        255,
+        152,
+        0,
+        0,
+        6
+      ],
+      "expected": {
+        "co2_ppm": 16384,
+        "tvoc_ppb": 32767
+      },
+      "in_output_range": true,
+      "manual": "64*256=16384; 127*256+255=32767."
+    },
+    {
+      "id": "tvoc_signed_high",
+      "raw": {
+        "co2": 16385,
+        "tvoc": 32768
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 7
+      },
+      "raw_bytes": [
+        64,
+        1,
+        128,
+        0,
+        152,
+        0,
+        0,
+        7
+      ],
+      "expected": {
+        "co2_ppm": 16385,
+        "tvoc_ppb": 32768
+      },
+      "in_output_range": true,
+      "manual": "64*256+1=16385; 128*256=32768, unsigned and valid."
+    },
+    {
+      "id": "co2_maximum_minus_one",
+      "raw": {
+        "co2": 29205,
+        "tvoc": 32767
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 8
+      },
+      "raw_bytes": [
+        114,
+        21,
+        127,
+        255,
+        152,
+        0,
+        0,
+        8
+      ],
+      "expected": {
+        "co2_ppm": 29205,
+        "tvoc_ppb": 32767
+      },
+      "in_output_range": true,
+      "manual": "114*256+21=29205; 127*256+255=32767."
+    },
+    {
+      "id": "both_documented_maxima",
+      "raw": {
+        "co2": 29206,
+        "tvoc": 32768
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 9
+      },
+      "raw_bytes": [
+        114,
+        22,
+        128,
+        0,
+        152,
+        0,
+        0,
+        9
+      ],
+      "expected": {
+        "co2_ppm": 29206,
+        "tvoc_ppb": 32768
+      },
+      "in_output_range": true,
+      "manual": "114*256+22=29206; 128*256=32768."
+    },
+    {
+      "id": "metadata_does_not_scale_gas",
+      "raw": {
+        "co2": 4660,
+        "tvoc": 9029
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 65535
+      },
+      "raw_bytes": [
+        18,
+        52,
+        35,
+        69,
+        152,
+        0,
+        255,
+        255
+      ],
+      "expected": {
+        "co2_ppm": 4660,
+        "tvoc_ppb": 9029
+      },
+      "in_output_range": true,
+      "manual": "The trailing ADC/current bytes do not participate in either gas value."
+    }
+  ],
+  "out_of_range_vectors": [
+    {
+      "id": "zero_co2_starting_or_invalid",
+      "raw": {
+        "co2": 0,
+        "tvoc": 0
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 0,
+        "tvoc_ppb": 0
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    },
+    {
+      "id": "below_co2_minimum",
+      "raw": {
+        "co2": 399,
+        "tvoc": 0
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        1,
+        143,
+        0,
+        0,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 399,
+        "tvoc_ppb": 0
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    },
+    {
+      "id": "above_co2_maximum",
+      "raw": {
+        "co2": 29207,
+        "tvoc": 0
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        114,
+        23,
+        0,
+        0,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 29207,
+        "tvoc_ppb": 0
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    },
+    {
+      "id": "co2_full_word_maximum",
+      "raw": {
+        "co2": 65535,
+        "tvoc": 0
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        255,
+        255,
+        0,
+        0,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 65535,
+        "tvoc_ppb": 0
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    },
+    {
+      "id": "above_tvoc_maximum",
+      "raw": {
+        "co2": 400,
+        "tvoc": 32769
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        1,
+        144,
+        128,
+        1,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 400,
+        "tvoc_ppb": 32769
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    },
+    {
+      "id": "tvoc_full_word_maximum",
+      "raw": {
+        "co2": 400,
+        "tvoc": 65535
+      },
+      "metadata": {
+        "status": 152,
+        "error": 0,
+        "raw_sensor": 0
+      },
+      "raw_bytes": [
+        1,
+        144,
+        255,
+        255,
+        152,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "co2_ppm": 400,
+        "tvoc_ppb": 65535
+      },
+      "in_output_range": false,
+      "manual": "Unsigned transport decoding is defined, but the value is outside the documented algorithm range; do not clamp or fabricate a valid reading."
+    }
+  ],
+  "invalid_vectors": [
+    {
+      "id": "negative_co2",
+      "raw": {
+        "co2": -1,
+        "tvoc": 0
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "over_width_co2",
+      "raw": {
+        "co2": 65536,
+        "tvoc": 0
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "negative_tvoc",
+      "raw": {
+        "co2": 400,
+        "tvoc": -1
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "over_width_tvoc",
+      "raw": {
+        "co2": 400,
+        "tvoc": 65536
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "boolean",
+      "raw": {
+        "co2": true,
+        "tvoc": 0
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "float",
+      "raw": {
+        "co2": 400.0,
+        "tvoc": 0
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "string",
+      "raw": {
+        "co2": 400,
+        "tvoc": "0"
+      },
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "null",
+      "raw": {
+        "co2": 400,
+        "tvoc": null
+      },
+      "expected_error": "ValueError"
+    }
+  ],
+  "not_applicable": [
+    "No host calibration PROM, compensation polynomial, CRC, signed output, or fractional-unit rounding for gas result words.",
+    "Environmental compensation, persistent baseline management, firmware download, raw ADC/current channels and interrupt sampling are outside the selected subset.",
+    "Warm-up, first-life conditioning, optical or chemical ground truth and physical pin wiring are not simulated accuracy measurements."
+  ]
+}

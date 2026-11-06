@@ -1,0 +1,285 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "numeric/neutral_zero",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_signs",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_reverse_signs",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_xy_encoding_edges",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_z_negative_edge",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_byte_boundaries",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/neutral_byte_boundaries_negative",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/signed_offsets_hall_nominal",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/signed_offsets_hall_lower",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/signed_offsets_hall_upper",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/reverse_offsets_calibration_a",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/reverse_offsets_calibration_b",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/unsigned_z1_positive",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/unsigned_z1_negative",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/negative_z2_signed_denominator",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/high_xyz1_mask_reserved",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/low_hall_hall_one",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/high_hall_hall_maximum",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/wide_z_z_above_short_max",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/wide_z_z_below_short_min",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "numeric/zero_denominator_recovery",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "requests/first_available",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "requests/stable_changes",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/period_92593us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/period_100000us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/period_108696us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/first_9785us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/first_50000us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "timing/first_108696us",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "coherence/turnover",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "invalid/x_overflow",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "invalid/y_overflow",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "invalid/z_overflow",
+      "scope": "core",
+      "basis": "BMM-NUMERIC/BMM-DATA/BMM-ABI/BMM-CONFIG"
+    },
+    {
+      "id": "diagnostic/invalid/hall_zero",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/invalid/zero_denominator",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/invalid_trim/z1",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/invalid_trim/z2",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/invalid_trim/xyz1",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/identity",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/stalled",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Any/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Any/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Data/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Data/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/power/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/power/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/identity/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/identity/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/trim/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/trim/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/configuration/false",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/configuration/true",
+      "scope": "diagnostic",
+      "basis": "BMM-DIAGNOSTIC"
+    },
+    {
+      "id": "__model/retained_data",
+      "scope": "internal",
+      "basis": "Model self-check"
+    },
+    {
+      "id": "__model/shadow_stop",
+      "scope": "internal",
+      "basis": "Model self-check"
+    },
+    {
+      "id": "__model/callback_encoding",
+      "scope": "internal",
+      "basis": "Model self-check"
+    }
+  ]
+}

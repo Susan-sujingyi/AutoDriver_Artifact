@@ -1,0 +1,9 @@
+{
+  "schema": "autodriver.source-validation/v1",
+  "source_os": "riot",
+  "variant": "i2c",
+  "input_identity": "37d08c8a071d6f4e01726c4b10feeba404a5bfb258cdd5f33616068f6f7de6c3",
+  "status": "pass",
+  "compiler": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+  "scope": "Native configuration, selected driver and API link; not target behavior or hardware"
+}

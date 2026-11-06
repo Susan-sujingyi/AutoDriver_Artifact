@@ -1,0 +1,56 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "BMM150",
+  "manufacturer": "Bosch Sensortec GmbH",
+  "document_title": "BMM150 Geomagnetic Sensor",
+  "document_id": "BST-BMM150-DS001-05",
+  "revision": "Revision1.4 April2020",
+  "page_count": 56,
+  "official_url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmm150-ds001.pdf",
+  "retrieved_from": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmm150-ds001.pdf",
+  "retrieved_date": "2026-09-24",
+  "extraction": {
+    "tool": "pdftotext",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true
+  },
+  "visually_checked_pages": [
+    13,
+    31
+  ],
+  "text_checked_pages": [
+    1,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    21,
+    22,
+    26,
+    27,
+    30,
+    31
+  ],
+  "supplement": "public bmm150/formulas.md supplies manufacturer trim/formula information absent from this PDF; same note provided under S,D,SD. Evaluation-side pinned BSD3 SensorAPI is cross-check material, not candidate code.",
+  "copyright": "Original manufacturer document retained; no open-source license asserted for PDF.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "0b6c837b7b563626433a9951e785381166f1eb684e376482cf4a9f1271bca4b5",
+      "bytes": 7643619
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "78e54ab9189a3fa094765b2183aae45cfecae4253a5855f0a3b1589f4d3e20cf",
+      "bytes": 187869
+    },
+    {
+      "path": "pages.json",
+      "sha256": "87db6f5b39dfd77efc3155c073d3420634b398e1d72f654343880d22118bfdc0",
+      "bytes": 5133
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/st/lsm303dlhc_magn/lsm303dlhc_magn.c
+      sha256: 013cebe79bcdb140ebbf300b2df049e264e3e5927e3c21a7ce772a6cfc7f1743
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/st/lsm303dlhc_magn/lsm303dlhc_magn.h
+      sha256: c6dce5e6a90975f09d31c958148735630b03ad064f91f9cd182b7bf3deb13984
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/st/lsm303dlhc_magn/Kconfig
+      sha256: 26072a57c33905cceb499e8ae1fa67969613c95fdcf1bb3b89c378df3c18c188
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/st/lsm303dlhc_magn/CMakeLists.txt
+      sha256: 9e4c36f898ccee77516cde2ab74c88e41b0b250304f339e8f1707051a509c24d
+      role: build_configuration
+    configuration_files:
+    - benchmark/lsm303dlhc/source/zephyr/configuration.yaml
+    - benchmark/lsm303dlhc/source/zephyr/board.overlay
+    validation: benchmark/lsm303dlhc/source/zephyr/validation
+    source_entrypoints:
+      init: lsm303dlhc_magn_init
+      sample_fetch: lsm303dlhc_sample_fetch
+      channel_get: lsm303dlhc_channel_get
+    dependencies: []
+    devicetree:
+      compatible: st,lsm303dlhc-magn
+      bus: i2c
+      reg: 30
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

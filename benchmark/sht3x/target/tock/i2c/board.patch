@@ -1,0 +1,189 @@
+--- a/boards/components/src/sht3x.rs
++++ b/boards/components/src/sht3x.rs
+@@ -1,102 +1,55 @@
+ // Licensed under the Apache License, Version 2.0 or the MIT License.
+ // SPDX-License-Identifier: Apache-2.0 OR MIT
+-// Copyright Tock Contributors 2022.
+-
+-//! Component for the SHT3x sensor.
+-//!
+-//! I2C Interface
+-//!
+-//! Usage
+-//! -----
+-//!
+-//! ```rust
+-//! let sht3x = components::sht3x::SHT3xComponent::new(sensors_i2c_bus, capsules_extra::sht3x::BASE_ADDR, mux_alarm).finalize(
+-//!         components::sht3x_component_static!(nrf52::rtc::Rtc<'static>),
+-//!     );
+-//! sht3x.reset();
+-//! ```
+-
++// Resource wiring derived from Tock Contributors' sensor components.
++//! Public SHT30 fixture: resources and client wiring only.
+ use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
+ use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
+-use capsules_extra::sht3x::SHT3x;
++use capsules_extra::sht3x::Sht3x;
+ use core::mem::MaybeUninit;
+ use kernel::component::Component;
+ use kernel::hil::i2c;
+-use kernel::hil::time::Alarm;
++use kernel::hil::time::{self, Alarm};
+ 
+-// Setup static space for the objects.
+ #[macro_export]
+ macro_rules! sht3x_component_static {
+     ($A:ty, $I:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>);
++        let i2c = kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+         let buffer = kernel::static_buf!([u8; 6]);
+-        let i2c_device =
+-            kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+-        let sht3x_alarm = kernel::static_buf!(
+-            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>
+-        );
+-        let sht3x = kernel::static_buf!(
+-            capsules_extra::sht3x::SHT3x<
+-                'static,
+-                capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
+-                capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
+-            >
+-        );
+-
+-        (sht3x_alarm, i2c_device, sht3x, buffer)
+-    };};
++        let driver = kernel::static_buf!(capsules_extra::sht3x::Sht3x<
++            'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
++        >);
++        (alarm, i2c, buffer, driver)
++    }};
+ }
+-
+-pub type SHT3xComponentType<A, I> = capsules_extra::sht3x::SHT3x<'static, A, I>;
+-
+-pub struct SHT3xComponent<A: 'static + Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
++pub struct Sht3xComponent<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
+     i2c_mux: &'static MuxI2C<'static, I>,
+-    i2c_address: u8,
+     alarm_mux: &'static MuxAlarm<'static, A>,
+ }
+-
+-impl<A: 'static + Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> SHT3xComponent<A, I> {
+-    pub fn new(
+-        i2c_mux: &'static MuxI2C<'static, I>,
+-        i2c_address: u8,
+-        alarm_mux: &'static MuxAlarm<'static, A>,
+-    ) -> SHT3xComponent<A, I> {
+-        SHT3xComponent {
+-            i2c_mux,
+-            i2c_address,
+-            alarm_mux,
+-        }
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Sht3xComponent<A, I> {
++    pub fn new(i2c_mux: &'static MuxI2C<'static, I>, alarm_mux: &'static MuxAlarm<'static, A>) -> Self {
++        Self { i2c_mux, alarm_mux }
+     }
+ }
+-
+-impl<A: 'static + Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component
+-    for SHT3xComponent<A, I>
+-{
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component for Sht3xComponent<A, I> {
+     type StaticInput = (
+         &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+-        &'static mut MaybeUninit<
+-            SHT3x<'static, VirtualMuxAlarm<'static, A>, I2CDevice<'static, I>>,
+-        >,
+         &'static mut MaybeUninit<[u8; 6]>,
++        &'static mut MaybeUninit<Sht3x<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+     );
+-    type Output = &'static SHT3x<'static, VirtualMuxAlarm<'static, A>, I2CDevice<'static, I>>;
+-
+-    fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
+-        let sht3x_i2c = static_buffer
+-            .1
+-            .write(I2CDevice::new(self.i2c_mux, self.i2c_address));
+-
+-        let buffer = static_buffer.3.write([0; 6]);
+-
+-        let sht3x_alarm = static_buffer.0.write(VirtualMuxAlarm::new(self.alarm_mux));
+-        sht3x_alarm.setup();
+-
+-        let sht3x = static_buffer
+-            .2
+-            .write(SHT3x::new(sht3x_i2c, buffer, sht3x_alarm));
+-        sht3x_i2c.set_client(sht3x);
+-        sht3x_alarm.set_alarm_client(sht3x);
+-
+-        sht3x
++    type Output = &'static Sht3x<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    fn finalize(self, s: Self::StaticInput) -> Self::Output {
++        let alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
++        alarm.setup();
++        let bus = s.1.write(I2CDevice::new(self.i2c_mux, 0x44));
++        let buffer = s.2.write([0; 6]);
++        let driver = s.3.write(Sht3x::new(bus, alarm, buffer));
++        bus.set_client(driver);
++        alarm.set_alarm_client(driver);
++        let _ = driver.startup();
++        driver
+     }
+ }
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -182,12 +182,12 @@
+ 
+ type AirQualityDriver = capsules_extra::air_quality::AirQualitySensor<'static>;
+ type AmbientLightDriver = capsules_extra::ambient_light::AmbientLight<'static>;
+-type BME280I2CDevice =
++type Sht3xI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+-type BME280Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
+-type BME280Sensor = components::bme280::Bme280ComponentType<BME280I2CDevice, BME280Alarm>;
+-type TemperatureDriver = components::temperature::TemperatureComponentType<BME280Sensor>;
+-type HumidityDriver = components::humidity::HumidityComponentType<BME280Sensor>;
++type Sht3xAlarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
++type Sht3xSensor = capsules_extra::sht3x::Sht3x<'static, Sht3xI2CDevice, Sht3xAlarm>;
++type TemperatureDriver = components::temperature::TemperatureComponentType<Sht3xSensor>;
++type HumidityDriver = components::humidity::HumidityComponentType<Sht3xSensor>;
+ type Lps22hbI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type Lps22hbSensor = capsules_extra::lps22hb::Lps22hb<'static, Lps22hbI2CDevice>;
+@@ -812,8 +812,8 @@
+     )
+     .finalize(components::air_quality_component_static!());
+ 
+-    let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x76)
+-        .finalize(components::bme280_component_static!(
++    let sht3x = components::sht3x::Sht3xComponent::new(sensors_i2c, mux_alarm)
++        .finalize(components::sht3x_component_static!(
+             nrf52840::rtc::Rtc,
+             nrf52840::i2c::TWI
+         ));
+@@ -821,16 +821,16 @@
+     let temp = components::temperature::TemperatureComponent::new(
+         board_kernel,
+         capsules_extra::temperature::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::temperature_component_static!(BME280Sensor));
++        sht3x,
++    )
++    .finalize(components::temperature_component_static!(Sht3xSensor));
+ 
+     let humidity = components::humidity::HumidityComponent::new(
+         board_kernel,
+         capsules_extra::humidity::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::humidity_component_static!(BME280Sensor));
++        sht3x,
++    )
++    .finalize(components::humidity_component_static!(Sht3xSensor));
+ 
+     let isl29035 = components::isl29035::Isl29035Component::new(sensors_i2c, mux_alarm).finalize(
+         components::isl29035_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI),

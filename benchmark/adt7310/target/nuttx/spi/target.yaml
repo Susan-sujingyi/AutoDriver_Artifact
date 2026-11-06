@@ -1,0 +1,32 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: spi
+module: adt7310
+editable_paths:
+- drivers/sensors/adt7310.c
+- drivers/sensors/adt7310/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: sensor_temp
+    field: temperature
+    unit: degC
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: adt7310
+sanitizer: benchmark/adt7310/target/nuttx/spi/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/adt7310/target/nuttx/spi/board-support/driver_api.h
+    target: include/nuttx/sensors/adt7310.h
+  resources: []

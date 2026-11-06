@@ -1,0 +1,32 @@
+{
+  "profile": "autodriver.model/dht20/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_stable",
+    "observation_us": 500000,
+    "initialization_observation_us": 800000,
+    "stable_input_progress_us": 2000000,
+    "callback_guard_us": 10000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "conversion_us": [
+      80000,
+      100000,
+      150000
+    ]
+  },
+  "limitations": [
+    "DHT20 only; digital model does not verify sensor physical accuracy.",
+    "Initialization recovery derives from original manufacturer example explicitly referenced by the datasheet; detailed sequence absent from D inputs.",
+    "Vendor approximate 5/10ms recovery delays are not exact chip minima: earlier operations classify model_unsupported.",
+    "Core uses powered stable initial state, not an artificial power-on at driver construction.",
+    "CRC explicitly selected as necessary integrity function, not universally mandatory on DHT20.",
+    "Accept acquired CRC-valid cached values; no per-call new epoch or mandatory global idle.",
+    "CRC faults injected before any valid acquisition, safety observation does not claim required immediate error or full recovery.",
+    "80ms is manufacturer first-wait guidance, not a maximum; finite later-ready stimuli included.",
+    "Overlapping trigger/unknown commands and extended recovery replies are model_unsupported.",
+    "Not an OS sandbox for hostile candidate code."
+  ]
+}

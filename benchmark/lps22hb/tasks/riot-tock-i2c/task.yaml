@@ -1,0 +1,34 @@
+schema: autodriver.task/v1
+task_id: riot-tock-lps22hb-i2c
+revision: 2
+sensor: lps22hb
+source:
+  selection: benchmark/lps22hb/source/riot/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/lps22hb/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/lps22hb/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - atmospheric_pressure
+    acquisition: continuous_polling
+  connection:
+    i2c:
+      address_7bit: 92
+    interrupt_pin: null
+  sensor_settings:
+    output_data_rate_hz: 1
+    block_data_update: true
+    low_pass_filter: disabled
+    fifo: disabled
+    pressure: absolute
+reference:
+  files:
+    capsules/extra/src/lps22hb.rs: benchmark/lps22hb/reference/tock/i2c/lps22hb.rs
+evaluation:
+  suite: benchmark/lps22hb/evaluation/suite.yaml

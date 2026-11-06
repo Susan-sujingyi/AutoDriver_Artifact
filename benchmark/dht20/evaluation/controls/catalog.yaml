@@ -1,0 +1,81 @@
+{
+  "schema": "autodriver.controls/v1",
+  "generators": [
+    "benchmark/dht20/evaluation/controls/dht20_controls.py",
+    "benchmark/dht20/evaluation/controls/dht20_v2_controls.py",
+    "benchmark/dht20/evaluation/controls/nuttx.py",
+    "benchmark/common/controls/nuttx.py",
+    "benchmark/common/controls/tock.py",
+    "benchmark/common/controls/selection.py"
+  ],
+  "selection": "benchmark/common/controls/selection.py",
+  "policy": "Require compiled legal alternatives to pass and compiled behavioral defects to be rejected. Optional diagnostic recovery differences are reported separately.",
+  "profiles": {
+    "nuttx/i2c": {
+      "controls": [
+        {
+          "name": "legal_arch_delay",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Exercise a different legal API, transaction layout, timing implementation or optional-probe policy."
+        },
+        {
+          "name": "wrong_humidity_unit",
+          "generator": "sensor_mutation",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "crc_ignored",
+          "generator": "sensor_mutation",
+          "expected": "fail",
+          "required_failure_cases": [
+            "integrity/crc_*"
+          ]
+        },
+        {
+          "name": "legal_bounded_transport_retry",
+          "generator": "native_api_variant",
+          "expected": "pass"
+        }
+      ],
+      "scope": "Native legal variants and explicitly selected defects; every defect must trigger a contract assertion in the declared case family, after model construction and selfchecks pass."
+    },
+    "tock/i2c": {
+      "controls": [
+        {
+          "name": "legal_cross_channel_cache",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "legal_status_then_frame",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "fault_temperature_units",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "fault_skip_crc",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "crc/*"
+          ]
+        }
+      ],
+      "mode_policy": "Use task mode directly; wrong-mode control deliberately changes it.",
+      "scope": "Explicit legal alternatives and defects. All core observations and model selfchecks must finish; intended case family must assert the defect."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+/run/
+/result/
+/method/autodriver/knowledge/
+.pytest_cache/
+.coverage
+/third_party/

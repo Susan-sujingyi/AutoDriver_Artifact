@@ -1,0 +1,35 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: i2c
+module: bmp388
+editable_paths:
+- drivers/sensors/bmp388.c
+- drivers/sensors/bmp388/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: sensor_temp
+    field: temperature
+    unit: degC
+  - structure: sensor_baro
+    field: pressure
+    unit: hPa
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: bmp388
+sanitizer: benchmark/bmp388/target/nuttx/i2c/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/bmp388/target/nuttx/i2c/board-support/driver_api.h
+    target: include/nuttx/sensors/bmp388.h
+  resources: []

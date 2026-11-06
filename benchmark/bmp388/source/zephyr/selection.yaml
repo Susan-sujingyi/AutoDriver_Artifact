@@ -1,0 +1,47 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/bmp388.c
+      sha256: 4974826c68d556efd10e4c3a6a275790a85f638dc4be29ebbed3e5f3328bf995
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/bmp388.h
+      sha256: 67492459a06c3aaa1bfee2986f0c866e78e8f30fcddaa1408ebcb5390d0acf84
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/bmp388_i2c.c
+      sha256: 4587a40537a2244c1066506c717d7374184cd34a9b2fc04f4906db1b7c44b2ad
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/bmp388_spi.c
+      sha256: 97d3fb9638743da7f5dea78b9d072f166c573de55a69c919bb912f7cc5214003
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/bmp388_trigger.c
+      sha256: c716ce6d9976f1a9161224cf7d42897952c0521ed1a5be71a3f8602f1413a8f2
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/Kconfig
+      sha256: 9aede9260659c64f613a516ef569650891cc532702fc631461daeaf787fa4274
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/bosch/bmp388/CMakeLists.txt
+      sha256: 40de8a4b3f7640bc75e3590e3b1528679986547b7b3a90b5c595d19a2df76c48
+      role: build_configuration
+    configuration_files:
+    - benchmark/bmp388/source/zephyr/configuration.yaml
+    - benchmark/bmp388/source/zephyr/board.overlay
+    validation: benchmark/bmp388/source/zephyr/validation
+    source_entrypoints:
+      init: bmp388_init
+      sample_fetch: bmp388_sample_fetch
+      channel_get: bmp388_channel_get
+    dependencies: []
+    devicetree:
+      compatible: bosch,bmp388
+      bus: i2c
+      reg: 118
+      status: okay
+      odr: '25'
+      osr-press: 4
+      osr-temp: 1
+      iir-filter: 0
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

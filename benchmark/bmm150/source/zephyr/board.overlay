@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: bmm150@13 {
+		compatible = "bosch,bmm150";
+		reg = <0x13>;
+		status = "okay";
+	};
+};

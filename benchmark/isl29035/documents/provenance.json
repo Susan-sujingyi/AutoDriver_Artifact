@@ -1,0 +1,67 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "ISL29035",
+  "manufacturer": "Renesas/Intersil",
+  "document_title": "Integrated Digital Light Sensor with Interrupt",
+  "document_id": "FN8371",
+  "revision": "3.00",
+  "revision_date": "2016-12-12",
+  "cover_date": "December 12, 2016",
+  "page_count": 17,
+  "official_url": "https://www.renesas.com/en/document/dst/isl29035-datasheet",
+  "retrieved_from": "https://www.renesas.com/en/document/dst/isl29035-datasheet",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Downloaded directly from the official Renesas document endpoint over HTTPS. No mirror required. The PDF cover and revision-history page identify FN8371 Rev 3.00 dated December 12, 2016; website indexing/PDF creation metadata dates are not treated as the document revision.",
+  "pdf_metadata": {
+    "title": "ISL29035 Datasheet",
+    "author": "Renesas",
+    "creator": "FrameMaker 12.0.3",
+    "created": "2010-01-26",
+    "modified": "2018-07-18"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    11,
+    12,
+    13,
+    14
+  ],
+  "text_checked_pages": [
+    1,
+    4,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "visual_review": "Rendered the downloaded PDF pages 11–14 with pdftoppm at 1800-pixel maximum dimension; inspected register maps, identity/BOUT fields, mode/resolution/range tables, timing table and Equation 3 against the extracted text.",
+  "copyright": "Copyright Intersil Americas LLC 2013-2016. All Rights Reserved. Unmodified notice remains on PDF page 15. No open-source license asserted for this technical literature.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "a48977a0b439ce7ffade7ac502145f59035a2c3f6403d7cb4179740d6642de8a",
+      "bytes": 899923
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "e8a9c1e1d65716aa5403a259035426df7488c5142bde2a7d504d99383f83af38",
+      "bytes": 88204
+    },
+    {
+      "path": "pages.json",
+      "sha256": "6bd2f96b7c8b8431841bb8adee522846352a05a8cf1ce4b5e244aa283b99c369",
+      "bytes": 1637
+    }
+  ]
+}

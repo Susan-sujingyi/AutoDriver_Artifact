@@ -1,0 +1,29 @@
+{
+  "profile": "autodriver.model/mpu6050/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered stable, documented defaults",
+    "observation_us": 500000,
+    "initialization_observation_us": 150000,
+    "stable_input_progress_us": 1000000,
+    "callback_guard_us": 1000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "first_conversion_us": [
+      5000,
+      10000,
+      20000
+    ],
+    "reset_model_us": 2000
+  },
+  "limitations": [
+    "Physical signed \u00b5m/s\u00b2 explicitly requested by user, not specified in generic NineDof HIL.",
+    "Exact nominal sensitivity rational conversion with +/-1 target integer unit; not physical accuracy.",
+    "Per-axis acquired byte-pair numerical validity, no globally new or same XYZ epoch obligation; cache allowed under stable1s progress window.",
+    "Reset and first-sample timings are disclosed finite digital scenarios, not unverified hard physical limits.",
+    "Defaults fixed; alternate identity, arbitrary bank state, transport fault and stalled sensor are diagnostic, not mandated error recovery.",
+    "No method or IR used; no real hardware or production OS isolation."
+  ]
+}

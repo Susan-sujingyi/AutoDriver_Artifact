@@ -1,0 +1,390 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/crc_witness",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "__model/readiness",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "__model/channel_crc",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "numeric/cold_low_humidity/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/cold_low_humidity/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_temperature/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_temperature/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/below_freezing/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/below_freezing/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/above_freezing/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/above_freezing/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_low/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_low/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_high/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_high/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/manufacturer_crc_word/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/manufacturer_crc_word/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/room_conditions/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/room_conditions/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/alternating_bits/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/alternating_bits/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_minimum/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_minimum/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_maximum/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_maximum/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_one_count/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_one_count/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_low_byte_max/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_low_byte_max/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_high_byte_one/temperature",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_high_byte_one/humidity",
+      "scope": "core",
+      "basis": "SHT-NUMERIC, SHT-DATA, SHT-RANGE, SHT-CALLBACK"
+    },
+    {
+      "id": "requests/first_available/temperature",
+      "scope": "core",
+      "basis": "SHT-CALLBACK, SHT-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/temperature",
+      "scope": "core",
+      "basis": "SHT-CALLBACK, SHT-PROGRESS"
+    },
+    {
+      "id": "timing/temperature/8000us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/temperature/12500us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/temperature/15000us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/temperature/15500us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "crc/temperature/data_bit",
+      "scope": "core",
+      "basis": "SHT-CRC: bounded invalid-data safety, not full recovery"
+    },
+    {
+      "id": "crc/temperature/checksum_bit",
+      "scope": "core",
+      "basis": "SHT-CRC: bounded invalid-data safety, not full recovery"
+    },
+    {
+      "id": "diagnostic/unused_word_crc/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-CRC, SHT-FAULT: implementation policy observation"
+    },
+    {
+      "id": "diagnostic/stalled/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-CRC, SHT-FAULT: implementation policy observation"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/encoding/encoding_minima/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/encoding_maxima/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/one_raw_count/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/low_bytes_max/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/high_bytes_one/temperature",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "requests/first_available/humidity",
+      "scope": "core",
+      "basis": "SHT-CALLBACK, SHT-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/humidity",
+      "scope": "core",
+      "basis": "SHT-CALLBACK, SHT-PROGRESS"
+    },
+    {
+      "id": "timing/humidity/8000us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/humidity/12500us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/humidity/15000us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "timing/humidity/15500us",
+      "scope": "core",
+      "basis": "SHT-TIME"
+    },
+    {
+      "id": "crc/humidity/data_bit",
+      "scope": "core",
+      "basis": "SHT-CRC: bounded invalid-data safety, not full recovery"
+    },
+    {
+      "id": "crc/humidity/checksum_bit",
+      "scope": "core",
+      "basis": "SHT-CRC: bounded invalid-data safety, not full recovery"
+    },
+    {
+      "id": "diagnostic/unused_word_crc/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-CRC, SHT-FAULT: implementation policy observation"
+    },
+    {
+      "id": "diagnostic/stalled/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-CRC, SHT-FAULT: implementation policy observation"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Any/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Any/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Data/false",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Data/true",
+      "scope": "diagnostic",
+      "basis": "SHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/encoding/encoding_minima/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/encoding_maxima/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/one_raw_count/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/low_bytes_max/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "diagnostic/encoding/high_bytes_one/humidity",
+      "scope": "diagnostic",
+      "basis": "SHT-RANGE: outside specified temperature, observe"
+    },
+    {
+      "id": "requests/input_changes",
+      "scope": "core",
+      "basis": "SHT-PROGRESS: bounded stable-input progress, no per-call epoch"
+    },
+    {
+      "id": "diagnostic/repeated_startup",
+      "scope": "diagnostic",
+      "basis": "SHT-ABI: actual component starts once"
+    },
+    {
+      "id": "requests/repeated_temperature",
+      "scope": "core",
+      "basis": "SHT-PROGRESS: same-channel stable-input progress after other-channel priming"
+    },
+    {
+      "id": "requests/repeated_humidity",
+      "scope": "core",
+      "basis": "SHT-PROGRESS: same-channel stable-input progress after other-channel priming"
+    }
+  ]
+}

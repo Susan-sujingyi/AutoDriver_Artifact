@@ -1,0 +1,37 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/sensirion/sht3xd/sht3xd.c
+      sha256: d6aaf182a554a2651cfa0dc2e6baaa4f478d2076eaed5c71574711954e89b22c
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/sensirion/sht3xd/sht3xd.h
+      sha256: a05682458020c3d2242b71bd810578cd81e1d6066efc26f1b8c72719806f3795
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/sensirion/sht3xd/sht3xd_trigger.c
+      sha256: 4751e252c36729754ce4051e4bc5933962de5beedcadce9075d827f3d7adfa1a
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/sensirion/sht3xd/Kconfig
+      sha256: d11b7c4ce054b731e79825d43e10026c22a3d49a31b35d9543150c3ea9348644
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/sensirion/sht3xd/CMakeLists.txt
+      sha256: 19550da516304d85b9753c5f41703caa34a2c5749419cbd1f6ab81ab646efb98
+      role: build_configuration
+    configuration_files:
+    - benchmark/sht3x/source/zephyr/configuration.yaml
+    - benchmark/sht3x/source/zephyr/board.overlay
+    validation: benchmark/sht3x/source/zephyr/validation
+    source_entrypoints:
+      init: sht3xd_init
+      sample_fetch: sht3xd_sample_fetch
+      channel_get: sht3xd_channel_get
+    dependencies: []
+    devicetree:
+      compatible: sensirion,sht3xd
+      bus: i2c
+      reg: 68
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

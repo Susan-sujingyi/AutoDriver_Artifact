@@ -1,0 +1,42 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/ams/ccs811/ccs811.c
+      sha256: 9def6833b603213e28213053cc96e6997ac5255919d787fdda7bad85d027c781
+      role: primary_source
+    - path: benchmark/ccs811/source/zephyr/selected/ccs811_build/ccs811.h
+      sha256: a51a25f7a95b309c7b7f90c045d3a7e728c4111ca711163b096cc632ebbb4088
+      role: primary_header
+    - path: benchmark/ccs811/source/zephyr/selected/ccs811.h
+      sha256: f278a27deec384e4f0a7b1bc27544690ee946d807087b521916e98cea9c3e44c
+      role: historical_header_with_duplicate_declarations
+    - path: third_party/zephyr/include/zephyr/drivers/sensor/ccs811.h
+      sha256: b5f2a49e92cb5e9c4bd9dcfd6c26e396305761db7f7a38d9f161e44826445829
+      role: public_header_dependency
+    - path: third_party/metadata/ccs811_source_repair.patch
+      sha256: 7015b4f37cc35f9ee8895a2a5c4418222a97225c1066a1bfa540d19aec6b29c9
+      role: source_admission_repair_patch
+    configuration_files:
+    - benchmark/ccs811/source/zephyr/configuration.yaml
+    - benchmark/ccs811/source/zephyr/board.overlay
+    validation: benchmark/ccs811/source/zephyr/validation
+    source_entrypoints:
+      init: ccs811_init
+      sample_fetch: ccs811_sample_fetch
+      channel_get: ccs811_channel_get
+    dependencies: []
+    devicetree:
+      compatible: ams,ccs811
+      bus: i2c
+      reg: 90
+      status: okay
+      fixture_gpio:
+        property: wake-gpios
+        controller: gpio0
+        pin: 1
+        active_low: true
+    authenticity: 'Approved historical compatibility header: merged declarations with
+      duplicate structure declarations removed.'

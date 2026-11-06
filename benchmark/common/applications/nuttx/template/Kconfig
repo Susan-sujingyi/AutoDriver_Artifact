@@ -1,0 +1,4 @@
+config SYSTEM_SENSOR_SAMPLE
+	bool "Cross-OS benchmark manual acquisition client"
+	default n
+	depends on SENSORS

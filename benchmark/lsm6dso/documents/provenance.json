@@ -1,0 +1,67 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "LSM6DSO",
+  "manufacturer": "STMicroelectronics",
+  "document_title": "LSM6DSO datasheet",
+  "document_id": "DS12140",
+  "revision": "3",
+  "revision_date": "2024-06",
+  "page_count": 162,
+  "official_url": "https://www.st.com/resource/en/datasheet/lsm6dso.pdf",
+  "retrieved_from": "https://xdevs.com/doc/STM/lsm6dso.pdf",
+  "retrieved_date": "2026-09-24",
+  "retrieval_note": "Manufacturer-authored document from public mirror. Local ST HTTPS downloads timed out; official DS12140 Rev3 content also independently readable via web tool. No byte identity with current official hosting asserted.",
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true
+  },
+  "text_checked_pages": [
+    9,
+    11,
+    39,
+    42,
+    49,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    59,
+    64,
+    67,
+    68
+  ],
+  "visually_checked_pages": [
+    9,
+    11,
+    42,
+    49,
+    51,
+    64,
+    67,
+    68
+  ],
+  "copyright": "Manufacturer technical literature and notices retained; no open source document license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "dd899e37f2fc33b8592fbf6b5b9d9caa94b47c455d4d2edc3512ba2a5c3f0055",
+      "bytes": 7704496
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "dc090d5b07fa08aa9c9cb7f95efe290984636948cbe88b43bc5964fade099ed2",
+      "bytes": 579378
+    },
+    {
+      "path": "pages.json",
+      "sha256": "e23a9ed7b734bf782d82c72d6d7896a90e0785583af8ddb4576cb8246f1a40d2",
+      "bytes": 14728
+    }
+  ],
+  "review_scope": "Selected implementation-relevant pages only, not a full-document correctness audit. Rendered visual evidence is in docs/validation/material_review/lsm6dso."
+}

@@ -1,0 +1,28 @@
+"""Private behavior controls, never method inputs."""
+def mutations():
+    return {
+        'unsigned_axes': ('int16_t raw=', 'uint16_t raw='),
+        'little_endian_axes': ('((uint16_t)bytes[2*i]<<8)|bytes[2*i+1]', '((uint16_t)bytes[2*i+1]<<8)|bytes[2*i]'),
+        'wrong_scale_4g': ('/16384.0', '/8192.0'),
+        'unit_micrometers': ('*9.80665/', '*9806650.0/'),
+        'unit_g': ('*9.80665/', '*1.0/'),
+        'axis_swap': ('sample.x=xyz[0];sample.y=xyz[1];', 'sample.x=xyz[1];sample.y=xyz[0];'),
+        'axis_sign_flip': ('sample.z=xyz[2];', 'sample.z=-xyz[2];'),
+        'zero_invalid': ('xyz[i]=(double)raw', 'if(raw==0){ret=-EIO;goto done;}xyz[i]=(double)raw'),
+        'minimum_invalid': ('xyz[i]=(double)raw', 'if(raw==INT16_MIN){ret=-EIO;goto done;}xyz[i]=(double)raw'),
+        'gyro_bytes_as_accel': ('transfer(dev,0x3b,bytes,6,true,end)', 'transfer(dev,0x43,bytes,6,true,end)'),
+        'asleep': ('{0x6b,0}', '{0x6b,0x40}'),
+        'range_4g': ('{0x1c,0}', '{0x1c,8}'),
+        'divider_100hz': ('{0x19,9}', '{0x19,79}'),
+        'wrong_dlpf': ('{0x1a,0}', '{0x1a,1}'),
+        'fifo_enabled': ('{0x6a,0}', '{0x6a,0x40}'),
+        'identity_ignored': ('if(value!=0x68 && value!=0x70)', 'if(false)'),
+        'readiness_ignored': ('if(status&1)break;', 'if(true)break;'),
+        'deadline_exceeded': ('now+1000', 'now+100000'),
+        'swallowed_bus_error': ('return ret<0 ? ret : 0;', 'return 0;'),
+        'timestamp_zero': ('sample.timestamp=sensor_get_timestamp();', 'sample.timestamp=0;'),
+        'fabricated_temperature': ('sample.temperature=NAN;', 'sample.temperature=0;'),
+        'wrong_sensor_type': ('dev->lower.type=SENSOR_TYPE_ACCELEROMETER;', 'dev->lower.type=2;'),
+        'lock_leaked': ('done:\n  nxmutex_unlock(&dev->lock);return ret;', 'done:\n  return ret;'),
+        'allocation_leaked': ('nxmutex_destroy(&dev->lock);kmm_free(dev);return ret;', 'nxmutex_destroy(&dev->lock);return ret;'),
+    }

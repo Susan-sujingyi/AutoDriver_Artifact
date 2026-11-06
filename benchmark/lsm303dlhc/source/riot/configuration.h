@@ -1,0 +1,6 @@
+/* Product configuration only; source driver is unchanged. */
+#pragma once
+#define LSM303DLHC_PARAM_MAG_ADDR 0x1e
+#define LSM303DLHC_PARAM_MAG_GAIN LSM303DLHC_MAG_GAIN_1100_980_GAUSS
+#define LSM303DLHC_PARAM_ACC_PIN GPIO_UNDEF
+#define LSM303DLHC_PARAM_MAG_PIN GPIO_UNDEF

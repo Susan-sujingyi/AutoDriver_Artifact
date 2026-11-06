@@ -1,0 +1,13 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+#include <zephyr/dt-bindings/gpio/gpio.h>
+&i2c0 {
+	status = "okay";
+	source_sensor: ccs811@5a {
+		compatible = "ams,ccs811";
+		reg = <0x5a>;
+		status = "okay";
+		/* The frozen source calls set_wake even outside the optional init
+		 * branch, so source smoke needs a real active-low GPIO device. */
+		wake-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+	};
+};

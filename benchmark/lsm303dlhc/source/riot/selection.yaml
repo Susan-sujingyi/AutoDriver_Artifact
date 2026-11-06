@@ -1,0 +1,39 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/lsm303dlhc/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/Makefile.dep
+      sha256: bf3ac36d9606ab557358c9b48e1e5a70a4d1a042de2f1390b242ce6033c79b30
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/Makefile.include
+      sha256: 4a9da1e6435349cf79748723719753f5f055c709ae8b3da68a7ebb8196d98ce6
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/include/lsm303dlhc-internal.h
+      sha256: 03910afdae3a4d52b0347063be918305f12fb543b770cb7c6c400d2150cb067a
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/include/lsm303dlhc_params.h
+      sha256: 2ebf17b20f4a358ce4ff9a966990532a57234d79b920f9e4e9b9e4c75027a93c
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/lsm303dlhc.c
+      sha256: 3057f064464e4e781fb0eaf0f93a5f5938686d27c2851a4d276b49ffb835af79
+      role: driver_directory
+    - path: third_party/riot/drivers/lsm303dlhc/lsm303dlhc_saul.c
+      sha256: 82bc01bcd2a4392be0febeb5b398c4ea5a0271247865130ce787f490c898e3c4
+      role: driver_directory
+    - path: third_party/riot/drivers/include/lsm303dlhc.h
+      sha256: cc26a4b3e9929d4d73727189fd5f114a323344f9f0dc35df73a63effea52f274
+      role: public_header
+    configuration_files:
+    - benchmark/lsm303dlhc/source/riot/configuration.h
+    - benchmark/lsm303dlhc/source/riot/configuration.mk
+    validation: benchmark/lsm303dlhc/source/riot/validation
+    modules:
+    - lsm303dlhc
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

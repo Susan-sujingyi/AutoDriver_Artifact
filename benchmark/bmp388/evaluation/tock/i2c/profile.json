@@ -1,0 +1,30 @@
+{
+  "profile": "autodriver.model/bmp388/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_stable",
+    "observation_us": 500000,
+    "initialization_observation_us": 100000,
+    "stable_input_progress_us": 2000000,
+    "callback_guard_us": 5000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "first_conversion_us": 12480,
+    "conversion_period_us": 40000,
+    "reset_model_us": 2000
+  },
+  "limitations": [
+    "BMP388 only; selected normal 25Hz pressure4x temperature1x IIRoff, no FIFO or interrupts.",
+    "Independent exact rational published polynomial, +/-1 native unit; digital witnesses not physical accuracy.",
+    "No mandatory ID probe, all-coefficient read trace, DRDY poll, per-call epoch or global idle.",
+    "Individual register reads clear their own channel flag but data remains valid until replaced.",
+    "Transactions snapshot data at start; turnover occurs on actual nominal40ms cadence, not a shortened invented cycle.",
+    "Pressure coherence accepts acquired equivalent temperature data across epochs; mismatch requires numeric/acquisition evidence.",
+    "2ms reset completion is an explicit finite model, not a separately established physical maximum; early traffic model_unsupported.",
+    "Errors/faults/identity alternatives reported diagnostically; valid old acquired data not erased by later errors.",
+    "Watchdog/alternate-interface options and unknown commands explicitly unsupported.",
+    "Not OS isolation or physical electrical verification."
+  ]
+}

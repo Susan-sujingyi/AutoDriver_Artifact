@@ -1,0 +1,42 @@
+schema: autodriver.target/v1
+os: tock
+snapshot: tock
+board: nrf52840dk
+bus: spi
+module: adt7310
+editable_paths:
+- capsules/extra/src/adt7310.rs
+- capsules/extra/src/adt7310/
+board_patch: benchmark/adt7310/target/tock/spi/board.patch
+application: benchmark/common/applications/tock
+native_interface:
+  type: Adt7310<'a, S, A>
+  constructor: 'pub fn new(spi: &''a S, alarm: &''a A, tx: &''static mut [u8], rx:
+    &''static mut [u8]) -> Self'
+  startup: pub fn startup(&self) -> Result<(), ErrorCode>
+  buffer_bytes: 16
+  traits:
+  - kernel::hil::sensors::TemperatureDriver
+  - kernel::hil::spi::SpiMasterClient
+  - kernel::hil::time::AlarmClient
+  status: specified
+  hil_path: kernel/src/hil/sensors.rs
+  notes: Resource wiring only; candidate owns initialization, protocol and conversion.
+output:
+  unit: centi_degC
+  representation: signed_integer
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 10000
+  request_timeout_ms: 10000
+  serial_baud: 115200
+wiring:
+  controller: spim2
+  MOSI: P1.13
+  MISO: P1.14
+  SCK: P1.15
+  CS: P1.04
+remove_paths:
+- capsules/extra/src/adt7310.rs
+- capsules/extra/src/adt7310/

@@ -1,0 +1,72 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "DPS310",
+  "manufacturer": "Infineon Technologies AG",
+  "document_title": "Digital XENSIV Barometric Pressure Sensor for Portable Devices",
+  "revision": "1.2",
+  "revision_date": "2020-10-15",
+  "page_count": 41,
+  "official_url": "https://www.infineon.com/dgdl/Infineon-DPS310-DataSheet-v01_02-EN.pdf?fileId=5546d462576f34750157750826c42242",
+  "retrieved_from": "https://www.sensor360.org/files/uploads/pdf/6482831aa3d618397b07ad68e163ec72.pdf",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Original official endpoint returned HTML; official asset endpoint 404; official community PDF 403. Sensor360 and RoboCore CloudFront mirrors both supplied identical 767214-byte PDF with the recorded SHA-256. Manufacturer cover/footer, 41-page content, metadata and copyright checked; no open-source license asserted for literature.",
+  "byte_identical_crosscheck_url": "https://d229kd5ey79jzj.cloudfront.net/2749/Infineon-DPS310-DataSheet-v01_02-EN.pdf",
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    10,
+    11,
+    14,
+    15,
+    20,
+    30,
+    32,
+    37
+  ],
+  "text_checked_pages": [
+    1,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    20,
+    29,
+    30,
+    31,
+    32,
+    33,
+    36,
+    37,
+    38,
+    40,
+    41
+  ],
+  "visual_review": "Checked startup limits and diagram, compensation polynomial, scale factors, I2C transfer auto-increment, 8x measurement-time table, ready flags and signed coefficient packing. Figure4 init/trim names differ from Table8 SENSOR_RDY/COEF_RDY timings; use numeric Table8 names explicitly. Table16 14.8ms has no min/max designation.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "c856826f913193c53a83fe73bc853b7517d36a2c5a75d1de19e701c1a88e0d00",
+      "bytes": 767214
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "e451c306b23e3b3c23428db3ea6b348bac818eeb2cb93d640077af17702043bf",
+      "bytes": 99511
+    },
+    {
+      "path": "pages.json",
+      "sha256": "b59dd5bc2458556ad8e799ab66014ab1b557356b832796f40d61aed232f3d827",
+      "bytes": 3772
+    }
+  ]
+}

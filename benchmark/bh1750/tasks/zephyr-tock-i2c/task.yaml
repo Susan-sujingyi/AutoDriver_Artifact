@@ -1,0 +1,30 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-bh1750-i2c
+revision: 2
+sensor: bh1750
+source:
+  selection: benchmark/bh1750/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/bh1750/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/bh1750/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - ambient_light
+    acquisition: one_time
+  connection:
+    i2c:
+      address_7bit: 35
+    interrupt_pin: null
+  sensor_settings:
+    resolution: high
+    measurement_time_register: 69
+reference:
+  files:
+    capsules/extra/src/bh1750.rs: benchmark/bh1750/reference/tock/i2c/bh1750.rs
+evaluation:
+  suite: benchmark/bh1750/evaluation/suite.yaml

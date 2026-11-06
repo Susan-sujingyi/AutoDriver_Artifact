@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+ status = "okay";
+ source_sensor: magnetometer@1e {
+  compatible = "st,lsm303dlhc-magn";
+  reg = <0x1e>;
+  status = "okay";
+ };
+};

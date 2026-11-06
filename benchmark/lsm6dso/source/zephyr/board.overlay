@@ -1,0 +1,17 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: lsm6dso@6a {
+		compatible = "st,lsm6dso";
+		reg = <0x6a>;
+		status = "okay";
+		accel-pm = <0>;
+		accel-range = <0>;
+		accel-odr = <4>;
+		accel-lp-filter = <0>;
+		gyro-pm = <0>;
+		gyro-range = <0>;
+		gyro-odr = <0>;
+		/* drdy-pulsed is a boolean; absent means false (latched). */
+	};
+};

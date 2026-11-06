@@ -1,0 +1,25 @@
+{
+  "profile": "autodriver.model/ccs811/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_boot_mode_valid_application_installed",
+    "observation_us": 4000000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "measurement_period_us": 1000000,
+    "clock_hz": 1000000,
+    "stable_input_progress_us": 8000000,
+    "deadline_semantics": "Absolute stable-input deadline passed into request execution; guard and polling clamped to deadline. Request window bounds completion, guard included when time remains."
+  },
+  "limitations": [
+    "Finite digital mailbox model, no chemical accuracy or physical conditioning validation.",
+    "Firmware application 2.0.0 and always-awake pins are the inherited software fixture choice, not hardware measurements.",
+    "Figure7 reset/application timing uses typical model delays; premature commands return modeled NACK, not mandatory min-delay assertion.",
+    "DATA_READY clearance does not erase retained gas output; caches and repeated reads allowed.",
+    "Environment/baseline/download operations outside this bounded model are model_unsupported.",
+    "ERROR_ID latch behavior is modeled; no forced acknowledgment or invalid-range rejection policy is imposed on the healthy-function score.",
+    "Transport/device-fault diagnostics are reported separately; core pass is not complete fault-recovery proof.",
+    "Not an OS sandbox for hostile candidate code."
+  ]
+}

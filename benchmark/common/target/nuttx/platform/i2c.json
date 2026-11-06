@@ -1,0 +1,12 @@
+{
+  "schema": "driverbench.cross-os-platform-derivative/v1",
+  "source": "third_party/nuttx/arch/arm/src/nrf52/nrf52_i2c.c",
+  "before_sha256": "d470066e0ec91ab15a8e9cccb53164539ac9f4380f2afac3083ffa264a222914",
+  "replacement": "benchmark/common/target/nuttx/public/resources/nrf52_i2c.c",
+  "after_sha256": "6d9ae998073c4b0903f58678be1146bf6fb2711a8c72d58e944dd0c4e6174b90",
+  "target_path": "nuttx/arch/arm/src/nrf52/nrf52_i2c.c",
+  "basis": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/twim.html",
+  "license": "Apache-2.0; original file notice retained",
+  "scope": "generic bounded transport; no sensor protocol or source OS modification",
+  "status": "reviewed_derivative; validation_evidence_separate"
+}

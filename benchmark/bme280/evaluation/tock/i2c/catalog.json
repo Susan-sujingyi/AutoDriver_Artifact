@@ -1,0 +1,269 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/retained_frame",
+      "scope": "internal",
+      "basis": "model self-check, not a driver obligation"
+    },
+    {
+      "id": "__model/forced_saturation_and_split_read",
+      "scope": "internal",
+      "basis": "model self-check, not a driver obligation"
+    },
+    {
+      "id": "__model/busy_returns_buffer",
+      "scope": "internal",
+      "basis": "model self-check, not a driver obligation"
+    },
+    {
+      "id": "numeric/nominal/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/nominal/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/nominal/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/cold/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/cold/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/cold/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/warm/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/warm/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/warm/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_low_clamp/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_low_clamp/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_low_clamp/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_high_clamp/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_high_clamp/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_high_clamp/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/alternate_calibration/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/alternate_calibration/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/alternate_calibration/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_humidity_calibration/temperature",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_humidity_calibration/humidity",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_humidity_calibration/pressure",
+      "scope": "core",
+      "basis": "BME-NUMERIC, BME-CONFIG, BME-CALLBACK"
+    },
+    {
+      "id": "requests/concurrent/temperature",
+      "scope": "core",
+      "basis": "BME-CALLBACK; reject or accept, no exact BUSY requirement"
+    },
+    {
+      "id": "requests/input_changes/temperature",
+      "scope": "core",
+      "basis": "BME-PROGRESS; observation limit is not a physical/API deadline"
+    },
+    {
+      "id": "safety/no_completed_measurement/temperature",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT: injected noncompletion beyond documented max, not normal chip behavior; no mandatory poll requirement"
+    },
+    {
+      "id": "fault/temperature/Any/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/temperature/Any/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/temperature/Data/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/temperature/Data/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "requests/concurrent/humidity",
+      "scope": "core",
+      "basis": "BME-CALLBACK; reject or accept, no exact BUSY requirement"
+    },
+    {
+      "id": "requests/input_changes/humidity",
+      "scope": "core",
+      "basis": "BME-PROGRESS; observation limit is not a physical/API deadline"
+    },
+    {
+      "id": "safety/no_completed_measurement/humidity",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT: injected noncompletion beyond documented max, not normal chip behavior; no mandatory poll requirement"
+    },
+    {
+      "id": "fault/humidity/Any/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/humidity/Any/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/humidity/Data/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/humidity/Data/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "requests/concurrent/pressure",
+      "scope": "core",
+      "basis": "BME-CALLBACK; reject or accept, no exact BUSY requirement"
+    },
+    {
+      "id": "requests/input_changes/pressure",
+      "scope": "core",
+      "basis": "BME-PROGRESS; observation limit is not a physical/API deadline"
+    },
+    {
+      "id": "safety/no_completed_measurement/pressure",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT: injected noncompletion beyond documented max, not normal chip behavior; no mandatory poll requirement"
+    },
+    {
+      "id": "fault/pressure/Any/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/pressure/Any/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/pressure/Data/async",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "fault/pressure/Data/immediate",
+      "scope": "diagnostic",
+      "basis": "BME-FAULT; record safety/reachability and completion, no forced retry policy"
+    },
+    {
+      "id": "requests/cross_channel",
+      "scope": "core",
+      "basis": "BME-CALLBACK, BME-NUMERIC"
+    },
+    {
+      "id": "diagnostic/repeated_startup",
+      "scope": "diagnostic",
+      "basis": "No idempotent-startup requirement from existing caller"
+    },
+    {
+      "id": "diagnostic/identity",
+      "scope": "diagnostic",
+      "basis": "ID probe optional for explicitly selected fixed hardware"
+    },
+    {
+      "id": "requests/first_available/temperature",
+      "scope": "core",
+      "basis": [
+        "Native HIL request/completion contract",
+        "Bounded startup admission; no fixed reference initialization sequence"
+      ]
+    },
+    {
+      "id": "requests/first_available/humidity",
+      "scope": "core",
+      "basis": [
+        "Native HIL request/completion contract",
+        "Bounded startup admission; no fixed reference initialization sequence"
+      ]
+    },
+    {
+      "id": "requests/first_available/pressure",
+      "scope": "core",
+      "basis": [
+        "Native HIL request/completion contract",
+        "Bounded startup admission; no fixed reference initialization sequence"
+      ]
+    }
+  ]
+}

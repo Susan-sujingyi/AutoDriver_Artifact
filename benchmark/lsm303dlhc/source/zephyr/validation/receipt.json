@@ -1,0 +1,9 @@
+{
+  "schema": "autodriver.source-validation/v1",
+  "source_os": "zephyr",
+  "variant": "i2c",
+  "input_identity": "3f51a4af5240b0133e3ffa2ed2861baac009dd872d1d96fa8f7f29f44baf02c9",
+  "status": "pass",
+  "compiler": "cc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "scope": "Native configuration, selected driver and API link; not target behavior or hardware"
+}

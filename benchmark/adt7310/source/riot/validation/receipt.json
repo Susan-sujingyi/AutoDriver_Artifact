@@ -1,0 +1,9 @@
+{
+  "schema": "autodriver.source-validation/v1",
+  "source_os": "riot",
+  "variant": "spi",
+  "input_identity": "46109f4b1cef0894b4e56253767add673ec9d3a343aea9a935228187635e65fe",
+  "status": "pass",
+  "compiler": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+  "scope": "Native configuration, selected driver and API link; not target behavior or hardware"
+}

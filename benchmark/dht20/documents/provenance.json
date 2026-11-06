@@ -1,0 +1,56 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "DHT20",
+  "manufacturer": "Aosong / ASAIR",
+  "document_title": "Data Sheet DHT20 Humidity and Temperature Module",
+  "revision": "V1.0 May2021",
+  "page_count": 13,
+  "official_url": "https://www.aosong.com/userfiles/files/media/Data%20Sheet%20DHT20%20%20A1.pdf",
+  "retrieved_from": "https://www.aosong.com/userfiles/files/media/Data%20Sheet%20DHT20%20%20A1.pdf",
+  "retrieved_date": "2026-09-24",
+  "retrieval_note": "Direct manufacturer download. PDF metadata title incorrectly names AM2108; rendered body, cover and page headers identify DHT20 V1.0 May2021. Text contains inherited Table5 ATH21B typo; chip pin drawing and task identify DHT20.",
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "text_checked_pages": [
+    1,
+    2,
+    3,
+    6,
+    7,
+    9,
+    10,
+    11
+  ],
+  "visually_checked_pages": [
+    10,
+    11
+  ],
+  "copyright": "Original manufacturer literature retained; no open-source license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "b95ebf1a63a4b3480a8e258593cff78078764fce8449ee6a4c9c27646d68c5d0",
+      "bytes": 1160043
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "2c251c17d81a2f080056247d138375bed5a8c063d4dbc6ce1023b17a5b6db5af",
+      "bytes": 32231
+    },
+    {
+      "path": "pages.json",
+      "sha256": "5040444b58200208f8665465550949a60e59c263775c17614bb832ab9b512071",
+      "bytes": 1278
+    },
+    {
+      "path": "retrieval_attempts.json",
+      "sha256": "b585a073e055153ea992700341092415fe9f9ed0776d37ce8cbf6c38655f6429",
+      "bytes": 330
+    }
+  ]
+}

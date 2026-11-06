@@ -1,0 +1,150 @@
+--- a/boards/components/src/bmm150.rs
++++ b/boards/components/src/bmm150.rs
+@@ -1,73 +1,55 @@
+ // Licensed under the Apache License, Version 2.0 or the MIT License.
+ // SPDX-License-Identifier: Apache-2.0 OR MIT
+-// Copyright Tock Contributors 2023.
+-
+-//! Component for the BMM150 Magnetometer Sensor.
+-//!
+-//!
+-//! Usage
+-//! -----
+-//! ```rust
+-//! let BMM150 = BMM150Component::new(mux_i2c, 0x10).finalize(
+-//!     components::bmm150_component_static!(nrf5240::i2c::TWI));
+-//! let ninedof = components::ninedof::NineDofComponent::new(board_kernel)
+-//!     .finalize(components::ninedof_component_static!(BMM150));
+-//! ```
+-
++// Resource wiring derived from Tock Contributors' sensor components.
++//! Public BMM150 fixture: resources and client wiring only.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
+ use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
+-use capsules_extra::bmm150::BMM150;
++use capsules_extra::bmm150::Bmm150;
+ use core::mem::MaybeUninit;
+ use kernel::component::Component;
+ use kernel::hil::i2c;
++use kernel::hil::time::{self, Alarm};
+ 
+-// Setup static space for the objects.
+ #[macro_export]
+ macro_rules! bmm150_component_static {
+-    ($I:ty $(,)?) => {{
+-        let i2c_device =
+-            kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>);
+-        let buffer = kernel::static_buf!([u8; 8]);
+-        let bmm150 = kernel::static_buf!(
+-            capsules_extra::bmm150::BMM150<
+-                'static,
+-                capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>,
+-            >
+-        );
+-
+-        (i2c_device, buffer, bmm150)
+-    };};
++    ($A:ty, $I:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>);
++        let i2c = kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
++        let buffer = kernel::static_buf!([u8; 21]);
++        let driver = kernel::static_buf!(capsules_extra::bmm150::Bmm150<
++            'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
++        >);
++        (alarm, i2c, buffer, driver)
++    }};
+ }
+-
+-pub struct BMM150Component<I: 'static + i2c::I2CMaster<'static>> {
++pub struct Bmm150Component<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
+     i2c_mux: &'static MuxI2C<'static, I>,
+-    i2c_address: u8,
++    alarm_mux: &'static MuxAlarm<'static, A>,
+ }
+-
+-impl<I: 'static + i2c::I2CMaster<'static>> BMM150Component<I> {
+-    pub fn new(i2c: &'static MuxI2C<'static, I>, i2c_address: u8) -> Self {
+-        BMM150Component {
+-            i2c_mux: i2c,
+-            i2c_address: i2c_address,
+-        }
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Bmm150Component<A, I> {
++    pub fn new(i2c_mux: &'static MuxI2C<'static, I>, alarm_mux: &'static MuxAlarm<'static, A>) -> Self {
++        Self { i2c_mux, alarm_mux }
+     }
+ }
+-
+-impl<I: 'static + i2c::I2CMaster<'static>> Component for BMM150Component<I> {
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component for Bmm150Component<A, I> {
+     type StaticInput = (
++        &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+-        &'static mut MaybeUninit<[u8; 8]>,
+-        &'static mut MaybeUninit<BMM150<'static, I2CDevice<'static, I>>>,
++        &'static mut MaybeUninit<[u8; 21]>,
++        &'static mut MaybeUninit<Bmm150<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+     );
+-    type Output = &'static BMM150<'static, I2CDevice<'static, I>>;
+-
+-    fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
+-        let bmm150_i2c = static_buffer
+-            .0
+-            .write(I2CDevice::new(self.i2c_mux, self.i2c_address));
+-        let buffer = static_buffer.1.write([0; 8]);
+-        let bmm150 = static_buffer.2.write(BMM150::new(buffer, bmm150_i2c));
+-
+-        bmm150_i2c.set_client(bmm150);
+-        bmm150
++    type Output = &'static Bmm150<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    fn finalize(self, s: Self::StaticInput) -> Self::Output {
++        let alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
++        alarm.setup();
++        let bus = s.1.write(I2CDevice::new(self.i2c_mux, 0x13));
++        let buffer = s.2.write([0; 21]);
++        let driver = s.3.write(Bmm150::new(bus, alarm, buffer));
++        bus.set_client(driver);
++        alarm.set_alarm_client(driver);
++        let _ = driver.startup();
++        driver
+     }
+ }
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -233,6 +233,7 @@
+     ambient_light: &'static AmbientLightDriver,
+     pressure: &'static PressureDriver,
+     proximity: &'static ProximityDriver,
++    ninedof: &'static capsules_extra::ninedof::NineDof<'static>,
+     ipc: kernel::ipc::IPC<{ NUM_PROCS as u8 }>,
+     analog_comparator: &'static capsules_extra::analog_comparator::AnalogComparator<
+         'static,
+@@ -277,6 +278,7 @@
+             capsules_extra::ambient_light::DRIVER_NUM => f(Some(self.ambient_light)),
+             capsules_extra::pressure::DRIVER_NUM => f(Some(self.pressure)),
+             capsules_extra::proximity::DRIVER_NUM => f(Some(self.proximity)),
++            capsules_extra::ninedof::DRIVER_NUM => f(Some(self.ninedof)),
+             capsules_extra::analog_comparator::DRIVER_NUM => f(Some(self.analog_comparator)),
+             capsules_extra::net::udp::DRIVER_NUM => f(Some(self.udp_driver)),
+             kernel::ipc::DRIVER_NUM => f(Some(&self.ipc)),
+@@ -812,6 +814,11 @@
+     )
+     .finalize(components::air_quality_component_static!());
+ 
++    let bmm150 = components::bmm150::Bmm150Component::new(sensors_i2c, mux_alarm)
++        .finalize(components::bmm150_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
++    let ninedof = components::ninedof::NineDofComponent::new(board_kernel, capsules_extra::ninedof::DRIVER_NUM)
++        .finalize(components::ninedof_component_static!(bmm150));
++
+     let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x76)
+         .finalize(components::bme280_component_static!(
+             nrf52840::rtc::Rtc,
+@@ -966,6 +973,7 @@
+         ambient_light,
+         pressure,
+         proximity,
++        ninedof,
+         alarm,
+         analog_comparator,
+         thread_driver,

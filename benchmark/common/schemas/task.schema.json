@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "autodriver.task/v1"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^(riot|zephyr)-(tock|nuttx)-[a-z0-9]+-(i2c|gpio|spi-mode[03])$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sensor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "selection": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+        },
+        "variant": {
+          "enum": [
+            "i2c",
+            "spi",
+            "gpio"
+          ]
+        }
+      },
+      "required": [
+        "selection",
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+        }
+      },
+      "required": [
+        "profile"
+      ],
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "const": "raw-s-d-sd-v1"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "policy",
+        "documents"
+      ],
+      "additionalProperties": false
+    },
+    "requirements": {
+      "type": "object"
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+          }
+        }
+      },
+      "required": [
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "evaluation": {
+      "type": "object",
+      "properties": {
+        "suite": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+        }
+      },
+      "required": [
+        "suite"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema",
+    "task_id",
+    "revision",
+    "sensor",
+    "source",
+    "target",
+    "inputs",
+    "requirements",
+    "reference",
+    "evaluation"
+  ],
+  "additionalProperties": false
+}

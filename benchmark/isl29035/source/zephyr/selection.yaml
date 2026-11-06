@@ -1,0 +1,27 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/renesas/isl29035/isl29035.c
+      sha256: a10c967bb3373a8dbd1f1468451c1a108b4b3703b22e9444ff83f295c0c36fc2
+      role: primary_source
+    - path: benchmark/isl29035/source/zephyr/selected/isl29035.h
+      sha256: 30a6b9326956ce8273395b9edb932b524e80329203678b5ccc2e51e47b58c9b7
+      role: primary_header
+    configuration_files:
+    - benchmark/isl29035/source/zephyr/configuration.yaml
+    - benchmark/isl29035/source/zephyr/board.overlay
+    validation: benchmark/isl29035/source/zephyr/validation
+    source_entrypoints:
+      init: isl29035_init
+      sample_fetch: isl29035_sample_fetch
+      channel_get: isl29035_channel_get
+    dependencies: []
+    devicetree:
+      compatible: isil,isl29035
+      bus: i2c
+      reg: 68
+      status: okay
+    authenticity: 'Approved historical compatibility copy: private header guard removed.'

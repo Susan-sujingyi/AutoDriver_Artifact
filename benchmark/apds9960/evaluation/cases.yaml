@@ -1,0 +1,45 @@
+{
+  "schema": "driverbench.apds9960.numeric-cases/v1",
+  "device": "APDS-9960",
+  "document": "AV02-4191EN, November 13, 2015",
+  "evidence_pages": [11, 25, 26],
+  "channel": "proximity",
+  "unit": "unsigned raw proximity count",
+  "rounding": "none; preserve the PDATA byte exactly",
+  "identity_for_valid_protocol_cases": 171,
+  "wrong_identity_for_protocol_cases": 0,
+  "notes": [
+    "The independent numeric oracle is the unsigned eight-bit PDATA definition, not an optical distance model.",
+    "PDATA 0 and 1 are valid fresh results even when the source's inclusive PILT=0, PIHT=1 interval leaves PINT clear.",
+    "PVALID bit 1 signals a result since PEN was asserted or PDATA was last read; protocol freshness is separate from the numeric value.",
+    "A repeated numeric value can belong to a new sample. A count of 255 alone does not prove analog saturation or an invalid sample.",
+    "The source-accepted identity 0x9c is an optional compatibility extension, not an invalid-ID vector and not an officially confirmed variant."
+  ],
+  "vectors": [
+    {"id": "zero_valid_inside_threshold_window", "raw": {"proximity": 0}, "raw_bytes": [0], "binary": "00000000", "expected": {"proximity": 0}, "manual": "No set bit contributes; 0 is a valid raw count, not an error sentinel."},
+    {"id": "one_valid_at_upper_threshold", "raw": {"proximity": 1}, "raw_bytes": [1], "binary": "00000001", "expected": {"proximity": 1}, "manual": "2^0 = 1; equality to PIHT=1 is inside the threshold window."},
+    {"id": "two_outside_threshold_window", "raw": {"proximity": 2}, "raw_bytes": [2], "binary": "00000010", "expected": {"proximity": 2}, "manual": "2^1 = 2; freshness must not depend on crossing PIHT."},
+    {"id": "six_low_bits", "raw": {"proximity": 63}, "raw_bytes": [63], "binary": "00111111", "expected": {"proximity": 63}, "manual": "32+16+8+4+2+1 = 63."},
+    {"id": "bit_six", "raw": {"proximity": 64}, "raw_bytes": [64], "binary": "01000000", "expected": {"proximity": 64}, "manual": "2^6 = 64; PDATA bits are data, not STATUS flags."},
+    {"id": "alternating_low", "raw": {"proximity": 85}, "raw_bytes": [85], "binary": "01010101", "expected": {"proximity": 85}, "manual": "64+16+4+1 = 85."},
+    {"id": "signed_boundary_low", "raw": {"proximity": 127}, "raw_bytes": [127], "binary": "01111111", "expected": {"proximity": 127}, "manual": "64+32+16+8+4+2+1 = 127."},
+    {"id": "signed_boundary_high", "raw": {"proximity": 128}, "raw_bytes": [128], "binary": "10000000", "expected": {"proximity": 128}, "manual": "2^7 = 128, with no sign extension."},
+    {"id": "alternating_high", "raw": {"proximity": 170}, "raw_bytes": [170], "binary": "10101010", "expected": {"proximity": 170}, "manual": "128+32+8+2 = 170."},
+    {"id": "maximum_minus_one", "raw": {"proximity": 254}, "raw_bytes": [254], "binary": "11111110", "expected": {"proximity": 254}, "manual": "128+64+32+16+8+4+2 = 254."},
+    {"id": "maximum_valid", "raw": {"proximity": 255}, "raw_bytes": [255], "binary": "11111111", "expected": {"proximity": 255}, "manual": "128+64+32+16+8+4+2+1 = 255; preserve the full unsigned range."}
+  ],
+  "invalid_vectors": [
+    {"id": "negative_count", "raw": {"proximity": -1}, "expected_error": "ValueError"},
+    {"id": "over_width_count", "raw": {"proximity": 256}, "expected_error": "ValueError"},
+    {"id": "boolean_is_not_count", "raw": {"proximity": true}, "expected_error": "ValueError"},
+    {"id": "float_is_not_count", "raw": {"proximity": 1.0}, "expected_error": "ValueError"},
+    {"id": "string_is_not_count", "raw": {"proximity": "1"}, "expected_error": "ValueError"},
+    {"id": "null_is_not_count", "raw": {"proximity": null}, "expected_error": "ValueError"}
+  ],
+  "not_applicable": [
+    "No count-to-distance calibration or absolute-distance accuracy claim.",
+    "No byte order, signed output, fractional-unit rounding, or host compensation formula for the single PDATA byte.",
+    "No CRC, calibration PROM, temperature, ALS/color or gesture/FIFO channel in the selected subset.",
+    "PGSAT is a separate analog diagnostic; no numeric count is designated an error sentinel."
+  ]
+}

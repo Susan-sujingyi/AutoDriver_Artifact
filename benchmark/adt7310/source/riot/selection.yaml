@@ -1,0 +1,26 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  spi:
+    selected_files:
+    - path: third_party/riot/drivers/adt7310/Makefile
+      sha256: ff6606b196a84b863c3da39e62b2593b24d8194cb2334f8d48d1a37a6814671e
+      role: driver_directory
+    - path: third_party/riot/drivers/adt7310/Makefile.dep
+      sha256: 223378b34aebeb80ba65956e01d176f678afbee7e924debff7c69d4571a24f64
+      role: driver_directory
+    - path: third_party/riot/drivers/adt7310/adt7310.c
+      sha256: e1f792d4577c61db021495eb88e46ebac59b876c19d69d64d928c31716fbb125
+      role: driver_directory
+    - path: third_party/riot/drivers/include/adt7310.h
+      sha256: 647dfe1c7eebc42b66e18a648ed750e30043ce1ed3babb330256bf30ec01071c
+      role: public_header
+    configuration_files:
+    - benchmark/adt7310/source/riot/configuration.mk
+    validation: benchmark/adt7310/source/riot/validation
+    modules:
+    - adt7310
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

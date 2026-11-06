@@ -1,0 +1,355 @@
+{
+  "schema": "driverbench_bh1750_vectors/v2",
+  "device": "BH1750FVI",
+  "document": "ROHM No.11046EDT01, 2011.11 Rev.D",
+  "evidence_pages": [
+    7,
+    10,
+    11
+  ],
+  "selected_configuration": {
+    "mode": "one_time_high_resolution",
+    "opcode": 32,
+    "resolution_dts": 1,
+    "mtreg": 69
+  },
+  "unit": "lux",
+  "oracle_rounding": "floor exact raw * 5 / 6",
+  "contract_freeze_status": "public_native_abi_and_software_model_v1",
+  "notes": [
+    "Public contract allows one-lux integer tolerance relative to this independently computed floor reference.",
+    "Manufacturer worked example raw0x8390 is approximately28067 lux; exact33680/1.2 is28066+2/3 lux.",
+    "Count65535 is a representable unsigned code, not a declared digital error sentinel.",
+    "No ID register, data-ready flag or CRC is provided; those checks must not be invented."
+  ],
+  "vectors": [
+    {
+      "id": "dark",
+      "raw": {
+        "light": 0
+      },
+      "raw_bytes": [
+        0,
+        0
+      ],
+      "ideal_lux_fraction": "0",
+      "expected": {
+        "illuminance_lux": 0
+      },
+      "manual": "0 * 256 + 0 = 0; 0 / 1.2 = 0 lux before whole-lux rounding."
+    },
+    {
+      "id": "one_count",
+      "raw": {
+        "light": 1
+      },
+      "raw_bytes": [
+        0,
+        1
+      ],
+      "ideal_lux_fraction": "5/6",
+      "expected": {
+        "illuminance_lux": 0
+      },
+      "manual": "0 * 256 + 1 = 1; 1 / 1.2 = 5/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "two_counts",
+      "raw": {
+        "light": 2
+      },
+      "raw_bytes": [
+        0,
+        2
+      ],
+      "ideal_lux_fraction": "5/3",
+      "expected": {
+        "illuminance_lux": 1
+      },
+      "manual": "0 * 256 + 2 = 2; 2 / 1.2 = 5/3 lux before whole-lux rounding."
+    },
+    {
+      "id": "fraction_before_integer",
+      "raw": {
+        "light": 5
+      },
+      "raw_bytes": [
+        0,
+        5
+      ],
+      "ideal_lux_fraction": "25/6",
+      "expected": {
+        "illuminance_lux": 4
+      },
+      "manual": "0 * 256 + 5 = 5; 5 / 1.2 = 25/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "exact_five_lux",
+      "raw": {
+        "light": 6
+      },
+      "raw_bytes": [
+        0,
+        6
+      ],
+      "ideal_lux_fraction": "5",
+      "expected": {
+        "illuminance_lux": 5
+      },
+      "manual": "0 * 256 + 6 = 6; 6 / 1.2 = 5 lux before whole-lux rounding."
+    },
+    {
+      "id": "fraction_after_integer",
+      "raw": {
+        "light": 7
+      },
+      "raw_bytes": [
+        0,
+        7
+      ],
+      "ideal_lux_fraction": "35/6",
+      "expected": {
+        "illuminance_lux": 5
+      },
+      "manual": "0 * 256 + 7 = 7; 7 / 1.2 = 35/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "before_ten_lux",
+      "raw": {
+        "light": 11
+      },
+      "raw_bytes": [
+        0,
+        11
+      ],
+      "ideal_lux_fraction": "55/6",
+      "expected": {
+        "illuminance_lux": 9
+      },
+      "manual": "0 * 256 + 11 = 11; 11 / 1.2 = 55/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "exact_ten_lux",
+      "raw": {
+        "light": 12
+      },
+      "raw_bytes": [
+        0,
+        12
+      ],
+      "ideal_lux_fraction": "10",
+      "expected": {
+        "illuminance_lux": 10
+      },
+      "manual": "0 * 256 + 12 = 12; 12 / 1.2 = 10 lux before whole-lux rounding."
+    },
+    {
+      "id": "low_byte_maximum",
+      "raw": {
+        "light": 255
+      },
+      "raw_bytes": [
+        0,
+        255
+      ],
+      "ideal_lux_fraction": "425/2",
+      "expected": {
+        "illuminance_lux": 212
+      },
+      "manual": "0 * 256 + 255 = 255; 255 / 1.2 = 425/2 lux before whole-lux rounding."
+    },
+    {
+      "id": "high_byte_one",
+      "raw": {
+        "light": 256
+      },
+      "raw_bytes": [
+        1,
+        0
+      ],
+      "ideal_lux_fraction": "640/3",
+      "expected": {
+        "illuminance_lux": 213
+      },
+      "manual": "1 * 256 + 0 = 256; 256 / 1.2 = 640/3 lux before whole-lux rounding."
+    },
+    {
+      "id": "both_bytes_one",
+      "raw": {
+        "light": 257
+      },
+      "raw_bytes": [
+        1,
+        1
+      ],
+      "ideal_lux_fraction": "1285/6",
+      "expected": {
+        "illuminance_lux": 214
+      },
+      "manual": "1 * 256 + 1 = 257; 257 / 1.2 = 1285/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "one_thousand_lux",
+      "raw": {
+        "light": 1200
+      },
+      "raw_bytes": [
+        4,
+        176
+      ],
+      "ideal_lux_fraction": "1000",
+      "expected": {
+        "illuminance_lux": 1000
+      },
+      "manual": "4 * 256 + 176 = 1200; 1200 / 1.2 = 1000 lux before whole-lux rounding."
+    },
+    {
+      "id": "signed_boundary_low",
+      "raw": {
+        "light": 32767
+      },
+      "raw_bytes": [
+        127,
+        255
+      ],
+      "ideal_lux_fraction": "163835/6",
+      "expected": {
+        "illuminance_lux": 27305
+      },
+      "manual": "127 * 256 + 255 = 32767; 32767 / 1.2 = 163835/6 lux before whole-lux rounding."
+    },
+    {
+      "id": "signed_boundary_high",
+      "raw": {
+        "light": 32768
+      },
+      "raw_bytes": [
+        128,
+        0
+      ],
+      "ideal_lux_fraction": "81920/3",
+      "expected": {
+        "illuminance_lux": 27306
+      },
+      "manual": "128 * 256 + 0 = 32768; 32768 / 1.2 = 81920/3 lux before whole-lux rounding."
+    },
+    {
+      "id": "manufacturer_worked_example",
+      "raw": {
+        "light": 33680
+      },
+      "raw_bytes": [
+        131,
+        144
+      ],
+      "ideal_lux_fraction": "84200/3",
+      "expected": {
+        "illuminance_lux": 28066
+      },
+      "manual": "131 * 256 + 144 = 33680; 33680 / 1.2 = 84200/3 lux before whole-lux rounding."
+    },
+    {
+      "id": "maximum_minus_one",
+      "raw": {
+        "light": 65534
+      },
+      "raw_bytes": [
+        255,
+        254
+      ],
+      "ideal_lux_fraction": "163835/3",
+      "expected": {
+        "illuminance_lux": 54611
+      },
+      "manual": "255 * 256 + 254 = 65534; 65534 / 1.2 = 163835/3 lux before whole-lux rounding."
+    },
+    {
+      "id": "maximum_count",
+      "raw": {
+        "light": 65535
+      },
+      "raw_bytes": [
+        255,
+        255
+      ],
+      "ideal_lux_fraction": "109225/2",
+      "expected": {
+        "illuminance_lux": 54612
+      },
+      "manual": "255 * 256 + 255 = 65535; 65535 / 1.2 = 109225/2 lux before whole-lux rounding."
+    }
+  ],
+  "invalid_vectors": [
+    {
+      "id": "missing_byte",
+      "raw_bytes": [
+        1
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "empty",
+      "raw_bytes": [],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "extra_byte",
+      "raw_bytes": [
+        1,
+        2,
+        3
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "negative_byte",
+      "raw_bytes": [
+        -1,
+        0
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "wide_byte",
+      "raw_bytes": [
+        256,
+        0
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "boolean_byte",
+      "raw_bytes": [
+        true,
+        0
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "float_byte",
+      "raw_bytes": [
+        1.0,
+        0
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "string_byte",
+      "raw_bytes": [
+        "1",
+        0
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "id": "null_byte",
+      "raw_bytes": [
+        null,
+        0
+      ],
+      "expected_error": "ValueError"
+    }
+  ],
+  "integer_tolerance_lux": 1,
+  "rounding": "Adjacent integer lux quantization plus one integer LSB, independent of physical accuracy"
+}

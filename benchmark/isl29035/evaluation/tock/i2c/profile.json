@@ -1,0 +1,25 @@
+{
+  "profile": "autodriver.model/isl29035/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_reset_disabled_ALS",
+    "observation_us": 100000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "integration_us": 410,
+    "clock_hz": 1000000,
+    "stable_input_progress_us": 400000,
+    "deadline_semantics": "Absolute stable-input deadline passed into request execution; guard and polling clamped to deadline. Request window bounds completion, guard included when time remains."
+  },
+  "limitations": [
+    "Finite software register model; no hardware or illuminance accuracy validation.",
+    "Table11 nominal integration time is a model stimulus, not a hard API deadline.",
+    "Previously completed readings remain valid; no mandatory new epoch or global idle.",
+    "Nominal eight-bit data is zero extended. Nonzero unused high bits are separately reported model-stress diagnostics, not asserted physical occurrences.",
+    "Brownout acknowledgment and identity probing are diagnostic; no unselected interrupt persistence policy.",
+    "No whole two-byte atomicity obligation for an eight-bit selected result.",
+    "Fault and wrong-device diagnostics do not imply exhaustive recovery coverage.",
+    "Not an OS sandbox for hostile code."
+  ]
+}

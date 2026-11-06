@@ -1,0 +1,27 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-bmm150-i2c
+revision: 2
+sensor: bmm150
+source:
+  selection: benchmark/bmm150/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/bmm150/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/bmm150/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - magnetic_field_xyz
+    acquisition: continuous
+  connection:
+    i2c:
+      address_7bit: 19
+    interrupt_pin: null
+reference:
+  files:
+    capsules/extra/src/bmm150.rs: benchmark/bmm150/reference/tock/i2c/bmm150.rs
+evaluation:
+  suite: benchmark/bmm150/evaluation/suite.yaml

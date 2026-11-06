@@ -1,0 +1,88 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "BMP388",
+  "manufacturer": "Bosch Sensortec GmbH",
+  "document_title": "BMP388 Digital pressure sensor",
+  "document_id": "BST-BMP388-DS001-07",
+  "revision": "1.7",
+  "revision_date": "2020-11",
+  "document_history_last_date": "2020-11-23",
+  "page_count": 59,
+  "official_url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf",
+  "retrieved_from": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Downloaded directly over HTTPS from Bosch Sensortec. Cover/footer specify Revision1.7 November2020 and document numberDS001-07; PDF metadata modification date2020-12-11 is not the document release. No mirror or generic BMP390 datasheet used.",
+  "pdf_metadata": {
+    "title": "BMP388 data sheet",
+    "author": "Bosch Sensortec GmbH",
+    "creator": "Acrobat PDFMaker20 for Word",
+    "created_utc": "2020-11-23T18:56:07Z",
+    "modified_utc": "2020-12-11T16:14:59Z",
+    "pdf_version": "1.7"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    26,
+    27,
+    28,
+    32,
+    41,
+    48,
+    55,
+    56
+  ],
+  "text_checked_pages": [
+    1,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    26,
+    27,
+    28,
+    29,
+    31,
+    32,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    46,
+    48,
+    55,
+    56,
+    57,
+    58
+  ],
+  "visual_review": "Rendered listed pages to PNG at1800-pixel maximum dimension. Checked measurement-time table/equation, shadowed data burst behavior, all coefficient widths/signs and binary exponents, ADC layout/status clear rules, address/data-pair writes and STOP/repeated-START reads, I2C connection diagram, and compensation polynomial.",
+  "copyright": "Copyright Bosch Sensortec GmbH; original notices and disclaimer retained. No open-source license asserted for datasheet literature.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "1ab21c90aaf15542751be6b970d53dc57893a4ea948f45f9fe96e844789fdec2",
+      "bytes": 2034693
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "7a02fbe9c5d06d392ce0b7ba50942b02a71c75df77f51c41ac622ab9f847641d",
+      "bytes": 196799
+    },
+    {
+      "path": "pages.json",
+      "sha256": "000d2373e5b8ffe5436221779a4c411486e01f545559bd3baa4a5a29eb63d40e",
+      "bytes": 5400
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "autodriver.controls/v1",
+  "generators": [
+    "benchmark/dht11/evaluation/controls/dht11_v2_controls.py",
+    "benchmark/common/controls/nuttx.py",
+    "benchmark/dht11/evaluation/controls/nuttx.py",
+    "benchmark/common/controls/tock.py",
+    "benchmark/common/controls/selection.py"
+  ],
+  "selection": "benchmark/common/controls/selection.py",
+  "policy": "Require compiled legal alternatives to pass and compiled behavioral defects to be rejected. Optional diagnostic recovery differences are reported separately.",
+  "profiles": {
+    "nuttx/gpio": {
+      "controls": [
+        {
+          "name": "scheduler_sleep",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Exercise a different legal API, transaction layout, timing implementation or optional-probe policy."
+        },
+        {
+          "name": "wrong_temperature_unit",
+          "generator": "sensor_mutation",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "checksum_ignored",
+          "generator": "sensor_mutation",
+          "expected": "fail",
+          "required_failure_cases": [
+            "integrity/invalid_acquisition"
+          ]
+        }
+      ],
+      "scope": "Native legal variants and explicitly selected defects; every defect must trigger a contract assertion in the declared case family, after model construction and selfchecks pass."
+    },
+    "tock/gpio": {
+      "controls": [
+        {
+          "name": "threshold_40",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "start_21ms",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "wrong_temperature_unit",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "unchecked_checksum",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "integrity/*"
+          ]
+        }
+      ],
+      "mode_policy": "Use task mode directly; wrong-mode control deliberately changes it.",
+      "scope": "Explicit legal alternatives and defects. All core observations and model selfchecks must finish; intended case family must assert the defect."
+    }
+  }
+}

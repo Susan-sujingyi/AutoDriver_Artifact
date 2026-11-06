@@ -1,0 +1,42 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/ccs811/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/Makefile.dep
+      sha256: d1875c49c2f4412b38698a44d3da468f4a888589234fb297073ca4eb20433842
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/Makefile.include
+      sha256: 07decb95de6bd82187ebd07df7eb2b26c0e91c8586633af8ecfdc244083ccff9
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/ccs811.c
+      sha256: b82b15ed5303876f764967fc02a1b55a8ae0b4feb7694e9213d6ed519c9e280b
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/ccs811_saul.c
+      sha256: deba878445094b7699d9ce64065a6ac8cca5da634a7309db039860fee8c4366e
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/doc.txt
+      sha256: b9c95f277a993e6921b3d3e723645ff1583d29a07807108484bb582a1f0070c9
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/include/ccs811_params.h
+      sha256: 22661c38b43fa9aec488e2a849c8653f932da292bf481d19a3f1ba5b414a36b3
+      role: driver_directory
+    - path: third_party/riot/drivers/ccs811/include/ccs811_regs.h
+      sha256: d74dc7f7a02eeec554965cb62fe8e3eef50112356e503d8058a7638072fca4f0
+      role: driver_directory
+    - path: third_party/riot/drivers/include/ccs811.h
+      sha256: 622833db998a0ad157a4f79da4500d1600f2719062f249775e0298af702316c7
+      role: public_header
+    configuration_files:
+    - benchmark/ccs811/source/riot/configuration.h
+    - benchmark/ccs811/source/riot/configuration.mk
+    validation: benchmark/ccs811/source/riot/validation
+    modules:
+    - ccs811
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

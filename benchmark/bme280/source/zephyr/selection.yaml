@@ -1,0 +1,62 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/bosch/bme280/bme280.c
+      sha256: f7fa3713a1053bdf2681674508f37065555b77a8986e40f65b31007682f7143b
+      role: primary_source
+    - path: benchmark/bme280/source/zephyr/selected/bme280.h
+      sha256: f63d25744ea489ecdc6a08849e800722b268afa725340897b8a95dfc522d8abe
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/bosch/bme280/bme280_i2c.c
+      sha256: 3ea90ed6db0ade71e3349c28f150266c7ac778c5fe899f465338c829f7618007
+      role: bus_dependency
+    configuration_files:
+    - benchmark/bme280/source/zephyr/i2c/configuration.yaml
+    - benchmark/bme280/source/zephyr/i2c/board.overlay
+    validation: benchmark/bme280/source/zephyr/i2c/validation
+    source_entrypoints:
+      init: bme280_chip_init
+      sample_fetch: bme280_sample_fetch
+      channel_get: bme280_channel_get
+    dependencies: []
+    devicetree:
+      compatible: bosch,bme280
+      bus: i2c
+      reg: 118
+      status: okay
+    authenticity: 'Approved historical compatibility copy: private header guard removed.'
+  spi:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/bosch/bme280/bme280.c
+      sha256: f7fa3713a1053bdf2681674508f37065555b77a8986e40f65b31007682f7143b
+      role: primary_source
+    - path: benchmark/bme280/source/zephyr/selected/bme280.h
+      sha256: f63d25744ea489ecdc6a08849e800722b268afa725340897b8a95dfc522d8abe
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/bosch/bme280/bme280_i2c.c
+      sha256: 3ea90ed6db0ade71e3349c28f150266c7ac778c5fe899f465338c829f7618007
+      role: bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bme280/bme280_spi.c
+      sha256: 50abc4368b0e36cb8732c8658b2d9b86a4125f192229e258040bfe413a0854a4
+      role: bus_dependency
+    configuration_files:
+    - benchmark/bme280/source/zephyr/spi/configuration.yaml
+    - benchmark/bme280/source/zephyr/spi/board.overlay
+    validation: benchmark/bme280/source/zephyr/spi/validation
+    source_entrypoints:
+      init: bme280_chip_init
+      sample_fetch: bme280_sample_fetch
+      channel_get: bme280_channel_get
+    dependencies: []
+    devicetree:
+      compatible: bosch,bme280
+      bus: spi
+      reg: 0
+      status: okay
+      spi-max-frequency: 1000000
+      spi-cpol: true
+      spi-cpha: true
+    authenticity: 'Approved historical compatibility copy: private header guard removed.'

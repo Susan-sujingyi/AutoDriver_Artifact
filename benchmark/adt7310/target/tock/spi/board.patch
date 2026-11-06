@@ -1,0 +1,124 @@
+--- /dev/null
++++ b/boards/components/src/adt7310.rs
+@@ -0,0 +1,44 @@
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// Resource wiring follows Tock Contributors' SPI and alarm components.
++//! Public resources and clients only; no sensor protocol or conversion logic.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
++use capsules_core::virtualizers::virtual_spi::{MuxSpiMaster, VirtualSpiMasterDevice};
++use capsules_extra::adt7310::Adt7310;
++use core::mem::MaybeUninit;
++use kernel::component::Component;
++use kernel::hil::spi::{self, SpiMasterDevice};
++use kernel::hil::time::{self, Alarm};
++#[macro_export]
++macro_rules! adt7310_component_static {
++    ($A:ty, $S:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>);
++        let spi = kernel::static_buf!(capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,$S>);
++        let tx = kernel::static_buf!([u8;16]);
++        let rx = kernel::static_buf!([u8;16]);
++        let driver = kernel::static_buf!(capsules_extra::adt7310::Adt7310<'static,
++            capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,$S>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>>);
++        (alarm,spi,tx,rx,driver)
++    }};
++}
++pub struct Adt7310Component<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> {
++    spi_mux: &'static MuxSpiMaster<'static,S>, alarm_mux: &'static MuxAlarm<'static,A>, chip_select: S::ChipSelect,
++}
++impl<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> Adt7310Component<A,S> {
++    pub fn new(spi_mux: &'static MuxSpiMaster<'static,S>, alarm_mux: &'static MuxAlarm<'static,A>, chip_select: S::ChipSelect) -> Self {
++        Self {spi_mux,alarm_mux,chip_select}
++    }
++}
++impl<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> Component for Adt7310Component<A,S> {
++    type StaticInput = (&'static mut MaybeUninit<VirtualMuxAlarm<'static,A>>,
++        &'static mut MaybeUninit<VirtualSpiMasterDevice<'static,S>>, &'static mut MaybeUninit<[u8;16]>,
++        &'static mut MaybeUninit<[u8;16]>, &'static mut MaybeUninit<Adt7310<'static,VirtualSpiMasterDevice<'static,S>,VirtualMuxAlarm<'static,A>>>);
++    type Output = &'static Adt7310<'static,VirtualSpiMasterDevice<'static,S>,VirtualMuxAlarm<'static,A>>;
++    fn finalize(self,s:Self::StaticInput)->Self::Output {
++        let alarm=s.0.write(VirtualMuxAlarm::new(self.alarm_mux)); alarm.setup();
++        let spi=s.1.write(VirtualSpiMasterDevice::new(self.spi_mux,self.chip_select)); spi.setup();
++        let driver=s.4.write(Adt7310::new(spi,alarm,s.2.write([0;16]),s.3.write([0;16])));
++        spi.set_client(driver); alarm.set_alarm_client(driver);
++        let _=driver.startup(); driver
++    }
++}
+--- a/boards/components/src/lib.rs
++++ b/boards/components/src/lib.rs
+@@ -91,3 +91,5 @@
+ pub mod udp_driver;
+ pub mod udp_mux;
+ pub mod usb;
++
++pub mod adt7310;
+--- a/capsules/extra/src/lib.rs
++++ b/capsules/extra/src/lib.rs
+@@ -100,3 +100,5 @@
+ pub mod usb;
+ pub mod usb_hid_driver;
+ pub mod virtual_kv;
++
++pub mod adt7310;
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -186,7 +186,8 @@
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type BME280Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
+ type BME280Sensor = components::bme280::Bme280ComponentType<BME280I2CDevice, BME280Alarm>;
+-type TemperatureDriver = components::temperature::TemperatureComponentType<BME280Sensor>;
++type Adt7310Sensor = capsules_extra::adt7310::Adt7310<'static, capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,nrf52840::spi::SPIM<'static>>, VirtualMuxAlarm<'static,nrf52840::rtc::Rtc<'static>>>;
++type TemperatureDriver = components::temperature::TemperatureComponentType<Adt7310Sensor>;
+ type HumidityDriver = components::humidity::HumidityComponentType<BME280Sensor>;
+ type Lps22hbI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+@@ -426,7 +427,6 @@
+             0 => &nrf52840_peripherals.gpio_port[Pin::P1_01],
+             1 => &nrf52840_peripherals.gpio_port[Pin::P1_02],
+             2 => &nrf52840_peripherals.gpio_port[Pin::P1_03],
+-            3 => &nrf52840_peripherals.gpio_port[Pin::P1_04],
+             4 => &nrf52840_peripherals.gpio_port[Pin::P1_05],
+             5 => &nrf52840_peripherals.gpio_port[Pin::P1_06],
+             6 => &nrf52840_peripherals.gpio_port[Pin::P1_07],
+@@ -434,9 +434,6 @@
+             8 => &nrf52840_peripherals.gpio_port[Pin::P1_10],
+             9 => &nrf52840_peripherals.gpio_port[Pin::P1_11],
+             10 => &nrf52840_peripherals.gpio_port[Pin::P1_12],
+-            11 => &nrf52840_peripherals.gpio_port[Pin::P1_13],
+-            12 => &nrf52840_peripherals.gpio_port[Pin::P1_14],
+-            13 => &nrf52840_peripherals.gpio_port[Pin::P1_15],
+         ),
+     )
+     .finalize(components::gpio_component_static!(nrf52840::gpio::GPIOPin));
+@@ -802,6 +799,17 @@
+     let sensors_i2c = components::i2c::I2CMuxComponent::new(&base_peripherals.twi1, None)
+         .finalize(components::i2c_mux_component_static!(nrf52840::i2c::TWI));
+ 
++    // Dedicated sensor SPI; existing SPIM0 and onboard flash stay intact.
++    base_peripherals.spim2.configure(
++        nrf52840::pinmux::Pinmux::new(Pin::P1_13 as u32),
++        nrf52840::pinmux::Pinmux::new(Pin::P1_14 as u32),
++        nrf52840::pinmux::Pinmux::new(Pin::P1_15 as u32),
++    );
++    let sensors_spi = components::spi::SpiMuxComponent::new(&base_peripherals.spim2)
++        .finalize(components::spi_mux_component_static!(nrf52840::spi::SPIM));
++    let adt7310 = components::adt7310::Adt7310Component::new(sensors_spi, mux_alarm, &gpio_port[Pin::P1_04])
++        .finalize(components::adt7310_component_static!(nrf52840::rtc::Rtc, nrf52840::spi::SPIM));
++
+     let ccs811 = components::ccs811::Ccs811Component::new(sensors_i2c, mux_alarm, 0x5A)
+         .finalize(components::ccs811_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
+ 
+@@ -821,9 +829,9 @@
+     let temp = components::temperature::TemperatureComponent::new(
+         board_kernel,
+         capsules_extra::temperature::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::temperature_component_static!(BME280Sensor));
++        adt7310,
++    )
++    .finalize(components::temperature_component_static!(Adt7310Sensor));
+ 
+     let humidity = components::humidity::HumidityComponent::new(
+         board_kernel,

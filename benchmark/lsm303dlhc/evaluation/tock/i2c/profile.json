@@ -1,0 +1,18 @@
+{
+  "profile": "autodriver.model/lsm303dlhc/i2c/v1",
+  "limits": {
+    "build_seconds": 300,
+    "case_process_seconds": 5,
+    "startup_observation_us": 250000,
+    "request_observation_us": 500000,
+    "stable_progress_us": 1000000,
+    "events_per_advance": 50000
+  },
+  "limitations": [
+    "Finite I2C digital model, stable powered default state; not physical accuracy or all virtual-I2C schedules.",
+    "Magnitude conversion uses documented nominal XY/Z sensitivity and +/-1 nT rounding envelope.",
+    "Continuous15Hz with finite first-ready delays. Supervision limits are not device timing guarantees.",
+    "Transport failures and stalled device are diagnostic because NineDof has no error callback; completion is not a recovery proof.",
+    "No hardware, model calls or AutoDriver IR used."
+  ]
+}

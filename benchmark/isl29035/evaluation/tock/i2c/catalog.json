@@ -1,0 +1,155 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/data_retention",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/threshold_clear",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "numeric/dark/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/one_count/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/quarter_fraction/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/rounding_up_candidate/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/half_fraction/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/before_exact_integer/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/exact_integer/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/low_nibble_maximum/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/quarter_scale/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/before_high_bit/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/high_bit_set/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/near_saturation/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "numeric/saturation_code/ambient_light",
+      "scope": "core",
+      "basis": "ISL-NUMERIC, ISL-DATA, ISL-CONFIG, ISL-CALLBACK"
+    },
+    {
+      "id": "requests/first_available",
+      "scope": "core",
+      "basis": "ISL-CALLBACK, ISL-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "ISL-CALLBACK, ISL-PROGRESS"
+    },
+    {
+      "id": "requests/input_changes",
+      "scope": "core",
+      "basis": "ISL-CALLBACK, ISL-PROGRESS"
+    },
+    {
+      "id": "diagnostic/bus/Any/false",
+      "scope": "diagnostic",
+      "basis": "ISL-FAULT: scalar HIL lacks error notification; observe safety, reachability, retry policy"
+    },
+    {
+      "id": "diagnostic/bus/Any/true",
+      "scope": "diagnostic",
+      "basis": "ISL-FAULT: scalar HIL lacks error notification; observe safety, reachability, retry policy"
+    },
+    {
+      "id": "diagnostic/bus/Data/false",
+      "scope": "diagnostic",
+      "basis": "ISL-FAULT: scalar HIL lacks error notification; observe safety, reachability, retry policy"
+    },
+    {
+      "id": "diagnostic/bus/Data/true",
+      "scope": "diagnostic",
+      "basis": "ISL-FAULT: scalar HIL lacks error notification; observe safety, reachability, retry policy"
+    },
+    {
+      "id": "diagnostic/identity_08",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/identity_20",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/identity_28",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/identity_2f",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/identity_68",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/identity_ef",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: fixed selected hardware; optional probe and reserved-bit handling"
+    },
+    {
+      "id": "diagnostic/unused_upper_bits",
+      "scope": "diagnostic",
+      "basis": "ISL-WIDTH: stress unknown unused upper bits; nominal frame is zero extended"
+    },
+    {
+      "id": "diagnostic/brownout_ack",
+      "scope": "diagnostic",
+      "basis": "ISL-ID: recommended acknowledgment; not a measurement-ready flag"
+    }
+  ]
+}

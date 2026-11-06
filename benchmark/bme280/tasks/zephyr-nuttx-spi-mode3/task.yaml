@@ -1,0 +1,32 @@
+schema: autodriver.task/v1
+task_id: zephyr-nuttx-bme280-spi-mode3
+revision: 2
+sensor: bme280
+source:
+  selection: benchmark/bme280/source/zephyr/selection.yaml
+  variant: spi
+target:
+  profile: benchmark/bme280/target/nuttx/spi/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/bme280/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    - pressure
+  connection:
+    spi:
+      mode: 3
+      max_frequency_hz: 1000000
+      bit_order: MSB_first
+      word_bits: 8
+      chip_select: active_low
+    interrupt_pin: null
+reference:
+  files:
+    drivers/sensors/bme280_spi.c: benchmark/bme280/reference/nuttx/spi/bme280_spi.c
+evaluation:
+  suite: benchmark/bme280/evaluation/suite.yaml

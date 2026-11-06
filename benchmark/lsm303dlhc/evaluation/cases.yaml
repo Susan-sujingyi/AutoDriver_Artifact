@@ -1,0 +1,132 @@
+{
+  "vectors": [
+    {
+      "id": "zero",
+      "xyz_counts": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "positive",
+      "xyz_counts": [
+        1100,
+        550,
+        980
+      ]
+    },
+    {
+      "id": "negative",
+      "xyz_counts": [
+        -1100,
+        -550,
+        -980
+      ]
+    },
+    {
+      "id": "mixed",
+      "xyz_counts": [
+        301,
+        -709,
+        1187
+      ]
+    },
+    {
+      "id": "lsb",
+      "xyz_counts": [
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "id": "endian",
+      "xyz_counts": [
+        257,
+        -513,
+        1025
+      ]
+    },
+    {
+      "id": "x_only",
+      "xyz_counts": [
+        901,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "y_only",
+      "xyz_counts": [
+        0,
+        -809,
+        0
+      ]
+    },
+    {
+      "id": "z_only",
+      "xyz_counts": [
+        0,
+        0,
+        701
+      ]
+    },
+    {
+      "id": "upper",
+      "xyz_counts": [
+        1400,
+        1399,
+        1200
+      ]
+    },
+    {
+      "id": "lower",
+      "xyz_counts": [
+        -1400,
+        -1399,
+        -1200
+      ]
+    },
+    {
+      "id": "fractions",
+      "xyz_counts": [
+        11,
+        22,
+        49
+      ]
+    },
+    {
+      "id": "near_zero",
+      "xyz_counts": [
+        -7,
+        13,
+        -3
+      ]
+    },
+    {
+      "id": "carry",
+      "xyz_counts": [
+        255,
+        256,
+        257
+      ]
+    },
+    {
+      "id": "minus_carry",
+      "xyz_counts": [
+        -255,
+        -256,
+        -257
+      ]
+    },
+    {
+      "id": "unique",
+      "xyz_counts": [
+        42,
+        73,
+        -98
+      ]
+    }
+  ]
+}

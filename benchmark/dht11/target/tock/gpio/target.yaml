@@ -1,0 +1,62 @@
+schema: autodriver.target/v1
+os: tock
+snapshot: tock
+board: nrf52840dk
+bus: gpio
+module: dht11
+editable_paths:
+- capsules/extra/src/dht11.rs
+- capsules/extra/src/dht11/
+board_patch: benchmark/dht11/target/tock/gpio/board.patch
+application: benchmark/common/applications/tock
+native_interface:
+  type: Dht11<'a, P, A>
+  constructor: 'pub fn new(pin: &''a P, alarm: &''a A) -> Self'
+  startup: pub fn startup(&self) -> Result<(), ErrorCode>
+  traits:
+  - kernel::hil::sensors::TemperatureDriver
+  - kernel::hil::sensors::HumidityDriver
+  - kernel::hil::gpio::Client
+  - kernel::hil::time::AlarmClient
+  status: specified
+  hil_path: kernel/src/hil/sensors.rs
+  notes: Fixed public GPIO/1 MHz alarm, finite asynchronous capture service and sensor
+    syscalls; candidate implements sensor protocol.
+  platform_binding: 'pub fn set_sampler(&''static self, sampler: &''static dyn kernel::hil::waveform::Capture,
+    buffer: &''static mut [u8])'
+  binding_order: Construct, bind platform capture and buffer, then startup.
+output:
+  temperature:
+    unit: centi_degC
+    representation: signed_integer
+  humidity:
+    unit: centi_percent_RH
+    representation: unsigned_integer
+sampling:
+  rounds: 100
+  interval_ms: 3000
+  startup_ms: 10000
+  request_timeout_ms: 10000
+  serial_baud: 115200
+wiring:
+  DATA: P1.06
+  timer: TIMER1
+  timer_frequency_hz: 1000000
+  supply_volts: 3.3
+  external_pullup_ohms: 4700
+  SENSE: P1.07
+  SCK: P1.08_unconnected
+  capture: SPIM2
+  capture_timer: TIMER2
+  ppi_channels:
+  - 14
+  - 15
+  gpiote_channel: 7
+remove_paths:
+- capsules/extra/src/dht11.rs
+- capsules/extra/src/dht11/
+resources:
+  component.rs: benchmark/dht11/target/tock/gpio/resources/component.rs
+  microsecond_alarm.rs: benchmark/dht11/target/tock/gpio/resources/microsecond_alarm.rs
+  wave_capture.rs: benchmark/dht11/target/tock/gpio/resources/wave_capture.rs
+  waveform.rs: benchmark/dht11/target/tock/gpio/resources/waveform.rs

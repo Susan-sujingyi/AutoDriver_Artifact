@@ -1,0 +1,270 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/register_mode_availability",
+      "scope": "internal",
+      "basis": "DS000459 v1-06 pp17/26 application and bootloader register maps; data access requires the corresponding mode, pointer selection alone does not access payload."
+    },
+    {
+      "id": "__model/mailbox_ready_retention",
+      "scope": "internal",
+      "basis": "digital model check, not a candidate test"
+    },
+    {
+      "id": "__model/error_ack",
+      "scope": "internal",
+      "basis": "digital model check, not a candidate test"
+    },
+    {
+      "id": "numeric/minimum_clean_air/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/minimum_clean_air/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/small_nonzero_tvoc/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/small_nonzero_tvoc/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/low_byte_maximum/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/low_byte_maximum/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/low_byte_carry/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/low_byte_carry/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/distinct_byte_order/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/distinct_byte_order/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/above_legacy_co2_ceiling/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/above_legacy_co2_ceiling/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/tvoc_signed_low/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/tvoc_signed_low/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/tvoc_signed_high/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/tvoc_signed_high/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/co2_maximum_minus_one/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/co2_maximum_minus_one/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/both_documented_maxima/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/both_documented_maxima/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/metadata_does_not_scale_gas/0",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "numeric/metadata_does_not_scale_gas/1",
+      "scope": "core",
+      "basis": "CCS-NUMERIC, CCS-DATA, CCS-CALLBACK"
+    },
+    {
+      "id": "requests/first_available/0",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "requests/concurrent/0",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "requests/input_changes/0",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "diagnostic/bus/0/Any/false",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/0/Any/true",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/0/Data/false",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/0/Data/true",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/sensor_error/0",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: device fault, no imposed recovery/error-ack policy"
+    },
+    {
+      "id": "diagnostic/stalled/0",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: device fault, no imposed recovery/error-ack policy"
+    },
+    {
+      "id": "requests/first_available/1",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "requests/concurrent/1",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "requests/input_changes/1",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-PROGRESS, CCS-DATA"
+    },
+    {
+      "id": "diagnostic/bus/1/Any/false",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/1/Any/true",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/1/Data/false",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/bus/1/Data/true",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: reached transport failure, observe strategy and actual delivery"
+    },
+    {
+      "id": "diagnostic/sensor_error/1",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: device fault, no imposed recovery/error-ack policy"
+    },
+    {
+      "id": "diagnostic/stalled/1",
+      "scope": "diagnostic",
+      "basis": "CCS-FAULT: device fault, no imposed recovery/error-ack policy"
+    },
+    {
+      "id": "requests/cross_channel",
+      "scope": "core",
+      "basis": "CCS-CALLBACK, CCS-DATA"
+    },
+    {
+      "id": "diagnostic/range/zero_co2_starting_or_invalid",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/range/below_co2_minimum",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/range/above_co2_maximum",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/range/co2_full_word_maximum",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/range/above_tvoc_maximum",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/range/tvoc_full_word_maximum",
+      "scope": "diagnostic",
+      "basis": "Outside documented healthy firmware range; inspect handling, not a stated mandatory driver validation policy"
+    },
+    {
+      "id": "diagnostic/identity",
+      "scope": "diagnostic",
+      "basis": "Outside required healthy-gas acquisition or optional API policy"
+    },
+    {
+      "id": "diagnostic/app_missing",
+      "scope": "diagnostic",
+      "basis": "Outside required healthy-gas acquisition or optional API policy"
+    },
+    {
+      "id": "diagnostic/environment_api",
+      "scope": "diagnostic",
+      "basis": "Outside required healthy-gas acquisition or optional API policy"
+    }
+  ]
+}

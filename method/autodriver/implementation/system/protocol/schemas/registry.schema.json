@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "autodriver.context-registry/v0.1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "minItems": 0
+          },
+          "os_role": {
+            "enum": [
+              "source",
+              "target",
+              "shared"
+            ]
+          },
+          "producer": {
+            "type": "string"
+          },
+          "origin_locator": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "sha256",
+          "kind",
+          "approved",
+          "parents",
+          "os_role"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema",
+    "receipt_id",
+    "materials"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

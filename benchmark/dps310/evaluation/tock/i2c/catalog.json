@@ -1,0 +1,600 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/retained_data",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/separate_conversions",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/workaround_audit_only",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "numeric/zero_adc/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/zero_adc/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_half/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_half/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_half/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_half/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_one/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_one/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_one/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_one/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_maximum/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_maximum/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_minimum/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_minimum/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_mixed_bytes/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_mixed_bytes/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_cold/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_cold/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_hot/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_hot/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_zero/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_zero/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_fraction/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_fraction/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_fraction/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_fraction/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c0_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c0_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c1_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c1_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c00_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c00_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c10_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c10_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c01_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c01_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c01_positive/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c01_positive/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c11_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c11_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c11_positive/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c11_positive/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c20_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c20_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c20_positive/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c20_positive/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c21_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c21_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c21_positive/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c21_positive/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c30_negative/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c30_negative/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c30_positive/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/c30_positive/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/packed_shared_nibbles/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/packed_shared_nibbles/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_minimum/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_minimum/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_maximum/0",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_maximum/1",
+      "scope": "core",
+      "basis": "DPS-NUMERIC, DPS-CONFIG, DPS-DATA, DPS-CALLBACK"
+    },
+    {
+      "id": "requests/first_available/0",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "requests/concurrent/0",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "requests/input_changes/0",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "timing/slow_30ms/0",
+      "scope": "core",
+      "basis": "DPS-TIME: finite slow-ready stimulus, not manufacturer maximum"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureCommand/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureCommand/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureStatus/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureStatus/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureData/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/TemperatureData/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/stalled/0",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "requests/first_available/1",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "requests/concurrent/1",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "requests/input_changes/1",
+      "scope": "core",
+      "basis": "DPS-PROGRESS, DPS-CALLBACK"
+    },
+    {
+      "id": "timing/slow_30ms/1",
+      "scope": "core",
+      "basis": "DPS-TIME: finite slow-ready stimulus, not manufacturer maximum"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureCommand/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureCommand/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureStatus/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureStatus/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureData/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/TemperatureData/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureCommand/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureCommand/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureStatus/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureStatus/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureData/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/PressureData/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/stalled/1",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT"
+    },
+    {
+      "id": "compensation/temperature_changes",
+      "scope": "core",
+      "basis": "DPS-CACHE: bounded stable input progress, not exact 1s cache age"
+    },
+    {
+      "id": "configuration/temperature_source_00",
+      "scope": "core",
+      "basis": "DPS-CONFIG: actual temperature source, no required read trace"
+    },
+    {
+      "id": "configuration/temperature_source_80",
+      "scope": "core",
+      "basis": "DPS-CONFIG: actual temperature source, no required read trace"
+    },
+    {
+      "id": "initialization/cold_boot",
+      "scope": "core",
+      "basis": "DPS-BOOT: SENSOR/COEF readiness and valid coefficients, no required timing sequence"
+    },
+    {
+      "id": "diagnostic/workaround",
+      "scope": "diagnostic",
+      "basis": "DPS-WORKAROUND: vendor trace audit, physical applicability/effect undetermined"
+    },
+    {
+      "id": "diagnostic/identity_00",
+      "scope": "diagnostic",
+      "basis": "DPS-IDENTITY"
+    },
+    {
+      "id": "diagnostic/identity_11",
+      "scope": "diagnostic",
+      "basis": "DPS-IDENTITY"
+    },
+    {
+      "id": "diagnostic/identity_ff",
+      "scope": "diagnostic",
+      "basis": "DPS-IDENTITY"
+    },
+    {
+      "id": "diagnostic/boot_stalled_40",
+      "scope": "diagnostic",
+      "basis": "DPS-BOOT, DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/boot_stalled_80",
+      "scope": "diagnostic",
+      "basis": "DPS-BOOT, DPS-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Any/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Any/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Calibration/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Calibration/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Source/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Source/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Workaround/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Workaround/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/UnlockB/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/UnlockB/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Correction/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/Correction/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/RelockA/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/RelockA/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/RelockB/false",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    },
+    {
+      "id": "diagnostic/init/RelockB/true",
+      "scope": "diagnostic",
+      "basis": "DPS-FAULT, DPS-WORKAROUND: reachability and safety only"
+    }
+  ]
+}

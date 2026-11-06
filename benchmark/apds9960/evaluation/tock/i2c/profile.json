@@ -1,0 +1,22 @@
+{
+  "profile": "autodriver.model/apds9960/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_and_reset_before_driver_creation",
+    "observation_us": 1000000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "conversion_us": 1200,
+    "clock_hz": 1000000
+  },
+  "limitations": [
+    "Finite host model; no physical validation or exhaustive proof.",
+    "No strict new-conversion-per-request, ID probe, error code or global-idle policy.",
+    "ALS/gesture/wait engine scheduling and undocumented clear-command payloads are model_unsupported.",
+    "CONFIG1 reset is 0x60 per p19/table; p23 opening-sentence ambiguity remains disclosed.",
+    "Missing async error delivery in Proximity HIL is not repaired by this evaluator.",
+    "Diagnostic outcomes never contribute to the core denominator.",
+    "This local evaluator is not a hostile-code security sandbox."
+  ]
+}

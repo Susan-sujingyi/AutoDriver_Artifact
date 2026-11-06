@@ -1,0 +1,39 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/apds99xx/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/Makefile.dep
+      sha256: ac47d47444279d10892dd21f64a6c16e20424afb610f0b2739f72f5fabcbc7e7
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/Makefile.include
+      sha256: 20042626f0150fd6f3d70c976e234fe780d30e1deb40d82f48c4db772bb6cd9d
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/apds99xx.c
+      sha256: ef5db29be77f84f447d51d9cb9a63cab801fc86d8ebd186daf517b300dc348f2
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/apds99xx_saul.c
+      sha256: 111c5155b2cb683fb2858e4f6a72134fd10eb4efde8a09c25b26a535bde649bc
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/include/apds99xx_params.h
+      sha256: a78074903d92dc11723b03f7ceb0d8b262cd6cd0f69554a7b56e9a1e731c4a12
+      role: driver_directory
+    - path: third_party/riot/drivers/apds99xx/include/apds99xx_regs.h
+      sha256: 9c9102b8c6d51aa813fb482cf4c3dca33f4a06fe54dc1b191085ed6f99891ccd
+      role: driver_directory
+    - path: third_party/riot/drivers/include/apds99xx.h
+      sha256: c162dac4c30e7b60dc6cc044ec142f230e5b474a70d12ae949e657f86dceb2a3
+      role: public_header
+    configuration_files:
+    - benchmark/apds9960/source/riot/configuration.h
+    - benchmark/apds9960/source/riot/configuration.mk
+    validation: benchmark/apds9960/source/riot/validation
+    modules:
+    - apds9960
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

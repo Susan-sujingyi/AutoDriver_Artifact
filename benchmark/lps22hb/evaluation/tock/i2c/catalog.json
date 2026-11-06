@@ -1,0 +1,245 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/bdu_release",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/data_retention",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "numeric/nominal/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/nominal/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/cold/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/cold/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/rated_minimum/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/rated_minimum/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/rated_maximum/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/rated_maximum/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_fraction_below_integer/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_fraction_below_integer/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_first_lsb_above_minimum/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_first_lsb_above_minimum/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_negative_hundredth/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_negative_hundredth/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_zero/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/temperature_zero/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/distinct_pressure_bytes/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/distinct_pressure_bytes/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/warm/temperature",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "numeric/warm/pressure",
+      "scope": "core",
+      "basis": "LPS-NUMERIC, LPS-CONFIG, LPS-DATA, LPS-CALLBACK"
+    },
+    {
+      "id": "requests/first_available/temperature",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/temperature",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "protocol/coherent_boundary/temperature",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/stalled_measurement/temperature",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: abnormal device; no mandatory timeout duration"
+    },
+    {
+      "id": "diagnostic/alternate_DA_clear/temperature",
+      "scope": "diagnostic",
+      "basis": "LPS-DA: unspecified exact clearing-byte stress"
+    },
+    {
+      "id": "requests/first_available/pressure",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/pressure",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "protocol/coherent_boundary/pressure",
+      "scope": "core",
+      "basis": "LPS-CALLBACK, LPS-DATA, LPS-BDU, LPS-PROGRESS"
+    },
+    {
+      "id": "diagnostic/bus/pressure/Any/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/pressure/Any/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/pressure/Data/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/bus/pressure/Data/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: report reachability and callback policy"
+    },
+    {
+      "id": "diagnostic/stalled_measurement/pressure",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: abnormal device; no mandatory timeout duration"
+    },
+    {
+      "id": "diagnostic/alternate_DA_clear/pressure",
+      "scope": "diagnostic",
+      "basis": "LPS-DA: unspecified exact clearing-byte stress"
+    },
+    {
+      "id": "requests/input_changes",
+      "scope": "core",
+      "basis": "LPS-PROGRESS: eventual response to stable input, not every-call new epoch"
+    },
+    {
+      "id": "diagnostic/wrong_identity",
+      "scope": "diagnostic",
+      "basis": "LPS-ID: fixed device; optional probing"
+    },
+    {
+      "id": "diagnostic/startup/Any/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: no arbitrary restart policy"
+    },
+    {
+      "id": "diagnostic/startup/Any/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: no arbitrary restart policy"
+    },
+    {
+      "id": "diagnostic/startup/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: no arbitrary restart policy"
+    },
+    {
+      "id": "diagnostic/startup/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "LPS-FAULT: no arbitrary restart policy"
+    },
+    {
+      "id": "requests/repeated_temperature",
+      "scope": "core",
+      "basis": "LPS-PROGRESS: same-channel input changes after other-channel priming"
+    },
+    {
+      "id": "requests/repeated_pressure",
+      "scope": "core",
+      "basis": "LPS-PROGRESS: same-channel input changes after other-channel priming"
+    }
+  ]
+}

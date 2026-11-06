@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "enum": ["autodriver.evaluation/v1", "autodriver.evaluation/v2"]
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "submission_rejected",
+        "compile_failed",
+        "behavior_failed",
+        "not_completed",
+        "model_unsupported",
+        "infrastructure_error"
+      ]
+    },
+    "validation_identity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_calls": {
+      "const": 0
+    },
+    "hardware_status": {
+      "const": "not_run"
+    }
+  },
+  "required": [
+    "schema",
+    "task_id",
+    "status",
+    "validation_identity",
+    "model_calls",
+    "hardware_status"
+  ],
+  "allOf": [{
+    "if": {"properties": {"schema": {"const": "autodriver.evaluation/v2"}}},
+    "then": {
+      "required": ["stages", "failure", "result_class", "case_results", "software_status"],
+      "properties": {
+        "stages": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"$ref": "#/$defs/stage"}},
+        "case_results": {"type": "array", "items": {"$ref": "#/$defs/stage"}},
+        "failure": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/stage"}]},
+        "result_class": {"enum": ["completed", "candidate_failure", "scoring_blocked", "budget_terminated", "infrastructure_interrupted", "unresolved"]}
+      }
+    }
+  }],
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "required": ["stage", "outcome", "reason_code", "responsibility", "confidence", "evidence", "causal_chain", "recovery"],
+      "properties": {
+        "stage": {"enum": ["generation", "submission", "native_build", "model_build", "behavior_execution", "package", "archive"]},
+        "outcome": {"enum": ["pass", "failed", "blocked", "interrupted", "not_run"]},
+        "reason_code": {"type": "string", "minLength": 1},
+        "responsibility": {"enum": ["candidate", "scoring_facility", "provider_or_transport", "runtime_environment", "unknown"]},
+        "confidence": {"enum": ["confirmed", "inferred", "unknown"]},
+        "evidence": {"type": "array", "items": {"type": "object", "required": ["path"], "properties": {"path": {"type": "string", "minLength": 1}, "pointer": {"type": "string"}}}},
+        "causal_chain": {"type": "array", "items": {"type": "object"}},
+        "recovery": {"type": "object", "required": ["available", "action", "stage", "prerequisites"], "properties": {
+          "available": {"type": "boolean"}, "action": {"type": "string"}, "stage": {"type": "string"},
+          "prerequisites": {"type": "array", "items": {"type": "string"}}
+        }}
+      }
+    }
+  },
+  "additionalProperties": true
+}

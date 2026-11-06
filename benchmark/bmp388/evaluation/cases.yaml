@@ -1,0 +1,2696 @@
+{
+  "schema": "driverbench.bmp388.numeric-cases/v1",
+  "device": "BMP388",
+  "document": "Bosch BST-BMP388-DS001-07, Rev1.7, November2020",
+  "evidence_pages": [
+    28,
+    32,
+    55,
+    56
+  ],
+  "oracle": "Exact rational form of published floating-point polynomial; independent100-digit Decimal Horner cross-check.",
+  "rounding": "Reference integers truncate towardzero. Suggested native tolerance1 centiC and1 hPa needs publication with eventual evaluator.",
+  "units": {
+    "temperature_centi_c": "one hundredth degree Celsius, die temperature",
+    "pressure_hpa": "whole hectopascal;100 Pa per hPa"
+  },
+  "selected_resolution_witness_policy": "Main vectors use pressure raw multiples64 and temperature raw multiples256; arbitrary24-bit low patterns are oracle-only. No extra OSR divisor is applied to the returned24-bit words.",
+  "calibration_profiles": {
+    "linear": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "T=(UT-8388608)/32768; P=80000+T+UP/1024 Pa."
+    },
+    "temperature_coupled": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 20480,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        0,
+        80,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Strong temperature-dependent offset320 Pa/C exposes stale or skipped same-frame compensation."
+    },
+    "unsigned_t2": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 65535,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        255,
+        255,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Highest unsigned t2; sign-extending it yields incorrect temperature."
+    },
+    "t3_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": -32,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        224,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate t3 signed/nonlinear coefficient contribution."
+    },
+    "t3_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 32,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        32,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate t3 signed/nonlinear coefficient contribution."
+    },
+    "p2_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 8192,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        32,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p2 signed/nonlinear coefficient contribution."
+    },
+    "p2_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 24576,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        96,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p2 signed/nonlinear coefficient contribution."
+    },
+    "p3_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": -64,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        192,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p3 signed/nonlinear coefficient contribution."
+    },
+    "p3_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 64,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        64,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p3 signed/nonlinear coefficient contribution."
+    },
+    "p4_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": -64,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        192,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p4 signed/nonlinear coefficient contribution."
+    },
+    "p4_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 64,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        64,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p4 signed/nonlinear coefficient contribution."
+    },
+    "p7_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": -64,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        192,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p7 signed/nonlinear coefficient contribution."
+    },
+    "p7_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 64,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p7 signed/nonlinear coefficient contribution."
+    },
+    "p8_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": -64,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        192,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p8 signed/nonlinear coefficient contribution."
+    },
+    "p8_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 64,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        64,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p8 signed/nonlinear coefficient contribution."
+    },
+    "p9_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": -1024,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        252,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p9 signed/nonlinear coefficient contribution."
+    },
+    "p9_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 1024,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p9 signed/nonlinear coefficient contribution."
+    },
+    "p10_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": -64,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        192,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p10 signed/nonlinear coefficient contribution."
+    },
+    "p10_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 64,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        64,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p10 signed/nonlinear coefficient contribution."
+    },
+    "p11_negative": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": -64
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        192
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p11 signed/nonlinear coefficient contribution."
+    },
+    "p11_positive": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 17408,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 10000,
+        "p6": 64,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 64
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        68,
+        0,
+        64,
+        0,
+        0,
+        16,
+        39,
+        64,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        64
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Isolate p11 signed/nonlinear coefficient contribution."
+    },
+    "all_signed_and_wide": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": -32,
+        "p1": -10000,
+        "p2": -1000,
+        "p3": -10,
+        "p4": -2,
+        "p5": 40000,
+        "p6": 40000,
+        "p7": -20,
+        "p8": -3,
+        "p9": -30,
+        "p10": -5,
+        "p11": -4
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        224,
+        240,
+        216,
+        24,
+        252,
+        246,
+        254,
+        64,
+        156,
+        64,
+        156,
+        236,
+        253,
+        226,
+        255,
+        251,
+        252
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Negative signed fields plus unsigned p5/p6 bit15 set. Exact high-order intermediates exceed32-bit; no unsigned reinterpretation."
+    },
+    "pressure_minimum": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 16384,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 3750,
+        "p6": 0,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        64,
+        0,
+        64,
+        0,
+        0,
+        166,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Constant pressure polynomial isolates output range/unit boundary."
+    },
+    "pressure_maximum": {
+      "coefficients": {
+        "t1": 32768,
+        "t2": 32768,
+        "t3": 0,
+        "p1": 16384,
+        "p2": 16384,
+        "p3": 0,
+        "p4": 0,
+        "p5": 15625,
+        "p6": 0,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 0,
+        "p11": 0
+      },
+      "bytes": [
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        64,
+        0,
+        64,
+        0,
+        0,
+        9,
+        61,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Constant pressure polynomial isolates output range/unit boundary."
+    },
+    "coefficient_extrema": {
+      "coefficients": {
+        "t1": 65535,
+        "t2": 65535,
+        "t3": -128,
+        "p1": -32768,
+        "p2": 32767,
+        "p3": -128,
+        "p4": 127,
+        "p5": 65535,
+        "p6": 65535,
+        "p7": -128,
+        "p8": 127,
+        "p9": -32768,
+        "p10": 127,
+        "p11": -128
+      },
+      "bytes": [
+        255,
+        255,
+        255,
+        255,
+        128,
+        0,
+        128,
+        255,
+        127,
+        128,
+        127,
+        255,
+        255,
+        255,
+        255,
+        128,
+        127,
+        0,
+        128,
+        127,
+        128
+      ],
+      "origin": "synthetic arithmetic witness, not a measured sensor calibration",
+      "note": "Full storage-width extrema. Arithmetic oracle only; not a realistic calibration or a universal64-bit-safe vector."
+    }
+  },
+  "vectors": [
+    {
+      "id": "linear_room",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88217.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88217"
+      },
+      "note": "Unsigned raw high bits; calibration t1/t2 bit15 set; whole hPa requires Pa/100.",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "88217"
+      }
+    },
+    {
+      "id": "zero_temperature_ready",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 8388608
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        0,
+        128
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "0E-15",
+        "pressure_pa": "88192.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "0",
+        "temperature_linear": "0",
+        "temperature_quadratic": "0",
+        "temperature_c": "0",
+        "pressure_offset_pa": "80000",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88192"
+      },
+      "note": "A ready0x800000 ADC word is data, not a universal invalid sentinel; zero compensated temperature is legitimate.",
+      "manual_exact": {
+        "temperature_c": "0",
+        "pressure_pa": "88192"
+      }
+    },
+    {
+      "id": "negative_fraction_truncation",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 8388096
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        254,
+        127
+      ],
+      "expected": {
+        "temperature_centi_c": -1,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "-0.015625000000000",
+        "pressure_pa": "88191.984375000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "-512",
+        "temperature_linear": "-1/64",
+        "temperature_quadratic": "0",
+        "temperature_c": "-1/64",
+        "pressure_offset_pa": "5119999/64",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "5644287/64"
+      },
+      "note": "T=-0.015625 C; truncation towardzero gives-1 centiC, unlike floor-2.",
+      "manual_exact": {
+        "temperature_c": "-1/64",
+        "pressure_pa": "5644287/64"
+      }
+    },
+    {
+      "id": "positive_fraction_truncation",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 8389120
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        2,
+        128
+      ],
+      "expected": {
+        "temperature_centi_c": 1,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "0.015625000000000",
+        "pressure_pa": "88192.015625000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "512",
+        "temperature_linear": "1/64",
+        "temperature_quadratic": "0",
+        "temperature_c": "1/64",
+        "pressure_offset_pa": "5120001/64",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "5644289/64"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "1/64",
+        "pressure_pa": "5644289/64"
+      }
+    },
+    {
+      "id": "raw_distinct_bytes",
+      "profile": "linear",
+      "raw": {
+        "pressure": 9524800,
+        "temperature": 9179648
+      },
+      "raw_bytes": [
+        64,
+        86,
+        145,
+        0,
+        18,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2414,
+        "pressure_hpa": 893
+      },
+      "decimal": {
+        "temperature_c": "24.140625000000000",
+        "pressure_pa": "89325.703125000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "791040",
+        "temperature_linear": "1545/64",
+        "temperature_quadratic": "0",
+        "temperature_c": "1545/64",
+        "pressure_offset_pa": "5121545/64",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "148825/16",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "5716845/64"
+      },
+      "note": "Distinct little-endian byte images without discarded oversampling factors."
+    },
+    {
+      "id": "pressure_below_integer_hpa",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8396736,
+        "temperature": 8388608
+      },
+      "raw_bytes": [
+        192,
+        31,
+        128,
+        0,
+        0,
+        128
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "0E-15",
+        "pressure_pa": "88199.937500000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "0",
+        "temperature_linear": "0",
+        "temperature_quadratic": "0",
+        "temperature_c": "0",
+        "pressure_offset_pa": "80000",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "131199/16",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "1411199/16"
+      },
+      "note": "88199.9375 Pa maps to881 whole hPa by truncation.",
+      "manual_exact": {
+        "temperature_c": "0",
+        "pressure_pa": "1411199/16"
+      }
+    },
+    {
+      "id": "pressure_exact_integer_hpa",
+      "profile": "linear",
+      "raw": {
+        "pressure": 8396800,
+        "temperature": 8388608
+      },
+      "raw_bytes": [
+        0,
+        32,
+        128,
+        0,
+        0,
+        128
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "0E-15",
+        "pressure_pa": "88200.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "0",
+        "temperature_linear": "0",
+        "temperature_quadratic": "0",
+        "temperature_c": "0",
+        "pressure_offset_pa": "80000",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8200",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88200"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "0",
+        "pressure_pa": "88200"
+      }
+    },
+    {
+      "id": "same_pressure_cold",
+      "profile": "temperature_coupled",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 7077888
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        0,
+        108
+      ],
+      "expected": {
+        "temperature_centi_c": -4000,
+        "pressure_hpa": 753
+      },
+      "decimal": {
+        "temperature_c": "-40.000000000000000",
+        "pressure_pa": "75392.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "-1310720",
+        "temperature_linear": "-40",
+        "temperature_quadratic": "0",
+        "temperature_c": "-40",
+        "pressure_offset_pa": "67200",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "75392"
+      },
+      "note": "Use same UP with a different current temperature; pressure must change.",
+      "manual_exact": {
+        "temperature_c": "-40",
+        "pressure_pa": "75392"
+      }
+    },
+    {
+      "id": "same_pressure_freezing",
+      "profile": "temperature_coupled",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 8388608
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        0,
+        128
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "0E-15",
+        "pressure_pa": "88192.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "0",
+        "temperature_linear": "0",
+        "temperature_quadratic": "0",
+        "temperature_c": "0",
+        "pressure_offset_pa": "80000",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88192"
+      },
+      "note": "Use same UP with a different current temperature; pressure must change.",
+      "manual_exact": {
+        "temperature_c": "0",
+        "pressure_pa": "88192"
+      }
+    },
+    {
+      "id": "same_pressure_room",
+      "profile": "temperature_coupled",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 961
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "96192.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "88000",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "96192"
+      },
+      "note": "Use same UP with a different current temperature; pressure must change.",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "96192"
+      }
+    },
+    {
+      "id": "same_pressure_hot",
+      "profile": "temperature_coupled",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 11173888
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        170
+      ],
+      "expected": {
+        "temperature_centi_c": 8500,
+        "pressure_hpa": 1153
+      },
+      "decimal": {
+        "temperature_c": "85.000000000000000",
+        "pressure_pa": "115392.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "2785280",
+        "temperature_linear": "85",
+        "temperature_quadratic": "0",
+        "temperature_c": "85",
+        "pressure_offset_pa": "107200",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "115392"
+      },
+      "note": "Use same UP with a different current temperature; pressure must change.",
+      "manual_exact": {
+        "temperature_c": "85",
+        "pressure_pa": "115392"
+      }
+    },
+    {
+      "id": "unsigned_t2_high",
+      "profile": "unsigned_t2",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 8798208
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        64,
+        134
+      ],
+      "expected": {
+        "temperature_centi_c": 2499,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "24.999618530273437500000000000000",
+        "pressure_pa": "88216.999618530273437500000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "409600",
+        "temperature_linear": "1638375/65536",
+        "temperature_quadratic": "0",
+        "temperature_c": "1638375/65536",
+        "pressure_offset_pa": "5244518375/65536",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "5781389287/65536"
+      },
+      "note": ""
+    },
+    {
+      "id": "t3_negative",
+      "profile": "t3_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2492,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "24.9237060546875000000000000000",
+        "pressure_pa": "88216.923706054687500000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "-625/8192",
+        "temperature_c": "204175/8192",
+        "pressure_offset_pa": "655564175/8192",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "722673039/8192"
+      },
+      "note": ""
+    },
+    {
+      "id": "t3_positive",
+      "profile": "t3_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2507,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "25.0762939453125000000000000000",
+        "pressure_pa": "88217.076293945312500000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "625/8192",
+        "temperature_c": "205425/8192",
+        "pressure_offset_pa": "655565425/8192",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "722674289/8192"
+      },
+      "note": ""
+    },
+    {
+      "id": "p2_negative",
+      "profile": "p2_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 850
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "85017.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "39/65536",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "4992",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "85017"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "85017"
+      }
+    },
+    {
+      "id": "p2_positive",
+      "profile": "p2_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 914
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "91417.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "89/65536",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "11392",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "91417"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "91417"
+      }
+    },
+    {
+      "id": "p3_negative",
+      "profile": "p3_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88138.87500000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "64911/67108864",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "64911/8",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "705111/8"
+      },
+      "note": ""
+    },
+    {
+      "id": "p3_positive",
+      "profile": "p3_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88295.12500000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "66161/67108864",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "66161/8",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "706361/8"
+      },
+      "note": ""
+    },
+    {
+      "id": "p4_negative",
+      "profile": "p4_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88155.9648437500000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "2081527/2147483648",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "2081527/256",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "22567927/256"
+      },
+      "note": ""
+    },
+    {
+      "id": "p4_positive",
+      "profile": "p4_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88278.0351562500000000000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "2112777/2147483648",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "2112777/256",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "22599177/256"
+      },
+      "note": ""
+    },
+    {
+      "id": "p7_negative",
+      "profile": "p7_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 880
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88060.750000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "319475/4",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "352243/4"
+      },
+      "note": ""
+    },
+    {
+      "id": "p7_positive",
+      "profile": "p7_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 883
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88373.250000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "320725/4",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "353493/4"
+      },
+      "note": ""
+    },
+    {
+      "id": "p8_negative",
+      "profile": "p8_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 881
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88186.482421875000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "40957175/512",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "45151479/512"
+      },
+      "note": ""
+    },
+    {
+      "id": "p8_positive",
+      "profile": "p8_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 882
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88247.517578125000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "40988425/512",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "45182729/512"
+      },
+      "note": ""
+    },
+    {
+      "id": "p9_negative",
+      "profile": "p9_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 879
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "87961.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "-1/274877906944",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "-256",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "87961"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "87961"
+      }
+    },
+    {
+      "id": "p9_positive",
+      "profile": "p9_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 884
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88473.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "1/274877906944",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "256",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88473"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "88473"
+      }
+    },
+    {
+      "id": "p10_negative",
+      "profile": "p10_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 878
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "87817.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "-25/4398046511104",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "-400",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "87817"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "87817"
+      }
+    },
+    {
+      "id": "p10_positive",
+      "profile": "p10_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 886
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "88617.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "25/4398046511104",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "400",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "88617"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "88617"
+      }
+    },
+    {
+      "id": "p11_negative",
+      "profile": "p11_negative",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 871
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "87193.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "-1/576460752303423488",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "-1024",
+        "pressure_pa": "87193"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "87193"
+      }
+    },
+    {
+      "id": "p11_positive",
+      "profile": "p11_positive",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 892
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "89241.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "80025",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "1/576460752303423488",
+        "pressure_linear_pa": "8192",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "1024",
+        "pressure_pa": "89241"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "89241"
+      }
+    },
+    {
+      "id": "all_signed_and_wide",
+      "profile": "all_signed_and_wide",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2492,
+        "pressure_hpa": 1175
+      },
+      "decimal": {
+        "temperature_c": "24.9237060546875000000000000000",
+        "pressure_pa": "117568.7894046031848377942274908036779379472136497497558593750000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "-625/8192",
+        "temperature_c": "204175/8192",
+        "pressure_offset_pa": "6044323722907146501875/18014398509481984",
+        "pressure_sensitivity": "-981135859208832685487/37778931862957161709568",
+        "pressure_quadratic_coefficient": "-1266635/2305843009213693952",
+        "pressure_cubic_coefficient": "-1/9223372036854775808",
+        "pressure_linear_pa": "-981135859208832685487/4503599627370496",
+        "pressure_quadratic_pa": "-1266635/32768",
+        "pressure_cubic_pa": "-64",
+        "pressure_pa": "2117931024611884886071/18014398509481984"
+      },
+      "note": ""
+    },
+    {
+      "id": "pressure_minimum",
+      "profile": "pressure_minimum",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 300
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "30000.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "30000",
+        "pressure_sensitivity": "0",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "0",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "30000"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "30000"
+      }
+    },
+    {
+      "id": "pressure_maximum",
+      "profile": "pressure_maximum",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 9207808
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        0,
+        128,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "pressure_hpa": 1250
+      },
+      "decimal": {
+        "temperature_c": "25.000000000000000",
+        "pressure_pa": "125000.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "819200",
+        "temperature_linear": "25",
+        "temperature_quadratic": "0",
+        "temperature_c": "25",
+        "pressure_offset_pa": "125000",
+        "pressure_sensitivity": "0",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "0",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "125000"
+      },
+      "note": "",
+      "manual_exact": {
+        "temperature_c": "25",
+        "pressure_pa": "125000"
+      }
+    },
+    {
+      "id": "coherence_hot_pressure",
+      "profile": "temperature_coupled",
+      "raw": {
+        "pressure": 9524800,
+        "temperature": 11173888
+      },
+      "raw_bytes": [
+        64,
+        86,
+        145,
+        0,
+        128,
+        170
+      ],
+      "expected": {
+        "temperature_centi_c": 8500,
+        "pressure_hpa": 1165
+      },
+      "decimal": {
+        "temperature_c": "85.000000000000000",
+        "pressure_pa": "115392.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "2785280",
+        "temperature_linear": "85",
+        "temperature_quadratic": "0",
+        "temperature_c": "85",
+        "pressure_offset_pa": "107200",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "148825/16",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "1864025/16"
+      },
+      "note": "Use same UP with a different current temperature; pressure must change."
+    }
+  ],
+  "oracle_only_vectors": [
+    {
+      "id": "all24_raw_low_bits",
+      "profile": "linear",
+      "raw": {
+        "pressure": 9524863,
+        "temperature": 9179700
+      },
+      "raw_bytes": [
+        127,
+        86,
+        145,
+        52,
+        18,
+        140
+      ],
+      "expected": {
+        "temperature_centi_c": 2414,
+        "pressure_hpa": 893
+      },
+      "decimal": {
+        "temperature_c": "24.142211914062500",
+        "pressure_pa": "89325.766235351562500000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "791092",
+        "temperature_linear": "197773/8192",
+        "temperature_quadratic": "0",
+        "temperature_c": "197773/8192",
+        "pressure_offset_pa": "655557773/8192",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "9524863/1024",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "731756677/8192"
+      },
+      "note": "Unsigned24-bit decoder, not a claim that selected IIR-off resolution produces all low bits."
+    },
+    {
+      "id": "raw24_minimum",
+      "profile": "linear",
+      "raw": {
+        "pressure": 0,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": -25600,
+        "pressure_hpa": 797
+      },
+      "decimal": {
+        "temperature_c": "-256.000000000000000",
+        "pressure_pa": "79744.000000000000000000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "-8388608",
+        "temperature_linear": "-256",
+        "temperature_quadratic": "0",
+        "temperature_c": "-256",
+        "pressure_offset_pa": "79744",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "0",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "79744"
+      },
+      "note": "Transport width boundary; temperature outside device operating range."
+    },
+    {
+      "id": "raw24_maximum",
+      "profile": "linear",
+      "raw": {
+        "pressure": 16777215,
+        "temperature": 16777215
+      },
+      "raw_bytes": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": {
+        "temperature_centi_c": 25599,
+        "pressure_hpa": 966
+      },
+      "decimal": {
+        "temperature_c": "255.999969482421875",
+        "pressure_pa": "96639.998992919921875000000000000000000000000000000"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "8388607",
+        "temperature_linear": "8388607/32768",
+        "temperature_quadratic": "0",
+        "temperature_c": "8388607/32768",
+        "pressure_offset_pa": "2629828607/32768",
+        "pressure_sensitivity": "1/1024",
+        "pressure_quadratic_coefficient": "0",
+        "pressure_cubic_coefficient": "0",
+        "pressure_linear_pa": "16777215/1024",
+        "pressure_quadratic_pa": "0",
+        "pressure_cubic_pa": "0",
+        "pressure_pa": "3166699487/32768"
+      },
+      "note": "Transport width boundary; outside selected alignment/temperature scope."
+    },
+    {
+      "id": "coefficient_width_extrema",
+      "profile": "coefficient_extrema",
+      "raw": {
+        "pressure": 16777215,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        255,
+        255,
+        255,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "temperature_centi_c": -115196,
+        "pressure_hpa": -331778
+      },
+      "decimal": {
+        "temperature_c": "-1151.964844018220901489257812500000000",
+        "pressure_pa": "-33177836.69156576262699785525313578878246187324017468315119803999472182214899385402362419483779376606"
+      },
+      "exact_intermediates": {
+        "temperature_delta": "-16776960",
+        "temperature_linear": "-4294836225/4194304",
+        "temperature_quadratic": "-4294836225/33554432",
+        "temperature_c": "-38653526025/33554432",
+        "pressure_offset_pa": "-8967136333248603926737429233887655/1237940039285380274899124224",
+        "pressure_sensitivity": "-7965770193050113350187086347987367/5192296858534827628530496329220096",
+        "pressure_quadratic_coefficient": "-6008509432951/9444732965739290427392",
+        "pressure_cubic_coefficient": "-1/288230376151711744",
+        "pressure_linear_pa": "-133643439169393257450459037883748873442905/5192296858534827628530496329220096",
+        "pressure_quadratic_pa": "-1691244851093524432955769975/9444732965739290427392",
+        "pressure_cubic_pa": "-4722365638444765413375/288230376151711744",
+        "pressure_pa": "-172269177226598448106056994811743513908825/5192296858534827628530496329220096"
+      },
+      "note": ""
+    }
+  ],
+  "invalid_inputs": [
+    {
+      "kind": "raw_temperature",
+      "value": -1
+    },
+    {
+      "kind": "raw_pressure",
+      "value": 16777216
+    },
+    {
+      "kind": "t1",
+      "value": -1
+    },
+    {
+      "kind": "p1",
+      "value": 32768
+    },
+    {
+      "kind": "p11",
+      "value": 128
+    },
+    {
+      "kind": "raw_temperature",
+      "value": true
+    },
+    {
+      "kind": "raw_pressure",
+      "value": 1.5
+    }
+  ],
+  "not_claimed": [
+    "These are synthetic arithmetic witnesses, not Bosch factory-calibration distributions or hardware measurements.",
+    "Source fixed-point order, intermediate truncation and integer overflow are not the authority for expected output.",
+    "Full-width arbitrary coefficients can produce nonphysical outputs; those probes are not silently promoted to successful device behavior cases."
+  ]
+}

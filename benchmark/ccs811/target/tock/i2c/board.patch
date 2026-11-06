@@ -1,0 +1,46 @@
+--- a/boards/components/src/ccs811.rs
++++ b/boards/components/src/ccs811.rs
+@@ -41,9 +41,9 @@
+         );
+         let i2c_device =
+             kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>);
+-        let buffer = kernel::static_buf!([u8; 6]);
++        let buffer = kernel::static_buf!([u8; 8]);
+         let ccs811 = kernel::static_buf!(
+-            capsules_extra::ccs811::Ccs811<'static, capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>>
++            capsules_extra::ccs811::Ccs811<'static, capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>, capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>>
+         );
+ 
+         (alarm, i2c_device, buffer, ccs811)
+@@ -81,10 +81,10 @@
+     type StaticInput = (
+         &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+-        &'static mut MaybeUninit<[u8; 6]>,
+-        &'static mut MaybeUninit<Ccs811<'static, VirtualMuxAlarm<'static, A>>>,
++        &'static mut MaybeUninit<[u8; 8]>,
++        &'static mut MaybeUninit<Ccs811<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+     );
+-    type Output = &'static Ccs811<'static, VirtualMuxAlarm<'static, A>>;
++    type Output = &'static Ccs811<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
+ 
+     fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
+         let ccs811_alarm = static_buffer.0.write(VirtualMuxAlarm::new(self.alarm_mux));
+@@ -92,15 +92,14 @@
+         let ccs811_i2c = static_buffer
+             .1
+             .write(I2CDevice::new(self.i2c_mux, self.i2c_address));
+-        let buffer = static_buffer.2.write([0; 6]);
++        let buffer = static_buffer.2.write([0; 8]);
+         let ccs811 = static_buffer
+             .3
+             .write(Ccs811::new(ccs811_i2c, ccs811_alarm, buffer));
+-        kernel::deferred_call::DeferredCallClient::register(ccs811);
+ 
+         ccs811_i2c.set_client(ccs811);
+         ccs811_alarm.set_alarm_client(ccs811);
+-        ccs811.startup();
++        let _ = ccs811.startup();
+         ccs811
+     }
+ }

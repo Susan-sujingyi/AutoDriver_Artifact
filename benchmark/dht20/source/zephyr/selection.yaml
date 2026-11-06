@@ -1,0 +1,31 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/aosong/dht20/dht20.c
+      sha256: f153112f7325b5701124b143e6dd346a13131a90467252e420bd124573bd31d3
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/aosong/dht20/Kconfig
+      sha256: 67a52a3f2fcc7b33c24f3de505f0b445a1f384277b6457ec7a020b8a1f559ed4
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/aosong/dht20/CMakeLists.txt
+      sha256: e8aba5e1c3b6aa5d76fe944885ac7d902b5e0c9c195063964e574211cc44c16f
+      role: build_configuration
+    configuration_files:
+    - benchmark/dht20/source/zephyr/configuration.yaml
+    - benchmark/dht20/source/zephyr/board.overlay
+    validation: benchmark/dht20/source/zephyr/validation
+    source_entrypoints:
+      init: dht20_init
+      sample_fetch: dht20_sample_fetch
+      channel_get: dht20_channel_get
+    dependencies: []
+    devicetree:
+      compatible: aosong,dht20
+      bus: i2c
+      reg: 56
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

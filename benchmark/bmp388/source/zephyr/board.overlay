@@ -1,0 +1,13 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: bmp388@76 {
+		compatible = "bosch,bmp388";
+		reg = <0x76>;
+		status = "okay";
+		odr = "25";
+		osr-press = <4>;
+		osr-temp = <1>;
+		iir-filter = <0>;
+	};
+};

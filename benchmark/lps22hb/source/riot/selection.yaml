@@ -1,0 +1,42 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/lpsxxx/Kconfig
+      sha256: 3362800c9cb650a29c79f2fbb5916bdbae6f6c5bfd1fc22510684b583dd4f3c1
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/Makefile.dep
+      sha256: bf3ac36d9606ab557358c9b48e1e5a70a4d1a042de2f1390b242ce6033c79b30
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/Makefile.include
+      sha256: a2e408fa1a8abffd5959bc10c90b31db607baf076a050fdb55d757d6eb628d31
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/include/lpsxxx_internal.h
+      sha256: 7f248ffac2c33653fa4124811cf9976defc147667dd7722889764780d2db5fb5
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/include/lpsxxx_params.h
+      sha256: c4141153db64c7ad4bdab0ac9c397b02806c31015519c6303dd766a3e04e11ae
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/lpsxxx.c
+      sha256: 8fc1544d5ecdd74ccdc5341e953b67351f6d0b962752721ea2a9c9cbf6dc7a44
+      role: driver_directory
+    - path: third_party/riot/drivers/lpsxxx/lpsxxx_saul.c
+      sha256: 2ebdad56032d7ff995771527831125ae8575a6b203c3ed99a9dc5ea20272716b
+      role: driver_directory
+    - path: third_party/riot/drivers/include/lpsxxx.h
+      sha256: 8b077fe450650cac28f859cef4363eca35480468499057cb94d43c263e63ab57
+      role: public_header
+    configuration_files:
+    - benchmark/lps22hb/source/riot/configuration.h
+    - benchmark/lps22hb/source/riot/configuration.mk
+    validation: benchmark/lps22hb/source/riot/validation
+    modules:
+    - lps22hb
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

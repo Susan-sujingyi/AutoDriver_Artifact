@@ -1,0 +1,81 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "CCS811",
+  "manufacturer": "ams AG",
+  "document_title": "Ultra-Low Power Digital Gas Sensor for Monitoring Indoor Air Quality",
+  "document_id": "DS000459",
+  "revision": "v1-06",
+  "revision_date": "2019-02-07",
+  "page_count": 37,
+  "official_url": "https://ams.com/documents/20143/36005/CCS811_DS000459_7-00.pdf",
+  "retrieved_from": "https://cdn.sparkfun.com/assets/2/c/c/6/5/CN04-2019_attachment_CCS811_Datasheet_v1-06.pdf",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "The legacy official ams URL redirects to the ams OSRAM download center and serves HTML. Retrieved the unmodified manufacturer-authored PDF from SparkFun CN04-2019 attachment mirror. The host is a mirror, not the manufacturer. Cover/footer/revision history pin v1-06 2019-Feb-07; URL suffix and PDF metadata do not replace the printed edition.",
+  "pdf_metadata": {
+    "title": "CCS811",
+    "author": "ams AG",
+    "creator": "FrameMaker 2017",
+    "created": "2019-01-29",
+    "modified": "2019-02-15"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    7,
+    8,
+    12,
+    18,
+    19,
+    20,
+    21
+  ],
+  "text_checked_pages": [
+    1,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    33,
+    34
+  ],
+  "visual_review": "Saved page renders review-07/08/12/18/19/20/21.png; inspected timing table, gas ranges, DATA_READY/ERROR latch semantics, MEAS_MODE bitfield and mailbox byte order against extracted text.",
+  "copyright": "Copyright ams AG; original notice and disclaimer retained in manufacturer PDF. No open-source license asserted for technical literature.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "e40612c4fea7a2808d2abc6a0594e980b753de062b76412466e42cebf41073fb",
+      "bytes": 546412
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "1b268e0923933a07d11209db02523091f9e2ed1f881b38bbac76b27be3e9ee27",
+      "bytes": 98350
+    },
+    {
+      "path": "pages.json",
+      "sha256": "7360fc299ad55e2e5f8b8bca1fbaea7eaceeaf0e7974826b9f481e4d1de63fc9",
+      "bytes": 3413
+    }
+  ]
+}

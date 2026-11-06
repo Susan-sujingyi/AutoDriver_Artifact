@@ -1,0 +1,39 @@
+schema: autodriver.target/v1
+os: tock
+snapshot: tock
+board: nrf52840dk
+bus: i2c
+module: mpu6050
+editable_paths:
+- capsules/extra/src/mpu6050.rs
+- capsules/extra/src/mpu6050/
+board_patch: benchmark/mpu6050/target/tock/i2c/board.patch
+application: benchmark/common/applications/tock
+native_interface:
+  type: Mpu6050<'a, I, A>
+  constructor: 'pub fn new(i2c: &''a I, alarm: &''a A, buffer: &''static mut [u8])
+    -> Self'
+  startup: pub fn startup(&self) -> Result<(), ErrorCode>
+  buffer_bytes: 14
+  traits:
+  - kernel::hil::sensors::NineDof
+  - kernel::hil::i2c::I2CClient
+  - kernel::hil::time::AlarmClient
+  status: specified
+  hil_path: kernel/src/hil/sensors.rs
+  notes: 'I: I2CDevice; A: Alarm<''a>. Export pub const BUFFER_SIZE: usize = 14. Fixture
+    only allocates native I2C/Alarm and a NineDof scalar collector, wires clients
+    and calls startup; candidate owns all register/timing/conversion logic.'
+output:
+  unit: "\xB5m/s\xB2"
+  representation: signed_integer
+  axes: sensor_xyz
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 10000
+  request_timeout_ms: 10000
+  serial_baud: 115200
+remove_paths:
+- capsules/extra/src/mpu6050.rs
+- capsules/extra/src/mpu6050/

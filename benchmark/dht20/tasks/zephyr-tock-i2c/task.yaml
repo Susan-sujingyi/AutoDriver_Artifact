@@ -1,0 +1,28 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-dht20-i2c
+revision: 2
+sensor: dht20
+source:
+  selection: benchmark/dht20/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/dht20/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/dht20/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    acquisition: single_shot
+  connection:
+    i2c:
+      address_7bit: 56
+    interrupt_pin: null
+reference:
+  files:
+    capsules/extra/src/dht20.rs: benchmark/dht20/reference/tock/i2c/dht20.rs
+evaluation:
+  suite: benchmark/dht20/evaluation/suite.yaml

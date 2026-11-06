@@ -1,0 +1,38 @@
+{
+  "profile": "autodriver.model/bmm150/i2c/v1",
+  "limits": {
+    "initial_device_state": "supply stable, device suspended",
+    "observation_us": 500000,
+    "initialization_observation_us": 150000,
+    "stable_input_progress_us": 2000000,
+    "callback_guard_us": 5000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "suspend_wake_us": 3000,
+    "soft_reset_model_us": 1000,
+    "period_us": [
+      92593,
+      100000,
+      108696
+    ],
+    "first_conversion_us": [
+      9785,
+      50000,
+      108696
+    ]
+  },
+  "limitations": [
+    "Exact BMM150 regular normal10Hz, XY9/Z15, sensor-frame signed nT product output.",
+    "Actual32bit callback encoding; host sign and zero extension both accepted.",
+    "Exact Fraction raw vendor floating equations;1125nT digital tolerance includes integer-uT quantization and125nT finite-vector intermediate allowance, not a physical precision requirement or universal error theorem.",
+    "Datasheet alone lacks full compensation algorithm; no host formula note or vendor C injected into D.",
+    "Valid acquired samples may be reused, with2s stable-change observation; no per-request epoch, mandatory ID/all-trim trace, precise BUSY/OFF or exact failure policy.",
+    "Shadow at transaction START, updated upon STOP; per-byte reads supported when coherent.",
+    "Overflow sentinels core; hall/trim failure and injected errors diagnostic; no physical factory validity claim for synthetic trims.",
+    "Wake/reset transition not modeled early traffic returns model_unsupported, not an invented value.",
+    "No physical HIL, external stimulus accuracy, electrical validation or OS isolation."
+  ]
+}

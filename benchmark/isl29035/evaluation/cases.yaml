@@ -1,0 +1,403 @@
+{
+  "schema": "driverbench_isl29035_vectors/v1",
+  "provenance": "Independent explicit raw counts and frozen arithmetic results from FN8371 Rev 3.00 p.14 Equation 3. No AutoDriver IR, method rules, generated candidate or Rust reference output supplies expected values.",
+  "configuration": {
+    "mode": "continuous_als",
+    "range_lux": 4000,
+    "adc_bits": 8,
+    "integration_time_us": 410
+  },
+  "byte_order": "DATALSB at 0x02 followed by DATAMSB at 0x03. Only D0..D7 contain the selected eight-bit result. These are register-image bytes, not a required transaction trace; low-byte-only reads are legal.",
+  "rounding": "Expected illuminance_lux is floor(exact lux). Exact reduced rational values are retained so the public callback tolerance can be checked independently.",
+  "physical_scope": "These are ADC-code conversion vectors, not calibrated physical illuminance measurements. At code 255 the reported ideal conversion is 3984.375 lux; actual light may exceed the selected full scale.",
+  "vectors": [
+    {
+      "id": "dark",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Zero is a valid dark reading, not an asynchronous-error sentinel.",
+      "raw": {
+        "light": 0
+      },
+      "raw_bytes": [
+        0,
+        0
+      ],
+      "raw_bytes_hex": "00 00",
+      "expected": {
+        "raw_adc": 0,
+        "illuminance_lux": 0,
+        "illuminance_lux_numerator": 0,
+        "illuminance_lux_denominator": 1
+      },
+      "exact_lux_decimal": "0",
+      "derivation": "4000 * 0 / 256 = 125 * 0 / 8 = 0/1 lux; integer floor 0.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "one_count",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Smallest nonzero selected-resolution count; division must occur after multiplication.",
+      "raw": {
+        "light": 1
+      },
+      "raw_bytes": [
+        1,
+        0
+      ],
+      "raw_bytes_hex": "01 00",
+      "expected": {
+        "raw_adc": 1,
+        "illuminance_lux": 15,
+        "illuminance_lux_numerator": 125,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "15.625",
+      "derivation": "4000 * 1 / 256 = 125 * 1 / 8 = 125/8 lux; integer floor 15.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "quarter_fraction",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Quarter-lux fraction distinguishes scale and integer conversion.",
+      "raw": {
+        "light": 2
+      },
+      "raw_bytes": [
+        2,
+        0
+      ],
+      "raw_bytes_hex": "02 00",
+      "expected": {
+        "raw_adc": 2,
+        "illuminance_lux": 31,
+        "illuminance_lux_numerator": 125,
+        "illuminance_lux_denominator": 4
+      },
+      "exact_lux_decimal": "31.25",
+      "derivation": "4000 * 2 / 256 = 125 * 2 / 8 = 125/4 lux; integer floor 31.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "rounding_up_candidate",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Fraction close to the next integer; exact rational retained for contract tolerance.",
+      "raw": {
+        "light": 3
+      },
+      "raw_bytes": [
+        3,
+        0
+      ],
+      "raw_bytes_hex": "03 00",
+      "expected": {
+        "raw_adc": 3,
+        "illuminance_lux": 46,
+        "illuminance_lux_numerator": 375,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "46.875",
+      "derivation": "4000 * 3 / 256 = 125 * 3 / 8 = 375/8 lux; integer floor 46.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "half_fraction",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Half-lux tie distinguishes floor from nearest rounding.",
+      "raw": {
+        "light": 4
+      },
+      "raw_bytes": [
+        4,
+        0
+      ],
+      "raw_bytes_hex": "04 00",
+      "expected": {
+        "raw_adc": 4,
+        "illuminance_lux": 62,
+        "illuminance_lux_numerator": 125,
+        "illuminance_lux_denominator": 2
+      },
+      "exact_lux_decimal": "62.5",
+      "derivation": "4000 * 4 / 256 = 125 * 4 / 8 = 125/2 lux; integer floor 62.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "before_exact_integer",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Just below the first eight-count exact-integer boundary.",
+      "raw": {
+        "light": 7
+      },
+      "raw_bytes": [
+        7,
+        0
+      ],
+      "raw_bytes_hex": "07 00",
+      "expected": {
+        "raw_adc": 7,
+        "illuminance_lux": 109,
+        "illuminance_lux_numerator": 875,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "109.375",
+      "derivation": "4000 * 7 / 256 = 125 * 7 / 8 = 875/8 lux; integer floor 109.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "exact_integer",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Eight counts give exactly 125 lux.",
+      "raw": {
+        "light": 8
+      },
+      "raw_bytes": [
+        8,
+        0
+      ],
+      "raw_bytes_hex": "08 00",
+      "expected": {
+        "raw_adc": 8,
+        "illuminance_lux": 125,
+        "illuminance_lux_numerator": 125,
+        "illuminance_lux_denominator": 1
+      },
+      "exact_lux_decimal": "125",
+      "derivation": "4000 * 8 / 256 = 125 * 8 / 8 = 125/1 lux; integer floor 125.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "low_nibble_maximum",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Exercises multiple low bits with a fractional result.",
+      "raw": {
+        "light": 15
+      },
+      "raw_bytes": [
+        15,
+        0
+      ],
+      "raw_bytes_hex": "0f 00",
+      "expected": {
+        "raw_adc": 15,
+        "illuminance_lux": 234,
+        "illuminance_lux_numerator": 1875,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "234.375",
+      "derivation": "4000 * 15 / 256 = 125 * 15 / 8 = 1875/8 lux; integer floor 234.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "quarter_scale",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Quarter of the selected full scale.",
+      "raw": {
+        "light": 64
+      },
+      "raw_bytes": [
+        64,
+        0
+      ],
+      "raw_bytes_hex": "40 00",
+      "expected": {
+        "raw_adc": 64,
+        "illuminance_lux": 1000,
+        "illuminance_lux_numerator": 1000,
+        "illuminance_lux_denominator": 1
+      },
+      "exact_lux_decimal": "1000",
+      "derivation": "4000 * 64 / 256 = 125 * 64 / 8 = 1000/1 lux; integer floor 1000.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "before_high_bit",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Largest count below the unsigned eight-bit high-bit boundary.",
+      "raw": {
+        "light": 127
+      },
+      "raw_bytes": [
+        127,
+        0
+      ],
+      "raw_bytes_hex": "7f 00",
+      "expected": {
+        "raw_adc": 127,
+        "illuminance_lux": 1984,
+        "illuminance_lux_numerator": 15875,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "1984.375",
+      "derivation": "4000 * 127 / 256 = 125 * 127 / 8 = 15875/8 lux; integer floor 1984.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "high_bit_set",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Unsigned ADC bit 7 must not be treated as a sign bit.",
+      "raw": {
+        "light": 128
+      },
+      "raw_bytes": [
+        128,
+        0
+      ],
+      "raw_bytes_hex": "80 00",
+      "expected": {
+        "raw_adc": 128,
+        "illuminance_lux": 2000,
+        "illuminance_lux_numerator": 2000,
+        "illuminance_lux_denominator": 1
+      },
+      "exact_lux_decimal": "2000",
+      "derivation": "4000 * 128 / 256 = 125 * 128 / 8 = 2000/1 lux; integer floor 2000.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "near_saturation",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Near-full-scale count tests multiplication width and denominator.",
+      "raw": {
+        "light": 254
+      },
+      "raw_bytes": [
+        254,
+        0
+      ],
+      "raw_bytes_hex": "fe 00",
+      "expected": {
+        "raw_adc": 254,
+        "illuminance_lux": 3968,
+        "illuminance_lux_numerator": 15875,
+        "illuminance_lux_denominator": 4
+      },
+      "exact_lux_decimal": "3968.75",
+      "derivation": "4000 * 254 / 256 = 125 * 254 / 8 = 15875/4 lux; integer floor 3968.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "saturation_code",
+      "classification": "selected_configuration",
+      "oracle_only": false,
+      "description": "Maximum eight-bit code; denominator is 256, not 255. Saturation does not reveal true overrange lux.",
+      "raw": {
+        "light": 255
+      },
+      "raw_bytes": [
+        255,
+        0
+      ],
+      "raw_bytes_hex": "ff 00",
+      "expected": {
+        "raw_adc": 255,
+        "illuminance_lux": 3984,
+        "illuminance_lux_numerator": 31875,
+        "illuminance_lux_denominator": 8
+      },
+      "exact_lux_decimal": "3984.375",
+      "derivation": "4000 * 255 / 256 = 125 * 255 / 8 = 31875/8 lux; integer floor 3984.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    }
+  ],
+  "oracle_only_vectors": [
+    {
+      "id": "four_bit_full_code",
+      "oracle_only": true,
+      "adc_bits": 4,
+      "range_lux": 1000,
+      "raw_adc": 15,
+      "expected_fraction": [
+        1875,
+        2
+      ],
+      "derivation": "1000 * 15 / 16 = 937.5 lux. This resolution/range is not legal in the selected task.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "twelve_bit_half_scale",
+      "oracle_only": true,
+      "adc_bits": 12,
+      "range_lux": 16000,
+      "raw_adc": 2048,
+      "expected_fraction": [
+        8000,
+        1
+      ],
+      "derivation": "16000 * 2048 / 4096 = 8000 lux. This resolution/range is not legal in the selected task.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "sixteen_bit_full_code",
+      "oracle_only": true,
+      "adc_bits": 16,
+      "range_lux": 64000,
+      "raw_adc": 65535,
+      "expected_fraction": [
+        8191875,
+        128
+      ],
+      "derivation": "64000 * 65535 / 65536 = 8191875/128 lux. This resolution/range is not legal in the selected task.",
+      "evidence_pages": [
+        12,
+        14
+      ]
+    }
+  ]
+}

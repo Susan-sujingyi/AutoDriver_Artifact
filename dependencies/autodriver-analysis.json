@@ -1,0 +1,44 @@
+{
+  "schema": "autodriver.analysis-dependencies/v1",
+  "python": "3.13",
+  "wheels": [
+    {
+      "package": "PyMuPDF==1.26.6",
+      "wheel": "third_party/wheels/autodriver/pymupdf-1.26.6-cp310-abi3-manylinux_2_28_x86_64.whl",
+      "sha256": "7777d0b7124c2ebc94849536b6a1fb85d158df3b9d873935e63036559391534c",
+      "source": "PyPI exact pinned binary; downloaded with project .venv pip --no-cache-dir --only-binary=:all: --no-deps",
+      "licenses": [
+        "third_party/licenses/autodriver/PyMuPDF-1.26.6/pymupdf-1.26.6.dist-info/COPYING"
+      ]
+    },
+    {
+      "package": "tree-sitter-rust==0.24.2",
+      "wheel": "third_party/wheels/autodriver/tree_sitter_rust-0.24.2-cp39-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "sha256": "e033c5a93b57c88e0a835880de39fc802909ff69f57aaff6000211c196ea5190",
+      "source": "PyPI exact pinned binary; downloaded with project .venv pip --no-cache-dir --only-binary=:all: --no-deps",
+      "licenses": [
+        "third_party/licenses/autodriver/tree-sitter-rust-0.24.2/tree_sitter_rust-0.24.2.dist-info/licenses/LICENSE"
+      ]
+    },
+    {
+      "package": "z3-solver==4.15.4.0",
+      "wheel": "third_party/wheels/autodriver/z3_solver-4.15.4.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "7e103a6f203f505b8b8b8e5c931cc407c95b61556512d4921c1ddc0b3f41b08e",
+      "source": "PyPI exact pinned binary; downloaded with project .venv pip --no-cache-dir --only-binary=:all: --no-deps",
+      "licenses": [
+        "third_party/licenses/autodriver/z3-solver-4.15.4.0/LICENSE.txt"
+      ],
+      "license_source": {
+        "url": "https://raw.githubusercontent.com/Z3Prover/z3/z3-4.15.4/LICENSE.txt",
+        "sha256": "e617cad2ab9347e3129c2b171e87909332174e17961c5c3412d0799469111337",
+        "retrieved_on": "2026-11-03",
+        "note": "Wheel metadata declares MIT but omits grant file; retained from matching upstream release tag"
+      }
+    }
+  ],
+  "system_tools": {
+    "clang-14": "Clang/LLVM 14; analysis only, not source validation",
+    "rust-analyzer": "stable analysis toolchain; not used for target firmware builds"
+  },
+  "limitations": "Rust semantic queries, OCR and graph rendering are not yet production executors; do not declare them runtime dependencies until integrated."
+}

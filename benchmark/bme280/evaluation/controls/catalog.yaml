@@ -1,0 +1,178 @@
+{
+  "schema": "autodriver.controls/v1",
+  "generators": [
+    "benchmark/bme280/evaluation/controls/bme280_controls.py",
+    "benchmark/bme280/evaluation/controls/bme280_v2_controls.py",
+    "benchmark/bme280/evaluation/controls/spi_controls.py",
+    "benchmark/common/controls/nuttx.py",
+    "benchmark/bme280/evaluation/controls/nuttx.py",
+    "benchmark/common/controls/tock.py",
+    "benchmark/common/controls/selection.py"
+  ],
+  "selection": "benchmark/common/controls/selection.py",
+  "policy": "Require compiled legal alternatives to pass and compiled behavioral defects to be rejected. Optional diagnostic recovery differences are reported separately.",
+  "profiles": {
+    "nuttx/i2c": {
+      "controls": [
+        {
+          "name": "legal_split_mode2_no_id",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Exercise a different legal API, transaction layout, timing implementation or optional-probe policy."
+        },
+        {
+          "name": "wrong_scale",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "wrong_oversampling",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "legal_bounded_transport_retry",
+          "generator": "native_api_variant",
+          "expected": "pass"
+        },
+        {
+          "name": "legal_eager_calibration_validation",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Initialize and reject invalid calibration during registration; no conversion or partial nodes."
+        },
+        {
+          "name": "fault_eager_validation_leaks_node",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "integrity/invalid_pressure_calibration"
+          ],
+          "purpose": "Detect a node left registered when early calibration validation fails."
+        }
+      ],
+      "scope": "Native legal variants and explicitly selected defects; every defect must trigger a contract assertion in the declared case family, after model construction and selfchecks pass."
+    },
+    "nuttx/spi": {
+      "controls": [
+        {
+          "name": "legal_split_mode2_no_id",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Exercise a different legal API, transaction layout, timing implementation or optional-probe policy."
+        },
+        {
+          "name": "wrong_scale",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "wrong_spi_mode",
+          "generator": "sensor_mutation",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "legal_bounded_transport_retry",
+          "generator": "native_api_variant",
+          "expected": "pass"
+        },
+        {
+          "name": "legal_eager_calibration_validation",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Initialize and reject invalid calibration during registration; no conversion or partial nodes."
+        },
+        {
+          "name": "fault_eager_validation_leaks_node",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "integrity/invalid_pressure_calibration"
+          ],
+          "purpose": "Detect a node left registered when early calibration validation fails."
+        }
+      ],
+      "scope": "Native legal variants and explicitly selected defects; every defect must trigger a contract assertion in the declared case family, after model construction and selfchecks pass."
+    },
+    "tock/i2c": {
+      "controls": [
+        {
+          "name": "no_identity_probe",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "synchronized_split_read",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "wrong_pressure_unit",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "unsigned_humidity_trim",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        }
+      ],
+      "mode_policy": "Use task mode directly; wrong-mode control deliberately changes it.",
+      "scope": "Explicit legal alternatives and defects. All core observations and model selfchecks must finish; intended case family must assert the defect."
+    },
+    "tock/spi": {
+      "controls": [
+        {
+          "name": "slower_500khz",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "polling_interval_change",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "wrong_mode",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "pressure_wrong_unit",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        }
+      ],
+      "mode_policy": "Use task mode directly; wrong-mode control deliberately changes it.",
+      "scope": "Explicit legal alternatives and defects. All core observations and model selfchecks must finish; intended case family must assert the defect."
+    }
+  }
+}

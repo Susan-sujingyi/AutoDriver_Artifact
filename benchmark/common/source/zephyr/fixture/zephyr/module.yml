@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+# This metadata-only module makes module discovery explicit and prevents west
+# from discovering any parent workspace. It adds no headers or driver code.
+name: driverbench_source_build_fixture

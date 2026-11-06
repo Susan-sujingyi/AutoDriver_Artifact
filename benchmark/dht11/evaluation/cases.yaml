@@ -1,0 +1,54 @@
+{
+  "vectors": [
+    {
+      "id": "room",
+      "temperature": 24,
+      "humidity": 53
+    },
+    {
+      "id": "zero",
+      "temperature": 0,
+      "humidity": 30
+    },
+    {
+      "id": "cool",
+      "temperature": 3,
+      "humidity": 40
+    },
+    {
+      "id": "warm",
+      "temperature": 37,
+      "humidity": 60
+    },
+    {
+      "id": "hot",
+      "temperature": 50,
+      "humidity": 80
+    },
+    {
+      "id": "dry",
+      "temperature": 25,
+      "humidity": 20
+    },
+    {
+      "id": "humid",
+      "temperature": 25,
+      "humidity": 90
+    },
+    {
+      "id": "bits",
+      "temperature": 21,
+      "humidity": 85
+    },
+    {
+      "id": "carry",
+      "temperature": 31,
+      "humidity": 64
+    },
+    {
+      "id": "one",
+      "temperature": 1,
+      "humidity": 33
+    }
+  ]
+}

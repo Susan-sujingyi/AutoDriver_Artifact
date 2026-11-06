@@ -1,0 +1,37 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-lsm6dso-i2c
+revision: 2
+sensor: lsm6dso
+source:
+  selection: benchmark/lsm6dso/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/lsm6dso/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/lsm6dso/documents/datasheet.pdf
+  - benchmark/lsm6dso/documents/application_note/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - acceleration_xyz
+    acquisition: continuous
+  connection:
+    i2c:
+      address_7bit: 106
+    interrupt_pin: null
+  sensor_settings:
+    acceleration_range_g: 2
+    acceleration_rate_hz: 104
+    acceleration_power_mode: high_performance
+    acceleration_lpf2: disabled
+    acceleration_high_pass: disabled
+    gyroscope: 'off'
+    sensor_hub: disabled
+    fifo: disabled
+reference:
+  files:
+    capsules/extra/src/lsm6dso.rs: benchmark/lsm6dso/reference/tock/i2c/lsm6dso.rs
+evaluation:
+  suite: benchmark/lsm6dso/evaluation/suite.yaml

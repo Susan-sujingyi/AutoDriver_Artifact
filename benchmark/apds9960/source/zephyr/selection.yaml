@@ -1,0 +1,31 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: benchmark/apds9960/source/zephyr/selected/apds9960.c
+      sha256: 8b29a6b1f4ea3c99e44eaf5bdf942ebc9ecc5126d4dbdaf9e5219ca672bb5843
+      role: primary_source
+    - path: benchmark/apds9960/source/zephyr/selected/apds9960.h
+      sha256: 8f0328d521bb591cf571dec1a13689f086832335abba591ae5ecbf94253a0f57
+      role: historical_header_not_compiled
+    - path: third_party/zephyr/include/zephyr/drivers/sensor/apds9960.h
+      sha256: 7cf4f074f9b932fde5fc6e3a1db28aee17b6a21c497670a33326fd7dfe029cd8
+      role: primary_header
+    configuration_files:
+    - benchmark/apds9960/source/zephyr/configuration.yaml
+    - benchmark/apds9960/source/zephyr/board.overlay
+    validation: benchmark/apds9960/source/zephyr/validation
+    source_entrypoints:
+      init: apds9960_init
+      sample_fetch: apds9960_sample_fetch
+      channel_get: apds9960_channel_get
+    dependencies: []
+    devicetree:
+      compatible: avago,apds9960
+      bus: i2c
+      reg: 57
+      status: okay
+    authenticity: 'Approved historical mechanical copy: conditional-compilation branch
+      brace relocation; historical private header is retained but is not compiled.'

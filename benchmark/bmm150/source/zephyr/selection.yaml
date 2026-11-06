@@ -1,0 +1,43 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/bmm150.c
+      sha256: 3ded6226e318d681aad0972bcddaa4b7df3815c04864d3939dfe2d42b880519d
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/bmm150.h
+      sha256: e18ed6cf379fe23b1dc4a59ff1be53c1ae87c84ccdd3b0f6192408a32915f735
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/bmm150_i2c.c
+      sha256: 7740056b7e554a57bf5413fbe2600a1b6ba70f0d388e922d72fbc1277f4aca91
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/bmm150_spi.c
+      sha256: e2232bd855b47a0339af968af46d7c1dd7fede1c287cf30f32188a92033895b7
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/bmm150_trigger.c
+      sha256: 0ee451b12066dbf38274ba526086af4354c383c613d574658c73c7c73aba4fdf
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/Kconfig
+      sha256: 42b1e63cff59ccc1dcf4c3adc315e489e37e7136438e6d4286389aed9a4a1bf7
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/bosch/bmm150/CMakeLists.txt
+      sha256: 1fc49e1cd911d1fd958c0691b97e5afcd87d36b84023d14c96e766b4b841a925
+      role: build_configuration
+    configuration_files:
+    - benchmark/bmm150/source/zephyr/configuration.yaml
+    - benchmark/bmm150/source/zephyr/board.overlay
+    validation: benchmark/bmm150/source/zephyr/validation
+    source_entrypoints:
+      init: bmm150_init
+      sample_fetch: bmm150_sample_fetch
+      channel_get: bmm150_channel_get
+    dependencies: []
+    devicetree:
+      compatible: bosch,bmm150
+      bus: i2c
+      reg: 19
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

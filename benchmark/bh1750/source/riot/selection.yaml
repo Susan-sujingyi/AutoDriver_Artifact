@@ -1,0 +1,36 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/bh1750fvi/Makefile
+      sha256: ff6606b196a84b863c3da39e62b2593b24d8194cb2334f8d48d1a37a6814671e
+      role: driver_directory
+    - path: third_party/riot/drivers/bh1750fvi/Makefile.dep
+      sha256: 5d415bc17a53f6814cf327c37c0fec9a9bf4dbaa70f799d012b56bc1b066571e
+      role: driver_directory
+    - path: third_party/riot/drivers/bh1750fvi/Makefile.include
+      sha256: 52980ee3ab088ff470598195a4bdcf1839a83a4153f8c5ae28a08724e73b6968
+      role: driver_directory
+    - path: third_party/riot/drivers/bh1750fvi/bh1750fvi.c
+      sha256: 3c63d0a09563a4c82a0fae92f03977dc9358fddf41f9c0ce002b13b0b3ad57be
+      role: driver_directory
+    - path: third_party/riot/drivers/bh1750fvi/include/bh1750fvi_internal.h
+      sha256: 13755966693ee927e25ae9022c966aada6503b4b5ce2f68b9a2bcf45f4588f17
+      role: driver_directory
+    - path: third_party/riot/drivers/bh1750fvi/include/bh1750fvi_params.h
+      sha256: b027b31da730f7d114378b2f9a5e27dfad67267347ca1b705389f272e4f79615
+      role: driver_directory
+    - path: third_party/riot/drivers/include/bh1750fvi.h
+      sha256: caf3e4aa84fff9334edf90c9150142280c9e9d5f96da63fe53c9d2c8daa42499
+      role: public_header
+    configuration_files:
+    - benchmark/bh1750/source/riot/configuration.h
+    - benchmark/bh1750/source/riot/configuration.mk
+    validation: benchmark/bh1750/source/riot/validation
+    modules:
+    - bh1750fvi
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

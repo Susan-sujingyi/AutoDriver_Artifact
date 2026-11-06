@@ -1,0 +1,40 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  spi:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/adi/adt7310/CMakeLists.txt
+      sha256: f040eed1190e19253b8beb861872b9c173e815a2450b53d83adb5a471ee353a0
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/adi/adt7310/Kconfig
+      sha256: c259fd1252d3e55651a63c1ce13f12d286fcf2407105b6e7b0a6dc705506579d
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/adi/adt7310/adt7310.c
+      sha256: 02e38db047c1977df9ce2d235ee9fb1bbb5f01e6a196f6095dba8bc7cda10b37
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/adi/adt7310/adt7310.h
+      sha256: 07b2e8034f3172a9075ac531e3d81c5f27e74e9dec2a99d2e5422ea856d28687
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/adi/adt7310/adt7310_trigger.c
+      sha256: adbcffab53fe6fee29cae8d5402a0666263972144dcf2ebe4deff994e3ae25c1
+      role: conditional_or_bus_dependency
+    configuration_files:
+    - benchmark/adt7310/source/zephyr/configuration.yaml
+    - benchmark/adt7310/source/zephyr/board.overlay
+    validation: benchmark/adt7310/source/zephyr/validation
+    source_entrypoints:
+      init: adt7310_init
+      sample_fetch: adt7310_sample_fetch
+      channel_get: adt7310_channel_get
+    dependencies: []
+    devicetree:
+      compatible: adi,adt7310
+      bus: spi
+      reg: 0
+      status: okay
+      spi-max-frequency: 1000000
+      spi-cpol: true
+      spi-cpha: true
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

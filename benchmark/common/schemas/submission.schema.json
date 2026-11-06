@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "task_id",
+    "task_identity",
+    "baseline_identity",
+    "patch_sha256",
+    "changed_paths",
+    "candidate_files",
+    "submission_identity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autodriver.submission/v1"
+    },
+    "changed_paths": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "candidate_files": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

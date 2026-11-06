@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "autodriver.llm-call/v0.1"
+    },
+    "call_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "stage": {
+      "enum": [
+        "fp_build",
+        "dbc_recover",
+        "bp_build",
+        "code_generate",
+        "repair"
+      ]
+    },
+    "condition": {
+      "enum": [
+        "FRAMEWORK",
+        "S",
+        "D",
+        "SD"
+      ]
+    },
+    "dbc_review": {
+      "type": "boolean"
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repair_target": {
+      "enum": [
+        "fp",
+        "dbc",
+        "bp",
+        "code"
+      ]
+    },
+    "selections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "material_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "end_line": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "role",
+          "material_id"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "editable_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    },
+    "base_files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "host_generation_gate": {
+      "enum": [
+        "open",
+        "closed"
+      ]
+    },
+    "generation_scope": {
+      "type": "string"
+    },
+    "generation_mode": {
+      "enum": [
+        "with_binding",
+        "without_binding"
+      ]
+    },
+    "contract_transport": {
+      "enum": [
+        "constructor",
+        "constructor_tree"
+      ]
+    },
+    "max_context_bytes": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "schema",
+    "call_id",
+    "stage",
+    "condition",
+    "goal",
+    "selections",
+    "max_context_bytes"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

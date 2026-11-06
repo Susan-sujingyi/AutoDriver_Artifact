@@ -1,0 +1,31 @@
+{
+  "schema": "autodriver.method/v1",
+  "name": "autodriver",
+  "adapter": "method/autodriver/adapter.py",
+  "interface": "autodriver.method-request/v1",
+  "offline_contract": "implemented",
+  "live_execution": "available",
+  "scope": "SD migration with bounded contract recovery, public build and listed finite internal checks; readable primary contracts and advisory intermediate checks; unsupported finite checks retain unknown; BP ablation retains checks independent of BP; no all-driver or hardware correctness claim",
+  "resources": {
+    "models": "explicit model, provider and budget required",
+    "hardware": "none"
+  },
+  "version": 4,
+  "supported": {
+    "offline_contract": {
+      "tasks": "all44",
+      "conditions": [
+        "S",
+        "D",
+        "SD"
+      ]
+    },
+    "live": {
+      "tasks": "all44",
+      "conditions": [
+        "SD"
+      ]
+    }
+  },
+  "distribution": "standalone extraction; invocation availability is not a performance acceptance certificate"
+}

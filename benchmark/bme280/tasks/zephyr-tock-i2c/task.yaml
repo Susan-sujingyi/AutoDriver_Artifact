@@ -1,0 +1,28 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-bme280-i2c
+revision: 2
+sensor: bme280
+source:
+  selection: benchmark/bme280/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/bme280/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/bme280/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    - pressure
+  connection:
+    i2c:
+      address_7bit: 118
+    interrupt_pin: null
+reference:
+  files:
+    capsules/extra/src/bme280.rs: benchmark/bme280/reference/tock/i2c/bme280.rs
+evaluation:
+  suite: benchmark/bme280/evaluation/suite.yaml

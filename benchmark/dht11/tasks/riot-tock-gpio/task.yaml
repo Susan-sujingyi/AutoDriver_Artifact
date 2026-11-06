@@ -1,0 +1,35 @@
+schema: autodriver.task/v1
+task_id: riot-tock-dht11-gpio
+revision: 2
+sensor: dht11
+source:
+  selection: benchmark/dht11/source/riot/selection.yaml
+  variant: gpio
+target:
+  profile: benchmark/dht11/target/tock/gpio/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/dht11/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - humidity
+    acquisition: on_demand
+  connection:
+    gpio:
+      protocol: DHT_single_wire
+      data_pin: P1.06
+      supply_volts: 3.3
+      external_pullup_ohms: 4700
+      sense_pin: P1.07
+      sense_connection: Connect P1.07 to the same DATA net as P1.06.
+      sampling_clock_pin: P1.08
+      sampling_clock_connection: Leave unconnected to the sensor.
+    interrupt_pin: null
+reference:
+  files:
+    capsules/extra/src/dht11.rs: benchmark/dht11/reference/tock/gpio/dht11.rs
+evaluation:
+  suite: benchmark/dht11/evaluation/suite.yaml

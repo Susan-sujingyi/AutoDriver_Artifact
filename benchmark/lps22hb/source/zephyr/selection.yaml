@@ -1,0 +1,28 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/st/lps22hb/lps22hb.c
+      sha256: b0b9c21c4c7ad2412a435522c2dc06802ad845d0db4cd3e5f8c6389ae64dbb78
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/st/lps22hb/lps22hb.h
+      sha256: 57ac52a4a90fc1c6fe900743f627f7b96620b2a7e8e132f506e7a24eb6b872a7
+      role: primary_header
+    configuration_files:
+    - benchmark/lps22hb/source/zephyr/configuration.yaml
+    - benchmark/lps22hb/source/zephyr/board.overlay
+    validation: benchmark/lps22hb/source/zephyr/validation
+    source_entrypoints:
+      init: lps22hb_init
+      sample_fetch: lps22hb_sample_fetch
+      channel_get: lps22hb_channel_get
+    dependencies: []
+    devicetree:
+      compatible: st,lps22hb-press
+      bus: i2c
+      reg: 92
+      status: okay
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

@@ -1,0 +1,79 @@
+{
+  "schema": "autodriver.controls/v1",
+  "generators": [
+    "benchmark/adt7310/evaluation/controls/adt7310_v2_controls.py",
+    "benchmark/common/controls/nuttx.py",
+    "benchmark/common/controls/tock.py",
+    "benchmark/common/controls/selection.py"
+  ],
+  "selection": "benchmark/common/controls/selection.py",
+  "policy": "Require compiled legal alternatives to pass and compiled behavioral defects to be rejected. Optional diagnostic recovery differences are reported separately.",
+  "profiles": {
+    "nuttx/spi": {
+      "controls": [
+        {
+          "name": "legal_split_spi",
+          "generator": "native_api_variant",
+          "expected": "pass",
+          "purpose": "Exercise a different legal API, transaction layout, timing implementation or optional-probe policy."
+        },
+        {
+          "name": "wrong_mode",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "wrong_scale",
+          "generator": "native_api_variant",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "legal_bounded_transport_retry",
+          "generator": "native_api_variant",
+          "expected": "pass"
+        }
+      ],
+      "scope": "Native legal variants and explicitly selected defects; every defect must trigger a contract assertion in the declared case family, after model construction and selfchecks pass."
+    },
+    "tock/spi": {
+      "controls": [
+        {
+          "name": "no_identity_probe",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "wait_without_status_poll",
+          "generator": "tock_fixture",
+          "expected": "pass",
+          "purpose": "Exercise the named legal initialization, transaction, cache or asynchronous implementation freedom."
+        },
+        {
+          "name": "wrong_spi_mode",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        },
+        {
+          "name": "wrong_units",
+          "generator": "tock_fixture",
+          "expected": "fail",
+          "required_failure_cases": [
+            "numeric/*"
+          ]
+        }
+      ],
+      "mode_policy": "Use task mode directly; wrong-mode control deliberately changes it.",
+      "scope": "Explicit legal alternatives and defects. All core observations and model selfchecks must finish; intended case family must assert the defect."
+    }
+  }
+}

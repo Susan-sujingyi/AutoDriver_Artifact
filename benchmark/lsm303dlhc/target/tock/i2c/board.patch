@@ -1,0 +1,192 @@
+--- a/boards/components/src/lsm303dlhc.rs
++++ b/boards/components/src/lsm303dlhc.rs
+@@ -1,113 +1,56 @@
+ // Licensed under the Apache License, Version 2.0 or the MIT License.
+ // SPDX-License-Identifier: Apache-2.0 OR MIT
+-// Copyright Tock Contributors 2022.
++// Resource wiring derived from Tock Contributors' sensor components.
++//! Public LSM303DLHC fixture: resources and client wiring only.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
++use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
++use capsules_extra::lsm303dlhc::Lsm303dlhc;
++use core::mem::MaybeUninit;
+ 
+-//! Components for the LSM303DLHC sensor.
+-//!
+-//! I2C Interface
+-//!
+-//! Usage
+-//! -----
+-//! ```rust
+-//! let lsm303dlhc = components::lsm303dlhc::Lsm303dlhcI2CComponent::new(i2c_mux, board_kernel, driver_num)
+-//!    .finalize(components::lsm303dlhc_component_static!());
+-//!
+-//! lsm303dlhc.configure(
+-//!    lsm303dlhc::Lsm303dlhcAccelDataRate::DataRate25Hz,
+-//!    false,
+-//!    lsm303dlhc::Lsm303dlhcScale::Scale2G,
+-//!    false,
+-//!    true,
+-//!    lsm303dlhc::Lsm303dlhcMagnetoDataRate::DataRate3_0Hz,
+-//!    lsm303dlhc::Lsm303dlhcRange::Range4_7G,
+-//! );
+-//! ```
+-use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
+-use capsules_extra::lsm303dlhc::Lsm303dlhcI2C;
+-use capsules_extra::lsm303xx;
+-use core::mem::MaybeUninit;
+ use kernel::component::Component;
+ use kernel::hil::i2c;
++use kernel::hil::time::{self, Alarm};
+ 
+-// Setup static space for the objects.
+ #[macro_export]
+ macro_rules! lsm303dlhc_component_static {
+-    ($I:ty $(,)?) => {{
++    ($A:ty, $I:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>);
++        let i2c = kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+         let buffer = kernel::static_buf!([u8; 8]);
+-        let accelerometer_i2c =
+-            kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>);
+-        let magnetometer_i2c =
+-            kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>);
+-        let lsm303dlhc = kernel::static_buf!(
+-            capsules_extra::lsm303dlhc::Lsm303dlhcI2C<
+-                'static,
+-                capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>,
+-            >
+-        );
+-
+-        (accelerometer_i2c, magnetometer_i2c, buffer, lsm303dlhc)
+-    };};
++        let driver = kernel::static_buf!(capsules_extra::lsm303dlhc::Lsm303dlhc<
++            'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
++        >);
++        (alarm, i2c, buffer, driver)
++    }};
+ }
+-
+-pub struct Lsm303dlhcI2CComponent<I: 'static + i2c::I2CMaster<'static>> {
++pub struct Lsm303dlhcComponent<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
+     i2c_mux: &'static MuxI2C<'static, I>,
+-    accelerometer_i2c_address: u8,
+-    magnetometer_i2c_address: u8,
+-    board_kernel: &'static kernel::Kernel,
+-    driver_num: usize,
++    alarm_mux: &'static MuxAlarm<'static, A>,
+ }
+-
+-impl<I: 'static + i2c::I2CMaster<'static>> Lsm303dlhcI2CComponent<I> {
+-    pub fn new(
+-        i2c_mux: &'static MuxI2C<'static, I>,
+-        accelerometer_i2c_address: Option<u8>,
+-        magnetometer_i2c_address: Option<u8>,
+-        board_kernel: &'static kernel::Kernel,
+-        driver_num: usize,
+-    ) -> Lsm303dlhcI2CComponent<I> {
+-        Lsm303dlhcI2CComponent {
+-            i2c_mux,
+-            accelerometer_i2c_address: accelerometer_i2c_address
+-                .unwrap_or(lsm303xx::ACCELEROMETER_BASE_ADDRESS),
+-            magnetometer_i2c_address: magnetometer_i2c_address
+-                .unwrap_or(lsm303xx::MAGNETOMETER_BASE_ADDRESS),
+-            board_kernel,
+-            driver_num,
+-        }
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Lsm303dlhcComponent<A, I> {
++    pub fn new(i2c_mux: &'static MuxI2C<'static, I>, alarm_mux: &'static MuxAlarm<'static, A>) -> Self {
++        Self { i2c_mux, alarm_mux }
+     }
+ }
+-
+-impl<I: 'static + i2c::I2CMaster<'static>> Component for Lsm303dlhcI2CComponent<I> {
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component for Lsm303dlhcComponent<A, I> {
+     type StaticInput = (
+-        &'static mut MaybeUninit<I2CDevice<'static, I>>,
++        &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+         &'static mut MaybeUninit<[u8; 8]>,
+-        &'static mut MaybeUninit<Lsm303dlhcI2C<'static, I2CDevice<'static, I>>>,
++        &'static mut MaybeUninit<Lsm303dlhc<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+     );
+-    type Output = &'static Lsm303dlhcI2C<'static, I2CDevice<'static, I>>;
+-
+-    fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
+-        let grant_cap =
+-            kernel::create_capability!(kernel::capabilities::MemoryAllocationCapability);
+-
+-        let buffer = static_buffer.2.write([0; 8]);
+-
+-        let accelerometer_i2c = static_buffer
+-            .0
+-            .write(I2CDevice::new(self.i2c_mux, self.accelerometer_i2c_address));
+-        let magnetometer_i2c = static_buffer
+-            .1
+-            .write(I2CDevice::new(self.i2c_mux, self.magnetometer_i2c_address));
+-
+-        let lsm303dlhc = static_buffer.3.write(Lsm303dlhcI2C::new(
+-            accelerometer_i2c,
+-            magnetometer_i2c,
+-            buffer,
+-            self.board_kernel.create_grant(self.driver_num, &grant_cap),
+-        ));
+-        accelerometer_i2c.set_client(lsm303dlhc);
+-        magnetometer_i2c.set_client(lsm303dlhc);
+-
+-        lsm303dlhc
++    type Output = &'static Lsm303dlhc<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    fn finalize(self, s: Self::StaticInput) -> Self::Output {
++        let alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
++        alarm.setup();
++        let bus = s.1.write(I2CDevice::new(self.i2c_mux, 0x1e));
++        let buffer = s.2.write([0; 8]);
++        let driver = s.3.write(Lsm303dlhc::new(bus, alarm, buffer));
++        bus.set_client(driver);
++        alarm.set_alarm_client(driver);
++        let _ = driver.startup();
++        driver
+     }
+ }
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -233,6 +233,7 @@
+     ambient_light: &'static AmbientLightDriver,
+     pressure: &'static PressureDriver,
+     proximity: &'static ProximityDriver,
++    ninedof: &'static capsules_extra::ninedof::NineDof<'static>,
+     ipc: kernel::ipc::IPC<{ NUM_PROCS as u8 }>,
+     analog_comparator: &'static capsules_extra::analog_comparator::AnalogComparator<
+         'static,
+@@ -277,6 +278,7 @@
+             capsules_extra::ambient_light::DRIVER_NUM => f(Some(self.ambient_light)),
+             capsules_extra::pressure::DRIVER_NUM => f(Some(self.pressure)),
+             capsules_extra::proximity::DRIVER_NUM => f(Some(self.proximity)),
++            capsules_extra::ninedof::DRIVER_NUM => f(Some(self.ninedof)),
+             capsules_extra::analog_comparator::DRIVER_NUM => f(Some(self.analog_comparator)),
+             capsules_extra::net::udp::DRIVER_NUM => f(Some(self.udp_driver)),
+             kernel::ipc::DRIVER_NUM => f(Some(&self.ipc)),
+@@ -802,6 +804,13 @@
+     let sensors_i2c = components::i2c::I2CMuxComponent::new(&base_peripherals.twi1, None)
+         .finalize(components::i2c_mux_component_static!(nrf52840::i2c::TWI));
+ 
++    let lsm303dlhc = components::lsm303dlhc::Lsm303dlhcComponent::new(sensors_i2c, mux_alarm)
++        .finalize(components::lsm303dlhc_component_static!(nrf52840::rtc::Rtc,nrf52840::i2c::TWI));
++    let ninedof = components::ninedof::NineDofComponent::new(
++        board_kernel, capsules_extra::ninedof::DRIVER_NUM,
++    )
++        .finalize(components::ninedof_component_static!(lsm303dlhc));
++
+     let ccs811 = components::ccs811::Ccs811Component::new(sensors_i2c, mux_alarm, 0x5A)
+         .finalize(components::ccs811_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
+ 
+@@ -966,6 +975,7 @@
+         ambient_light,
+         pressure,
+         proximity,
++        ninedof,
+         alarm,
+         analog_comparator,
+         thread_driver,

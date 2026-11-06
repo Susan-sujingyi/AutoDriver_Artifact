@@ -1,0 +1,33 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/rohm/bh1750/bh1750.c
+      sha256: 526c7fcd4b9a7bc9fa49e67f3e09e8a3ed1f590e3708025dfe714c6ee26b3789
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/rohm/bh1750/Kconfig
+      sha256: 995c65123bee3211bc812f031ec1ed0804285d39213a6b1580210437d724c2f8
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/rohm/bh1750/CMakeLists.txt
+      sha256: 354013f065d2015e9509c5d2679b8002eb6efaa1584a803cc7e61a047c9e2b3e
+      role: build_configuration
+    configuration_files:
+    - benchmark/bh1750/source/zephyr/configuration.yaml
+    - benchmark/bh1750/source/zephyr/board.overlay
+    validation: benchmark/bh1750/source/zephyr/validation
+    source_entrypoints:
+      init: bh1750_init
+      sample_fetch: bh1750_sample_fetch
+      channel_get: bh1750_channel_get
+    dependencies: []
+    devicetree:
+      compatible: rohm,bh1750
+      bus: i2c
+      reg: 35
+      status: okay
+      resolution: 1
+      mtreg: 69
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

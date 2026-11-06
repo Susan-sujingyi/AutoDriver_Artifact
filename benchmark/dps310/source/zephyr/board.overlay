@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: dps310@77 {
+		compatible = "infineon,dps310";
+		reg = <0x77>;
+		status = "okay";
+	};
+};

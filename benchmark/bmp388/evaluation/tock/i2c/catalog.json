@@ -1,0 +1,575 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/retention_flags",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "__model/transaction_shadow",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "__model/paired_write",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "numeric/linear_room/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/linear_room/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/zero_temperature_ready/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/zero_temperature_ready/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_fraction_truncation/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_fraction_truncation/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_fraction_truncation/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_fraction_truncation/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_distinct_bytes/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/raw_distinct_bytes/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_below_integer_hpa/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_below_integer_hpa/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_exact_integer_hpa/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_exact_integer_hpa/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_cold/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_cold/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_freezing/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_freezing/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_room/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_room/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_hot/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/same_pressure_hot/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/unsigned_t2_high/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/unsigned_t2_high/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/t3_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/t3_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/t3_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/t3_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p2_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p2_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p2_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p2_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p3_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p3_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p3_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p3_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p4_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p4_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p4_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p4_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p7_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p7_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p7_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p7_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p8_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p8_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p8_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p8_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p9_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p9_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p9_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p9_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p10_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p10_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p10_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p10_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p11_negative/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p11_negative/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p11_positive/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/p11_positive/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/all_signed_and_wide/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/all_signed_and_wide/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_minimum/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_minimum/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_maximum/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/pressure_maximum/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/coherence_hot_pressure/0",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "numeric/coherence_hot_pressure/1",
+      "scope": "core",
+      "basis": "BMP-NUMERIC, BMP-CONFIG, BMP-DATA, BMP-CALLBACK"
+    },
+    {
+      "id": "requests/first_available/0",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/0",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "requests/input_changes/0",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "diagnostic/bus/0/Error/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/Error/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/Status/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/Status/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/Data/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/0/Data/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/device_error/0/1",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/device_error/0/2",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/device_error/0/4",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/stalled_flag/0",
+      "scope": "diagnostic",
+      "basis": "BMP-DATA, BMP-FAULT"
+    },
+    {
+      "id": "requests/first_available/1",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/1",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "requests/input_changes/1",
+      "scope": "core",
+      "basis": "BMP-CALLBACK, BMP-PROGRESS"
+    },
+    {
+      "id": "diagnostic/bus/1/Error/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/Error/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/Status/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/Status/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/Data/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/bus/1/Data/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/device_error/1/1",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/device_error/1/2",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/device_error/1/4",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT: device error flags do not imply universal numeric invalidation or exact recovery"
+    },
+    {
+      "id": "diagnostic/stalled_flag/1",
+      "scope": "diagnostic",
+      "basis": "BMP-DATA, BMP-FAULT"
+    },
+    {
+      "id": "coherence/temperature_changes",
+      "scope": "core",
+      "basis": "BMP-SHADOW, BMP-NUMERIC: actual data coherence, not blanket burst requirement"
+    },
+    {
+      "id": "coherence/turnover_between_transactions",
+      "scope": "core",
+      "basis": "BMP-SHADOW, BMP-NUMERIC: actual data coherence, not blanket burst requirement"
+    },
+    {
+      "id": "diagnostic/identity_00",
+      "scope": "diagnostic",
+      "basis": "BMP-IDENTITY"
+    },
+    {
+      "id": "diagnostic/identity_60",
+      "scope": "diagnostic",
+      "basis": "BMP-IDENTITY"
+    },
+    {
+      "id": "diagnostic/identity_ff",
+      "scope": "diagnostic",
+      "basis": "BMP-IDENTITY"
+    },
+    {
+      "id": "diagnostic/init/Any/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Any/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Calibration/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Calibration/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Mode/false",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Mode/true",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/command_not_ready",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init_error/1",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init_error/2",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    },
+    {
+      "id": "diagnostic/init_error/4",
+      "scope": "diagnostic",
+      "basis": "BMP-FAULT"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+schema: autodriver.evaluation/v1
+sensor: bme280
+adapters:
+  tock/i2c:
+    directory: benchmark/bme280/evaluation/tock/i2c
+    adapter: tock
+  tock/spi:
+    directory: benchmark/bme280/evaluation/tock/spi
+    adapter: tock
+  nuttx/i2c:
+    directory: benchmark/bme280/evaluation/nuttx/i2c
+    sim_directory: benchmark/bme280/evaluation/nuttx/sim
+    adapter: nuttx
+    vectors: benchmark/bme280/evaluation/c_vectors.py
+  nuttx/spi:
+    directory: benchmark/bme280/evaluation/nuttx/spi
+    sim_directory: benchmark/bme280/evaluation/nuttx/sim
+    adapter: nuttx
+    vectors: benchmark/bme280/evaluation/c_vectors.py
+coverage_policy: functional-and-native-core
+revision: 3
+cases: benchmark/bme280/evaluation/cases.yaml
+oracle: benchmark/bme280/evaluation/oracle.py
+basis: benchmark/bme280/evaluation/basis.md

@@ -1,0 +1,57 @@
+version: autodriver.call-protocol/v0.1
+stages:
+  fp_build:
+    template: fp_build.md
+    artifact_kind: fp
+    required_roles: [method_specification, framework_evidence]
+    optional_roles: [framework_context, existing_fp, internal_diagnostic]
+    tools: [inspect_symbol, query_framework, read_evidence_range, check_contract]
+  dbc_recover:
+    template: dbc_recover.md
+    artifact_kind: dbc
+    required_roles: [method_specification, task_context]
+    optional_roles: [source_configuration, source_evidence, source_facts, source_fp, framework_evidence, document_evidence, existing_dbc, internal_diagnostic]
+    tools: [inspect_symbol, resolve_configuration, slice_device_effects, retrieve_device_evidence, query_framework, read_evidence_range, check_contract]
+  bp_build:
+    template: bp_build.md
+    artifact_kind: bp
+    required_roles: [method_specification, task_context, dbc, target_fp, target_support]
+    optional_roles: [existing_bp, internal_diagnostic, framework_evidence]
+    tools: [inspect_symbol, query_framework, read_evidence_range, check_contract, check_binding]
+  code_generate:
+    template: code_generate.md
+    artifact_kind: code
+    required_roles: [method_specification, task_context, dbc, target_fp, bp, target_support, validation_report]
+    optional_roles: [target_code, source_evidence, source_facts, document_evidence, framework_evidence]
+    tools: [inspect_symbol, query_framework, read_evidence_range, read_candidate, check_binding, compile_candidate, check_candidate]
+  repair:
+    template: repair.md
+    required_roles: [method_specification, candidate, internal_diagnostic]
+    optional_roles: [task_context, framework_context, framework_evidence, source_configuration, source_evidence, source_facts, source_fp, document_evidence, dbc, target_fp, bp, target_support, validation_report, target_code]
+    tools: [inspect_symbol, resolve_configuration, slice_device_effects, retrieve_device_evidence, query_framework, read_evidence_range, read_candidate, check_contract, check_binding, compile_candidate, check_candidate]
+
+role_kinds:
+  method_specification: [method_specification]
+  task_context: [public_task_projection]
+  framework_context: [framework_scope]
+  framework_evidence: [framework_source, framework_document, framework_index]
+  existing_fp: [fp_shared, fp_task_local]
+  source_configuration: [source_configuration]
+  source_evidence: [device_source]
+  source_facts: [source_analysis, source_index]
+  source_fp: [fp_shared, fp_task_local]
+  target_fp: [fp_shared, fp_task_local]
+  document_evidence: [device_document, document_extract, document_index]
+  existing_dbc: [dbc_candidate]
+  dbc: [dbc_candidate]
+  existing_bp: [bp_candidate]
+  bp: [bp_candidate]
+  target_support: [public_target_support]
+  target_code: [candidate_code, public_target_support]
+  validation_report: [internal_diagnostic]
+  internal_diagnostic: [internal_diagnostic]
+  candidate: [fp_task_local, fp_shared, dbc_candidate, bp_candidate, candidate_code]
+
+derived_kinds: [source_analysis, document_extract, source_index, framework_index, document_index, fp_shared, fp_task_local, dbc_candidate, bp_candidate, candidate_code, internal_diagnostic]
+diagnostic_producers: [method_contract_checker, method_binding_checker, approved_compile_tool, method_trace_checker, method_edit_checker]
+forbidden_kinds: [hidden_reference, benchmark_evaluator, benchmark_feedback, hardware_diagnostic, calibration_experience, vendor_supplement, research_note, foreign_trial]

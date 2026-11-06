@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: apds9960@39 {
+		compatible = "avago,apds9960";
+		reg = <0x39>;
+		status = "okay";
+	};
+};

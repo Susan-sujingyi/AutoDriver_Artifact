@@ -1,0 +1,230 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "numeric/zero",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/positive_code_16384",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/negative_code_16384",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/axis_code_16384",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/signed_limits",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/small_counts",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/fractional_counts",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/quarter_half",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/byte_carry",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/byte_sign_boundary",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/mixed_bytes",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/reverse_signs",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/all_negative",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/all_positive",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/negative_encoding_edges",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/near_zero",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/unequal_axes",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/full_negative",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/full_positive",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/datasheet_one_g",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "numeric/datasheet_350mg",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "requests/first_available",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "requests/stable_changes",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "data/turnovers",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "timing/first_9616us",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "timing/first_15000us",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "timing/first_20000us",
+      "scope": "core",
+      "basis": "LSM6DSO-NUMERIC/DATA/ABI/CONFIG"
+    },
+    {
+      "id": "diagnostic/stalled",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/identity_00",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/identity_ff",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/identity_69",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Any/false",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Any/true",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Data/false",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/request/Data/true",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/Any/false",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/Any/true",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/init/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/initial_bank_40",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "diagnostic/initial_bank_80",
+      "scope": "diagnostic",
+      "basis": "LSM6DSO-DIAGNOSTIC"
+    },
+    {
+      "id": "__model/callback_encoding",
+      "scope": "internal",
+      "basis": "Model self-check"
+    },
+    {
+      "id": "__model/retained_data",
+      "scope": "internal",
+      "basis": "Model self-check"
+    },
+    {
+      "id": "__model/pair_bdu_only",
+      "scope": "internal",
+      "basis": "Model self-check"
+    }
+  ]
+}

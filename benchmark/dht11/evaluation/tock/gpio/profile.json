@@ -1,0 +1,24 @@
+{
+  "profile": "autodriver.model/dht11/gpio/v1",
+  "transport": "gpio",
+  "support_files": [
+    "waveform.rs"
+  ],
+  "limits": {
+    "build_seconds": 300,
+    "case_process_seconds": 5,
+    "startup_observation_us": 1500000,
+    "request_observation_us": 3000000,
+    "events_per_advance": 50000
+  },
+  "limitations": [
+    "Finite digital wire model; not electrical timing or physical accuracy proof.",
+    "Models GPIO start/release and asynchronous finite sampled input; busy GPIO polling does not advance physical time. No register/electrical emulation in device scoring.",
+    "Bounded capture completion delays, cancellation and wire pulse variations; not all scheduler interleavings.",
+    "Corrupt-frame numeric success is a core integrity failure; optional fault recovery is diagnostic. Humidity HIL cannot represent an asynchronous error.",
+    "The documented previous measurement semantics permits bounded caching; stable changed stimuli must eventually be observed."
+  ],
+  "public_hil_extensions": {
+    "waveform": "benchmark/dht11/target/tock/gpio/resources/waveform.rs"
+  }
+}

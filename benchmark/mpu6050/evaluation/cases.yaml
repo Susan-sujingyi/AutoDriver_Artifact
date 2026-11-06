@@ -1,0 +1,724 @@
+{
+  "schema": "driverbench.mpu6050.numeric-cases/v2",
+  "device": "MPU6050",
+  "equation": "signed16_big_endian * 9806650 / 16384 micrometers_per_second_squared",
+  "canonical_rounding": "truncate_toward_zero",
+  "candidate_tolerance_per_axis_um_s2": 1,
+  "scope": "All i16 encodings are valid; invalid_vectors are malformed oracle inputs, not invented device invalid-sample sentinels.",
+  "sources": [
+    "PS-MPU-6000A-00 Rev3.4 p13",
+    "RM-MPU-6000A-00 Rev4.2 p29"
+  ],
+  "vectors": [
+    {
+      "id": "zero",
+      "raw": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "0",
+        "0",
+        "0"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          0,
+          0,
+          0
+        ]
+      },
+      "hil_words": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "positive_gravity",
+      "raw": {
+        "x": 16384,
+        "y": 0,
+        "z": 0
+      },
+      "raw_bytes": [
+        64,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "9806650",
+        "0",
+        "0"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          9806650,
+          0,
+          0
+        ]
+      },
+      "hil_words": [
+        9806650,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "negative_gravity",
+      "raw": {
+        "x": -16384,
+        "y": 0,
+        "z": 0
+      },
+      "raw_bytes": [
+        192,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "-9806650",
+        "0",
+        "0"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -9806650,
+          0,
+          0
+        ]
+      },
+      "hil_words": [
+        4285160646,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "axis_gravity",
+      "raw": {
+        "x": 0,
+        "y": 16384,
+        "z": -16384
+      },
+      "raw_bytes": [
+        0,
+        0,
+        64,
+        0,
+        192,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "0",
+        "9806650",
+        "-9806650"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          0,
+          9806650,
+          -9806650
+        ]
+      },
+      "hil_words": [
+        0,
+        9806650,
+        4285160646
+      ]
+    },
+    {
+      "id": "signed_limits",
+      "raw": {
+        "x": -32768,
+        "y": 32767,
+        "z": 0
+      },
+      "raw_bytes": [
+        128,
+        0,
+        127,
+        255,
+        0,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "-19613300",
+        "160667250275/8192",
+        "0"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -19613300,
+          19612701,
+          0
+        ]
+      },
+      "hil_words": [
+        4275353996,
+        19612701,
+        0
+      ]
+    },
+    {
+      "id": "small_counts",
+      "raw": {
+        "x": -1,
+        "y": 1,
+        "z": -2
+      },
+      "raw_bytes": [
+        255,
+        255,
+        0,
+        1,
+        255,
+        254
+      ],
+      "ideal_xyz_fraction": [
+        "-4903325/8192",
+        "4903325/8192",
+        "-4903325/4096"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -598,
+          598,
+          -1197
+        ]
+      },
+      "hil_words": [
+        4294966698,
+        598,
+        4294966099
+      ]
+    },
+    {
+      "id": "fractional_counts",
+      "raw": {
+        "x": 1,
+        "y": -3,
+        "z": 7
+      },
+      "raw_bytes": [
+        0,
+        1,
+        255,
+        253,
+        0,
+        7
+      ],
+      "ideal_xyz_fraction": [
+        "4903325/8192",
+        "-14709975/8192",
+        "34323275/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          598,
+          -1795,
+          4189
+        ]
+      },
+      "hil_words": [
+        598,
+        4294965501,
+        4189
+      ]
+    },
+    {
+      "id": "quarter_half",
+      "raw": {
+        "x": 4096,
+        "y": -8192,
+        "z": 12288
+      },
+      "raw_bytes": [
+        16,
+        0,
+        224,
+        0,
+        48,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "4903325/2",
+        "-4903325",
+        "14709975/2"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          2451662,
+          -4903325,
+          7354987
+        ]
+      },
+      "hil_words": [
+        2451662,
+        4290063971,
+        7354987
+      ]
+    },
+    {
+      "id": "byte_carry",
+      "raw": {
+        "x": 255,
+        "y": 256,
+        "z": -256
+      },
+      "raw_bytes": [
+        0,
+        255,
+        1,
+        0,
+        255,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "1250347875/8192",
+        "4903325/32",
+        "-4903325/32"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          152630,
+          153228,
+          -153228
+        ]
+      },
+      "hil_words": [
+        152630,
+        153228,
+        4294814068
+      ]
+    },
+    {
+      "id": "byte_sign_boundary",
+      "raw": {
+        "x": 127,
+        "y": 128,
+        "z": -129
+      },
+      "raw_bytes": [
+        0,
+        127,
+        0,
+        128,
+        255,
+        127
+      ],
+      "ideal_xyz_fraction": [
+        "622722275/8192",
+        "4903325/64",
+        "-632528925/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          76015,
+          76614,
+          -77213
+        ]
+      },
+      "hil_words": [
+        76015,
+        76614,
+        4294890083
+      ]
+    },
+    {
+      "id": "mixed_bytes",
+      "raw": {
+        "x": 4660,
+        "y": -9029,
+        "z": 13398
+      },
+      "raw_bytes": [
+        18,
+        52,
+        220,
+        187,
+        52,
+        86
+      ],
+      "ideal_xyz_fraction": [
+        "5712373625/2048",
+        "-44272121425/8192",
+        "32847374175/4096"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          2789244,
+          -5404311,
+          8019378
+        ]
+      },
+      "hil_words": [
+        2789244,
+        4289562985,
+        8019378
+      ]
+    },
+    {
+      "id": "reverse_signs",
+      "raw": {
+        "x": -4660,
+        "y": 9029,
+        "z": -13398
+      },
+      "raw_bytes": [
+        237,
+        204,
+        35,
+        69,
+        203,
+        170
+      ],
+      "ideal_xyz_fraction": [
+        "-5712373625/2048",
+        "44272121425/8192",
+        "-32847374175/4096"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -2789244,
+          5404311,
+          -8019378
+        ]
+      },
+      "hil_words": [
+        4292178052,
+        5404311,
+        4286947918
+      ]
+    },
+    {
+      "id": "all_negative",
+      "raw": {
+        "x": -32767,
+        "y": -16383,
+        "z": -8191
+      },
+      "raw_bytes": [
+        128,
+        1,
+        192,
+        1,
+        224,
+        1
+      ],
+      "ideal_xyz_fraction": [
+        "-160667250275/8192",
+        "-80331173475/8192",
+        "-40163135075/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -19612701,
+          -9806051,
+          -4902726
+        ]
+      },
+      "hil_words": [
+        4275354595,
+        4285161245,
+        4290064570
+      ]
+    },
+    {
+      "id": "all_positive",
+      "raw": {
+        "x": 32766,
+        "y": 16383,
+        "z": 8191
+      },
+      "raw_bytes": [
+        127,
+        254,
+        63,
+        255,
+        31,
+        255
+      ],
+      "ideal_xyz_fraction": [
+        "80331173475/4096",
+        "80331173475/8192",
+        "40163135075/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          19612102,
+          9806051,
+          4902726
+        ]
+      },
+      "hil_words": [
+        19612102,
+        9806051,
+        4902726
+      ]
+    },
+    {
+      "id": "negative_encoding_edges",
+      "raw": {
+        "x": -257,
+        "y": -255,
+        "z": -128
+      },
+      "raw_bytes": [
+        254,
+        255,
+        255,
+        1,
+        255,
+        128
+      ],
+      "ideal_xyz_fraction": [
+        "-1260154525/8192",
+        "-1250347875/8192",
+        "-4903325/64"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -153827,
+          -152630,
+          -76614
+        ]
+      },
+      "hil_words": [
+        4294813469,
+        4294814666,
+        4294890682
+      ]
+    },
+    {
+      "id": "near_zero",
+      "raw": {
+        "x": 2,
+        "y": -2,
+        "z": 3
+      },
+      "raw_bytes": [
+        0,
+        2,
+        255,
+        254,
+        0,
+        3
+      ],
+      "ideal_xyz_fraction": [
+        "4903325/4096",
+        "-4903325/4096",
+        "14709975/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          1197,
+          -1197,
+          1795
+        ]
+      },
+      "hil_words": [
+        1197,
+        4294966099,
+        1795
+      ]
+    },
+    {
+      "id": "unequal_axes",
+      "raw": {
+        "x": 1000,
+        "y": 2000,
+        "z": 3000
+      },
+      "raw_bytes": [
+        3,
+        232,
+        7,
+        208,
+        11,
+        184
+      ],
+      "ideal_xyz_fraction": [
+        "612915625/1024",
+        "612915625/512",
+        "1838746875/1024"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          598550,
+          1197100,
+          1795651
+        ]
+      },
+      "hil_words": [
+        598550,
+        1197100,
+        1795651
+      ]
+    },
+    {
+      "id": "full_negative",
+      "raw": {
+        "x": -32768,
+        "y": -32768,
+        "z": -32768
+      },
+      "raw_bytes": [
+        128,
+        0,
+        128,
+        0,
+        128,
+        0
+      ],
+      "ideal_xyz_fraction": [
+        "-19613300",
+        "-19613300",
+        "-19613300"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          -19613300,
+          -19613300,
+          -19613300
+        ]
+      },
+      "hil_words": [
+        4275353996,
+        4275353996,
+        4275353996
+      ]
+    },
+    {
+      "id": "full_positive",
+      "raw": {
+        "x": 32767,
+        "y": 32767,
+        "z": 32767
+      },
+      "raw_bytes": [
+        127,
+        255,
+        127,
+        255,
+        127,
+        255
+      ],
+      "ideal_xyz_fraction": [
+        "160667250275/8192",
+        "160667250275/8192",
+        "160667250275/8192"
+      ],
+      "expected": {
+        "acceleration_xyz_um_s2": [
+          19612701,
+          19612701,
+          19612701
+        ]
+      },
+      "hil_words": [
+        19612701,
+        19612701,
+        19612701
+      ]
+    }
+  ],
+  "invalid_vectors": [
+    {
+      "id": "malformed_0",
+      "raw_bytes": []
+    },
+    {
+      "id": "malformed_1",
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_2",
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_3",
+      "raw_bytes": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_4",
+      "raw_bytes": [
+        256,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_5",
+      "raw_bytes": [
+        true,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_6",
+      "raw_bytes": [
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "malformed_7",
+      "raw_bytes": [
+        "0",
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

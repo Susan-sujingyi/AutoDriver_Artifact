@@ -1,0 +1,16 @@
+name: autodriver-all44
+methods: [autodriver]
+tasks: all44
+conditions: [SD]
+repetitions: 1
+variant: full
+model: YOUR_MODEL
+budget:
+  total_cny: 880
+  trial:
+    cny: 20
+    seconds: 1800
+    requests: 64
+    code_repairs: 4
+    candidate_checks: 5
+    public_native_builds: 5

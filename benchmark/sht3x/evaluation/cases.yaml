@@ -1,0 +1,450 @@
+{
+  "schema": "driverbench_sht30_vectors/v2",
+  "device": "SHT30",
+  "document": "SHT3x-DIS December2022 Version7",
+  "evidence_pages": [
+    10,
+    14
+  ],
+  "vectors": [
+    {
+      "id": "cold_low_humidity",
+      "raw": {
+        "temperature": 1873,
+        "humidity": 100
+      },
+      "bytes": [
+        7,
+        81,
+        96,
+        0,
+        100,
+        254
+      ],
+      "expected": {
+        "temperature_centi_c": -4000,
+        "humidity_centi_percent": 15
+      },
+      "manual": {
+        "temperature_numerator": -262130000,
+        "humidity_numerator": 1000000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "negative_temperature",
+      "raw": {
+        "temperature": 10000,
+        "humidity": 50000
+      },
+      "bytes": [
+        39,
+        16,
+        176,
+        195,
+        80,
+        120
+      ],
+      "expected": {
+        "temperature_centi_c": -1830,
+        "humidity_centi_percent": 7629
+      },
+      "manual": {
+        "temperature_numerator": -119907500,
+        "humidity_numerator": 500000000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "below_freezing",
+      "raw": {
+        "temperature": 16851,
+        "humidity": 32767
+      },
+      "bytes": [
+        65,
+        211,
+        171,
+        127,
+        255,
+        143
+      ],
+      "expected": {
+        "temperature_centi_c": -1,
+        "humidity_centi_percent": 4999
+      },
+      "manual": {
+        "temperature_numerator": -15000,
+        "humidity_numerator": 327670000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "above_freezing",
+      "raw": {
+        "temperature": 16852,
+        "humidity": 32768
+      },
+      "bytes": [
+        65,
+        212,
+        60,
+        128,
+        0,
+        162
+      ],
+      "expected": {
+        "temperature_centi_c": 0,
+        "humidity_centi_percent": 5000
+      },
+      "manual": {
+        "temperature_numerator": 2500,
+        "humidity_numerator": 327680000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "signed_boundary_low",
+      "raw": {
+        "temperature": 32767,
+        "humidity": 65534
+      },
+      "bytes": [
+        127,
+        255,
+        143,
+        255,
+        254,
+        157
+      ],
+      "expected": {
+        "temperature_centi_c": 4249,
+        "humidity_centi_percent": 9999
+      },
+      "manual": {
+        "temperature_numerator": 278515000,
+        "humidity_numerator": 655340000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "signed_boundary_high",
+      "raw": {
+        "temperature": 32768,
+        "humidity": 32768
+      },
+      "bytes": [
+        128,
+        0,
+        162,
+        128,
+        0,
+        162
+      ],
+      "expected": {
+        "temperature_centi_c": 4250,
+        "humidity_centi_percent": 5000
+      },
+      "manual": {
+        "temperature_numerator": 278532500,
+        "humidity_numerator": 327680000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "manufacturer_crc_word",
+      "raw": {
+        "temperature": 48879,
+        "humidity": 48879
+      },
+      "bytes": [
+        190,
+        239,
+        146,
+        190,
+        239,
+        146
+      ],
+      "expected": {
+        "temperature_centi_c": 8552,
+        "humidity_centi_percent": 7458
+      },
+      "manual": {
+        "temperature_numerator": 560475000,
+        "humidity_numerator": 488790000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "room_conditions",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 39321
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        153,
+        153,
+        190
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 6000
+      },
+      "manual": {
+        "temperature_numerator": 163837500,
+        "humidity_numerator": 393210000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "alternating_bits",
+      "raw": {
+        "temperature": 21930,
+        "humidity": 43605
+      },
+      "bytes": [
+        85,
+        170,
+        54,
+        170,
+        85,
+        27
+      ],
+      "expected": {
+        "temperature_centi_c": 1356,
+        "humidity_centi_percent": 6653
+      },
+      "manual": {
+        "temperature_numerator": 88867500,
+        "humidity_numerator": 436050000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "humidity_minimum",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 0
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        0,
+        0,
+        129
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 0
+      },
+      "classification": "rated_range_with_humidity_encoding_boundary"
+    },
+    {
+      "id": "humidity_maximum",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 65535
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        255,
+        255,
+        172
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 10000
+      },
+      "classification": "rated_range_with_humidity_encoding_boundary"
+    },
+    {
+      "id": "humidity_one_count",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 1
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        0,
+        1,
+        176
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 0
+      },
+      "classification": "rated_range_with_humidity_encoding_boundary"
+    },
+    {
+      "id": "humidity_low_byte_max",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 255
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        0,
+        255,
+        45
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 38
+      },
+      "classification": "rated_range_with_humidity_encoding_boundary"
+    },
+    {
+      "id": "humidity_high_byte_one",
+      "raw": {
+        "temperature": 26214,
+        "humidity": 256
+      },
+      "bytes": [
+        102,
+        102,
+        147,
+        1,
+        0,
+        117
+      ],
+      "expected": {
+        "temperature_centi_c": 2500,
+        "humidity_centi_percent": 39
+      },
+      "classification": "rated_range_with_humidity_encoding_boundary"
+    }
+  ],
+  "numeric_notes": "Core uses exact rational \u00b11 native unit, rated temperature and RH0..100. Out-of-temperature-range encoding probes diagnostic/oracle only; original vectors retained.",
+  "encoding_boundary_vectors": [
+    {
+      "id": "encoding_minima",
+      "raw": {
+        "temperature": 0,
+        "humidity": 0
+      },
+      "bytes": [
+        0,
+        0,
+        129,
+        0,
+        0,
+        129
+      ],
+      "expected": {
+        "temperature_centi_c": -4500,
+        "humidity_centi_percent": 0
+      },
+      "manual": {
+        "temperature_numerator": -294907500,
+        "humidity_numerator": 0,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "encoding_maxima",
+      "raw": {
+        "temperature": 65535,
+        "humidity": 65535
+      },
+      "bytes": [
+        255,
+        255,
+        172,
+        255,
+        255,
+        172
+      ],
+      "expected": {
+        "temperature_centi_c": 13000,
+        "humidity_centi_percent": 10000
+      },
+      "manual": {
+        "temperature_numerator": 851955000,
+        "humidity_numerator": 655350000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "one_raw_count",
+      "raw": {
+        "temperature": 1,
+        "humidity": 1
+      },
+      "bytes": [
+        0,
+        1,
+        176,
+        0,
+        1,
+        176
+      ],
+      "expected": {
+        "temperature_centi_c": -4500,
+        "humidity_centi_percent": 0
+      },
+      "manual": {
+        "temperature_numerator": -294890000,
+        "humidity_numerator": 10000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "low_bytes_max",
+      "raw": {
+        "temperature": 255,
+        "humidity": 255
+      },
+      "bytes": [
+        0,
+        255,
+        45,
+        0,
+        255,
+        45
+      ],
+      "expected": {
+        "temperature_centi_c": -4432,
+        "humidity_centi_percent": 38
+      },
+      "manual": {
+        "temperature_numerator": -290445000,
+        "humidity_numerator": 2550000,
+        "denominator": 65535
+      }
+    },
+    {
+      "id": "high_bytes_one",
+      "raw": {
+        "temperature": 256,
+        "humidity": 256
+      },
+      "bytes": [
+        1,
+        0,
+        117,
+        1,
+        0,
+        117
+      ],
+      "expected": {
+        "temperature_centi_c": -4432,
+        "humidity_centi_percent": 39
+      },
+      "manual": {
+        "temperature_numerator": -290427500,
+        "humidity_numerator": 2560000,
+        "denominator": 65535
+      }
+    }
+  ]
+}

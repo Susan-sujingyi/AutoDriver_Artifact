@@ -1,0 +1,48 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "MPU6050",
+  "manufacturer": "InvenSense Inc. (now TDK)",
+  "document_title": "MPU-6000/MPU-6050 Product Specification",
+  "document_id": "PS-MPU-6000A-00",
+  "revision": "3.4",
+  "revision_date": "2013-08-19",
+  "page_count": 52,
+  "official_url": "https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+  "retrieved_from": "https://upcommons.upc.edu/bitstreams/3fa54bb7-f092-49df-b0ed-b45fd40041cc/download",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Manufacturer-authored 52-page document acquired from Universitat Politecnica de Catalunya repository. PDF metadata Microsoft Word 2010, created/modified2013-09-17. Official old endpoint returned HTML; current product.tdk.com endpoint returned403.",
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "text_checked_pages": [
+    1,
+    12,
+    13
+  ],
+  "visually_checked_pages": [
+    13
+  ],
+  "copyright": "Original manufacturer technical literature and notices retained. No open-source license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "a4fdf69590b8cbab1cf0a5bcd359327b0ac022061fb233855aff2e191e7e3584",
+      "bytes": 1637351
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "acb5896137caf1c75e88d7b232842e8d36beead46fda40835cfd740f392fd156",
+      "bytes": 168166
+    },
+    {
+      "path": "pages.json",
+      "sha256": "fca93f898981ecec13797ab01f02ac7647a56eac95d2cf63c39c151ca76820ef",
+      "bytes": 4770
+    }
+  ],
+  "review_note": "Lists narrowed to contract-critical pages actually relied on by this evaluator; broad earlier extraction list was not a claim of full document verification."
+}

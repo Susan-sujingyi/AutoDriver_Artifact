@@ -1,0 +1,623 @@
+--- /dev/null
++++ b/boards/components/src/dht11.rs
+@@ -0,0 +1,25 @@
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// SPDX-License-Identifier: Apache-2.0 OR MIT
++//! Fixed resource wiring, without sensor protocol or conversion logic.
++use core::mem::MaybeUninit;
++use kernel::component::Component;
++use kernel::hil::{gpio,time};
++use capsules_extra::dht11::Dht11;
++#[macro_export]
++macro_rules! dht11_component_static {
++    ($P:ty,$A:ty $(,)?) => {kernel::static_buf!(capsules_extra::dht11::Dht11<'static,$P,$A>)};
++}
++pub struct Dht11Component<P:'static+gpio::InterruptPin<'static>,A:'static+time::Alarm<'static>> {
++    pin:&'static P,alarm:&'static A,sampler:&'static dyn kernel::hil::waveform::Capture,buffer:&'static mut [u8],
++}
++impl<P:'static+gpio::InterruptPin<'static>,A:'static+time::Alarm<'static>> Dht11Component<P,A>{
++    pub fn new(pin:&'static P,alarm:&'static A,sampler:&'static dyn kernel::hil::waveform::Capture,buffer:&'static mut [u8])->Self{Self{pin,alarm,sampler,buffer}}
++}
++impl<P:'static+gpio::InterruptPin<'static>,A:'static+time::Alarm<'static>> Component for Dht11Component<P,A>{
++    type StaticInput=&'static mut MaybeUninit<Dht11<'static,P,A>>;
++    type Output=&'static Dht11<'static,P,A>;
++    fn finalize(self,s:Self::StaticInput)->Self::Output{
++        let d=s.write(Dht11::new(self.pin,self.alarm));
++        d.set_sampler(self.sampler,self.buffer);self.pin.set_client(d);self.alarm.set_alarm_client(d);let _=d.startup();d
++    }
++}
+--- a/boards/components/src/lib.rs
++++ b/boards/components/src/lib.rs
+@@ -10,17 +10,12 @@
+ pub mod air_quality;
+ pub mod alarm;
+ pub mod analog_comparator;
+-pub mod apds9960;
+ pub mod app_flash_driver;
+ pub mod appid;
+ pub mod ble;
+-pub mod bme280;
+-pub mod bmm150;
+-pub mod bmp280;
+ pub mod bus;
+ pub mod button;
+ pub mod can;
+-pub mod ccs811;
+ pub mod cdc;
+ pub mod console;
+ pub mod crc;
+@@ -41,7 +36,6 @@
+ pub mod humidity;
+ pub mod i2c;
+ pub mod ieee802154;
+-pub mod isl29035;
+ pub mod keyboard_hid;
+ pub mod kv;
+ pub mod l3gd20;
+@@ -49,11 +43,6 @@
+ pub mod led_matrix;
+ pub mod lldb;
+ pub mod lpm013m126;
+-pub mod lps22hb;
+-pub mod lps25hb;
+-pub mod lsm303agr;
+-pub mod lsm303dlhc;
+-pub mod lsm6dsox;
+ pub mod ltc294x;
+ pub mod mlx90614;
+ pub mod mx25r6435f;
+@@ -72,8 +61,6 @@
+ pub mod screen;
+ pub mod segger_rtt;
+ pub mod sha;
+-pub mod sht3x;
+-pub mod sht4x;
+ pub mod si7021;
+ pub mod siphash;
+ pub mod sound_pressure;
+@@ -91,3 +78,5 @@
+ pub mod udp_driver;
+ pub mod udp_mux;
+ pub mod usb;
++
++pub mod dht11;
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -180,19 +180,14 @@
+ type VirtualKVPermissions = components::kv::VirtualKVPermissionsComponentType<KVStorePermissions>;
+ type KVDriver = components::kv::KVDriverComponentType<VirtualKVPermissions>;
+ 
+-type AirQualityDriver = capsules_extra::air_quality::AirQualitySensor<'static>;
+-type AmbientLightDriver = capsules_extra::ambient_light::AmbientLight<'static>;
+ type BME280I2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type BME280Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
+-type BME280Sensor = components::bme280::Bme280ComponentType<BME280I2CDevice, BME280Alarm>;
+-type TemperatureDriver = components::temperature::TemperatureComponentType<BME280Sensor>;
+-type HumidityDriver = components::humidity::HumidityComponentType<BME280Sensor>;
++type Dht11Sensor = capsules_extra::dht11::Dht11<'static,nrf52840::gpio::GPIOPin<'static>,nrf52840::timer::MicrosecondAlarm<'static>>;
++type TemperatureDriver = components::temperature::TemperatureComponentType<Dht11Sensor>;
++type HumidityDriver = components::humidity::HumidityComponentType<Dht11Sensor>;
+ type Lps22hbI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+-type Lps22hbSensor = capsules_extra::lps22hb::Lps22hb<'static, Lps22hbI2CDevice>;
+-type PressureDriver = capsules_extra::pressure::PressureSensor<'static, Lps22hbSensor>;
+-type ProximityDriver = capsules_extra::proximity::ProximitySensor<'static>;
+ 
+ type Ieee802154MacDevice = components::ieee802154::Ieee802154ComponentMacDeviceType<
+     nrf52840::ieee802154_radio::Radio<'static>,
+@@ -229,10 +224,6 @@
+     adc: &'static capsules_core::adc::AdcDedicated<'static, nrf52840::adc::Adc<'static>>,
+     temp: &'static TemperatureDriver,
+     humidity: &'static HumidityDriver,
+-    air_quality: &'static AirQualityDriver,
+-    ambient_light: &'static AmbientLightDriver,
+-    pressure: &'static PressureDriver,
+-    proximity: &'static ProximityDriver,
+     ipc: kernel::ipc::IPC<{ NUM_PROCS as u8 }>,
+     analog_comparator: &'static capsules_extra::analog_comparator::AnalogComparator<
+         'static,
+@@ -273,10 +264,6 @@
+             capsules_extra::ieee802154::DRIVER_NUM => f(Some(self.ieee802154_radio)),
+             capsules_extra::temperature::DRIVER_NUM => f(Some(self.temp)),
+             capsules_extra::humidity::DRIVER_NUM => f(Some(self.humidity)),
+-            capsules_extra::air_quality::DRIVER_NUM => f(Some(self.air_quality)),
+-            capsules_extra::ambient_light::DRIVER_NUM => f(Some(self.ambient_light)),
+-            capsules_extra::pressure::DRIVER_NUM => f(Some(self.pressure)),
+-            capsules_extra::proximity::DRIVER_NUM => f(Some(self.proximity)),
+             capsules_extra::analog_comparator::DRIVER_NUM => f(Some(self.analog_comparator)),
+             capsules_extra::net::udp::DRIVER_NUM => f(Some(self.udp_driver)),
+             kernel::ipc::DRIVER_NUM => f(Some(&self.ipc)),
+@@ -428,9 +415,6 @@
+             2 => &nrf52840_peripherals.gpio_port[Pin::P1_03],
+             3 => &nrf52840_peripherals.gpio_port[Pin::P1_04],
+             4 => &nrf52840_peripherals.gpio_port[Pin::P1_05],
+-            5 => &nrf52840_peripherals.gpio_port[Pin::P1_06],
+-            6 => &nrf52840_peripherals.gpio_port[Pin::P1_07],
+-            7 => &nrf52840_peripherals.gpio_port[Pin::P1_08],
+             8 => &nrf52840_peripherals.gpio_port[Pin::P1_10],
+             9 => &nrf52840_peripherals.gpio_port[Pin::P1_11],
+             10 => &nrf52840_peripherals.gpio_port[Pin::P1_12],
+@@ -802,74 +786,35 @@
+     let sensors_i2c = components::i2c::I2CMuxComponent::new(&base_peripherals.twi1, None)
+         .finalize(components::i2c_mux_component_static!(nrf52840::i2c::TWI));
+ 
+-    let ccs811 = components::ccs811::Ccs811Component::new(sensors_i2c, mux_alarm, 0x5A)
+-        .finalize(components::ccs811_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
+-
+-    let air_quality = components::air_quality::AirQualityComponent::new(
+-        board_kernel,
+-        capsules_extra::air_quality::DRIVER_NUM,
+-        ccs811,
+-    )
+-    .finalize(components::air_quality_component_static!());
+-
+-    let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x76)
+-        .finalize(components::bme280_component_static!(
+-            nrf52840::rtc::Rtc,
+-            nrf52840::i2c::TWI
+-        ));
++
++
++
++    // Fixed platform resources: TIMER1 alarm; SPIM2/TIMER2/PPI14,15/GPIOTE7 capture.
++    // P1.06 release, P1.07 input (same wire), P1.08 clock (unconnected).
++    base_peripherals.timer1.start();
++    let capture_buffer = kernel::static_init!([u8;2048],[0;2048]);
++    let dht11 = components::dht11::Dht11Component::new(&gpio_port[Pin::P1_06], &base_peripherals.timer1, &base_peripherals.wave_capture, capture_buffer)
++        .finalize(components::dht11_component_static!(nrf52840::gpio::GPIOPin, nrf52840::timer::MicrosecondAlarm));
+ 
+     let temp = components::temperature::TemperatureComponent::new(
+         board_kernel,
+         capsules_extra::temperature::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::temperature_component_static!(BME280Sensor));
++        dht11,
++    )
++    .finalize(components::temperature_component_static!(Dht11Sensor));
+ 
+     let humidity = components::humidity::HumidityComponent::new(
+         board_kernel,
+         capsules_extra::humidity::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::humidity_component_static!(BME280Sensor));
+-
+-    let isl29035 = components::isl29035::Isl29035Component::new(sensors_i2c, mux_alarm).finalize(
+-        components::isl29035_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI),
+-    );
+-
+-    let ambient_light = components::isl29035::AmbientLightComponent::new(
+-        board_kernel,
+-        capsules_extra::ambient_light::DRIVER_NUM,
+-        isl29035,
+-    )
+-    .finalize(components::ambient_light_component_static!());
+-
+-    let lps22hb = components::lps22hb::Lps22hbComponent::new(sensors_i2c, 0x5C)
+-        .finalize(components::lps22hb_component_static!(nrf52840::i2c::TWI));
+-
+-    let pressure = components::pressure::PressureComponent::new(
+-        board_kernel,
+-        capsules_extra::pressure::DRIVER_NUM,
+-        lps22hb,
+-    )
+-    .finalize(components::pressure_component_static!(Lps22hbSensor));
+-
+-    let apds9960 = components::apds9960::Apds9960Component::new(
+-        sensors_i2c,
+-        mux_alarm,
+-        0x39,
+-        &gpio_port[APDS9960_INT_PIN],
+-    )
+-    .finalize(components::apds9960_component_static!(
+-        nrf52840::rtc::Rtc,
+-        nrf52840::i2c::TWI
+-    ));
+-
+-    let proximity = components::proximity::ProximityComponent::new(
+-        apds9960,
+-        board_kernel,
+-        capsules_extra::proximity::DRIVER_NUM,
+-    )
+-    .finalize(components::proximity_component_static!());
++        dht11,
++    )
++    .finalize(components::humidity_component_static!(Dht11Sensor));
++
++
++
++
++
++
+ 
+     //--------------------------------------------------------------------------
+     // ANALOG COMPARATOR
+@@ -962,10 +907,6 @@
+         adc,
+         temp,
+         humidity,
+-        air_quality,
+-        ambient_light,
+-        pressure,
+-        proximity,
+         alarm,
+         analog_comparator,
+         thread_driver,
+--- a/capsules/extra/src/lib.rs
++++ b/capsules/extra/src/lib.rs
+@@ -16,18 +16,13 @@
+ pub mod ambient_light;
+ pub mod analog_comparator;
+ pub mod analog_sensor;
+-pub mod apds9960;
+ pub mod app_flash_driver;
+ pub mod at24c_eeprom;
+ pub mod ble_advertising_driver;
+-pub mod bme280;
+-pub mod bmm150;
+-pub mod bmp280;
+ pub mod bus;
+ pub mod buzzer_driver;
+ pub mod buzzer_pwm;
+ pub mod can;
+-pub mod ccs811;
+ pub mod crc;
+ pub mod dac;
+ pub mod date_time;
+@@ -43,19 +38,12 @@
+ pub mod hts221;
+ pub mod humidity;
+ pub mod ieee802154;
+-pub mod isl29035;
+ pub mod kv_driver;
+ pub mod kv_store_permissions;
+ pub mod l3gd20;
+ pub mod led_matrix;
+ pub mod log;
+ pub mod lpm013m126;
+-pub mod lps22hb;
+-pub mod lps25hb;
+-pub mod lsm303agr;
+-pub mod lsm303dlhc;
+-pub mod lsm303xx;
+-pub mod lsm6dsoxtr;
+ pub mod ltc294x;
+ pub mod max17205;
+ pub mod mcp230xx;
+@@ -81,8 +69,6 @@
+ pub mod seven_segment;
+ pub mod sha;
+ pub mod sha256;
+-pub mod sht3x;
+-pub mod sht4x;
+ pub mod si7021;
+ pub mod sip_hash;
+ pub mod sound_pressure;
+@@ -100,3 +86,5 @@
+ pub mod usb;
+ pub mod usb_hid_driver;
+ pub mod virtual_kv;
++
++pub mod dht11;
+--- a/chips/nrf52/src/chip.rs
++++ b/chips/nrf52/src/chip.rs
+@@ -36,7 +36,7 @@
+     pub rtc: crate::rtc::Rtc<'a>,
+     pub temp: crate::temperature::Temp<'a>,
+     pub timer0: crate::timer::TimerAlarm<'a>,
+-    pub timer1: crate::timer::TimerAlarm<'a>,
++    pub timer1: crate::timer::MicrosecondAlarm<'a>,
+     pub timer2: crate::timer::Timer,
+     pub uarte0: crate::uart::Uarte<'a>,
+     pub spim0: crate::spi::SPIM<'a>,
+@@ -44,6 +44,7 @@
+     pub spim1: crate::spi::SPIM<'a>,
+     pub twi1: crate::i2c::TWI<'a>,
+     pub spim2: crate::spi::SPIM<'a>,
++    pub wave_capture: crate::wave_capture::Sampler<crate::wave_capture::Mmio>,
+     pub adc: crate::adc::Adc<'a>,
+     pub nvmc: crate::nvmc::Nvmc,
+     pub clock: crate::clock::Clock,
+@@ -61,7 +62,7 @@
+             rtc: crate::rtc::Rtc::new(),
+             temp: crate::temperature::Temp::new(),
+             timer0: crate::timer::TimerAlarm::new(0),
+-            timer1: crate::timer::TimerAlarm::new(1),
++            timer1: crate::timer::MicrosecondAlarm::new(1),
+             timer2: crate::timer::Timer::new(2),
+             uarte0: crate::uart::Uarte::new(crate::uart::UARTE0_BASE),
+             spim0: crate::spi::SPIM::new(0),
+@@ -69,6 +70,7 @@
+             spim1: crate::spi::SPIM::new(1),
+             twi1: crate::i2c::TWI::new_twi1(),
+             spim2: crate::spi::SPIM::new(2),
++            wave_capture: crate::wave_capture::Sampler::new(crate::wave_capture::Mmio),
+             // Default to 3.3 V VDD reference.
+             adc: crate::adc::Adc::new(3300),
+             nvmc: crate::nvmc::Nvmc::new(),
+@@ -126,7 +128,7 @@
+                     ),
+                 }
+             }
+-            crate::peripheral_interrupts::SPIM2_SPIS2_SPI2 => self.spim2.handle_interrupt(),
++            crate::peripheral_interrupts::SPIM2_SPIS2_SPI2 => self.wave_capture.handle_interrupt(),
+             crate::peripheral_interrupts::ADC => self.adc.handle_interrupt(),
+             _ => return false,
+         }
+--- a/chips/nrf5x/src/timer.rs
++++ b/chips/nrf5x/src/timer.rs
+@@ -366,3 +366,80 @@
+         Self::Ticks::from(10)
+     }
+ }
++
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// SPDX-License-Identifier: Apache-2.0 OR MIT
++// This addition is applied inside nrf5x::timer by the task's board resource patch.
++// General-purpose, free-running 1 MHz alarm; no sensor framing or decoding.
++/// Exclusive timer instance. CC0 captures time and CC1 schedules an alarm.
++/// The peripheral remains running across alarms, so GPIO clients can timestamp edges.
++pub struct MicrosecondAlarm<'a> {
++    registers: StaticRef<TimerRegisters>,
++    client: OptionalCell<&'a dyn hil::time::AlarmClient>,
++}
++impl<'a> MicrosecondAlarm<'a> {
++    pub const fn new(instance: usize) -> Self {
++        Self { registers: INSTANCES[instance], client: OptionalCell::empty() }
++    }
++    /// Called once by board wiring before exposing this timer to clients.
++    pub fn start(&self) {
++        let r = &*self.registers;
++        r.tasks_stop.write(Task::ENABLE::SET);
++        r.intenclr.set(0xffff_ffff);
++        r.shorts.set(0);
++        r.mode.set(0); // Timer mode, not event-counter mode.
++        r.bitmode.write(Bitmode::BITMODE::Bit32);
++        r.prescaler.set(4); // Nordic TIMER base 16 MHz / 2^4 = 1 MHz.
++        for event in &r.events_compare { event.write(Event::READY::CLEAR); }
++        r.tasks_clear.write(Task::ENABLE::SET);
++        r.tasks_start.write(Task::ENABLE::SET);
++    }
++    pub fn handle_interrupt(&self) {
++        let r = &*self.registers;
++        if r.events_compare[CC_COMPARE].is_set(Event::READY) {
++            let armed = self.is_armed();
++            r.intenclr.write(Inte::COMPARE1::SET);
++            r.events_compare[CC_COMPARE].write(Event::READY::CLEAR);
++            if armed { self.client.map(|c| c.alarm()); }
++        }
++    }
++}
++impl Time for MicrosecondAlarm<'_> {
++    type Frequency = hil::time::Freq1MHz;
++    type Ticks = hil::time::Ticks32;
++    fn now(&self) -> Self::Ticks {
++        self.registers.tasks_capture[CC_CAPTURE].write(Task::ENABLE::SET);
++        Self::Ticks::from(self.registers.cc[CC_CAPTURE].get())
++    }
++}
++impl<'a> Alarm<'a> for MicrosecondAlarm<'a> {
++    fn set_alarm_client(&self, c: &'a dyn hil::time::AlarmClient) { self.client.set(c); }
++    fn set_alarm(&self, reference: Self::Ticks, dt: Self::Ticks) {
++        let r = &*self.registers;
++        r.intenclr.write(Inte::COMPARE1::SET);
++        r.events_compare[CC_COMPARE].write(Event::READY::CLEAR);
++        let now = self.now();
++        let mut end = reference.wrapping_add(dt);
++        if !now.within_range(reference, end) || end.wrapping_sub(now).into_u32() < 10 {
++            end = now.wrapping_add(Self::Ticks::from(10));
++        }
++        r.cc[CC_COMPARE].set(end.into_u32());
++        r.intenset.write(Inte::COMPARE1::SET);
++        // Close the race where setup crossed the compare value. Clearing a late
++        // compare is safe only while disabled; re-arm ahead of the current time.
++        let later = self.now();
++        if !later.within_range(now, end) && !r.events_compare[CC_COMPARE].is_set(Event::READY) {
++            r.intenclr.write(Inte::COMPARE1::SET);
++            r.cc[CC_COMPARE].set(later.wrapping_add(Self::Ticks::from(10)).into_u32());
++            r.intenset.write(Inte::COMPARE1::SET);
++        }
++    }
++    fn get_alarm(&self) -> Self::Ticks { Self::Ticks::from(self.registers.cc[CC_COMPARE].get()) }
++    fn disarm(&self) -> Result<(), ErrorCode> {
++        self.registers.intenclr.write(Inte::COMPARE1::SET);
++        self.registers.events_compare[CC_COMPARE].write(Event::READY::CLEAR);
++        Ok(())
++    }
++    fn is_armed(&self) -> bool { self.registers.intenset.is_set(Inte::COMPARE1) }
++    fn minimum_dt(&self) -> Self::Ticks { Self::Ticks::from(10) }
++}
+--- /dev/null
++++ b/kernel/src/hil/waveform.rs
+@@ -0,0 +1,31 @@
++// SPDX-License-Identifier: Apache-2.0
++//! Finite asynchronous sampled digital input provided by the board.
++use crate::ErrorCode;
++#[derive(Clone, Copy, Debug, PartialEq)]
++pub enum Status { Complete, Cancelled, Short, Timing, Hardware }
++#[derive(Clone, Copy, Debug)]
++pub struct Report {
++    pub status: Status, pub bytes: usize, pub sample_period_ns: u32,
++    pub elapsed_us: u32, pub generation: u32,
++}
++pub trait Client {
++    fn captured(&self, buffer: &'static mut [u8], report: Report);
++}
++/// The platform owns a fixed input and a separate open-drain release output.
++/// start() prepares finite MSB-first acquisition and releases that output at
++/// hardware STARTED. No protocol parsing. No synchronous success callback.
++/// Caller holds output low before start; the board fixes exclusive resources.
++/// Buffer remains exclusively owned until captured(). cancel() is asynchronous:
++/// if hardware never acknowledges STOP, buffer stays quarantined, never reused.
++pub trait Capture {
++    fn set_client(&self, client: &'static dyn Client);
++    fn start(&self, buffer: &'static mut [u8]) -> Result<(), (ErrorCode, &'static mut [u8])>;
++    fn cancel(&self) -> Result<(), ErrorCode>;
++    fn busy(&self) -> bool;
++}
++
++// Samples are packed MSB first. The fixed board backend produces 1 us samples.
++// Completion reports transport validity, not application protocol correctness.
++// A successful start transfers the buffer until exactly one completion; on a
++// synchronous error the original buffer is returned and no callback occurs.
++// Clients must not busy-wait for completion or assume callbacks run inline.
+--- /dev/null
++++ b/chips/nrf52/src/wave_capture.rs
+@@ -0,0 +1,130 @@
++// SPDX-License-Identifier: Apache-2.0
++//! nRF52840 SPIM2 sampled-line acquisition. No DHT knowledge.
++//! Exclusive P1.06 release, P1.07 input, P1.08 clock, TIMER2,
++//! GPIOTE7, PPI14/15. These resources MUST NOT be shared during acquisition.
++use core::cell::Cell;
++use core::sync::atomic::{fence, Ordering};
++use kernel::hil::waveform::{Capture, Client, Report, Status};
++use kernel::utilities::cells::{OptionalCell, TakeCell};
++use kernel::ErrorCode;
++pub const SPI: usize = 0x40023000;
++pub const PPI: usize = 0x4001f000;
++pub const GPIOTE: usize = 0x40006000;
++pub const GPIO: usize = 0x50000300; // port 1
++pub const TIMER: usize = 0x4000a000; // TIMER2
++const MASK: usize = (1 << 14) | (1 << 15);
++const CONFIG7: usize = GPIOTE + 0x510 + 7 * 4;
++pub const STARTED: usize = SPI + 0x14c;
++pub const END: usize = SPI + 0x118;
++pub const ENDRX: usize = SPI + 0x110;
++pub const STOPPED: usize = SPI + 0x104;
++/// Abstract register access permits the identical state/ownership implementation
++/// to execute against a fault-injecting host register model.
++pub trait Registers { fn read(&self, addr: usize) -> usize; fn write(&self, addr: usize, value: usize); }
++pub struct Mmio;
++impl Registers for Mmio {
++    fn read(&self, a: usize) -> usize { unsafe { core::ptr::read_volatile(a as *const u32) as usize } }
++    fn write(&self, a: usize, v: usize) { unsafe { core::ptr::write_volatile(a as *mut u32, v as u32) } }
++}
++#[derive(Clone, Copy, PartialEq, Debug)]
++enum State { Idle, Active, Stopping }
++pub struct Sampler<I: Registers> {
++    pub io: I, state: Cell<State>, buffer: TakeCell<'static, [u8]>,
++    client: OptionalCell<&'static dyn Client>, generation: Cell<u32>,
++}
++impl<I: Registers> Sampler<I> {
++    pub fn new(io: I) -> Self { Self { io, state: Cell::new(State::Idle), buffer: TakeCell::empty(), client: OptionalCell::empty(), generation: Cell::new(0) } }
++    fn free(&self) -> bool {
++        if self.io.read(SPI+0x500)!=0 || self.io.read(CONFIG7)!=0 || self.io.read(PPI+0x500)&MASK!=0 { return false; }
++        for ch in [14,15] {
++            if self.io.read(PPI+0x510+ch*8)!=0 || self.io.read(PPI+0x514+ch*8)!=0 || self.io.read(PPI+0x910+ch*4)!=0 { return false; }
++            for group in 0..6 { if self.io.read(PPI+0x800+group*4)&(1<<ch)!=0 {return false;} }
++        }
++        true
++    }
++    fn cleanup(&self) {
++        self.io.write(SPI+0x308, usize::MAX);
++        self.io.write(PPI+0x508, MASK);
++        self.io.write(SPI+0x500, 0); // only after END or STOPPED proves DMA finished
++        self.io.write(TIMER+0x004, 1);
++        // Set GPIO's fallback latch high before disconnecting GPIOTE.
++        self.io.write(GPIO+0x508,1<<6);
++        self.io.write(CONFIG7,0);
++        self.io.write(GPIO+0x700+6*4,0); // released input, no pull
++        for ch in [14,15] {
++            self.io.write(PPI+0x510+ch*8,0);self.io.write(PPI+0x514+ch*8,0);self.io.write(PPI+0x910+ch*4,0);
++        }
++        for event in [STARTED,END,ENDRX,STOPPED,SPI+0x120] {self.io.write(event,0);}
++    }
++    pub fn handle_interrupt(&self) {
++        let state=self.state.get();
++        if state==State::Idle {return;}
++        let end=self.io.read(END)!=0;
++        let stopped=self.io.read(STOPPED)!=0;
++        // ENDRX can be raised on STOP even for partial buffers. END alone while
++        // cancelling does not permit disable: wait for STOPPED as specified.
++        if state==State::Stopping && !stopped {return;}
++        if state==State::Active && !end && !stopped {return;}
++        let amount=self.io.read(SPI+0x53c);
++        let elapsed=(self.io.read(TIMER+0x544) as u32).wrapping_sub(self.io.read(TIMER+0x540) as u32);
++        let started=self.io.read(STARTED)!=0;
++        let received=self.io.read(ENDRX)!=0;
++        let len=self.buffer.map_or(0,|b|b.len());
++        let status=if state==State::Stopping {Status::Cancelled}
++            else if !end || !started || !received {Status::Hardware}
++            else if amount!=len {Status::Short}
++            else if elapsed.abs_diff((len*8)as u32)>32 {Status::Timing}
++            else {Status::Complete};
++        // Stop state is visible before any callback; buffers cannot be reused
++        // until the DMA has stopped. All stale events cleared before reentry.
++        self.cleanup();fence(Ordering::SeqCst);
++        let buffer=self.buffer.take();self.state.set(State::Idle);
++        if let Some(buffer)=buffer {self.client.map(move |client|client.captured(buffer,Report {
++            status,bytes:amount,sample_period_ns:1000,elapsed_us:elapsed,generation:self.generation.get(),
++        }));}
++    }
++}
++impl<I: Registers> Capture for Sampler<I> {
++    fn set_client(&self,c:&'static dyn Client){if self.state.get()==State::Idle {self.client.set(c);}}
++    fn busy(&self)->bool{self.state.get()!=State::Idle}
++    fn start(&self,b:&'static mut [u8])->Result<(),(ErrorCode,&'static mut [u8])>{
++        if self.busy(){return Err((ErrorCode::BUSY,b));}
++        if self.client.is_none(){return Err((ErrorCode::OFF,b));}
++        if b.len()<2 || b.len()>2048 {return Err((ErrorCode::SIZE,b));}
++        if !self.free(){return Err((ErrorCode::BUSY,b));}
++        // No restart shortcut/list mode: exactly one fixed DMA buffer.
++        self.io.write(SPI+0x200,0);self.io.write(SPI+0x308,usize::MAX);
++        for event in [STARTED,END,ENDRX,STOPPED,SPI+0x120] {self.io.write(event,0);}
++        self.io.write(SPI+0x540,0);self.io.write(SPI+0x550,0);
++        self.io.write(GPIO+0x700+6*4,1|(6<<8)); // output, open drain S0D1, input connected
++        self.io.write(GPIO+0x700+7*4,0); // MISO input
++        self.io.write(GPIO+0x50c,1<<8);self.io.write(GPIO+0x700+8*4,1); // spare SCK output
++        // GPIOTE task output starts low, rises only at hardware STARTED.
++        self.io.write(GPIOTE+0x308,1<<7);self.io.write(GPIOTE+0x100+7*4,0);
++        self.io.write(CONFIG7,3|(38<<8));
++        self.io.write(SPI+0x508,40);self.io.write(SPI+0x50c,1<<31);self.io.write(SPI+0x510,39);
++        self.io.write(SPI+0x524,0x10000000); // 1 MHz
++        self.io.write(SPI+0x554,0); // mode 0, MSB first
++        self.io.write(SPI+0x544,0);self.io.write(SPI+0x548,0);self.io.write(SPI+0x5c0,0xff);
++        self.io.write(SPI+0x534,b.as_mut_ptr() as usize);self.io.write(SPI+0x538,b.len());
++        // Separate free-running timer: no software service needed while sampling.
++        self.io.write(TIMER+0x004,1);self.io.write(TIMER+0x308,usize::MAX);self.io.write(TIMER+0x200,0);
++        self.io.write(TIMER+0x504,0);self.io.write(TIMER+0x508,3);self.io.write(TIMER+0x510,4);
++        self.io.write(TIMER+0x00c,1);self.io.write(TIMER+0x000,1);
++        self.io.write(PPI+0x510+15*8,STARTED);self.io.write(PPI+0x514+15*8,GPIOTE+0x04c);
++        self.io.write(PPI+0x910+15*4,TIMER+0x040);
++        self.io.write(PPI+0x510+14*8,END);self.io.write(PPI+0x514+14*8,TIMER+0x044);
++        self.io.write(PPI+0x504,MASK);
++        self.buffer.replace(b);self.generation.set(self.generation.get().wrapping_add(1));self.state.set(State::Active);
++        fence(Ordering::SeqCst);
++        self.io.write(SPI+0x304,(1<<6)|(1<<1)); // END, STOPPED
++        self.io.write(SPI+0x500,7);
++        self.io.write(SPI+0x010,1);
++        Ok(())
++    }
++    fn cancel(&self)->Result<(),ErrorCode>{
++        if self.state.get()==State::Idle{return Err(ErrorCode::OFF);}
++        if self.state.get()==State::Stopping{return Err(ErrorCode::BUSY);}
++        self.state.set(State::Stopping);self.io.write(SPI+0x014,1);Ok(())
++    }
++}
+--- a/kernel/src/hil/mod.rs
++++ b/kernel/src/hil/mod.rs
+@@ -46,3 +46,5 @@
+ 
+     fn configure(&self, _: Self::Config);
+ }
++
++pub mod waveform;
+--- a/chips/nrf52/src/lib.rs
++++ b/chips/nrf52/src/lib.rs
+@@ -28,3 +28,5 @@
+ pub use nrf5x::{
+     aes, constants, gpio, peripheral_interrupts, pinmux, rtc, temperature, timer, trng,
+ };
++
++pub mod wave_capture;
+--- a/boards/nordic/nrf52840dk/Makefile
++++ b/boards/nordic/nrf52840dk/Makefile
+@@ -37,3 +37,6 @@
+ .PHONY: program
+ program: $(TOCK_ROOT_DIRECTORY)target/$(TARGET)/release/$(PLATFORM).hex
+ 	$(error Cannot program nRF52840DK over USB. Use \`make flash\` and JTAG)
++
++# Frozen target build configuration, applied equally to all candidates.
++RUSTC_FLAGS_TOCK += -Cllvm-args=--enable-machine-outliner=never

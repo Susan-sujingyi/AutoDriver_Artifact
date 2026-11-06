@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+#include <zephyr/dt-bindings/gpio/gpio.h>
+/ {
+    source_sensor: dht11 {
+        compatible = "aosong,dht";
+        dio-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+        status = "okay";
+    };
+};

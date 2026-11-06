@@ -1,0 +1,74 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/bmx280/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/Makefile.dep
+      sha256: fb00d3a98080a58353ed974d03f3441e4fd70066bf737c7b556bfdc9037722e4
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/Makefile.include
+      sha256: 8e145502ef0a90399d999e19657b1433e4c19390b43a6fda3d9b2cb19dc4264e
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/bmx280.c
+      sha256: d6224e928738711cc207e96192ce52292d162b554ea0ee5b9bf0cc162f9143eb
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/bmx280_saul.c
+      sha256: 235ee22540c89b429f8dcb0603fffb003c6ea77a43a385476876e0a9ee5d4611
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/include/bmx280_internals.h
+      sha256: 9831210577ed28c7ca3f2a03ce37adf794d34a4335d17fe6027595dd9dd91d50
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/include/bmx280_params.h
+      sha256: 771be3f74adf8a067abc096569ef6260641ef9ff7d9c5f617d43f109ee47ddee
+      role: driver_directory
+    - path: third_party/riot/drivers/include/bmx280.h
+      sha256: add2542b2e400fac230f8dfc477fb07bfc3084e68169283055ff50975bfd8675
+      role: public_header
+    configuration_files:
+    - benchmark/bme280/source/riot/i2c/configuration.h
+    - benchmark/bme280/source/riot/i2c/configuration.mk
+    validation: benchmark/bme280/source/riot/i2c/validation
+    modules:
+    - bme280_i2c
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.
+  spi:
+    selected_files:
+    - path: third_party/riot/drivers/bmx280/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/Makefile.dep
+      sha256: fb00d3a98080a58353ed974d03f3441e4fd70066bf737c7b556bfdc9037722e4
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/Makefile.include
+      sha256: 8e145502ef0a90399d999e19657b1433e4c19390b43a6fda3d9b2cb19dc4264e
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/bmx280.c
+      sha256: d6224e928738711cc207e96192ce52292d162b554ea0ee5b9bf0cc162f9143eb
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/bmx280_saul.c
+      sha256: 235ee22540c89b429f8dcb0603fffb003c6ea77a43a385476876e0a9ee5d4611
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/include/bmx280_internals.h
+      sha256: 9831210577ed28c7ca3f2a03ce37adf794d34a4335d17fe6027595dd9dd91d50
+      role: driver_directory
+    - path: third_party/riot/drivers/bmx280/include/bmx280_params.h
+      sha256: 771be3f74adf8a067abc096569ef6260641ef9ff7d9c5f617d43f109ee47ddee
+      role: driver_directory
+    - path: third_party/riot/drivers/include/bmx280.h
+      sha256: add2542b2e400fac230f8dfc477fb07bfc3084e68169283055ff50975bfd8675
+      role: public_header
+    configuration_files:
+    - benchmark/bme280/source/riot/spi/configuration.h
+    - benchmark/bme280/source/riot/spi/configuration.mk
+    validation: benchmark/bme280/source/riot/spi/validation
+    modules:
+    - bme280_spi
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

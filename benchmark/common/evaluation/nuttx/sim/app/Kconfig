@@ -1,0 +1,5 @@
+config SYSTEM_BENCH_EVALUATOR
+	bool "Independent driver behavior evaluator"
+	default n
+	select ARCH_HAVE_UDELAY
+	select ARCH_HAVE_DYNAMIC_UDELAY

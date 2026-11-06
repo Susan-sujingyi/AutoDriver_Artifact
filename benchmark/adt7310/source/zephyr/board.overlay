@@ -1,0 +1,11 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&spi0 {
+ status = "okay";
+ source_sensor: sensor@0 {
+  compatible = "adi,adt7310";
+  reg = <0>;
+  status = "okay";
+  spi-max-frequency = <1000000>;
+  spi-cpol; spi-cpha;
+ };
+};

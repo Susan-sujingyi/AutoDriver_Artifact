@@ -1,0 +1,18 @@
+{
+  "profile": "autodriver.model/adt7310/spi/v1",
+  "transport": "spi",
+  "limits": {
+    "build_seconds": 300,
+    "case_process_seconds": 5,
+    "startup_observation_us": 250000,
+    "request_observation_us": 1000000,
+    "stable_progress_us": 2000000,
+    "events_per_advance": 50000
+  },
+  "limitations": [
+    "Finite digital SPI model; single outstanding transaction, no mux arbitration or physical precision proof.",
+    "16-bit continuous temperature only; continuous-read SPI mode is unmodeled.",
+    "Transport/stall diagnostics do not mandate recovery.",
+    "Supervision windows are evaluation limits, not sensor hard real-time deadlines."
+  ]
+}

@@ -1,0 +1,224 @@
+--- a/boards/components/src/bme280.rs
++++ b/boards/components/src/bme280.rs
+@@ -1,108 +1,44 @@
+ // Licensed under the Apache License, Version 2.0 or the MIT License.
+-// SPDX-License-Identifier: Apache-2.0 OR MIT
+-// Copyright Tock Contributors 2022.
+-
+-//! Components for the BME280 Humidity, Pressure and Temperature Sensor.
+-//!
+-//! Usage
+-//! -----
+-//! ```rust
+-//!     let bme280 =
+-//!         Bme280Component::new(mux_i2c, mux_alarm, 0x77)
+-//!             .finalize(components::bme280_component_static!(sam4l::ast::Ast, sam4l::i2c::I2C));
+-//!     let temperature = components::temperature::TemperatureComponent::new(
+-//!         board_kernel,
+-//!         capsules_extra::temperature::DRIVER_NUM,
+-//!         bme280,
+-//!     )
+-//!     .finalize(components::temperature_component_static!());
+-//!     let humidity = components::humidity::HumidityComponent::new(
+-//!         board_kernel,
+-//!         capsules_extra::humidity::DRIVER_NUM,
+-//!         bme280,
+-//!     )
+-//!     .finalize(components::humidity_component_static!());
+-//! ```
+-
++// Resource wiring follows Tock Contributors' SPI and alarm components.
++//! Public resources and clients only; no sensor protocol or conversion logic.
+ use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
+-use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
++use capsules_core::virtualizers::virtual_spi::{MuxSpiMaster, VirtualSpiMasterDevice};
+ use capsules_extra::bme280::Bme280;
+ use core::mem::MaybeUninit;
+ use kernel::component::Component;
+-use kernel::hil::i2c;
++use kernel::hil::spi::{self, SpiMasterDevice};
+ use kernel::hil::time::{self, Alarm};
+-
+-// Setup static space for the objects.
+ #[macro_export]
+ macro_rules! bme280_component_static {
+-    ($A:ty, $I:ty $(,)?) => {{
+-        let alarm = kernel::static_buf!(
+-            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>
+-        );
+-        let i2c_device =
+-            kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+-        let i2c_buffer = kernel::static_buf!([u8; 26]);
+-        let bme280 = kernel::static_buf!(
+-            capsules_extra::bme280::Bme280<
+-                'static,
+-                capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>,
+-                capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
+-            >
+-        );
+-
+-        (alarm, i2c_device, i2c_buffer, bme280)
+-    };};
++    ($A:ty, $S:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>);
++        let spi = kernel::static_buf!(capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,$S>);
++        let tx = kernel::static_buf!([u8;32]);
++        let rx = kernel::static_buf!([u8;32]);
++        let driver = kernel::static_buf!(capsules_extra::bme280::Bme280<'static,
++            capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,$S>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>>);
++        (alarm,spi,tx,rx,driver)
++    }};
+ }
+-
+-pub type Bme280ComponentType<I, A> = capsules_extra::bme280::Bme280<'static, I, A>;
+-
+-pub struct Bme280Component<
+-    A: 'static + time::Alarm<'static>,
+-    I: 'static + i2c::I2CMaster<'static>,
+-> {
+-    i2c_mux: &'static MuxI2C<'static, I>,
+-    alarm_mux: &'static MuxAlarm<'static, A>,
+-    i2c_address: u8,
++pub struct Bme280Component<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> {
++    spi_mux: &'static MuxSpiMaster<'static,S>, alarm_mux: &'static MuxAlarm<'static,A>, chip_select: S::ChipSelect,
+ }
+-
+-impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>>
+-    Bme280Component<A, I>
+-{
+-    pub fn new(
+-        i2c: &'static MuxI2C<'static, I>,
+-        alarm: &'static MuxAlarm<'static, A>,
+-        i2c_address: u8,
+-    ) -> Self {
+-        Bme280Component {
+-            i2c_mux: i2c,
+-            alarm_mux: alarm,
+-            i2c_address: i2c_address,
+-        }
++impl<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> Bme280Component<A,S> {
++    pub fn new(spi_mux: &'static MuxSpiMaster<'static,S>, alarm_mux: &'static MuxAlarm<'static,A>, chip_select: S::ChipSelect) -> Self {
++        Self {spi_mux,alarm_mux,chip_select}
+     }
+ }
+-
+-impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component
+-    for Bme280Component<A, I>
+-{
+-    type StaticInput = (
+-        &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+-        &'static mut MaybeUninit<I2CDevice<'static, I>>,
+-        &'static mut MaybeUninit<[u8; 26]>,
+-        &'static mut MaybeUninit<Bme280<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+-    );
+-    type Output = &'static Bme280<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
+-
+-    fn finalize(self, s: Self::StaticInput) -> Self::Output {
+-        let bme280_alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
+-        bme280_alarm.setup();
+-        let bme280_i2c = s.1.write(I2CDevice::new(self.i2c_mux, self.i2c_address));
+-        let i2c_buffer = s.2.write([0; 26]);
+-
+-        let bme280 = s.3.write(Bme280::new(bme280_i2c, bme280_alarm, i2c_buffer));
+-
+-        bme280_i2c.set_client(bme280);
+-        bme280_alarm.set_alarm_client(bme280);
+-        bme280.startup();
+-        bme280
++impl<A: 'static + time::Alarm<'static>, S: 'static + spi::SpiMaster<'static>> Component for Bme280Component<A,S> {
++    type StaticInput = (&'static mut MaybeUninit<VirtualMuxAlarm<'static,A>>,
++        &'static mut MaybeUninit<VirtualSpiMasterDevice<'static,S>>, &'static mut MaybeUninit<[u8;32]>,
++        &'static mut MaybeUninit<[u8;32]>, &'static mut MaybeUninit<Bme280<'static,VirtualSpiMasterDevice<'static,S>,VirtualMuxAlarm<'static,A>>>);
++    type Output = &'static Bme280<'static,VirtualSpiMasterDevice<'static,S>,VirtualMuxAlarm<'static,A>>;
++    fn finalize(self,s:Self::StaticInput)->Self::Output {
++        let alarm=s.0.write(VirtualMuxAlarm::new(self.alarm_mux)); alarm.setup();
++        let spi=s.1.write(VirtualSpiMasterDevice::new(self.spi_mux,self.chip_select)); spi.setup();
++        let driver=s.4.write(Bme280::new(spi,alarm,s.2.write([0;32]),s.3.write([0;32])));
++        spi.set_client(driver); alarm.set_alarm_client(driver);
++        let _=driver.startup(); driver
+     }
+ }
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -182,16 +182,15 @@
+ 
+ type AirQualityDriver = capsules_extra::air_quality::AirQualitySensor<'static>;
+ type AmbientLightDriver = capsules_extra::ambient_light::AmbientLight<'static>;
+-type BME280I2CDevice =
+-    capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
++type BME280SpiDevice = capsules_core::virtualizers::virtual_spi::VirtualSpiMasterDevice<'static,nrf52840::spi::SPIM<'static>>;
+ type BME280Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
+-type BME280Sensor = components::bme280::Bme280ComponentType<BME280I2CDevice, BME280Alarm>;
++type BME280Sensor = capsules_extra::bme280::Bme280<'static,BME280SpiDevice,BME280Alarm>;
+ type TemperatureDriver = components::temperature::TemperatureComponentType<BME280Sensor>;
+ type HumidityDriver = components::humidity::HumidityComponentType<BME280Sensor>;
+ type Lps22hbI2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type Lps22hbSensor = capsules_extra::lps22hb::Lps22hb<'static, Lps22hbI2CDevice>;
+-type PressureDriver = capsules_extra::pressure::PressureSensor<'static, Lps22hbSensor>;
++type PressureDriver = capsules_extra::pressure::PressureSensor<'static, BME280Sensor>;
+ type ProximityDriver = capsules_extra::proximity::ProximitySensor<'static>;
+ 
+ type Ieee802154MacDevice = components::ieee802154::Ieee802154ComponentMacDeviceType<
+@@ -426,7 +425,6 @@
+             0 => &nrf52840_peripherals.gpio_port[Pin::P1_01],
+             1 => &nrf52840_peripherals.gpio_port[Pin::P1_02],
+             2 => &nrf52840_peripherals.gpio_port[Pin::P1_03],
+-            3 => &nrf52840_peripherals.gpio_port[Pin::P1_04],
+             4 => &nrf52840_peripherals.gpio_port[Pin::P1_05],
+             5 => &nrf52840_peripherals.gpio_port[Pin::P1_06],
+             6 => &nrf52840_peripherals.gpio_port[Pin::P1_07],
+@@ -434,9 +432,6 @@
+             8 => &nrf52840_peripherals.gpio_port[Pin::P1_10],
+             9 => &nrf52840_peripherals.gpio_port[Pin::P1_11],
+             10 => &nrf52840_peripherals.gpio_port[Pin::P1_12],
+-            11 => &nrf52840_peripherals.gpio_port[Pin::P1_13],
+-            12 => &nrf52840_peripherals.gpio_port[Pin::P1_14],
+-            13 => &nrf52840_peripherals.gpio_port[Pin::P1_15],
+         ),
+     )
+     .finalize(components::gpio_component_static!(nrf52840::gpio::GPIOPin));
+@@ -799,6 +794,15 @@
+     );
+     base_peripherals.twi1.set_speed(nrf52840::i2c::Speed::K100);
+ 
++    // Dedicated sensor SPI; existing SPIM0 and onboard flash stay intact.
++    base_peripherals.spim2.configure(
++        nrf52840::pinmux::Pinmux::new(Pin::P1_13 as u32),
++        nrf52840::pinmux::Pinmux::new(Pin::P1_14 as u32),
++        nrf52840::pinmux::Pinmux::new(Pin::P1_15 as u32),
++    );
++    let sensors_spi = components::spi::SpiMuxComponent::new(&base_peripherals.spim2)
++        .finalize(components::spi_mux_component_static!(nrf52840::spi::SPIM));
++
+     let sensors_i2c = components::i2c::I2CMuxComponent::new(&base_peripherals.twi1, None)
+         .finalize(components::i2c_mux_component_static!(nrf52840::i2c::TWI));
+ 
+@@ -812,11 +816,8 @@
+     )
+     .finalize(components::air_quality_component_static!());
+ 
+-    let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x76)
+-        .finalize(components::bme280_component_static!(
+-            nrf52840::rtc::Rtc,
+-            nrf52840::i2c::TWI
+-        ));
++    let bme280 = components::bme280::Bme280Component::new(sensors_spi, mux_alarm, &gpio_port[Pin::P1_04])
++        .finalize(components::bme280_component_static!(nrf52840::rtc::Rtc, nrf52840::spi::SPIM));
+ 
+     let temp = components::temperature::TemperatureComponent::new(
+         board_kernel,
+@@ -849,9 +850,9 @@
+     let pressure = components::pressure::PressureComponent::new(
+         board_kernel,
+         capsules_extra::pressure::DRIVER_NUM,
+-        lps22hb,
+-    )
+-    .finalize(components::pressure_component_static!(Lps22hbSensor));
++        bme280,
++    )
++    .finalize(components::pressure_component_static!(BME280Sensor));
+ 
+     let apds9960 = components::apds9960::Apds9960Component::new(
+         sensors_i2c,

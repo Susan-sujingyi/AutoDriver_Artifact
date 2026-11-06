@@ -1,0 +1,29 @@
+schema: autodriver.task/v1
+task_id: zephyr-nuttx-lsm303dlhc-i2c
+revision: 2
+sensor: lsm303dlhc
+source:
+  selection: benchmark/lsm303dlhc/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/lsm303dlhc/target/nuttx/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/lsm303dlhc/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - magnetic_field_xyz
+    acquisition: continuous
+  connection:
+    i2c:
+      address_7bit: 30
+    interrupt_pin: null
+  sensor_settings:
+    temperature_sensor: disabled
+reference:
+  files:
+    drivers/sensors/lsm303dlhc.c: benchmark/lsm303dlhc/reference/nuttx/i2c/lsm303dlhc.c
+evaluation:
+  suite: benchmark/lsm303dlhc/evaluation/suite.yaml

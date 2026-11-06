@@ -1,0 +1,1993 @@
+{
+  "schema": "autodriver.primitive-index/v0.1",
+  "counts": {
+    "shared": 19,
+    "fp": 23,
+    "dbc": 31,
+    "bp": 37
+  },
+  "constructors": {
+    "APIContract": {
+      "name": "APIContract",
+      "language": "fp",
+      "signature": "APIContract(symbol, parameters, requires=[], accepted=Unspecified(), rejected=Unspecified(), completion=Unspecified(), errors=Unspecified(), resource_effect=Unspecified(), context=Unspecified())",
+      "positional": [
+        "symbol",
+        "parameters",
+        "requires",
+        "accepted",
+        "rejected",
+        "completion",
+        "errors",
+        "resource_effect",
+        "context"
+      ],
+      "keyword_only": [],
+      "required": [
+        "symbol",
+        "parameters"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 11
+    },
+    "AfterAlarmCallback": {
+      "name": "AfterAlarmCallback",
+      "language": "bp",
+      "signature": "AfterAlarmCallback()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 87
+    },
+    "Assign": {
+      "name": "Assign",
+      "language": "shared",
+      "signature": "Assign(variable, expression)",
+      "positional": [
+        "variable",
+        "expression"
+      ],
+      "keyword_only": [],
+      "required": [
+        "variable",
+        "expression"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 89
+    },
+    "Assumption": {
+      "name": "Assumption",
+      "language": "shared",
+      "signature": "Assumption(condition, scope=\"current\")",
+      "positional": [
+        "condition",
+        "scope"
+      ],
+      "keyword_only": [],
+      "required": [
+        "condition"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 25
+    },
+    "AsyncI2CContract": {
+      "name": "AsyncI2CContract",
+      "language": "fp",
+      "signature": "AsyncI2CContract(interface, write, read, before_io, accepted, rejected, completion, physical_completion_order, write_read=None, cancel=Unspecified())",
+      "positional": [
+        "interface",
+        "write",
+        "read",
+        "before_io",
+        "accepted",
+        "rejected",
+        "completion",
+        "physical_completion_order",
+        "write_read",
+        "cancel"
+      ],
+      "keyword_only": [],
+      "required": [
+        "interface",
+        "write",
+        "read",
+        "before_io",
+        "accepted",
+        "rejected",
+        "completion",
+        "physical_completion_order"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 39
+    },
+    "BindAlarm": {
+      "name": "BindAlarm",
+      "language": "bp",
+      "signature": "BindAlarm(anchor, duration, tick_choice, next_step)",
+      "positional": [
+        "anchor",
+        "duration",
+        "tick_choice",
+        "next_step"
+      ],
+      "keyword_only": [],
+      "required": [
+        "anchor",
+        "duration",
+        "tick_choice",
+        "next_step"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 65
+    },
+    "BindAsyncCall": {
+      "name": "BindAsyncCall",
+      "language": "bp",
+      "signature": "BindAsyncCall(call, completion, payload=None, length=None, on_success=None)",
+      "positional": [
+        "call",
+        "completion",
+        "payload",
+        "length",
+        "on_success"
+      ],
+      "keyword_only": [],
+      "required": [
+        "call",
+        "completion"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 35
+    },
+    "BindOperation": {
+      "name": "BindOperation",
+      "language": "bp",
+      "signature": "BindOperation(device_operation, native_entry, ready_when)",
+      "positional": [
+        "device_operation",
+        "native_entry",
+        "ready_when"
+      ],
+      "keyword_only": [],
+      "required": [
+        "device_operation",
+        "native_entry",
+        "ready_when"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 17
+    },
+    "BindRequests": {
+      "name": "BindRequests",
+      "language": "bp",
+      "signature": "BindRequests(native_entries, device_operation, acceptance, success, failures)",
+      "positional": [
+        "native_entries",
+        "device_operation",
+        "acceptance",
+        "success",
+        "failures"
+      ],
+      "keyword_only": [],
+      "required": [
+        "native_entries",
+        "device_operation",
+        "acceptance",
+        "success",
+        "failures"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 123
+    },
+    "BindSampleCommit": {
+      "name": "BindSampleCommit",
+      "language": "bp",
+      "signature": "BindSampleCommit(storage, validity)",
+      "positional": [
+        "storage",
+        "validity"
+      ],
+      "keyword_only": [],
+      "required": [
+        "storage",
+        "validity"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 93
+    },
+    "BindSyncCall": {
+      "name": "BindSyncCall",
+      "language": "bp",
+      "signature": "BindSyncCall(call, payload=None, length=None, on_success=None)",
+      "positional": [
+        "call",
+        "payload",
+        "length",
+        "on_success"
+      ],
+      "keyword_only": [],
+      "required": [
+        "call"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 39
+    },
+    "BindSyncDelay": {
+      "name": "BindSyncDelay",
+      "language": "bp",
+      "signature": "BindSyncDelay(call, argument, anchor_call, anchor, duration, next_step, on_interruption=\"fail_current_operation\")",
+      "positional": [
+        "call",
+        "argument",
+        "anchor_call",
+        "anchor",
+        "duration",
+        "next_step",
+        "on_interruption"
+      ],
+      "keyword_only": [],
+      "required": [
+        "call",
+        "argument",
+        "anchor_call",
+        "anchor",
+        "duration",
+        "next_step"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 69
+    },
+    "BindingPlan": {
+      "name": "BindingPlan",
+      "language": "bp",
+      "signature": "BindingPlan(device_contract, framework_profile, target_support, scope, initialization=None, setup=None, primitive_bindings={}, io_buffer=None, requests=None, event_bindings=[], concurrency=None, obligations=None, unresolved=[])",
+      "positional": [
+        "device_contract",
+        "framework_profile",
+        "target_support",
+        "scope",
+        "initialization",
+        "setup",
+        "primitive_bindings",
+        "io_buffer",
+        "requests",
+        "event_bindings",
+        "concurrency",
+        "obligations",
+        "unresolved"
+      ],
+      "keyword_only": [],
+      "required": [
+        "device_contract",
+        "framework_profile",
+        "target_support",
+        "scope"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 7
+    },
+    "BySupply": {
+      "name": "BySupply",
+      "language": "dbc",
+      "signature": "BySupply(bounds)",
+      "positional": [
+        "bounds"
+      ],
+      "keyword_only": [],
+      "required": [
+        "bounds"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 35
+    },
+    "CRC8": {
+      "name": "CRC8",
+      "language": "dbc",
+      "signature": "CRC8(polynomial, initial, reflect_input=False, reflect_output=False, final_xor=0)",
+      "positional": [
+        "polynomial",
+        "initial",
+        "reflect_input",
+        "reflect_output",
+        "final_xor"
+      ],
+      "keyword_only": [],
+      "required": [
+        "polynomial",
+        "initial"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 99
+    },
+    "CRCProtectedWords": {
+      "name": "CRCProtectedWords",
+      "language": "dbc",
+      "signature": "CRCProtectedWords(names, encoding, crc)",
+      "positional": [
+        "names",
+        "encoding",
+        "crc"
+      ],
+      "keyword_only": [],
+      "required": [
+        "names",
+        "encoding",
+        "crc"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 95
+    },
+    "CacheValidatedRawFields": {
+      "name": "CacheValidatedRawFields",
+      "language": "bp",
+      "signature": "CacheValidatedRawFields()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 97
+    },
+    "CalibrationData": {
+      "name": "CalibrationData",
+      "language": "dbc",
+      "signature": "CalibrationData(layout, read_by, valid_when, invalidated_by=[])",
+      "positional": [
+        "layout",
+        "read_by",
+        "valid_when",
+        "invalidated_by"
+      ],
+      "keyword_only": [],
+      "required": [
+        "layout",
+        "read_by",
+        "valid_when"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 119
+    },
+    "Callback": {
+      "name": "Callback",
+      "language": "fp",
+      "signature": "Callback(name, arguments, resource_effect=Unspecified(), cardinality=Unspecified(), context=Unspecified())",
+      "positional": [
+        "name",
+        "arguments",
+        "resource_effect",
+        "cardinality",
+        "context"
+      ],
+      "keyword_only": [],
+      "required": [
+        "name",
+        "arguments"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 29
+    },
+    "CallbackError": {
+      "name": "CallbackError",
+      "language": "bp",
+      "signature": "CallbackError(code)",
+      "positional": [
+        "code"
+      ],
+      "keyword_only": [],
+      "required": [
+        "code"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 159
+    },
+    "CallerOwnsBuffer": {
+      "name": "CallerOwnsBuffer",
+      "language": "fp",
+      "signature": "CallerOwnsBuffer()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 51
+    },
+    "Case": {
+      "name": "Case",
+      "language": "shared",
+      "signature": "Case(guard, body)",
+      "positional": [
+        "guard",
+        "body"
+      ],
+      "keyword_only": [],
+      "required": [
+        "guard",
+        "body"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 61
+    },
+    "CheckedPhysicalLowerBound": {
+      "name": "CheckedPhysicalLowerBound",
+      "language": "bp",
+      "signature": "CheckedPhysicalLowerBound(ticks=None, clock_bounds=None, phase_loss=None, reference_event=None, variables={}, assuming=[])",
+      "positional": [
+        "ticks",
+        "clock_bounds",
+        "phase_loss",
+        "reference_event",
+        "variables",
+        "assuming"
+      ],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 77
+    },
+    "Checksum": {
+      "name": "Checksum",
+      "language": "dbc",
+      "signature": "Checksum(algorithm, covered_bytes, expected_field)",
+      "positional": [
+        "algorithm",
+        "covered_bytes",
+        "expected_field"
+      ],
+      "keyword_only": [],
+      "required": [
+        "algorithm",
+        "covered_bytes",
+        "expected_field"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 103
+    },
+    "Choice": {
+      "name": "Choice",
+      "language": "shared",
+      "signature": "Choice(*cases, otherwise=Unspecified())",
+      "positional": [],
+      "keyword_only": [
+        "otherwise"
+      ],
+      "required": [],
+      "varargs": "cases",
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 57
+    },
+    "ClientRegistered": {
+      "name": "ClientRegistered",
+      "language": "fp",
+      "signature": "ClientRegistered()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 47
+    },
+    "CommitValidatedSample": {
+      "name": "CommitValidatedSample",
+      "language": "dbc",
+      "signature": "CommitValidatedSample(from_frame, quantities=None)",
+      "positional": [
+        "from_frame",
+        "quantities"
+      ],
+      "keyword_only": [],
+      "required": [
+        "from_frame"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 133
+    },
+    "ConcurrencyBinding": {
+      "name": "ConcurrencyBinding",
+      "language": "bp",
+      "signature": "ConcurrencyBinding(policy, synchronization, request_identity, stale_events)",
+      "positional": [
+        "policy",
+        "synchronization",
+        "request_identity",
+        "stale_events"
+      ],
+      "keyword_only": [],
+      "required": [
+        "policy",
+        "synchronization",
+        "request_identity",
+        "stale_events"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 117
+    },
+    "ConditionalValue": {
+      "name": "ConditionalValue",
+      "language": "shared",
+      "signature": "ConditionalValue(cases, otherwise=Unspecified())",
+      "positional": [
+        "cases",
+        "otherwise"
+      ],
+      "keyword_only": [],
+      "required": [
+        "cases"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 29
+    },
+    "Constraint": {
+      "name": "Constraint",
+      "language": "shared",
+      "signature": "Constraint(value, origin, evidence=[], under=None)",
+      "positional": [
+        "value",
+        "origin",
+        "evidence",
+        "under"
+      ],
+      "keyword_only": [],
+      "required": [
+        "value",
+        "origin"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 21
+    },
+    "Deadline": {
+      "name": "Deadline",
+      "language": "shared",
+      "signature": "Deadline(anchor, maximum)",
+      "positional": [
+        "anchor",
+        "maximum"
+      ],
+      "keyword_only": [],
+      "required": [
+        "anchor",
+        "maximum"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 69
+    },
+    "DecodeAndValidateFromDBC": {
+      "name": "DecodeAndValidateFromDBC",
+      "language": "bp",
+      "signature": "DecodeAndValidateFromDBC()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 51
+    },
+    "DeliverRequestedQuantity": {
+      "name": "DeliverRequestedQuantity",
+      "language": "bp",
+      "signature": "DeliverRequestedQuantity(physical_relation, encoding, rounding)",
+      "positional": [
+        "physical_relation",
+        "encoding",
+        "rounding"
+      ],
+      "keyword_only": [],
+      "required": [
+        "physical_relation",
+        "encoding",
+        "rounding"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 139
+    },
+    "DeriveFromReferencedContractsAndBindings": {
+      "name": "DeriveFromReferencedContractsAndBindings",
+      "language": "bp",
+      "signature": "DeriveFromReferencedContractsAndBindings()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 165
+    },
+    "DeviceContract": {
+      "name": "DeviceContract",
+      "language": "dbc",
+      "signature": "DeviceContract(device, connection, selected_policy, applicable_conditions, behavior, initial_requirements=[], frames={}, quantities={}, calibration={}, cached_read=Unspecified(), invariants=[], progress_assumptions=[], progress=[], unresolved=[])",
+      "positional": [
+        "device",
+        "connection",
+        "selected_policy",
+        "applicable_conditions",
+        "behavior",
+        "initial_requirements",
+        "frames",
+        "quantities",
+        "calibration",
+        "cached_read",
+        "invariants",
+        "progress_assumptions",
+        "progress",
+        "unresolved"
+      ],
+      "keyword_only": [],
+      "required": [
+        "device",
+        "connection",
+        "selected_policy",
+        "applicable_conditions",
+        "behavior"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 7
+    },
+    "DeviceEnabled": {
+      "name": "DeviceEnabled",
+      "language": "fp",
+      "signature": "DeviceEnabled()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 43
+    },
+    "DeviceInitializationSucceeded": {
+      "name": "DeviceInitializationSucceeded",
+      "language": "bp",
+      "signature": "DeviceInitializationSucceeded()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 21
+    },
+    "DriveSignal": {
+      "name": "DriveSignal",
+      "language": "dbc",
+      "signature": "DriveSignal(line, level, name=None)",
+      "positional": [
+        "line",
+        "level",
+        "name"
+      ],
+      "keyword_only": [],
+      "required": [
+        "line",
+        "level"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 77
+    },
+    "ElapsedTimeLowerBound": {
+      "name": "ElapsedTimeLowerBound",
+      "language": "fp",
+      "signature": "ElapsedTimeLowerBound(argument_unit, argument_range, early_loss, success_condition, interruption=\"failure\")",
+      "positional": [
+        "argument_unit",
+        "argument_range",
+        "early_loss",
+        "success_condition",
+        "interruption"
+      ],
+      "keyword_only": [],
+      "required": [
+        "argument_unit",
+        "argument_range",
+        "early_loss",
+        "success_condition"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 25
+    },
+    "EnsureFPRequirements": {
+      "name": "EnsureFPRequirements",
+      "language": "bp",
+      "signature": "EnsureFPRequirements(**bindings)",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": "bindings",
+      "document": "references/bp-language.md",
+      "line": 25
+    },
+    "ErrorContract": {
+      "name": "ErrorContract",
+      "language": "fp",
+      "signature": "ErrorContract(submit, completion, partial_effects=Unspecified(), data_validity=Unspecified())",
+      "positional": [
+        "submit",
+        "completion",
+        "partial_effects",
+        "data_validity"
+      ],
+      "keyword_only": [],
+      "required": [
+        "submit",
+        "completion"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 33
+    },
+    "EventBinding": {
+      "name": "EventBinding",
+      "language": "bp",
+      "signature": "EventBinding(device_event, native_event, relation, assumptions=[])",
+      "positional": [
+        "device_event",
+        "native_event",
+        "relation",
+        "assumptions"
+      ],
+      "keyword_only": [],
+      "required": [
+        "device_event",
+        "native_event",
+        "relation"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 55
+    },
+    "EventRef": {
+      "name": "EventRef",
+      "language": "shared",
+      "signature": "EventRef(operation, phase, instance=\"current\")",
+      "positional": [
+        "operation",
+        "phase",
+        "instance"
+      ],
+      "keyword_only": [],
+      "required": [
+        "operation",
+        "phase"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 43
+    },
+    "ExecutionModel": {
+      "name": "ExecutionModel",
+      "language": "fp",
+      "signature": "ExecutionModel(style, contexts, may_sleep=Unspecified(), reentry=Unspecified(), synchronization=Unspecified())",
+      "positional": [
+        "style",
+        "contexts",
+        "may_sleep",
+        "reentry",
+        "synchronization"
+      ],
+      "keyword_only": [],
+      "required": [
+        "style",
+        "contexts"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 15
+    },
+    "ExpectedResetDefaults": {
+      "name": "ExpectedResetDefaults",
+      "language": "dbc",
+      "signature": "ExpectedResetDefaults()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 31
+    },
+    "FSM": {
+      "name": "FSM",
+      "language": "shared",
+      "signature": "FSM(initial, states, transitions, variables={}, accepting=[], failing=[])",
+      "positional": [
+        "initial",
+        "states",
+        "transitions",
+        "variables",
+        "accepting",
+        "failing"
+      ],
+      "keyword_only": [],
+      "required": [
+        "initial",
+        "states",
+        "transitions"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 77
+    },
+    "FailCurrentOperation": {
+      "name": "FailCurrentOperation",
+      "language": "dbc",
+      "signature": "FailCurrentOperation(preserve_committed_sample, recovery=Unspecified())",
+      "positional": [
+        "preserve_committed_sample",
+        "recovery"
+      ],
+      "keyword_only": [],
+      "required": [
+        "preserve_committed_sample"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 137
+    },
+    "Field": {
+      "name": "Field",
+      "language": "dbc",
+      "signature": "Field(offset, width, byte_order, signed=False)",
+      "positional": [
+        "offset",
+        "width",
+        "byte_order",
+        "signed"
+      ],
+      "keyword_only": [],
+      "required": [
+        "offset",
+        "width",
+        "byte_order"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 91
+    },
+    "FloorAndSaturate": {
+      "name": "FloorAndSaturate",
+      "language": "fp",
+      "signature": "FloorAndSaturate(input_unit=\"us\", output_unit=\"tick\", limit=Unspecified())",
+      "positional": [
+        "input_unit",
+        "output_unit",
+        "limit"
+      ],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 87
+    },
+    "FrameDependenciesConsumed": {
+      "name": "FrameDependenciesConsumed",
+      "language": "bp",
+      "signature": "FrameDependenciesConsumed()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 109
+    },
+    "FrameLayout": {
+      "name": "FrameLayout",
+      "language": "dbc",
+      "signature": "FrameLayout(length, fields, integrity=[], completeness=\"exact\")",
+      "positional": [
+        "length",
+        "fields",
+        "integrity",
+        "completeness"
+      ],
+      "keyword_only": [],
+      "required": [
+        "length",
+        "fields"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 87
+    },
+    "FrameworkProfile": {
+      "name": "FrameworkProfile",
+      "language": "fp",
+      "signature": "FrameworkProfile(os, snapshot, i2c=None, spi=None, gpio=None, alarm=None, outputs={}, capabilities={}, execution=None, lifecycle=None, resources={}, assumptions=[], unresolved=[])",
+      "positional": [
+        "os",
+        "snapshot",
+        "i2c",
+        "spi",
+        "gpio",
+        "alarm",
+        "outputs",
+        "capabilities",
+        "execution",
+        "lifecycle",
+        "resources",
+        "assumptions",
+        "unresolved"
+      ],
+      "keyword_only": [],
+      "required": [
+        "os",
+        "snapshot"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 7
+    },
+    "FromDBC": {
+      "name": "FromDBC",
+      "language": "bp",
+      "signature": "FromDBC(path)",
+      "positional": [
+        "path"
+      ],
+      "keyword_only": [],
+      "required": [
+        "path"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 131
+    },
+    "FromDBCCommitRequirements": {
+      "name": "FromDBCCommitRequirements",
+      "language": "bp",
+      "signature": "FromDBCCommitRequirements()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 101
+    },
+    "FromDBCFrameLayout": {
+      "name": "FromDBCFrameLayout",
+      "language": "bp",
+      "signature": "FromDBCFrameLayout()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 47
+    },
+    "FromDBCOperation": {
+      "name": "FromDBCOperation",
+      "language": "bp",
+      "signature": "FromDBCOperation()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 43
+    },
+    "FromFP": {
+      "name": "FromFP",
+      "language": "bp",
+      "signature": "FromFP(path)",
+      "positional": [
+        "path"
+      ],
+      "keyword_only": [],
+      "required": [
+        "path"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 127
+    },
+    "FromTargetSupport": {
+      "name": "FromTargetSupport",
+      "language": "bp",
+      "signature": "FromTargetSupport(path)",
+      "positional": [
+        "path"
+      ],
+      "keyword_only": [],
+      "required": [
+        "path"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 113
+    },
+    "FromTaskPrecisionRequirements": {
+      "name": "FromTaskPrecisionRequirements",
+      "language": "bp",
+      "signature": "FromTaskPrecisionRequirements()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 143
+    },
+    "FrozenPolicy": {
+      "name": "FrozenPolicy",
+      "language": "dbc",
+      "signature": "FrozenPolicy(**selections)",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": "selections",
+      "document": "references/dbc-language.md",
+      "line": 23
+    },
+    "GPIOConnection": {
+      "name": "GPIOConnection",
+      "language": "dbc",
+      "signature": "GPIOConnection(lines, polarity, electrical_conditions=Unspecified())",
+      "positional": [
+        "lines",
+        "polarity",
+        "electrical_conditions"
+      ],
+      "keyword_only": [],
+      "required": [
+        "lines",
+        "polarity"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 19
+    },
+    "HoldsBufferUntilCompletion": {
+      "name": "HoldsBufferUntilCompletion",
+      "language": "fp",
+      "signature": "HoldsBufferUntilCompletion()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 59
+    },
+    "I2C": {
+      "name": "I2C",
+      "language": "dbc",
+      "signature": "I2C(address_7bit, clock_stretching=Unspecified())",
+      "positional": [
+        "address_7bit",
+        "clock_stretching"
+      ],
+      "keyword_only": [],
+      "required": [
+        "address_7bit"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 11
+    },
+    "InheritDBCUnresolvedAndAdd": {
+      "name": "InheritDBCUnresolvedAndAdd",
+      "language": "bp",
+      "signature": "InheritDBCUnresolvedAndAdd(items)",
+      "positional": [
+        "items"
+      ],
+      "keyword_only": [],
+      "required": [
+        "items"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 169
+    },
+    "Invariant": {
+      "name": "Invariant",
+      "language": "shared",
+      "signature": "Invariant(condition, scope=\"all\")",
+      "positional": [
+        "condition",
+        "scope"
+      ],
+      "keyword_only": [],
+      "required": [
+        "condition"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 95
+    },
+    "Lifecycle": {
+      "name": "Lifecycle",
+      "language": "dbc",
+      "signature": "Lifecycle(initialization, acquisition, on_failure=Unspecified(), recovery=Unspecified(), reentry=Unspecified(), variables={})",
+      "positional": [
+        "initialization",
+        "acquisition",
+        "on_failure",
+        "recovery",
+        "reentry",
+        "variables"
+      ],
+      "keyword_only": [],
+      "required": [
+        "initialization",
+        "acquisition"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 125
+    },
+    "LifecycleContract": {
+      "name": "LifecycleContract",
+      "language": "fp",
+      "signature": "LifecycleContract(setup, ready_when, shutdown=Unspecified(), reentry=Unspecified())",
+      "positional": [
+        "setup",
+        "ready_when",
+        "shutdown",
+        "reentry"
+      ],
+      "keyword_only": [],
+      "required": [
+        "setup",
+        "ready_when"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 107
+    },
+    "MaximumApplicableDBCBound": {
+      "name": "MaximumApplicableDBCBound",
+      "language": "bp",
+      "signature": "MaximumApplicableDBCBound()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 73
+    },
+    "NotBeforeTickDeadline": {
+      "name": "NotBeforeTickDeadline",
+      "language": "fp",
+      "signature": "NotBeforeTickDeadline()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 83
+    },
+    "NumericEncoding": {
+      "name": "NumericEncoding",
+      "language": "bp",
+      "signature": "NumericEncoding(physical_relation, encoding, rounding, error_bound)",
+      "positional": [
+        "physical_relation",
+        "encoding",
+        "rounding",
+        "error_bound"
+      ],
+      "keyword_only": [],
+      "required": [
+        "physical_relation",
+        "encoding",
+        "rounding",
+        "error_bound"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 147
+    },
+    "OutputEncoding": {
+      "name": "OutputEncoding",
+      "language": "fp",
+      "signature": "OutputEncoding(storage_type, unit, scale=1, offset=0, range=Unspecified(), error_representation=Unspecified())",
+      "positional": [
+        "storage_type",
+        "unit",
+        "scale",
+        "offset",
+        "range",
+        "error_representation"
+      ],
+      "keyword_only": [],
+      "required": [
+        "storage_type",
+        "unit"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 99
+    },
+    "PhysicalQuantity": {
+      "name": "PhysicalQuantity",
+      "language": "dbc",
+      "signature": "PhysicalQuantity(expression, unit, requires=[], domain=Unspecified(), bit_width=None)",
+      "positional": [
+        "expression",
+        "unit",
+        "requires",
+        "domain",
+        "bit_width"
+      ],
+      "keyword_only": [],
+      "required": [
+        "expression",
+        "unit"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 111
+    },
+    "PowerUpCompleted": {
+      "name": "PowerUpCompleted",
+      "language": "dbc",
+      "signature": "PowerUpCompleted()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 27
+    },
+    "Progress": {
+      "name": "Progress",
+      "language": "shared",
+      "signature": "Progress(when, eventually, assuming=[])",
+      "positional": [
+        "when",
+        "eventually",
+        "assuming"
+      ],
+      "keyword_only": [],
+      "required": [
+        "when",
+        "eventually"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 99
+    },
+    "ProvidedByTargetIntegration": {
+      "name": "ProvidedByTargetIntegration",
+      "language": "bp",
+      "signature": "ProvidedByTargetIntegration()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 29
+    },
+    "ProviderConformanceRequired": {
+      "name": "ProviderConformanceRequired",
+      "language": "fp",
+      "signature": "ProviderConformanceRequired(relation)",
+      "positional": [
+        "relation"
+      ],
+      "keyword_only": [],
+      "required": [
+        "relation"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 71
+    },
+    "ReadCommittedSample": {
+      "name": "ReadCommittedSample",
+      "language": "dbc",
+      "signature": "ReadCommittedSample(when_empty=Unspecified())",
+      "positional": [
+        "when_empty"
+      ],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 141
+    },
+    "ReadFrame": {
+      "name": "ReadFrame",
+      "language": "dbc",
+      "signature": "ReadFrame(frame, name=None, boundary=Unspecified())",
+      "positional": [
+        "frame",
+        "name",
+        "boundary"
+      ],
+      "keyword_only": [],
+      "required": [
+        "frame"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 107
+    },
+    "ReadRegister": {
+      "name": "ReadRegister",
+      "language": "dbc",
+      "signature": "ReadRegister(address, width, byte_order, into, signed=False, name=None, boundary=Unspecified(), encoding=Unspecified())",
+      "positional": [
+        "address",
+        "width",
+        "byte_order",
+        "into",
+        "signed",
+        "name",
+        "boundary",
+        "encoding"
+      ],
+      "keyword_only": [],
+      "required": [
+        "address",
+        "width",
+        "byte_order",
+        "into"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 61
+    },
+    "ReadSegment": {
+      "name": "ReadSegment",
+      "language": "dbc",
+      "signature": "ReadSegment(length, into)",
+      "positional": [
+        "length",
+        "into"
+      ],
+      "keyword_only": [],
+      "required": [
+        "length",
+        "into"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 53
+    },
+    "Ref": {
+      "name": "Ref",
+      "language": "shared",
+      "signature": "Ref(identifier)",
+      "positional": [
+        "identifier"
+      ],
+      "keyword_only": [],
+      "required": [
+        "identifier"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 9
+    },
+    "Repeat": {
+      "name": "Repeat",
+      "language": "shared",
+      "signature": "Repeat(body, until, maximum_attempts=None, deadline=None)",
+      "positional": [
+        "body",
+        "until",
+        "maximum_attempts",
+        "deadline"
+      ],
+      "keyword_only": [],
+      "required": [
+        "body",
+        "until"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 65
+    },
+    "ResourceProtocol": {
+      "name": "ResourceProtocol",
+      "language": "fp",
+      "signature": "ResourceProtocol(resource, initial, states, transitions)",
+      "positional": [
+        "resource",
+        "initial",
+        "states",
+        "transitions"
+      ],
+      "keyword_only": [],
+      "required": [
+        "resource",
+        "initial",
+        "states",
+        "transitions"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 103
+    },
+    "ReturnError": {
+      "name": "ReturnError",
+      "language": "bp",
+      "signature": "ReturnError(code)",
+      "positional": [
+        "code"
+      ],
+      "keyword_only": [],
+      "required": [
+        "code"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 155
+    },
+    "ReturnsBufferToClient": {
+      "name": "ReturnsBufferToClient",
+      "language": "fp",
+      "signature": "ReturnsBufferToClient()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 67
+    },
+    "ReturnsErrorAndBuffer": {
+      "name": "ReturnsErrorAndBuffer",
+      "language": "fp",
+      "signature": "ReturnsErrorAndBuffer()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 63
+    },
+    "ReuseTargetBuffer": {
+      "name": "ReuseTargetBuffer",
+      "language": "bp",
+      "signature": "ReuseTargetBuffer(capacity, restore_on, reuse_after)",
+      "positional": [
+        "capacity",
+        "restore_on",
+        "reuse_after"
+      ],
+      "keyword_only": [],
+      "required": [
+        "capacity",
+        "restore_on",
+        "reuse_after"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 105
+    },
+    "Rounding": {
+      "name": "Rounding",
+      "language": "bp",
+      "signature": "Rounding(mode, overflow=\"report_gap\")",
+      "positional": [
+        "mode",
+        "overflow"
+      ],
+      "keyword_only": [],
+      "required": [
+        "mode"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 151
+    },
+    "SPI": {
+      "name": "SPI",
+      "language": "dbc",
+      "signature": "SPI(mode, chip_select, frequency=Unspecified(), bit_order=Unspecified())",
+      "positional": [
+        "mode",
+        "chip_select",
+        "frequency",
+        "bit_order"
+      ],
+      "keyword_only": [],
+      "required": [
+        "mode",
+        "chip_select"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 15
+    },
+    "SampleSignal": {
+      "name": "SampleSignal",
+      "language": "dbc",
+      "signature": "SampleSignal(line, into, name=None)",
+      "positional": [
+        "line",
+        "into",
+        "name"
+      ],
+      "keyword_only": [],
+      "required": [
+        "line",
+        "into"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 81
+    },
+    "SensorInterface": {
+      "name": "SensorInterface",
+      "language": "fp",
+      "signature": "SensorInterface(request, immediate_result=None, callback=None, callback_value=None, unit=None, asynchronous_error_parameter=Unspecified(), synchronous_return=None, encoding=None)",
+      "positional": [
+        "request",
+        "immediate_result",
+        "callback",
+        "callback_value",
+        "unit",
+        "asynchronous_error_parameter",
+        "synchronous_return",
+        "encoding"
+      ],
+      "keyword_only": [],
+      "required": [
+        "request"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 93
+    },
+    "Sequence": {
+      "name": "Sequence",
+      "language": "shared",
+      "signature": "Sequence(*steps)",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": "steps",
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 53
+    },
+    "SequentialNativeRequests": {
+      "name": "SequentialNativeRequests",
+      "language": "bp",
+      "signature": "SequentialNativeRequests()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 13
+    },
+    "State": {
+      "name": "State",
+      "language": "shared",
+      "signature": "State(name, invariant=True)",
+      "positional": [
+        "name",
+        "invariant"
+      ],
+      "keyword_only": [],
+      "required": [
+        "name"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 81
+    },
+    "SuccessfulCallbackOfReferencedTransaction": {
+      "name": "SuccessfulCallbackOfReferencedTransaction",
+      "language": "bp",
+      "signature": "SuccessfulCallbackOfReferencedTransaction()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 59
+    },
+    "SyncReturn": {
+      "name": "SyncReturn",
+      "language": "fp",
+      "signature": "SyncReturn(value, resource_effect=Unspecified(), physical_completion_order=Unspecified(), delay=None)",
+      "positional": [
+        "value",
+        "resource_effect",
+        "physical_completion_order",
+        "delay"
+      ],
+      "keyword_only": [],
+      "required": [
+        "value"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 19
+    },
+    "TickAlarmContract": {
+      "name": "TickAlarmContract",
+      "language": "fp",
+      "signature": "TickAlarmContract(arm, callback, guarantee, clock_frequency, counter_type, microseconds_to_ticks, minimum_ticks, counter_bits=Unspecified(), frequency_bounds=Unspecified(), cancel=Unspecified(), context=Unspecified())",
+      "positional": [
+        "arm",
+        "callback",
+        "guarantee",
+        "clock_frequency",
+        "counter_type",
+        "microseconds_to_ticks",
+        "minimum_ticks",
+        "counter_bits",
+        "frequency_bounds",
+        "cancel",
+        "context"
+      ],
+      "keyword_only": [],
+      "required": [
+        "arm",
+        "callback",
+        "guarantee",
+        "clock_frequency",
+        "counter_type",
+        "microseconds_to_ticks",
+        "minimum_ticks"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 79
+    },
+    "Transfer": {
+      "name": "Transfer",
+      "language": "dbc",
+      "signature": "Transfer(segments, boundary, name=None)",
+      "positional": [
+        "segments",
+        "boundary",
+        "name"
+      ],
+      "keyword_only": [],
+      "required": [
+        "segments",
+        "boundary"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 45
+    },
+    "TransferLengthFitsBuffer": {
+      "name": "TransferLengthFitsBuffer",
+      "language": "fp",
+      "signature": "TransferLengthFitsBuffer()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/fp-language.md",
+      "line": 55
+    },
+    "Transition": {
+      "name": "Transition",
+      "language": "shared",
+      "signature": "Transition(source, event, target, guard=True, effects=[], action=None)",
+      "positional": [
+        "source",
+        "event",
+        "target",
+        "guard",
+        "effects",
+        "action"
+      ],
+      "keyword_only": [],
+      "required": [
+        "source",
+        "event",
+        "target"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 85
+    },
+    "Unresolved": {
+      "name": "Unresolved",
+      "language": "shared",
+      "signature": "Unresolved(reason)",
+      "positional": [
+        "reason"
+      ],
+      "keyword_only": [],
+      "required": [
+        "reason"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 13
+    },
+    "Unspecified": {
+      "name": "Unspecified",
+      "language": "shared",
+      "signature": "Unspecified(reason=\"not recovered\")",
+      "positional": [
+        "reason"
+      ],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 17
+    },
+    "UpdateRegister": {
+      "name": "UpdateRegister",
+      "language": "dbc",
+      "signature": "UpdateRegister(address, mask, value, width, byte_order, name=None, boundary=Unspecified(), encoding=Unspecified())",
+      "positional": [
+        "address",
+        "mask",
+        "value",
+        "width",
+        "byte_order",
+        "name",
+        "boundary",
+        "encoding"
+      ],
+      "keyword_only": [],
+      "required": [
+        "address",
+        "mask",
+        "value",
+        "width",
+        "byte_order"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 65
+    },
+    "WaitAfterCompletion": {
+      "name": "WaitAfterCompletion",
+      "language": "dbc",
+      "signature": "WaitAfterCompletion(of, minimum, maximum=None)",
+      "positional": [
+        "of",
+        "minimum",
+        "maximum"
+      ],
+      "keyword_only": [],
+      "required": [
+        "of",
+        "minimum"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 69
+    },
+    "WaitFrom": {
+      "name": "WaitFrom",
+      "language": "dbc",
+      "signature": "WaitFrom(anchor, minimum, maximum=None)",
+      "positional": [
+        "anchor",
+        "minimum",
+        "maximum"
+      ],
+      "keyword_only": [],
+      "required": [
+        "anchor",
+        "minimum"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 73
+    },
+    "WhenNewAcquisitionHasBeenAccepted": {
+      "name": "WhenNewAcquisitionHasBeenAccepted",
+      "language": "bp",
+      "signature": "WhenNewAcquisitionHasBeenAccepted()",
+      "positional": [],
+      "keyword_only": [],
+      "required": [],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/bp-language.md",
+      "line": 135
+    },
+    "WithFailure": {
+      "name": "WithFailure",
+      "language": "shared",
+      "signature": "WithFailure(body, on_failure)",
+      "positional": [
+        "body",
+        "on_failure"
+      ],
+      "keyword_only": [],
+      "required": [
+        "body",
+        "on_failure"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/shared-language.md",
+      "line": 73
+    },
+    "WriteBytes": {
+      "name": "WriteBytes",
+      "language": "dbc",
+      "signature": "WriteBytes(data, name=None, boundary=Unspecified())",
+      "positional": [
+        "data",
+        "name",
+        "boundary"
+      ],
+      "keyword_only": [],
+      "required": [
+        "data"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 41
+    },
+    "WriteRegister": {
+      "name": "WriteRegister",
+      "language": "dbc",
+      "signature": "WriteRegister(address, value, width, byte_order, name=None, boundary=Unspecified(), encoding=Unspecified())",
+      "positional": [
+        "address",
+        "value",
+        "width",
+        "byte_order",
+        "name",
+        "boundary",
+        "encoding"
+      ],
+      "keyword_only": [],
+      "required": [
+        "address",
+        "value",
+        "width",
+        "byte_order"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 57
+    },
+    "WriteSegment": {
+      "name": "WriteSegment",
+      "language": "dbc",
+      "signature": "WriteSegment(data)",
+      "positional": [
+        "data"
+      ],
+      "keyword_only": [],
+      "required": [
+        "data"
+      ],
+      "varargs": null,
+      "varkw": null,
+      "document": "references/dbc-language.md",
+      "line": 49
+    }
+  }
+}

@@ -1,0 +1,32 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: i2c
+module: apds9960
+editable_paths:
+- drivers/sensors/apds9960.c
+- drivers/sensors/apds9960/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: custom_proximity_raw
+    field: raw
+    unit: count
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: apds9960
+sanitizer: benchmark/apds9960/target/nuttx/i2c/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/apds9960/target/nuttx/i2c/board-support/driver_api.h
+    target: include/nuttx/sensors/apds9960.h
+  resources: []

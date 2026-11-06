@@ -1,0 +1,110 @@
+--- a/boards/components/src/apds9960.rs
++++ b/boards/components/src/apds9960.rs
+@@ -2,14 +2,13 @@
+ // SPDX-License-Identifier: Apache-2.0 OR MIT
+ // Copyright Tock Contributors 2022.
+ 
+-//! Component for APDS9960 proximity sensor.
++//! Component for APDS9960 polling proximity: resource wiring only.
+ 
+ use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
+ use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
+-use capsules_extra::apds9960::APDS9960;
++use capsules_extra::apds9960::Apds9960;
+ use core::mem::MaybeUninit;
+ use kernel::component::Component;
+-use kernel::hil::gpio;
+ use kernel::hil::i2c;
+ use kernel::hil::time::{self, Alarm};
+ 
+@@ -22,13 +21,13 @@
+         let i2c_device =
+             kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+         let apds9960 = kernel::static_buf!(
+-            capsules_extra::apds9960::APDS9960<
++            capsules_extra::apds9960::Apds9960<
+                 'static,
+                 capsules_core::virtualizers::virtual_i2c::I2CDevice<$I>,
+                 capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
+             >
+         );
+-        let buffer = kernel::static_buf!([u8; capsules_extra::apds9960::BUF_LEN]);
++        let buffer = kernel::static_buf!([u8; 3]);
+ 
+         (alarm, i2c_device, apds9960, buffer)
+     };};
+@@ -41,7 +40,6 @@
+     i2c_mux: &'static MuxI2C<'static, I>,
+     alarm_mux: &'static MuxAlarm<'static, A>,
+     i2c_address: u8,
+-    interrupt_pin: &'static dyn gpio::InterruptPin<'static>,
+ }
+ 
+ impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>>
+@@ -51,13 +49,11 @@
+         i2c_mux: &'static MuxI2C<'static, I>,
+         alarm_mux: &'static MuxAlarm<'static, A>,
+         i2c_address: u8,
+-        interrupt_pin: &'static dyn gpio::InterruptPin<'static>,
+     ) -> Self {
+         Apds9960Component {
+             i2c_mux,
+             alarm_mux,
+             i2c_address,
+-            interrupt_pin,
+         }
+     }
+ }
+@@ -69,28 +65,27 @@
+         &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+         &'static mut MaybeUninit<
+-            APDS9960<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>,
++            Apds9960<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>,
+         >,
+-        &'static mut MaybeUninit<[u8; capsules_extra::apds9960::BUF_LEN]>,
++        &'static mut MaybeUninit<[u8; 3]>,
+     );
+-    type Output = &'static APDS9960<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    type Output = &'static Apds9960<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
+ 
+     fn finalize(self, s: Self::StaticInput) -> Self::Output {
+         let apds9960_alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
+         apds9960_alarm.setup();
+         let apds9960_i2c = s.1.write(I2CDevice::new(self.i2c_mux, self.i2c_address));
+ 
+-        let buffer = s.3.write([0; capsules_extra::apds9960::BUF_LEN]);
++        let buffer = s.3.write([0; 3]);
+ 
+-        let apds9960 = s.2.write(APDS9960::new(
++        let apds9960 = s.2.write(Apds9960::new(
+             apds9960_i2c,
+             apds9960_alarm,
+-            self.interrupt_pin,
+             buffer,
+         ));
+         apds9960_i2c.set_client(apds9960);
+         apds9960_alarm.set_alarm_client(apds9960);
+-        self.interrupt_pin.set_client(apds9960);
++        let _ = apds9960.startup();
+ 
+         apds9960
+     }
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -119,7 +119,6 @@
+ /// I2C pins
+ const I2C_SDA_PIN: Pin = Pin::P0_26;
+ const I2C_SCL_PIN: Pin = Pin::P0_27;
+-const APDS9960_INT_PIN: Pin = Pin::P1_03;
+ 
+ // Constants related to the configuration of the 15.4 network stack
+ const PAN_ID: u16 = 0xABCD;
+@@ -857,7 +856,6 @@
+         sensors_i2c,
+         mux_alarm,
+         0x39,
+-        &gpio_port[APDS9960_INT_PIN],
+     )
+     .finalize(components::apds9960_component_static!(
+         nrf52840::rtc::Rtc,

@@ -1,0 +1,36 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  gpio:
+    selected_files:
+    - path: third_party/riot/drivers/dht/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/dht/Makefile.dep
+      sha256: cc4b698c91c4b29c696e58e8ddefdc0f91db33d362320917b42254336451f360
+      role: driver_directory
+    - path: third_party/riot/drivers/dht/Makefile.include
+      sha256: b2558e2921f34c2b78d1d2d54867601afc1cc121db7504171eaa3f8f5f57acad
+      role: driver_directory
+    - path: third_party/riot/drivers/dht/dht.c
+      sha256: 4002e6a594d45e04f173940b8f15843c3cc8a9255d9668aefc2c1a7c61068682
+      role: driver_directory
+    - path: third_party/riot/drivers/dht/dht_saul.c
+      sha256: 32a9153252e69ae7d5796c986f0729f26c54bbe5a8a29f77ecfd1ddc59a55b75
+      role: driver_directory
+    - path: third_party/riot/drivers/dht/include/dht_params.h
+      sha256: 0f8ebdd5dd56c3284ba2fef3150171bed64be7823e57d907d2b014f083a7baec
+      role: driver_directory
+    - path: third_party/riot/drivers/include/dht.h
+      sha256: e9e26d5baa2449d87b7534d3e718b98e621a25cf1244a7744d5dc4783641da0f
+      role: public_header
+    configuration_files:
+    - benchmark/dht11/source/riot/configuration.h
+    - benchmark/dht11/source/riot/configuration.mk
+    validation: benchmark/dht11/source/riot/validation
+    modules:
+    - dht
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

@@ -1,0 +1,44 @@
+--- a/boards/components/src/isl29035.rs
++++ b/boards/components/src/isl29035.rs
+@@ -47,10 +47,11 @@
+         );
+         let i2c_device =
+             kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
+-        let i2c_buffer = kernel::static_buf!([u8; capsules_extra::isl29035::BUF_LEN]);
++        let i2c_buffer = kernel::static_buf!([u8; 3]);
+         let isl29035 = kernel::static_buf!(
+             capsules_extra::isl29035::Isl29035<
+                 'static,
++                capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
+                 capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
+             >
+         );
+@@ -91,16 +92,16 @@
+     type StaticInput = (
+         &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
+         &'static mut MaybeUninit<I2CDevice<'static, I>>,
+-        &'static mut MaybeUninit<[u8; capsules_extra::isl29035::BUF_LEN]>,
+-        &'static mut MaybeUninit<Isl29035<'static, VirtualMuxAlarm<'static, A>>>,
++        &'static mut MaybeUninit<[u8; 3]>,
++        &'static mut MaybeUninit<Isl29035<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
+     );
+-    type Output = &'static Isl29035<'static, VirtualMuxAlarm<'static, A>>;
++    type Output = &'static Isl29035<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
+ 
+     fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
+         let isl29035_i2c = static_buffer.1.write(I2CDevice::new(self.i2c_mux, 0x44));
+         let isl29035_i2c_buffer = static_buffer
+             .2
+-            .write([0; capsules_extra::isl29035::BUF_LEN]);
++            .write([0; 3]);
+         let isl29035_virtual_alarm = static_buffer.0.write(VirtualMuxAlarm::new(self.alarm_mux));
+         isl29035_virtual_alarm.setup();
+ 
+@@ -111,6 +112,7 @@
+         ));
+         isl29035_i2c.set_client(isl29035);
+         isl29035_virtual_alarm.set_alarm_client(isl29035);
++        let _ = isl29035.startup();
+         isl29035
+     }
+ }

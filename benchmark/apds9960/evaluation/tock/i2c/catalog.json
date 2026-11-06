@@ -1,0 +1,632 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/busy_returns_buffer",
+      "scope": "internal",
+      "basis": [
+        "Independent model self-check; not a candidate score"
+      ]
+    },
+    {
+      "id": "__model/engine_exit_and_validity",
+      "scope": "internal",
+      "basis": [
+        "Independent model self-check; not a candidate score"
+      ]
+    },
+    {
+      "id": "__model/threshold_and_pointer",
+      "scope": "internal",
+      "basis": [
+        "Independent model self-check; not a candidate score"
+      ]
+    },
+    {
+      "id": "requests/first_available",
+      "scope": "core",
+      "basis": [
+        "Native HIL request/completion contract",
+        "Bounded startup admission observation; not a device deadline"
+      ]
+    },
+    {
+      "id": "numeric/zero_valid_inside_threshold_window/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/zero_valid_inside_threshold_window/proximity"
+      ]
+    },
+    {
+      "id": "numeric/one_valid_at_upper_threshold/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/one_valid_at_upper_threshold/proximity"
+      ]
+    },
+    {
+      "id": "numeric/two_outside_threshold_window/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/two_outside_threshold_window/proximity"
+      ]
+    },
+    {
+      "id": "numeric/six_low_bits/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/six_low_bits/proximity"
+      ]
+    },
+    {
+      "id": "numeric/bit_six/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/bit_six/proximity"
+      ]
+    },
+    {
+      "id": "numeric/alternating_low/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/alternating_low/proximity"
+      ]
+    },
+    {
+      "id": "numeric/signed_boundary_low/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/signed_boundary_low/proximity"
+      ]
+    },
+    {
+      "id": "numeric/signed_boundary_high/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/signed_boundary_high/proximity"
+      ]
+    },
+    {
+      "id": "numeric/alternating_high/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/alternating_high/proximity"
+      ]
+    },
+    {
+      "id": "numeric/maximum_minus_one/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/maximum_minus_one/proximity"
+      ]
+    },
+    {
+      "id": "numeric/maximum_valid/proximity",
+      "scope": "core",
+      "basis": [
+        "datasheet:p26",
+        "target:HIL ProximityClient",
+        "selected proximity channel"
+      ],
+      "old_cases": [
+        "numeric/maximum_valid/proximity"
+      ]
+    },
+    {
+      "id": "requests/repeated_input_changes",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "lifecycle/repeated_fresh_samples"
+      ]
+    },
+    {
+      "id": "requests/reentrant_callback",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "lifecycle/reentrant_callback"
+      ]
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "busy/proximity",
+        "lifecycle/off_and_initialization_busy"
+      ]
+    },
+    {
+      "id": "protocol/unread_ready",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "protocol/unread_ready_result"
+      ]
+    },
+    {
+      "id": "protocol/conversion_boundary",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "protocol/conversion_boundary",
+        "protocol/power_on_and_engine_exit"
+      ]
+    },
+    {
+      "id": "safety/no_valid_data",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "not_ready/never_ready_recovery"
+      ]
+    },
+    {
+      "id": "safety/pint_without_new_data",
+      "scope": "core",
+      "basis": [
+        "datasheet:p9,11,22,25",
+        "target:HIL/capsules-extra proximity",
+        "host observation window is not a device deadline"
+      ],
+      "old_cases": [
+        "not_ready/pint_without_pvalid_recovery"
+      ]
+    },
+    {
+      "id": "fault/Any/immediate",
+      "scope": "core",
+      "basis": [
+        "target:I2CDevice/I2CClient",
+        "target:scalar ProximityClient cannot encode failure"
+      ],
+      "old_cases": [
+        "fault/Any/immediate"
+      ]
+    },
+    {
+      "id": "fault/Any/async",
+      "scope": "core",
+      "basis": [
+        "target:I2CDevice/I2CClient",
+        "target:scalar ProximityClient cannot encode failure"
+      ],
+      "old_cases": [
+        "fault/Any/async"
+      ]
+    },
+    {
+      "id": "fault/Data/immediate",
+      "scope": "core",
+      "basis": [
+        "target:I2CDevice/I2CClient",
+        "target:scalar ProximityClient cannot encode failure"
+      ],
+      "old_cases": [
+        "fault/Data/immediate"
+      ]
+    },
+    {
+      "id": "fault/Data/async",
+      "scope": "core",
+      "basis": [
+        "target:I2CDevice/I2CClient",
+        "target:scalar ProximityClient cannot encode failure"
+      ],
+      "old_cases": [
+        "fault/Data/async"
+      ]
+    },
+    {
+      "id": "diagnostic/startup_repeat",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "lifecycle/startup_idempotent"
+      ]
+    },
+    {
+      "id": "diagnostic/interrupt_request",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "lifecycle/interrupt_nosupport"
+      ]
+    },
+    {
+      "id": "diagnostic/identity_00",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "identity/reject_00_recover"
+      ]
+    },
+    {
+      "id": "diagnostic/identity_ff",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "identity/reject_ff_recover"
+      ]
+    },
+    {
+      "id": "diagnostic/identity_9c",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "identity/optional_9c_compatibility"
+      ]
+    },
+    {
+      "id": "diagnostic/initialization/Any/immediate",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "initialization/Any/immediate"
+      ]
+    },
+    {
+      "id": "diagnostic/initialization/Any/async",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "initialization/Any/async"
+      ]
+    },
+    {
+      "id": "diagnostic/initialization/Configuration/immediate",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "initialization/Configuration/immediate"
+      ]
+    },
+    {
+      "id": "diagnostic/initialization/Configuration/async",
+      "scope": "diagnostic",
+      "basis": [
+        "No mandatory behavior established for this selected task"
+      ],
+      "old_cases": [
+        "initialization/Configuration/async"
+      ]
+    }
+  ],
+  "excluded_v1_constraints": [
+    "BUFFER_SIZE exported constant",
+    "exact OFF/BUSY/NOSUPPORT",
+    "mandatory ID probe",
+    "strict newer generation",
+    "global idle",
+    "100ms device deadline"
+  ],
+  "v1_mapping": [
+    {
+      "v1_case": "numeric/zero_valid_inside_threshold_window/proximity",
+      "v2_cases": [
+        "numeric/zero_valid_inside_threshold_window/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/one_valid_at_upper_threshold/proximity",
+      "v2_cases": [
+        "numeric/one_valid_at_upper_threshold/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/two_outside_threshold_window/proximity",
+      "v2_cases": [
+        "numeric/two_outside_threshold_window/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/six_low_bits/proximity",
+      "v2_cases": [
+        "numeric/six_low_bits/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/bit_six/proximity",
+      "v2_cases": [
+        "numeric/bit_six/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/alternating_low/proximity",
+      "v2_cases": [
+        "numeric/alternating_low/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/signed_boundary_low/proximity",
+      "v2_cases": [
+        "numeric/signed_boundary_low/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/signed_boundary_high/proximity",
+      "v2_cases": [
+        "numeric/signed_boundary_high/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/alternating_high/proximity",
+      "v2_cases": [
+        "numeric/alternating_high/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/maximum_minus_one/proximity",
+      "v2_cases": [
+        "numeric/maximum_minus_one/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "numeric/maximum_valid/proximity",
+      "v2_cases": [
+        "numeric/maximum_valid/proximity"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "busy/proximity",
+      "v2_cases": [
+        "requests/concurrent"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "lifecycle/off_and_initialization_busy",
+      "v2_cases": [
+        "requests/concurrent"
+      ],
+      "note": "Only safe concurrent request handling retained; exact OFF/BUSY and initialization timing policies removed."
+    },
+    {
+      "v1_case": "lifecycle/repeated_fresh_samples",
+      "v2_cases": [
+        "requests/repeated_input_changes"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "lifecycle/reentrant_callback",
+      "v2_cases": [
+        "requests/reentrant_callback"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "lifecycle/startup_idempotent",
+      "v2_cases": [
+        "diagnostic/startup_repeat"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "lifecycle/interrupt_nosupport",
+      "v2_cases": [
+        "diagnostic/interrupt_request"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "protocol/power_on_and_engine_exit",
+      "v2_cases": [
+        "protocol/conversion_boundary"
+      ],
+      "note": "Engine-exit event relation independently checked in model; no 13900us candidate deadline."
+    },
+    {
+      "v1_case": "protocol/unread_ready_result",
+      "v2_cases": [
+        "protocol/unread_ready"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "protocol/conversion_boundary",
+      "v2_cases": [
+        "protocol/conversion_boundary"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "protocol/pdata_consumption_clears_valid",
+      "v2_cases": [],
+      "note": "PDATA clear-on-read is a model self-check, while candidate read evidence is observed on every callback."
+    },
+    {
+      "v1_case": "not_ready/never_ready_recovery",
+      "v2_cases": [
+        "safety/no_valid_data"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "not_ready/pint_without_pvalid_recovery",
+      "v2_cases": [
+        "safety/pint_without_new_data"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "identity/reject_00_recover",
+      "v2_cases": [
+        "diagnostic/identity_00"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "identity/reject_ff_recover",
+      "v2_cases": [
+        "diagnostic/identity_ff"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "identity/optional_9c_compatibility",
+      "v2_cases": [
+        "diagnostic/identity_9c"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "fault/Any/immediate",
+      "v2_cases": [
+        "fault/Any/immediate"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "fault/Any/async",
+      "v2_cases": [
+        "fault/Any/async"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "fault/Data/immediate",
+      "v2_cases": [
+        "fault/Data/immediate"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "fault/Data/async",
+      "v2_cases": [
+        "fault/Data/async"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "initialization/Any/immediate",
+      "v2_cases": [
+        "diagnostic/initialization/Any/immediate"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "initialization/Any/async",
+      "v2_cases": [
+        "diagnostic/initialization/Any/async"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "initialization/Configuration/immediate",
+      "v2_cases": [
+        "diagnostic/initialization/Configuration/immediate"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    },
+    {
+      "v1_case": "initialization/Configuration/async",
+      "v2_cases": [
+        "diagnostic/initialization/Configuration/async"
+      ],
+      "note": "Consult source-basis audit; v1 score is not converted."
+    }
+  ]
+}

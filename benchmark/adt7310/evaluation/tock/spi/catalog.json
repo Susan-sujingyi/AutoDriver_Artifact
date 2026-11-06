@@ -1,0 +1,165 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "numeric/zero",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/positive",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/negative",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/min",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/max",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/lsb",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/negative_lsb",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/fraction",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/negative_fraction",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/byte_carry",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/negative_byte_carry",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/hot",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/cold",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/near_zero",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/negative_near_zero",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "numeric/uneven",
+      "scope": "core",
+      "basis": "ADT7310-NUMERIC"
+    },
+    {
+      "id": "requests/repeated",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "requests/early",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "requests/no_unsolicited",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "data/stable_change",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "protocol/delayed_ready",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "protocol/configuration",
+      "scope": "core",
+      "basis": "ADT7310-DATA/CONFIG/ABI"
+    },
+    {
+      "id": "transport/immediate_data",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "transport/async_data",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "transport/async_config",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "transport/repeated_after_fault",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "device/stalled",
+      "scope": "diagnostic",
+      "basis": "ADT7310-DIAGNOSTIC"
+    },
+    {
+      "id": "model/signed_data",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/status_clear",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/reset",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/spi_buffers",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    }
+  ]
+}

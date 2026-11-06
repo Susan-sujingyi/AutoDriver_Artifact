@@ -1,0 +1,38 @@
+schema: autodriver.target/v1
+os: nuttx
+snapshot: nuttx
+board: nrf52840-dk
+bus: spi
+module: bme280
+editable_paths:
+- drivers/sensors/bme280_spi.c
+- drivers/sensors/bme280_spi/
+apps_snapshot: nuttx-apps
+native_interface:
+  framework: new_sensor
+  acquisition_interface: bounded_fetch
+  native_events:
+  - structure: sensor_temp
+    field: temperature
+    unit: degC
+  - structure: sensor_humi
+    field: humidity
+    unit: percent_RH
+  - structure: sensor_baro
+    field: pressure
+    unit: hPa
+  timestamp_unit: microseconds
+  float_configuration: CONFIG_SENSORS_USE_FLOAT=y
+application: benchmark/common/applications/nuttx
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 5000
+  serial_baud: 115200
+support_key: bme280_spi
+sanitizer: benchmark/bme280/target/nuttx/spi/sanitizer.json
+board_support:
+  driver_api:
+    source: benchmark/bme280/target/nuttx/spi/board-support/driver_api.h
+    target: include/nuttx/sensors/bme280_spi.h
+  resources: []

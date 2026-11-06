@@ -1,0 +1,9 @@
+{
+  "schema": "autodriver.source-validation/v1",
+  "source_os": "riot",
+  "variant": "gpio",
+  "input_identity": "2091cb0c9de34dfb26c1b0aa791f9cefef9e3f34938ddb638e62c83c33dc342b",
+  "status": "pass",
+  "compiler": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+  "scope": "Native configuration, selected driver and API link; not target behavior or hardware"
+}

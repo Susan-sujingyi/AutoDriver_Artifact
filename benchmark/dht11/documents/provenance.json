@@ -1,0 +1,30 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "DHT11",
+  "document_title": "数字温湿度传感器 DHT11",
+  "revision": "Undated YL-47 vendor-distributed DHT11 datasheet",
+  "retrieved_from": "user-supplied DHT11.rar",
+  "archive_sha256": "63bcf7b68272db8adb8e66433d2fd5d0a5394989046772355c27e004508fde6f",
+  "archive_member": "YL-47 dht11 资料/YL-47 DHT11 使用‌说明书/DHT11说明书最新版.pdf",
+  "page_count": 6,
+  "extraction": {
+    "tool": "pdftotext",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true
+  },
+  "copyright": "Original supplied vendor literature; no open-source license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "e41ccab84468ea960005cccd03536147fd3d1be99809e3e1f82b93658281a414"
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "3bac26764454e17172c1201b86d508632e4a380ce34e8c9c7a30f1e9e2e65756"
+    },
+    {
+      "path": "pages.json",
+      "sha256": "46ad1c7b43d15d4a9c6288681898b7b431c1f5df0d80b81c8aff4014c67befbe"
+    }
+  ]
+}

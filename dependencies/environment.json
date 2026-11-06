@@ -1,0 +1,27 @@
+{
+  "platform": "Linux x86_64",
+  "python": "3.13",
+  "kernel_boundary": "Landlock ABI >= 3 and libseccomp.so.2",
+  "tools": [
+    "git",
+    "make",
+    "cc",
+    "arm-none-eabi-gcc",
+    "pdftotext",
+    "rustup"
+  ],
+  "rust_toolchains": [
+    "nightly-2024-01-01",
+    "1.88.0"
+  ],
+  "rust_target": "thumbv7em-none-eabi",
+  "tool_resolution": "Explicit installed tools via PATH and rustup; no original-checkout paths",
+  "python_dependencies": [
+    "dependencies/requirements.lock",
+    "dependencies/requirements-autodriver.lock"
+  ],
+  "offline_setup": "tests/common/setup.py",
+  "analysis_tools": [
+    "clang-14"
+  ]
+}

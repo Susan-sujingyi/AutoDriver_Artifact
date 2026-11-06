@@ -1,0 +1,90 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "BH1750FVI",
+  "task_alias": "bh1750",
+  "manufacturer": "ROHM Co., Ltd.",
+  "document_title": "Ambient Light Sensor IC Series, Digital 16bit Serial Output Type Ambient Light Sensor IC",
+  "document_id": "No.11046EDT01",
+  "revision": "2011.11 Rev.D",
+  "revision_date": "2011-11",
+  "page_count": 20,
+  "technical_pages": 17,
+  "notice_pages": 3,
+  "official_url": "https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bh1750fvi-e.pdf",
+  "retrieved_from": "https://de.anel.eu/produkte/sensor_1/bh1750fvi-e.pdf",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Official ROHM endpoints returned 404/403. Unmodified manufacturer PDF retrieved from ANEL mirror. Printed technical revision confirmed on pages1-17; later metadata/ROHM notice revisions do not replace it. Technical commands/timing/formula independently cross-checked with manufacturer PDF on the Mouser URL cited in frozen source; notice counts differ, so byte identity is not claimed.",
+  "source_cited_manufacturer_mirror": "https://www.mouser.com/datasheet/2/348/Rohm_11162017_ROHMS34826-1-1279292.pdf",
+  "retrieval_attempts": "retrieval_attempts.json",
+  "pdf_metadata": {
+    "title": "BH1750FVI : Sensor ICs",
+    "subject": "No.11046EDT01",
+    "author": "ROHM CO., LTD.",
+    "creator": "PScript5.dll Version5.2.2",
+    "producer": "Acrobat Distiller9.0.0 (Windows)",
+    "created_utc": "2012-10-02T04:44:58Z",
+    "modified_utc": "2014-03-31T03:52:11Z",
+    "pdf_version": "1.6",
+    "encryption": "RC4; print/copy permitted; change disallowed"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "text_checked_pages": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    17,
+    18,
+    19,
+    20
+  ],
+  "visually_checked_pages": [
+    2,
+    5,
+    6,
+    7,
+    10,
+    11
+  ],
+  "visual_review": "Rendered local PDF with pdftoppm at maximum dimension1700 and inspected timing limits, command opcodes/reset restrictions, DVI reset diagram, measurement/read sequence, STOP requirement/byte order, MTreg range/scaling formula. Images are review outputs, not runtime dependencies.",
+  "copyright": "Original ROHM 2011 copyright and later notice pages remain unmodified. Manufacturer technical literature; no open-source license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "a24bbf9d71afa6f66d88cbb6da6ce418d7d8762d17c3caca1137d9161936e8db",
+      "bytes": 558548
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "a99c9b9596390adbb3abe92767c59f3ea9391cef7733e753df0c849b50223a6c",
+      "bytes": 81989
+    },
+    {
+      "path": "pages.json",
+      "sha256": "e6bf200b380512aadb27cd67d48f64b5a0c0a99a1d2e3256edbac9b2dcd64f35",
+      "bytes": 1904
+    },
+    {
+      "path": "retrieval.json",
+      "sha256": "03c3a55c41a415791eae01b87e9f2a6b82614472de60799060ca6f81a8cc86c3",
+      "bytes": 204
+    },
+    {
+      "path": "retrieval_attempts.json",
+      "sha256": "1c0b622d2bbf509cd28d0639cf45cab2e4a8ab42aebb3cc8e482e4b8c0283202",
+      "bytes": 1667
+    }
+  ]
+}

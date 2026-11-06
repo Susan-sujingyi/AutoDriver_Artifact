@@ -1,0 +1,26 @@
+{
+  "profile": "autodriver.model/bme280/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_and_reset_before_driver_creation",
+    "observation_us": 1000000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "conversion_us": 43800,
+    "clock_hz": 1000000,
+    "stable_input_progress_us": 2000000,
+    "deadline_semantics": "Absolute stable-input deadline passed into request execution; guard and polling clamped to deadline. Request window bounds completion, guard included when time remains."
+  },
+  "limitations": [
+    "Finite software model, no hardware validation or exhaustive proof.",
+    "Observation deadline is a supervisor limit, not a chip or Tock deadline.",
+    "Fault diagnostics distinguish unexercised sites; completion/retry policy is not prescribed.",
+    "Valid cached data and split reads in synchronized forced mode are allowed.",
+    "No mandatory ID probe or eager/full calibration acquisition.",
+    "Configuration during NVM copy or active config update has model_unsupported effect.",
+    "Float and 32-bit pressure alternatives have source-derived numeric envelopes, not physical accuracy bounds.",
+    "Not an OS sandbox for hostile candidate code.",
+    "Noncompletion beyond specified conversion maximum is an injected device fault; fixed documented waits remain legal and fault outcomes are diagnostic."
+  ]
+}

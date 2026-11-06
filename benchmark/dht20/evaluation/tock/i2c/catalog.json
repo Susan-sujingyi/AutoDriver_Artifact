@@ -1,0 +1,420 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/packing_crc",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/ready_and_crc",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "__model/recovery_pairs",
+      "scope": "internal",
+      "basis": "Independent model self-check"
+    },
+    {
+      "id": "numeric/reference_room/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/reference_room/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/zero_celsius_dry/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/zero_celsius_dry/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_near_zero/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_near_zero/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_near_zero/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_near_zero/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/lower_rated_boundary/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/lower_rated_boundary/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/upper_rated_boundary/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/upper_rated_boundary/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/shared_nibbles/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/shared_nibbles/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/reverse_nibbles/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/reverse_nibbles/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/byte_carry_low/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/byte_carry_low/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/byte_carry_high/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/byte_carry_high/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_five/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/negative_five/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_five/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/positive_five/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/fraction_twelve/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/fraction_twelve/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_half_minus/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_half_minus/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_half_plus/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/humidity_half_plus/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/status_reserved_bits/temperature",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "numeric/status_reserved_bits/humidity",
+      "scope": "core",
+      "basis": "DHT-NUMERIC, DHT-DATA, DHT-CALLBACK"
+    },
+    {
+      "id": "requests/repeated_temperature",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "requests/first_available/temperature",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/temperature",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "timing/temperature/80000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "timing/temperature/100000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "timing/temperature/150000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "crc/temperature/byte0",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/temperature/byte1",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/temperature/byte3",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/temperature/byte4",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/temperature/byte6",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "diagnostic/stalled/temperature",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: output and progress observation"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Any/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/temperature/Data/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "requests/repeated_humidity",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "requests/first_available/humidity",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "requests/concurrent/humidity",
+      "scope": "core",
+      "basis": "DHT-CALLBACK, DHT-PROGRESS"
+    },
+    {
+      "id": "timing/humidity/80000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "timing/humidity/100000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "timing/humidity/150000us",
+      "scope": "core",
+      "basis": "DHT-TIME"
+    },
+    {
+      "id": "crc/humidity/byte0",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/humidity/byte1",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/humidity/byte3",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/humidity/byte4",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "crc/humidity/byte6",
+      "scope": "core",
+      "basis": "DHT-CRC: bounded no-invalid-success, not full recovery"
+    },
+    {
+      "id": "diagnostic/stalled/humidity",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: output and progress observation"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Any/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Any/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Data/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "diagnostic/bus/humidity/Data/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: injection reachability and outcome"
+    },
+    {
+      "id": "initialization/recover_0",
+      "scope": "core",
+      "basis": "DHT-RECOVERY: manufacturer code supplies details missing from D"
+    },
+    {
+      "id": "initialization/recover_8",
+      "scope": "core",
+      "basis": "DHT-RECOVERY: manufacturer code supplies details missing from D"
+    },
+    {
+      "id": "initialization/recover_16",
+      "scope": "core",
+      "basis": "DHT-RECOVERY: manufacturer code supplies details missing from D"
+    },
+    {
+      "id": "requests/input_changes",
+      "scope": "core",
+      "basis": "DHT-PROGRESS: finite cache permitted, bounded stable input progress"
+    },
+    {
+      "id": "diagnostic/init/Any/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Any/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Data/false",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/init/Data/true",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT"
+    },
+    {
+      "id": "diagnostic/repeated_startup",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: no forced retry or exact error policy"
+    },
+    {
+      "id": "diagnostic/calibration_stuck",
+      "scope": "diagnostic",
+      "basis": "DHT-FAULT: no forced retry or exact error policy"
+    }
+  ]
+}

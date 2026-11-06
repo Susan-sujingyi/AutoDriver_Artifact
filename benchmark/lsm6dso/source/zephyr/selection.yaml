@@ -1,0 +1,72 @@
+schema: autodriver.source/v1
+os: zephyr
+snapshot: zephyr
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/lsm6dso.c
+      sha256: 4f8982b27e74f05c1226b6fd39119f543500d84f0861edda58482a7cc3c939c1
+      role: primary_source
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/lsm6dso.h
+      sha256: 2862ae404351c3c9e131778af811c7841487ea4ef3a24367b410a0f2f8ccd879
+      role: primary_header
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/lsm6dso_shub.c
+      sha256: 9b6083801f583184ee8fc9ea3752daa8224cf42e7119150a904f24c00cd0ad6e
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/lsm6dso_trigger.c
+      sha256: 316e74cd8cd02d594aa5768b7f871ced594aae182be5b007272ca41cf857cf92
+      role: conditional_or_bus_dependency
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/Kconfig
+      sha256: 7e4b6eb12c32e2558b6875701a8b89ce741e9387fdecc0b41cf5cdc33081af6c
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/st/lsm6dso/CMakeLists.txt
+      sha256: beafd0ec2927e520a7b07603369fbdddadabdb89668e900d8434bb7afc298fca
+      role: build_configuration
+    - path: third_party/zephyr/drivers/sensor/st/stmemsc/stmemsc.h
+      sha256: e1fb0f532d4cd66daa6c56d0f19a969258325572e6867a3701563179f62db457
+      role: bus_dependency
+    - path: third_party/zephyr/drivers/sensor/st/stmemsc/stmemsc_i2c.c
+      sha256: 8559a4f5f98f2b8e858d95339aa6c32ae6200c53dcee37c456fa4be06a61864b
+      role: bus_dependency
+    - path: third_party/zephyr/drivers/sensor/st/stmemsc/stmemsc_mdelay.c
+      sha256: 36c80bde5bc4c572328d25041c8349eedfe5ce007ca30bb032fc795c8809fb2c
+      role: bus_dependency
+    - path: third_party/hal_st/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.h
+      sha256: ee2c5a6cca9fd78a454a25f015c17d73fa809620cdc42b971b1750ba66eb4326
+      role: vendor_header
+    - path: third_party/hal_st/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
+      sha256: 06c6d8757eb86a39422ebe4e8e6b5310decf5fa2f1a071ae6d35b9b73be0788b
+      role: vendor_source
+    configuration_files:
+    - benchmark/lsm6dso/source/zephyr/configuration.yaml
+    - benchmark/lsm6dso/source/zephyr/board.overlay
+    validation: benchmark/lsm6dso/source/zephyr/validation
+    source_entrypoints:
+      init: lsm6dso_init
+      sample_fetch: lsm6dso_sample_fetch
+      channel_get: lsm6dso_channel_get
+    dependencies:
+    - name: ST MEMS standard C register library
+      status: available
+      path: third_party/hal_st
+      detail: Pinned full source firmware configured, compiled, linked and smoke-executed.
+        See build_evidence; this does not certify source algorithms, target code or
+        hardware.
+      manifest: third_party/metadata/hal_st_lsm6dso.json
+      manifest_sha256: a7ff3438c7d540749bb30b561b0559465a7c7a1290879b241250e9a00490268c
+      prepared_path: source_deps/hal_st
+    devicetree:
+      compatible: st,lsm6dso
+      bus: i2c
+      reg: 106
+      status: okay
+      accel-pm: 0
+      accel-range: 0
+      accel-odr: 4
+      accel-lp-filter: 0
+      gyro-pm: 0
+      gyro-range: 0
+      gyro-odr: 0
+      drdy-pulsed: false
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

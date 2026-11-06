@@ -1,0 +1,39 @@
+schema: autodriver.source/v1
+os: riot
+snapshot: riot
+variants:
+  i2c:
+    selected_files:
+    - path: third_party/riot/drivers/sht3x/Makefile
+      sha256: 305dc7c663cb670fb6730c5f17953979a09c36aea872926974d7b21c9f5d406c
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/Makefile.dep
+      sha256: 7970ad85db87c72276462376ae432262c223ac1945c46da2bfb081778e372c1d
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/Makefile.include
+      sha256: 9f0e9a4ec09abc460f0e4a68d1f12ade8c9e7213ea28a8b579e1d5706e84ce43
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/doc.txt
+      sha256: dce5e1ff81e8d2a6ac020124fde50f27a4139c5af0a1eba43da3524cb14bce0a
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/include/sht3x_params.h
+      sha256: b5cf81f1af0d9238b141cac2233c554f3a138f07cef857e0b224a04e2bf1bbc6
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/sht3x.c
+      sha256: 64d759724bbec8b597efc448907460c20957dd70c3fa676f62eb1e0a2ff1017c
+      role: driver_directory
+    - path: third_party/riot/drivers/sht3x/sht3x_saul.c
+      sha256: 099494c44e6b3ca973376f0b51d91aa5349977dc4df96306a0a80318c8964aad
+      role: driver_directory
+    - path: third_party/riot/drivers/include/sht3x.h
+      sha256: 2927222d64a6d5bebb6d650022f86d4573a84d20727d96ecf35b48d29e02ed9c
+      role: public_header
+    configuration_files:
+    - benchmark/sht3x/source/riot/configuration.h
+    - benchmark/sht3x/source/riot/configuration.mk
+    validation: benchmark/sht3x/source/riot/validation
+    modules:
+    - sht3x
+    - ztimer_msec
+    authenticity: Selected source files are byte-identical to the frozen upstream
+      snapshot; source configuration is benchmark-authored.

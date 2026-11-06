@@ -1,0 +1,6 @@
+{
+  "url": "https://www.pololu.com/file/0J564/LSM303DLHC.pdf",
+  "official_url": "https://www.st.com/resource/en/datasheet/lsm303dlhc.pdf",
+  "sha256": "b9a85ab640056878fb44a2adfa1e6fa4d554e725c68ecd8fe7332515eaf45fd7",
+  "retrieval_note": "Manufacturer-authored PDF from Pololu mirror; official ST local retrieval timed out; no byte identity with current ST hosting asserted."
+}

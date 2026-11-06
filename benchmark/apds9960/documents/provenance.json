@@ -1,0 +1,79 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "APDS9960",
+  "manufacturer": "Broadcom/Avago Technologies",
+  "document_title": "APDS-9960 Digital Proximity, Ambient Light, RGB and Gesture Sensor",
+  "document_id": "AV02-4191EN",
+  "revision": "AV02-4191EN, November 13, 2015 (no separate numbered revision printed)",
+  "revision_date": "2015-11-13",
+  "publication_identity": "AV02-4191EN - November 13, 2015",
+  "page_count": 38,
+  "official_url": "https://docs.broadcom.com/doc/AV02-4191EN",
+  "retrieved_from": "https://docs.broadcom.com/doc/AV02-4191EN",
+  "retrieved_date": "2026-09-23",
+  "retrieval_note": "Downloaded directly over HTTPS from the official Broadcom document endpoint; no mirror required. The last-page publication identity establishes the document date. The product-page download indexing date and PDF creation metadata are not separate revisions.",
+  "pdf_metadata": {
+    "creator": "Adobe InDesign CS6 (Windows)",
+    "producer": "Adobe PDF Library 10.0.1",
+    "created_utc": "2015-11-13T12:02:28Z",
+    "modified_utc": "2015-11-13T12:02:35Z",
+    "pdf_version": "1.4"
+  },
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true,
+    "offset_unit": "Unicode characters in UTF-8 decoded text"
+  },
+  "visually_checked_pages": [
+    9,
+    11,
+    20,
+    23,
+    24,
+    25,
+    26,
+    33
+  ],
+  "text_checked_pages": [
+    1,
+    3,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+    19,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    32,
+    33,
+    38
+  ],
+  "visual_review": "Rendered the downloaded PDF pages with pdftoppm at a maximum dimension of 1800 pixels and visually inspected the power/engine timing diagram, proximity flow and approximate timing table, ENABLE/ATIME table, CONFIG1/PPULSE, CONTROL/CONFIG2, identity/STATUS, PDATA/offsets, and interrupt-clear transaction definition. No rendered review images are required at runtime.",
+  "copyright": "Copyright 2005-2015 Avago Technologies. All rights reserved. The unmodified copyright notice remains on PDF page 38. No open-source license is asserted for this technical literature.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "70810e8a0d9d5a91b4741d12785c0e44178b80039f150c5bb6a36acef2ccb8ee",
+      "bytes": 1113627
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "b3d52e3dcfd82f1f5ce5d962422dff34f875cb56682c8aba3678bc4343e9f3cf",
+      "bytes": 158254
+    },
+    {
+      "path": "pages.json",
+      "sha256": "bd3932120ddb8221c37b5dfa1bbcb65a6b5603eb9d06f2a815ea657eabc3d950",
+      "bytes": 3526
+    }
+  ]
+}

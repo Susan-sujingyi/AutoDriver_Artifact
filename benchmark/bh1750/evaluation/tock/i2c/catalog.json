@@ -1,0 +1,165 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "__model/one_time_retention",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "__model/reset_and_mtreg",
+      "scope": "internal",
+      "basis": "Independent model check"
+    },
+    {
+      "id": "numeric/dark/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/one_count/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/two_counts/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/fraction_before_integer/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/exact_five_lux/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/fraction_after_integer/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/before_ten_lux/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/exact_ten_lux/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/low_byte_maximum/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/high_byte_one/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/both_bytes_one/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/one_thousand_lux/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_low/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/signed_boundary_high/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/manufacturer_worked_example/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/maximum_minus_one/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "numeric/maximum_count/ambient_light",
+      "scope": "core",
+      "basis": "BH-NUMERIC, BH-CONFIG, BH-DATA, BH-CALLBACK"
+    },
+    {
+      "id": "requests/first_available",
+      "scope": "core",
+      "basis": "BH-CALLBACK, BH-PROGRESS, BH-DATA"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "BH-CALLBACK, BH-PROGRESS, BH-DATA"
+    },
+    {
+      "id": "requests/input_changes",
+      "scope": "core",
+      "basis": "BH-CALLBACK, BH-PROGRESS, BH-DATA"
+    },
+    {
+      "id": "timing/conversion_60000us",
+      "scope": "core",
+      "basis": "BH-TIME"
+    },
+    {
+      "id": "timing/conversion_120000us",
+      "scope": "core",
+      "basis": "BH-TIME"
+    },
+    {
+      "id": "timing/conversion_180000us",
+      "scope": "core",
+      "basis": "BH-TIME"
+    },
+    {
+      "id": "diagnostic/bus/Any/false",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/bus/Any/true",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/bus/Configuration/false",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/bus/Configuration/true",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/bus/Data/false",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/bus/Data/true",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: reachability and policy observation"
+    },
+    {
+      "id": "diagnostic/repeated_startup",
+      "scope": "diagnostic",
+      "basis": "BH-FAULT: current consumer starts once"
+    }
+  ]
+}

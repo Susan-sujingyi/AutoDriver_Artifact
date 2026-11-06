@@ -1,0 +1,129 @@
+--- a/capsules/extra/src/lib.rs
++++ b/capsules/extra/src/lib.rs
+@@ -23,6 +23,7 @@
+ pub mod bme280;
+ pub mod bmm150;
+ pub mod bmp280;
++pub mod bmp388;
+ pub mod bus;
+ pub mod buzzer_driver;
+ pub mod buzzer_pwm;
+--- a/boards/components/src/lib.rs
++++ b/boards/components/src/lib.rs
+@@ -17,6 +17,7 @@
+ pub mod bme280;
+ pub mod bmm150;
+ pub mod bmp280;
++pub mod bmp388;
+ pub mod bus;
+ pub mod button;
+ pub mod can;
+--- /dev/null
++++ b/boards/components/src/bmp388.rs
+@@ -0,0 +1,41 @@
++// SPDX-License-Identifier: Apache-2.0
++//! Public BMP388 resource/client wiring; no sensor protocol or arithmetic.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm,VirtualMuxAlarm};
++use capsules_core::virtualizers::virtual_i2c::{I2CDevice,MuxI2C};
++use capsules_extra::bmp388::Bmp388;
++use core::mem::MaybeUninit;
++use kernel::component::Component;
++use kernel::hil::{i2c,time};
++use kernel::hil::time::Alarm;
++#[macro_export]
++macro_rules! bmp388_component_static {
++    ($A:ty,$I:ty $(,)?)=>{{
++        let alarm=kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>);
++        let device=kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static,$I>);
++        let buffer=kernel::static_buf!([u8;21]);
++        let sensor=kernel::static_buf!(capsules_extra::bmp388::Bmp388<'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static,$I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static,$A>>);
++        (alarm,device,buffer,sensor)
++    }};
++}
++pub struct Bmp388Component<A:'static+time::Alarm<'static>,I:'static+i2c::I2CMaster<'static>> {
++    i2c:&'static MuxI2C<'static,I>,alarm:&'static MuxAlarm<'static,A>,address:u8,
++}
++impl<A:'static+time::Alarm<'static>,I:'static+i2c::I2CMaster<'static>> Bmp388Component<A,I> {
++    pub fn new(i2c:&'static MuxI2C<'static,I>,alarm:&'static MuxAlarm<'static,A>,address:u8)->Self {
++        Self{i2c,alarm,address}
++    }
++}
++impl<A:'static+time::Alarm<'static>,I:'static+i2c::I2CMaster<'static>> Component for Bmp388Component<A,I> {
++    type StaticInput=(&'static mut MaybeUninit<VirtualMuxAlarm<'static,A>>,
++        &'static mut MaybeUninit<I2CDevice<'static,I>>,&'static mut MaybeUninit<[u8;21]>,
++        &'static mut MaybeUninit<Bmp388<'static,I2CDevice<'static,I>,VirtualMuxAlarm<'static,A>>>);
++    type Output=&'static Bmp388<'static,I2CDevice<'static,I>,VirtualMuxAlarm<'static,A>>;
++    fn finalize(self,s:Self::StaticInput)->Self::Output {
++        let alarm=s.0.write(VirtualMuxAlarm::new(self.alarm));alarm.setup();
++        let device=s.1.write(I2CDevice::new(self.i2c,self.address));let buffer=s.2.write([0;21]);
++        let sensor=s.3.write(Bmp388::new(device,alarm,buffer));
++        device.set_client(sensor);alarm.set_alarm_client(sensor);let _=sensor.startup();sensor
++    }
++}
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -186,12 +186,13 @@
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+ type BME280Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
+ type BME280Sensor = components::bme280::Bme280ComponentType<BME280I2CDevice, BME280Alarm>;
+-type TemperatureDriver = components::temperature::TemperatureComponentType<BME280Sensor>;
++type TemperatureDriver = components::temperature::TemperatureComponentType<Bmp388Sensor>;
+ type HumidityDriver = components::humidity::HumidityComponentType<BME280Sensor>;
+-type Lps22hbI2CDevice =
++type Bmp388I2CDevice =
+     capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, nrf52840::i2c::TWI<'static>>;
+-type Lps22hbSensor = capsules_extra::lps22hb::Lps22hb<'static, Lps22hbI2CDevice>;
+-type PressureDriver = capsules_extra::pressure::PressureSensor<'static, Lps22hbSensor>;
++type Bmp388Alarm = VirtualMuxAlarm<'static, nrf52840::rtc::Rtc<'static>>;
++type Bmp388Sensor = capsules_extra::bmp388::Bmp388<'static, Bmp388I2CDevice, Bmp388Alarm>;
++type PressureDriver = capsules_extra::pressure::PressureSensor<'static, Bmp388Sensor>;
+ type ProximityDriver = capsules_extra::proximity::ProximitySensor<'static>;
+ 
+ type Ieee802154MacDevice = components::ieee802154::Ieee802154ComponentMacDeviceType<
+@@ -812,18 +813,21 @@
+     )
+     .finalize(components::air_quality_component_static!());
+ 
+-    let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x76)
++    let bme280 = components::bme280::Bme280Component::new(sensors_i2c, mux_alarm, 0x77)
+         .finalize(components::bme280_component_static!(
+             nrf52840::rtc::Rtc,
+             nrf52840::i2c::TWI
+         ));
+ 
++    let bmp388 = components::bmp388::Bmp388Component::new(sensors_i2c, mux_alarm, 0x76)
++        .finalize(components::bmp388_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI));
++
+     let temp = components::temperature::TemperatureComponent::new(
+         board_kernel,
+         capsules_extra::temperature::DRIVER_NUM,
+-        bme280,
+-    )
+-    .finalize(components::temperature_component_static!(BME280Sensor));
++        bmp388,
++    )
++    .finalize(components::temperature_component_static!(Bmp388Sensor));
+ 
+     let humidity = components::humidity::HumidityComponent::new(
+         board_kernel,
+@@ -843,15 +847,12 @@
+     )
+     .finalize(components::ambient_light_component_static!());
+ 
+-    let lps22hb = components::lps22hb::Lps22hbComponent::new(sensors_i2c, 0x5C)
+-        .finalize(components::lps22hb_component_static!(nrf52840::i2c::TWI));
+-
+     let pressure = components::pressure::PressureComponent::new(
+         board_kernel,
+         capsules_extra::pressure::DRIVER_NUM,
+-        lps22hb,
+-    )
+-    .finalize(components::pressure_component_static!(Lps22hbSensor));
++        bmp388,
++    )
++    .finalize(components::pressure_component_static!(Bmp388Sensor));
+ 
+     let apds9960 = components::apds9960::Apds9960Component::new(
+         sensors_i2c,

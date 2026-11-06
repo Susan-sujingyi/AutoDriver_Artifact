@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+&i2c0 {
+	status = "okay";
+	source_sensor: isl29035@44 {
+		compatible = "isil,isl29035";
+		reg = <0x44>;
+		status = "okay";
+	};
+};

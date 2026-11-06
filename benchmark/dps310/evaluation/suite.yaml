@@ -1,0 +1,15 @@
+schema: autodriver.evaluation/v1
+sensor: dps310
+adapters:
+  nuttx/i2c:
+    directory: benchmark/dps310/evaluation/nuttx/i2c
+    adapter: nuttx
+    vectors: benchmark/dps310/evaluation/c_vectors.py
+  tock/i2c:
+    directory: benchmark/dps310/evaluation/tock/i2c
+    adapter: tock
+coverage_policy: functional-and-native-core
+revision: 3
+cases: benchmark/dps310/evaluation/cases.yaml
+oracle: benchmark/dps310/evaluation/oracle.py
+basis: benchmark/dps310/evaluation/basis.md

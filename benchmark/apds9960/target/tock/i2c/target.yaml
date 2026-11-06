@@ -1,0 +1,36 @@
+schema: autodriver.target/v1
+os: tock
+snapshot: tock
+board: nrf52840dk
+bus: i2c
+module: apds9960
+editable_paths:
+- capsules/extra/src/apds9960.rs
+- capsules/extra/src/apds9960/
+board_patch: benchmark/apds9960/target/tock/i2c/board.patch
+application: benchmark/common/applications/tock
+native_interface:
+  type: Apds9960<'a, I, A>
+  constructor: 'pub fn new(i2c: &''a I, alarm: &''a A, buffer: &''static mut [u8])
+    -> Self'
+  startup: pub fn startup(&self) -> Result<(), ErrorCode>
+  buffer_bytes: 3
+  traits:
+  - kernel::hil::sensors::ProximityDriver
+  - kernel::hil::i2c::I2CClient
+  - kernel::hil::time::AlarmClient
+  status: specified
+  hil_path: kernel/src/hil/sensors.rs
+  notes: 'I: I2CDevice; A: Alarm<''a>. Export pub const BUFFER_SIZE: usize = 3. Fixture
+    supplies exactly three bytes and wires native I2C, Alarm and Proximity clients.
+    Device configuration and wait state belong to the driver.'
+output: null
+sampling:
+  rounds: 100
+  interval_ms: 1000
+  startup_ms: 10000
+  request_timeout_ms: 10000
+  serial_baud: 115200
+remove_paths:
+- capsules/extra/src/apds9960.rs
+- capsules/extra/src/apds9960/

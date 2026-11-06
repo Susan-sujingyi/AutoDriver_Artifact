@@ -1,0 +1,31 @@
+{
+  "schema": "autodriver.pricing/v1",
+  "model": "YOUR_MODEL",
+  "provider_url": "https://api.example.invalid/v1",
+  "currency": "CNY",
+  "source": "Template only: replace rates and token bounds with explicitly confirmed provider/model pricing",
+  "checked_at": null,
+  "authority": "template_requires_configuration",
+  "invoice_verified": false,
+  "cache_write_semantics": "replaces_ordinary_input",
+  "threshold_input_tokens": 272000,
+  "member_rates": {
+    "short": {
+      "input": 0.812,
+      "cache_write": 1.015,
+      "cache_read": 0.081,
+      "output": 4.872
+    },
+    "long": {
+      "input": 1.624,
+      "cache_write": 2.03,
+      "cache_read": 0.162,
+      "output": 7.308
+    }
+  },
+  "max_input_tokens_per_request": 1024000,
+  "max_input_cny_per_million": 2.03,
+  "max_output_cny_per_million": 7.308,
+  "max_other_cny_per_request": 0,
+  "output_limit_includes_reasoning": true
+}

@@ -1,0 +1,27 @@
+{
+  "profile": "autodriver.model/lps22hb/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_stable_reset_defaults",
+    "observation_us": 4000000,
+    "startup_observation_us": 100000,
+    "measurement_period_us": 1000000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "stable_input_progress_us": 8000000,
+    "deadline_semantics": "Absolute stable-input deadline passed into request execution; guard and polling clamped to deadline. Request window bounds completion, guard included when time remains."
+  },
+  "limitations": [
+    "Finite digital model, no physical pressure or thermal accuracy conclusion.",
+    "Shared BDU retention until PRESS_OUT_H follows Rev6 p38; exact DA clear byte is unspecified and separately stressed.",
+    "SUB7 single-byte alias follows p26; contradictory multiple-byte prose at p27 does not authorize forbidden BDU I2C bursts.",
+    "Reset completion uses a 1ms model stimulus, not a manufacturer maximum; activity while pending is model_unsupported.",
+    "Unmodeled FIFO, offset/calibration, reboot and reserved operations are not declared universally invalid hardware operations.",
+    "Pressure encoding extrema outside 260..1260hPa are oracle-only; unsigned HIL does not imply signed encoding is unsigned.",
+    "History permits caches; repeated stable-input changes test useful progress, not one conversion per request.",
+    "Diagnostics record fault policy; a core pass does not prove all fault recovery.",
+    "Not an OS sandbox for hostile candidate code."
+  ]
+}

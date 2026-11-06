@@ -1,0 +1,30 @@
+schema: autodriver.task/v1
+task_id: zephyr-tock-dps310-i2c
+revision: 2
+sensor: dps310
+source:
+  selection: benchmark/dps310/source/zephyr/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/dps310/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/dps310/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - temperature
+    - pressure
+    acquisition: single_shot
+  connection:
+    i2c:
+      address_7bit: 119
+    interrupt_pin: null
+  sensor_settings:
+    fifo: disabled
+reference:
+  files:
+    capsules/extra/src/dps310.rs: benchmark/dps310/reference/tock/i2c/dps310.rs
+evaluation:
+  suite: benchmark/dps310/evaluation/suite.yaml

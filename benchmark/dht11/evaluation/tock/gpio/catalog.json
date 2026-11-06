@@ -1,0 +1,250 @@
+{
+  "schema": "driverbench.case-catalog/v2",
+  "cases": [
+    {
+      "id": "numeric/room/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/room/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/zero/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/zero/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/cool/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/cool/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/warm/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/warm/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/hot/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/hot/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/dry/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/dry/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/humid/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/humid/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/bits/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/bits/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/carry/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/carry/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/one/temperature",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "numeric/one/humidity",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "requests/repeated",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "requests/concurrent",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "requests/no_unsolicited",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "requests/early",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "data/stable_change",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "protocol/short_zero",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "protocol/long_zero",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "protocol/short_one",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "protocol/long_one",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "protocol/edge_delay",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "time/wraparound",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "fault/no_response",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "fault/truncated",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "fault/checksum",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "fault/stuck_low",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "fault/recovery",
+      "scope": "diagnostic",
+      "basis": "DHT11-DIAGNOSTIC"
+    },
+    {
+      "id": "model/frame",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/early_start",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/short_start",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/min_interval",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "model/clock_wrap",
+      "scope": "internal",
+      "basis": "MODEL-SELF-CHECK"
+    },
+    {
+      "id": "requests/rapid_alternation",
+      "scope": "core",
+      "basis": "DHT11-RAW-ABI"
+    },
+    {
+      "id": "integrity/corrupt_temperature",
+      "scope": "core",
+      "basis": "DHT11-CHECKSUM-DISCARD"
+    },
+    {
+      "id": "integrity/corrupt_humidity",
+      "scope": "core",
+      "basis": "DHT11-CHECKSUM-DISCARD"
+    },
+    {
+      "id": "capture/deferred_completion",
+      "scope": "diagnostic",
+      "basis": "DHT11-CAPTURE-ABI"
+    },
+    {
+      "id": "capture/delayed_delivery",
+      "scope": "diagnostic",
+      "basis": "DHT11-CAPTURE-ABI"
+    },
+    {
+      "id": "capture/short_transfer",
+      "scope": "diagnostic",
+      "basis": "DHT11-CAPTURE-ABI"
+    },
+    {
+      "id": "capture/hardware_error_recovery",
+      "scope": "diagnostic",
+      "basis": "DHT11-CAPTURE-ABI"
+    },
+    {
+      "id": "capture/cancel_recovery",
+      "scope": "diagnostic",
+      "basis": "DHT11-CAPTURE-ABI"
+    }
+  ]
+}

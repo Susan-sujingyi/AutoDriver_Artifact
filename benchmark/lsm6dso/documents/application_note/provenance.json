@@ -1,0 +1,55 @@
+{
+  "schema": "driverbench.material_provenance/v1",
+  "device": "LSM6DSO",
+  "manufacturer": "STMicroelectronics",
+  "document_title": "LSM6DSO always-on 3D accelerometer and 3D gyroscope",
+  "document_id": "AN5192",
+  "revision": "5",
+  "revision_date": "2020-06",
+  "page_count": 136,
+  "official_url": "https://www.st.com/resource/en/application_note/DM00517282-.pdf",
+  "retrieved_from": "https://www.pololu.com/file/0J1900/dm00517282-lsm6dso-alwayson-3d-accelerometer-and-3d-gyroscope-stmicroelectronics.pdf",
+  "retrieved_date": "2026-09-24",
+  "retrieval_note": "Manufacturer-authored AN5192 Rev5 from the named public mirror. Local ST HTTPS downloads timed out. Current ST hosting may expose another revision; byte identity with official hosting is not asserted.",
+  "extraction": {
+    "tool": "pdftotext",
+    "version": "22.02.0",
+    "command": "pdftotext -layout datasheet.pdf datasheet.txt",
+    "preserved_form_feed": true
+  },
+  "text_checked_pages": [
+    20,
+    21,
+    29,
+    30,
+    56,
+    65,
+    66
+  ],
+  "visually_checked_pages": [
+    21,
+    29,
+    30,
+    56,
+    66
+  ],
+  "copyright": "Manufacturer technical literature and notices retained; no open source document license asserted.",
+  "files": [
+    {
+      "path": "datasheet.pdf",
+      "sha256": "2dfbf9307c2577df624a48bf3f1bf75084dd252552c37319e89dd7ccbed35517",
+      "bytes": 1691028
+    },
+    {
+      "path": "datasheet.txt",
+      "sha256": "8229b5bfa5b904a1c7a41d0a2dfbafb6cfbe33cfc02da7e4ab3be9ea61c2f76c",
+      "bytes": 546815
+    },
+    {
+      "path": "pages.json",
+      "sha256": "32dd16f163bdcd828bb9fe21bc32a1ee6838f8e4c926a1ad07ad58f174127ede",
+      "bytes": 12373
+    }
+  ],
+  "review_scope": "Selected implementation-relevant pages only, not a full-document correctness audit. Rendered visual evidence is in docs/validation/material_review/lsm6dso."
+}

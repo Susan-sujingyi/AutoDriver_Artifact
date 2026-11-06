@@ -1,0 +1,1772 @@
+{
+  "schema": "driverbench.bmm150.numeric-cases/v2",
+  "source": "Raw Bosch SensorAPI 0dce061 float compensation; DS001-05 Rev1.4 register format; explicit integer-quantization allowance",
+  "calibration_kind": "Synthetic register-valid trim witnesses, not a physical unit calibration or environmental accuracy claim",
+  "tolerance_nanotesla": 1125,
+  "vectors": [
+    {
+      "id": "neutral_zero",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "hall": 10000
+      },
+      "bytes": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          0,
+          0,
+          0
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 0,
+            "denominator": 1
+          },
+          {
+            "numerator": 0,
+            "denominator": 1
+          },
+          {
+            "numerator": 0,
+            "denominator": 1
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_signs",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 100,
+        "y": -200,
+        "z": 400,
+        "hall": 10000
+      },
+      "bytes": [
+        33,
+        3,
+        193,
+        249,
+        33,
+        3,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          31250,
+          -62500,
+          31049
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 31250,
+            "denominator": 1
+          },
+          {
+            "numerator": -62500,
+            "denominator": 1
+          },
+          {
+            "numerator": 51200000,
+            "denominator": 1649
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_reverse_signs",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": -1234,
+        "y": 2345,
+        "z": -5432,
+        "hall": 10000
+      },
+      "bytes": [
+        113,
+        217,
+        73,
+        73,
+        145,
+        213,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          -385625,
+          732812,
+          -421647
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -385625,
+            "denominator": 1
+          },
+          {
+            "numerator": 1465625,
+            "denominator": 2
+          },
+          {
+            "numerator": -7168000,
+            "denominator": 17
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_xy_encoding_edges",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 4095,
+        "y": -4095,
+        "z": 16383,
+        "hall": 10000
+      },
+      "bytes": [
+        249,
+        127,
+        9,
+        128,
+        255,
+        127,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          1279687,
+          -1279687,
+          1271694
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 2559375,
+            "denominator": 2
+          },
+          {
+            "numerator": -2559375,
+            "denominator": 2
+          },
+          {
+            "numerator": 2097024000,
+            "denominator": 1649
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_z_negative_edge",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 1,
+        "y": -1,
+        "z": -16383,
+        "hall": 10000
+      },
+      "bytes": [
+        9,
+        0,
+        249,
+        255,
+        3,
+        128,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          312,
+          -312,
+          -1271694
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 625,
+            "denominator": 2
+          },
+          {
+            "numerator": -625,
+            "denominator": 2
+          },
+          {
+            "numerator": -2097024000,
+            "denominator": 1649
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_byte_boundaries",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 31,
+        "y": 32,
+        "z": 127,
+        "hall": 10000
+      },
+      "bytes": [
+        249,
+        0,
+        1,
+        1,
+        255,
+        0,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          9687,
+          10000,
+          9858
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 19375,
+            "denominator": 2
+          },
+          {
+            "numerator": 10000,
+            "denominator": 1
+          },
+          {
+            "numerator": 16256000,
+            "denominator": 1649
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "neutral_byte_boundaries_negative",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": -32,
+        "y": -33,
+        "z": -128,
+        "hall": 10000
+      },
+      "bytes": [
+        1,
+        255,
+        249,
+        254,
+        1,
+        255,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          -10000,
+          -10312,
+          -9935
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -10000,
+            "denominator": 1
+          },
+          {
+            "numerator": -20625,
+            "denominator": 2
+          },
+          {
+            "numerator": -16384000,
+            "denominator": 1649
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 26384,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "signed_offsets_hall_nominal",
+      "trim": {
+        "x1": -12,
+        "y1": 23,
+        "x2": -7,
+        "y2": 11,
+        "xy1": 40,
+        "xy2": -3,
+        "z1": 30000,
+        "z2": 18000,
+        "z3": -1500,
+        "z4": -500,
+        "xyz1": 11000
+      },
+      "trim_bytes": [
+        244,
+        23,
+        165,
+        165,
+        165,
+        12,
+        254,
+        249,
+        11,
+        165,
+        165,
+        80,
+        70,
+        48,
+        117,
+        248,
+        42,
+        36,
+        250,
+        253,
+        40
+      ],
+      "raw": {
+        "x": 500,
+        "y": -600,
+        "z": 7000,
+        "hall": 11000
+      },
+      "bytes": [
+        161,
+        15,
+        65,
+        237,
+        177,
+        54,
+        225,
+        171
+      ],
+      "expected": {
+        "nanotesla": [
+          143414,
+          -188890,
+          547187
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 2294625,
+            "denominator": 16
+          },
+          {
+            "numerator": -1511125,
+            "denominator": 8
+          },
+          {
+            "numerator": 10485760000,
+            "denominator": 19163
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 7186125,
+          "denominator": 256
+        }
+      }
+    },
+    {
+      "id": "signed_offsets_hall_lower",
+      "trim": {
+        "x1": -12,
+        "y1": 23,
+        "x2": -7,
+        "y2": 11,
+        "xy1": 40,
+        "xy2": -3,
+        "z1": 30000,
+        "z2": 18000,
+        "z3": -1500,
+        "z4": -500,
+        "xyz1": 11000
+      },
+      "trim_bytes": [
+        244,
+        23,
+        165,
+        165,
+        165,
+        12,
+        254,
+        249,
+        11,
+        165,
+        165,
+        80,
+        70,
+        48,
+        117,
+        248,
+        42,
+        36,
+        250,
+        253,
+        40
+      ],
+      "raw": {
+        "x": 500,
+        "y": -600,
+        "z": -7000,
+        "hall": 8000
+      },
+      "bytes": [
+        161,
+        15,
+        65,
+        237,
+        81,
+        201,
+        1,
+        125
+      ],
+      "expected": {
+        "nanotesla": [
+          151922,
+          -200302,
+          -528439
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 39825589125,
+            "denominator": 262144
+          },
+          {
+            "numerator": -26253987625,
+            "denominator": 131072
+          },
+          {
+            "numerator": -3425872000,
+            "denominator": 6483
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 3,
+          "denominator": 8
+        },
+        "z_denominator": {
+          "numerator": 810375,
+          "denominator": 32
+        }
+      }
+    },
+    {
+      "id": "signed_offsets_hall_upper",
+      "trim": {
+        "x1": -12,
+        "y1": 23,
+        "x2": -7,
+        "y2": 11,
+        "xy1": 40,
+        "xy2": -3,
+        "z1": 30000,
+        "z2": 18000,
+        "z3": -1500,
+        "z4": -500,
+        "xyz1": 11000
+      },
+      "trim_bytes": [
+        244,
+        23,
+        165,
+        165,
+        165,
+        12,
+        254,
+        249,
+        11,
+        165,
+        165,
+        80,
+        70,
+        48,
+        117,
+        248,
+        42,
+        36,
+        250,
+        253,
+        40
+      ],
+      "raw": {
+        "x": 500,
+        "y": -600,
+        "z": 7000,
+        "hall": 15000
+      },
+      "bytes": [
+        161,
+        15,
+        65,
+        237,
+        177,
+        54,
+        97,
+        234
+      ],
+      "expected": {
+        "nanotesla": [
+          137063,
+          -180374,
+          486994
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 35088375,
+            "denominator": 256
+          },
+          {
+            "numerator": -23087875,
+            "denominator": 128
+          },
+          {
+            "numerator": 10549760000,
+            "denominator": 21663
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": -4,
+          "denominator": 15
+        },
+        "z_denominator": {
+          "numerator": 8123625,
+          "denominator": 256
+        }
+      }
+    },
+    {
+      "id": "reverse_offsets_calibration_a",
+      "trim": {
+        "x1": 22,
+        "y1": -19,
+        "x2": 15,
+        "y2": -20,
+        "xy1": 75,
+        "xy2": 7,
+        "z1": 25000,
+        "z2": 22000,
+        "z3": 2300,
+        "z4": 800,
+        "xyz1": 9000
+      },
+      "trim_bytes": [
+        22,
+        237,
+        165,
+        165,
+        165,
+        32,
+        3,
+        15,
+        236,
+        165,
+        165,
+        240,
+        85,
+        168,
+        97,
+        40,
+        35,
+        252,
+        8,
+        7,
+        75
+      ],
+      "raw": {
+        "x": 700,
+        "y": -300,
+        "z": 5000,
+        "hall": 7000
+      },
+      "bytes": [
+        225,
+        21,
+        161,
+        246,
+        17,
+        39,
+        97,
+        109
+      ],
+      "expected": {
+        "nanotesla": [
+          270819,
+          -98580,
+          317238
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 554637375,
+            "denominator": 2048
+          },
+          {
+            "numerator": -50473375,
+            "denominator": 512
+          },
+          {
+            "numerator": 35526553600,
+            "denominator": 111987
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 2,
+          "denominator": 7
+        },
+        "z_denominator": {
+          "numerator": 13998375,
+          "denominator": 512
+        }
+      }
+    },
+    {
+      "id": "reverse_offsets_calibration_b",
+      "trim": {
+        "x1": 22,
+        "y1": -19,
+        "x2": 15,
+        "y2": -20,
+        "xy1": 75,
+        "xy2": 7,
+        "z1": 25000,
+        "z2": 22000,
+        "z3": 2300,
+        "z4": 800,
+        "xyz1": 9000
+      },
+      "trim_bytes": [
+        22,
+        237,
+        165,
+        165,
+        165,
+        32,
+        3,
+        15,
+        236,
+        165,
+        165,
+        240,
+        85,
+        168,
+        97,
+        40,
+        35,
+        252,
+        8,
+        7,
+        75
+      ],
+      "raw": {
+        "x": -700,
+        "y": 300,
+        "z": -5000,
+        "hall": 14000
+      },
+      "bytes": [
+        33,
+        234,
+        97,
+        9,
+        241,
+        216,
+        193,
+        218
+      ],
+      "expected": {
+        "nanotesla": [
+          -204058,
+          64234,
+          -368961
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -3343291625,
+            "denominator": 16384
+          },
+          {
+            "numerator": 263103625,
+            "denominator": 4096
+          },
+          {
+            "numerator": -24694963200,
+            "denominator": 66931
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": -5,
+          "denominator": 14
+        },
+        "z_denominator": {
+          "numerator": 8366375,
+          "denominator": 256
+        }
+      }
+    },
+    {
+      "id": "unsigned_z1_positive",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 60000,
+        "z2": 20000,
+        "z3": -1000,
+        "z4": 30000,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        48,
+        117,
+        0,
+        0,
+        165,
+        165,
+        32,
+        78,
+        96,
+        234,
+        16,
+        39,
+        24,
+        252,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 120,
+        "y": -200,
+        "z": 16300,
+        "hall": 10000
+      },
+      "bytes": [
+        193,
+        3,
+        193,
+        249,
+        89,
+        127,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          37500,
+          -62500,
+          -732372
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 37500,
+            "denominator": 1
+          },
+          {
+            "numerator": -62500,
+            "denominator": 1
+          },
+          {
+            "numerator": -2873098240,
+            "denominator": 3923
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 2451875,
+          "denominator": 64
+        }
+      }
+    },
+    {
+      "id": "unsigned_z1_negative",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 60000,
+        "z2": 20000,
+        "z3": -1000,
+        "z4": 30000,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        48,
+        117,
+        0,
+        0,
+        165,
+        165,
+        32,
+        78,
+        96,
+        234,
+        16,
+        39,
+        24,
+        252,
+        0,
+        0
+      ],
+      "raw": {
+        "x": -120,
+        "y": 200,
+        "z": -500,
+        "hall": 10000
+      },
+      "bytes": [
+        65,
+        252,
+        65,
+        6,
+        25,
+        252,
+        65,
+        156
+      ],
+      "expected": {
+        "nanotesla": [
+          -37500,
+          62500,
+          -1630464
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -37500,
+            "denominator": 1
+          },
+          {
+            "numerator": 62500,
+            "denominator": 1
+          },
+          {
+            "numerator": -6396313600,
+            "denominator": 3923
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 2451875,
+          "denominator": 64
+        }
+      }
+    },
+    {
+      "id": "negative_z2_signed_denominator",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 10000,
+        "z2": -14000,
+        "z3": 7000,
+        "z4": -400,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        112,
+        254,
+        0,
+        0,
+        165,
+        165,
+        80,
+        201,
+        16,
+        39,
+        16,
+        39,
+        88,
+        27,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 700,
+        "y": -900,
+        "z": 1500,
+        "hall": 11000
+      },
+      "bytes": [
+        225,
+        21,
+        225,
+        227,
+        185,
+        11,
+        225,
+        171
+      ],
+      "expected": {
+        "nanotesla": [
+          218750,
+          -281250,
+          -355332
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 218750,
+            "denominator": 1
+          },
+          {
+            "numerator": -281250,
+            "denominator": 1
+          },
+          {
+            "numerator": -7745177600,
+            "denominator": 21797
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": -1,
+          "denominator": 11
+        },
+        "z_denominator": {
+          "numerator": -2724625,
+          "denominator": 256
+        }
+      }
+    },
+    {
+      "id": "high_xyz1_mask_reserved",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 100,
+        "xy2": -5,
+        "z1": 40000,
+        "z2": 12000,
+        "z3": -800,
+        "z4": 0,
+        "xyz1": 32700
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        224,
+        46,
+        64,
+        156,
+        188,
+        255,
+        224,
+        252,
+        251,
+        100
+      ],
+      "raw": {
+        "x": 900,
+        "y": -300,
+        "z": 6000,
+        "hall": 16300
+      },
+      "bytes": [
+        33,
+        28,
+        161,
+        246,
+        225,
+        46,
+        177,
+        254
+      ],
+      "expected": {
+        "nanotesla": [
+          386226,
+          -128742,
+          378807
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 41046609375,
+            "denominator": 106276
+          },
+          {
+            "numerator": -13682203125,
+            "denominator": 106276
+          },
+          {
+            "numerator": 12372992000,
+            "denominator": 32663
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 164,
+          "denominator": 163
+        },
+        "z_denominator": {
+          "numerator": 4082875,
+          "denominator": 128
+        }
+      }
+    },
+    {
+      "id": "low_hall_hall_one",
+      "trim": {
+        "x1": -128,
+        "y1": 127,
+        "x2": 127,
+        "y2": -128,
+        "xy1": 255,
+        "xy2": -128,
+        "z1": 65535,
+        "z2": 30000,
+        "z3": 32767,
+        "z4": 100,
+        "xyz1": 2
+      },
+      "trim_bytes": [
+        128,
+        127,
+        165,
+        165,
+        165,
+        100,
+        0,
+        127,
+        128,
+        165,
+        165,
+        48,
+        117,
+        255,
+        255,
+        2,
+        0,
+        255,
+        127,
+        128,
+        255
+      ],
+      "raw": {
+        "x": 20,
+        "y": -30,
+        "z": 1000,
+        "hall": 1
+      },
+      "bytes": [
+        161,
+        0,
+        17,
+        255,
+        209,
+        7,
+        5,
+        0
+      ],
+      "expected": {
+        "nanotesla": [
+          -47227,
+          60694,
+          61452
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -193443375,
+            "denominator": 4096
+          },
+          {
+            "numerator": 15537875,
+            "denominator": 256
+          },
+          {
+            "numerator": 12082950860800,
+            "denominator": 196621107
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 983105535,
+          "denominator": 32768
+        }
+      }
+    },
+    {
+      "id": "high_hall_hall_maximum",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": 16384,
+        "z3": -32768,
+        "z4": -32768,
+        "xyz1": 16383
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        128,
+        0,
+        0,
+        165,
+        165,
+        0,
+        64,
+        0,
+        128,
+        255,
+        191,
+        0,
+        128,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 200,
+        "y": -300,
+        "z": 1200,
+        "hall": 16383
+      },
+      "bytes": [
+        65,
+        6,
+        161,
+        246,
+        97,
+        9,
+        253,
+        255
+      ],
+      "expected": {
+        "nanotesla": [
+          62500,
+          -93750,
+          2123064
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 62500,
+            "denominator": 1
+          },
+          {
+            "numerator": -93750,
+            "denominator": 1
+          },
+          {
+            "numerator": 69566464000,
+            "denominator": 32767
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 32767,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "wide_z_z_above_short_max",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 16384,
+        "z2": 8192,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 8000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        32,
+        0,
+        64,
+        64,
+        31,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 500,
+        "y": -500,
+        "z": 13500,
+        "hall": 8000
+      },
+      "bytes": [
+        161,
+        15,
+        97,
+        240,
+        121,
+        105,
+        1,
+        125
+      ],
+      "expected": {
+        "nanotesla": [
+          156250,
+          -156250,
+          2267716
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 156250,
+            "denominator": 1
+          },
+          {
+            "numerator": -156250,
+            "denominator": 1
+          },
+          {
+            "numerator": 288000000,
+            "denominator": 127
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 12192,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "wide_z_z_below_short_min",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 16384,
+        "z2": 8192,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 8000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        0,
+        32,
+        0,
+        64,
+        64,
+        31,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": -500,
+        "y": 500,
+        "z": -13500,
+        "hall": 8000
+      },
+      "bytes": [
+        97,
+        240,
+        161,
+        15,
+        137,
+        150,
+        1,
+        125
+      ],
+      "expected": {
+        "nanotesla": [
+          -156250,
+          156250,
+          -2267716
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": -156250,
+            "denominator": 1
+          },
+          {
+            "numerator": 156250,
+            "denominator": 1
+          },
+          {
+            "numerator": -288000000,
+            "denominator": 127
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "z_denominator": {
+          "numerator": 12192,
+          "denominator": 1
+        }
+      }
+    },
+    {
+      "id": "zero_denominator_recovery",
+      "trim": {
+        "x1": 0,
+        "y1": 0,
+        "x2": 0,
+        "y2": 0,
+        "xy1": 0,
+        "xy2": 0,
+        "z1": 32768,
+        "z2": -10000,
+        "z3": 0,
+        "z4": 0,
+        "xyz1": 10000
+      },
+      "trim_bytes": [
+        0,
+        0,
+        165,
+        165,
+        165,
+        0,
+        0,
+        0,
+        0,
+        165,
+        165,
+        240,
+        216,
+        0,
+        128,
+        16,
+        39,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw": {
+        "x": 100,
+        "y": -200,
+        "z": -500,
+        "hall": 9000
+      },
+      "bytes": [
+        33,
+        3,
+        193,
+        249,
+        25,
+        252,
+        161,
+        140
+      ],
+      "expected": {
+        "nanotesla": [
+          31250,
+          -62500,
+          1024000
+        ],
+        "exact_nanotesla": [
+          {
+            "numerator": 31250,
+            "denominator": 1
+          },
+          {
+            "numerator": -62500,
+            "denominator": 1
+          },
+          {
+            "numerator": 1024000,
+            "denominator": 1
+          }
+        ],
+        "hall_ratio_minus_one": {
+          "numerator": 1,
+          "denominator": 9
+        },
+        "z_denominator": {
+          "numerator": -1000,
+          "denominator": 1
+        }
+      }
+    }
+  ]
+}

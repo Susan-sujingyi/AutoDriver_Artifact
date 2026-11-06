@@ -1,0 +1,34 @@
+{
+  "profile": "autodriver.model/dps310/i2c/v1",
+  "limits": {
+    "initial_device_state": "powered_stable; explicit cold_boot case also provided",
+    "observation_us": 500000,
+    "initialization_observation_us": 150000,
+    "stable_input_progress_us": 5000000,
+    "callback_guard_us": 5000,
+    "events_per_advance": 50000,
+    "case_process_seconds": 5,
+    "build_seconds": 300,
+    "bus_us": 100,
+    "clock_hz": 1000000,
+    "chip_access_us": 2500,
+    "sensor_ready_us": 12000,
+    "coefficient_ready_us": 40000,
+    "conversion_us": [
+      14800,
+      30000
+    ]
+  },
+  "limitations": [
+    "Exact DPS310 command acquisition, 8x both channels, no FIFO/interrupts/background mode.",
+    "Signed packed trim/ADC and native units judged by independent exact rational polynomial +/-1 target integer unit.",
+    "Temperature and pressure are separate conversions; acquired temperature may be reused with no invented one-second expiration.",
+    "Stable-input progress within5s is host supervision, not sensor accuracy or manufacturer freshness guarantee.",
+    "Vendor workaround exists in original Infineon code; digital effect and affected physical devices are not established. Audit only, omission is not conclusive numeric-failure evidence.",
+    "Full trims/ID/factory-source reads are not mandatory traces; actual chosen source and numeric outputs checked.",
+    "Successful old acquisitions are not erased by subsequent transport errors.",
+    "Before COEF_RDY values are unspecified: such reads explicitly model_unsupported.",
+    "Ready flag clear at final channel byte is modeled, not a published stronger byte-level guarantee.",
+    "No arbitrary electrical races, physical accuracy, or OS sandbox certification."
+  ]
+}

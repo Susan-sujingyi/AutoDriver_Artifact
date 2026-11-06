@@ -1,0 +1,651 @@
+{
+  "schema": "driverbench_lps22hb_vectors/v2",
+  "provenance": "Independently selected physical and encoding vectors from ST DocID027083 Rev 6 units and signed formats. Frozen expected rational values and raw-byte derivations are not imported from Zephyr, Rust reference, AutoDriver IR or method rules.",
+  "byte_order": "Address order 0x28,0x29,0x2a,0x2b,0x2c; data representation only. I2C BDU samples must use single-byte transactions and PRESS_OUT_H last.",
+  "rounding": "Temperature is exact signed centi-C; integer hPa accepts floor/ceiling and one integer-LSB numerical tolerance; this is not physical sensor accuracy.",
+  "physical_scope": "Operating pressure260..1260hPa and temperature-40..85C inclusive (p10). Full-accuracy pressure temperature interval0..65C is distinct. Encoding_boundary_vectors are oracle-only, must not be scored as successful rated measurements.",
+  "vectors": [
+    {
+      "id": "nominal",
+      "classification": "nominal",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "1013.25 hPa at 23.45 C; nominal atmospheric pressure.",
+      "raw": {
+        "pressure": 4150272,
+        "temperature": 2345
+      },
+      "raw_bytes": [
+        0,
+        84,
+        63,
+        41,
+        9
+      ],
+      "raw_bytes_hex": "00 54 3f 29 09",
+      "expected": {
+        "pressure_raw_signed": 4150272,
+        "pressure_hpa": 1013,
+        "pressure_hpa_numerator": 4053,
+        "pressure_hpa_denominator": 4,
+        "temperature_centi_c": 2345
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*84 + 65536*63 = 4150272",
+        "pressure_signed24": "4150272 (bit 23 clear)",
+        "pressure_hpa": "4150272 / 4096 = 4053/4 hPa",
+        "temperature_word": "41 + 256*9 = 2345",
+        "temperature_signed16": "2345 (bit 15 clear)",
+        "temperature_celsius": "2345 / 100 C; native Tock unit is centi-C so callback is 2345."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "cold",
+      "classification": "nominal",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "500.125 hPa at -12.50 C; cold high-altitude environment.",
+      "raw": {
+        "pressure": 2048512,
+        "temperature": -1250
+      },
+      "raw_bytes": [
+        0,
+        66,
+        31,
+        30,
+        251
+      ],
+      "raw_bytes_hex": "00 42 1f 1e fb",
+      "expected": {
+        "pressure_raw_signed": 2048512,
+        "pressure_hpa": 500,
+        "pressure_hpa_numerator": 4001,
+        "pressure_hpa_denominator": 8,
+        "temperature_centi_c": -1250
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*66 + 65536*31 = 2048512",
+        "pressure_signed24": "2048512 (bit 23 clear)",
+        "pressure_hpa": "2048512 / 4096 = 4001/8 hPa",
+        "temperature_word": "30 + 256*251 = 64286",
+        "temperature_signed16": "64286 - 65536 = -1250",
+        "temperature_celsius": "-1250 / 100 C; native Tock unit is centi-C so callback is -1250."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "rated_minimum",
+      "classification": "rated_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "260 hPa and -40.00 C; both operating lower limits, not a full-accuracy claim.",
+      "raw": {
+        "pressure": 1064960,
+        "temperature": -4000
+      },
+      "raw_bytes": [
+        0,
+        64,
+        16,
+        96,
+        240
+      ],
+      "raw_bytes_hex": "00 40 10 60 f0",
+      "expected": {
+        "pressure_raw_signed": 1064960,
+        "pressure_hpa": 260,
+        "pressure_hpa_numerator": 260,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": -4000
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*64 + 65536*16 = 1064960",
+        "pressure_signed24": "1064960 (bit 23 clear)",
+        "pressure_hpa": "1064960 / 4096 = 260/1 hPa",
+        "temperature_word": "96 + 256*240 = 61536",
+        "temperature_signed16": "61536 - 65536 = -4000",
+        "temperature_celsius": "-4000 / 100 C; native Tock unit is centi-C so callback is -4000."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "rated_maximum",
+      "classification": "rated_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "1260 hPa and +85.00 C; both operating upper limits, not a full-accuracy claim.",
+      "raw": {
+        "pressure": 5160960,
+        "temperature": 8500
+      },
+      "raw_bytes": [
+        0,
+        192,
+        78,
+        52,
+        33
+      ],
+      "raw_bytes_hex": "00 c0 4e 34 21",
+      "expected": {
+        "pressure_raw_signed": 5160960,
+        "pressure_hpa": 1260,
+        "pressure_hpa_numerator": 1260,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": 8500
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*192 + 65536*78 = 5160960",
+        "pressure_signed24": "5160960 (bit 23 clear)",
+        "pressure_hpa": "5160960 / 4096 = 1260/1 hPa",
+        "temperature_word": "52 + 256*33 = 8500",
+        "temperature_signed16": "8500 (bit 15 clear)",
+        "temperature_celsius": "8500 / 100 C; native Tock unit is centi-C so callback is 8500."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "pressure_fraction_below_integer",
+      "classification": "quantization_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "One pressure LSB below 1001 hPa; preserves all 12 fractional bits until rounding.",
+      "raw": {
+        "pressure": 4100095,
+        "temperature": 1751
+      },
+      "raw_bytes": [
+        255,
+        143,
+        62,
+        215,
+        6
+      ],
+      "raw_bytes_hex": "ff 8f 3e d7 06",
+      "expected": {
+        "pressure_raw_signed": 4100095,
+        "pressure_hpa": 1000,
+        "pressure_hpa_numerator": 4100095,
+        "pressure_hpa_denominator": 4096,
+        "temperature_centi_c": 1751
+      },
+      "derivation": {
+        "pressure_word": "255 + 256*143 + 65536*62 = 4100095",
+        "pressure_signed24": "4100095 (bit 23 clear)",
+        "pressure_hpa": "4100095 / 4096 = 4100095/4096 hPa",
+        "temperature_word": "215 + 256*6 = 1751",
+        "temperature_signed16": "1751 (bit 15 clear)",
+        "temperature_celsius": "1751 / 100 C; native Tock unit is centi-C so callback is 1751."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "pressure_first_lsb_above_minimum",
+      "classification": "quantization_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "One pressure LSB above 260 hPa and temperature -0.01 C, exercising sign extension near zero.",
+      "raw": {
+        "pressure": 1064961,
+        "temperature": -1
+      },
+      "raw_bytes": [
+        1,
+        64,
+        16,
+        255,
+        255
+      ],
+      "raw_bytes_hex": "01 40 10 ff ff",
+      "expected": {
+        "pressure_raw_signed": 1064961,
+        "pressure_hpa": 260,
+        "pressure_hpa_numerator": 1064961,
+        "pressure_hpa_denominator": 4096,
+        "temperature_centi_c": -1
+      },
+      "derivation": {
+        "pressure_word": "1 + 256*64 + 65536*16 = 1064961",
+        "pressure_signed24": "1064961 (bit 23 clear)",
+        "pressure_hpa": "1064961 / 4096 = 1064961/4096 hPa",
+        "temperature_word": "255 + 256*255 = 65535",
+        "temperature_signed16": "65535 - 65536 = -1",
+        "temperature_celsius": "-1 / 100 C; native Tock unit is centi-C so callback is -1."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "temperature_negative_hundredth",
+      "classification": "sign_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "900.5 hPa at -0.01 C; signed temperature must remain negative.",
+      "raw": {
+        "pressure": 3688448,
+        "temperature": -1
+      },
+      "raw_bytes": [
+        0,
+        72,
+        56,
+        255,
+        255
+      ],
+      "raw_bytes_hex": "00 48 38 ff ff",
+      "expected": {
+        "pressure_raw_signed": 3688448,
+        "pressure_hpa": 900,
+        "pressure_hpa_numerator": 1801,
+        "pressure_hpa_denominator": 2,
+        "temperature_centi_c": -1
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*72 + 65536*56 = 3688448",
+        "pressure_signed24": "3688448 (bit 23 clear)",
+        "pressure_hpa": "3688448 / 4096 = 1801/2 hPa",
+        "temperature_word": "255 + 256*255 = 65535",
+        "temperature_signed16": "65535 - 65536 = -1",
+        "temperature_celsius": "-1 / 100 C; native Tock unit is centi-C so callback is -1."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "temperature_zero",
+      "classification": "sign_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "760.25 hPa at exactly 0 C.",
+      "raw": {
+        "pressure": 3113984,
+        "temperature": 0
+      },
+      "raw_bytes": [
+        0,
+        132,
+        47,
+        0,
+        0
+      ],
+      "raw_bytes_hex": "00 84 2f 00 00",
+      "expected": {
+        "pressure_raw_signed": 3113984,
+        "pressure_hpa": 760,
+        "pressure_hpa_numerator": 3041,
+        "pressure_hpa_denominator": 4,
+        "temperature_centi_c": 0
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*132 + 65536*47 = 3113984",
+        "pressure_signed24": "3113984 (bit 23 clear)",
+        "pressure_hpa": "3113984 / 4096 = 3041/4 hPa",
+        "temperature_word": "0 + 256*0 = 0",
+        "temperature_signed16": "0 (bit 15 clear)",
+        "temperature_celsius": "0 / 100 C; native Tock unit is centi-C so callback is 0."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "distinct_pressure_bytes",
+      "classification": "packing_boundary",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "Pressure code 0x3abcde (939.80419921875 hPa), temperature 0x08a3 (22.11 C); distinct bytes expose endian/packing mistakes.",
+      "raw": {
+        "pressure": 3849438,
+        "temperature": 2211
+      },
+      "raw_bytes": [
+        222,
+        188,
+        58,
+        163,
+        8
+      ],
+      "raw_bytes_hex": "de bc 3a a3 08",
+      "expected": {
+        "pressure_raw_signed": 3849438,
+        "pressure_hpa": 939,
+        "pressure_hpa_numerator": 1924719,
+        "pressure_hpa_denominator": 2048,
+        "temperature_centi_c": 2211
+      },
+      "derivation": {
+        "pressure_word": "222 + 256*188 + 65536*58 = 3849438",
+        "pressure_signed24": "3849438 (bit 23 clear)",
+        "pressure_hpa": "3849438 / 4096 = 1924719/2048 hPa",
+        "temperature_word": "163 + 256*8 = 2211",
+        "temperature_signed16": "2211 (bit 15 clear)",
+        "temperature_celsius": "2211 / 100 C; native Tock unit is centi-C so callback is 2211."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "warm",
+      "classification": "nominal",
+      "within_rated_range": true,
+      "oracle_only": false,
+      "description": "1100.75 hPa at +65.00 C; upper edge of the full-accuracy temperature interval.",
+      "raw": {
+        "pressure": 4508672,
+        "temperature": 6500
+      },
+      "raw_bytes": [
+        0,
+        204,
+        68,
+        100,
+        25
+      ],
+      "raw_bytes_hex": "00 cc 44 64 19",
+      "expected": {
+        "pressure_raw_signed": 4508672,
+        "pressure_hpa": 1100,
+        "pressure_hpa_numerator": 4403,
+        "pressure_hpa_denominator": 4,
+        "temperature_centi_c": 6500
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*204 + 65536*68 = 4508672",
+        "pressure_signed24": "4508672 (bit 23 clear)",
+        "pressure_hpa": "4508672 / 4096 = 4403/4 hPa",
+        "temperature_word": "100 + 256*25 = 6500",
+        "temperature_signed16": "6500 (bit 15 clear)",
+        "temperature_celsius": "6500 / 100 C; native Tock unit is centi-C so callback is 6500."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    }
+  ],
+  "encoding_boundary_vectors": [
+    {
+      "id": "pressure_negative_one_hpa",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "Negative absolute pressure is outside the selected physical operating range and unsigned Pressure HIL.",
+      "raw": {
+        "pressure": 16773120,
+        "temperature": 2000
+      },
+      "raw_bytes": [
+        0,
+        240,
+        255,
+        208,
+        7
+      ],
+      "raw_bytes_hex": "00 f0 ff d0 07",
+      "expected": {
+        "pressure_raw_signed": -4096,
+        "pressure_hpa": -1,
+        "pressure_hpa_numerator": -1,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": 2000
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*240 + 65536*255 = 16773120",
+        "pressure_signed24": "16773120 - 16777216 = -4096",
+        "pressure_hpa": "-4096 / 4096 = -1/1 hPa",
+        "temperature_word": "208 + 256*7 = 2000",
+        "temperature_signed16": "2000 (bit 15 clear)",
+        "temperature_celsius": "2000 / 100 C; native Tock unit is centi-C so callback is 2000."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "pressure_signed24_minimum",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "Signed-24 minimum is an encoding check, not a physical absolute-pressure measurement.",
+      "raw": {
+        "pressure": 8388608,
+        "temperature": 2000
+      },
+      "raw_bytes": [
+        0,
+        0,
+        128,
+        208,
+        7
+      ],
+      "raw_bytes_hex": "00 00 80 d0 07",
+      "expected": {
+        "pressure_raw_signed": -8388608,
+        "pressure_hpa": -2048,
+        "pressure_hpa_numerator": -2048,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": 2000
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*0 + 65536*128 = 8388608",
+        "pressure_signed24": "8388608 - 16777216 = -8388608",
+        "pressure_hpa": "-8388608 / 4096 = -2048/1 hPa",
+        "temperature_word": "208 + 256*7 = 2000",
+        "temperature_signed16": "2000 (bit 15 clear)",
+        "temperature_celsius": "2000 / 100 C; native Tock unit is centi-C so callback is 2000."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "pressure_signed24_maximum",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "Signed-24 maximum exceeds the 1260 hPa rated operating range.",
+      "raw": {
+        "pressure": 8388607,
+        "temperature": 2000
+      },
+      "raw_bytes": [
+        255,
+        255,
+        127,
+        208,
+        7
+      ],
+      "raw_bytes_hex": "ff ff 7f d0 07",
+      "expected": {
+        "pressure_raw_signed": 8388607,
+        "pressure_hpa": 2047,
+        "pressure_hpa_numerator": 8388607,
+        "pressure_hpa_denominator": 4096,
+        "temperature_centi_c": 2000
+      },
+      "derivation": {
+        "pressure_word": "255 + 256*255 + 65536*127 = 8388607",
+        "pressure_signed24": "8388607 (bit 23 clear)",
+        "pressure_hpa": "8388607 / 4096 = 8388607/4096 hPa",
+        "temperature_word": "208 + 256*7 = 2000",
+        "temperature_signed16": "2000 (bit 15 clear)",
+        "temperature_celsius": "2000 / 100 C; native Tock unit is centi-C so callback is 2000."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "pressure_zero",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "Zero absolute pressure is below the 260 hPa rated operating range.",
+      "raw": {
+        "pressure": 0,
+        "temperature": 2000
+      },
+      "raw_bytes": [
+        0,
+        0,
+        0,
+        208,
+        7
+      ],
+      "raw_bytes_hex": "00 00 00 d0 07",
+      "expected": {
+        "pressure_raw_signed": 0,
+        "pressure_hpa": 0,
+        "pressure_hpa_numerator": 0,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": 2000
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*0 + 65536*0 = 0",
+        "pressure_signed24": "0 (bit 23 clear)",
+        "pressure_hpa": "0 / 4096 = 0/1 hPa",
+        "temperature_word": "208 + 256*7 = 2000",
+        "temperature_signed16": "2000 (bit 15 clear)",
+        "temperature_celsius": "2000 / 100 C; native Tock unit is centi-C so callback is 2000."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "temperature_signed16_minimum",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "-327.68 C is an encoding check and outside the -40..85 C operating range.",
+      "raw": {
+        "pressure": 4096000,
+        "temperature": -32768
+      },
+      "raw_bytes": [
+        0,
+        128,
+        62,
+        0,
+        128
+      ],
+      "raw_bytes_hex": "00 80 3e 00 80",
+      "expected": {
+        "pressure_raw_signed": 4096000,
+        "pressure_hpa": 1000,
+        "pressure_hpa_numerator": 1000,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": -32768
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*128 + 65536*62 = 4096000",
+        "pressure_signed24": "4096000 (bit 23 clear)",
+        "pressure_hpa": "4096000 / 4096 = 1000/1 hPa",
+        "temperature_word": "0 + 256*128 = 32768",
+        "temperature_signed16": "32768 - 65536 = -32768",
+        "temperature_celsius": "-32768 / 100 C; native Tock unit is centi-C so callback is -32768."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "temperature_signed16_maximum",
+      "classification": "encoding_only_outside_rated_range",
+      "within_rated_range": false,
+      "oracle_only": true,
+      "description": "327.67 C is an encoding check and outside the -40..85 C operating range.",
+      "raw": {
+        "pressure": 4096000,
+        "temperature": 32767
+      },
+      "raw_bytes": [
+        0,
+        128,
+        62,
+        255,
+        127
+      ],
+      "raw_bytes_hex": "00 80 3e ff 7f",
+      "expected": {
+        "pressure_raw_signed": 4096000,
+        "pressure_hpa": 1000,
+        "pressure_hpa_numerator": 1000,
+        "pressure_hpa_denominator": 1,
+        "temperature_centi_c": 32767
+      },
+      "derivation": {
+        "pressure_word": "0 + 256*128 + 65536*62 = 4096000",
+        "pressure_signed24": "4096000 (bit 23 clear)",
+        "pressure_hpa": "4096000 / 4096 = 1000/1 hPa",
+        "temperature_word": "255 + 256*127 = 32767",
+        "temperature_signed16": "32767 (bit 15 clear)",
+        "temperature_celsius": "32767 / 100 C; native Tock unit is centi-C so callback is 32767."
+      },
+      "evidence_pages": [
+        10,
+        15,
+        45,
+        46
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+schema: autodriver.task/v1
+task_id: riot-tock-apds9960-i2c
+revision: 2
+sensor: apds9960
+source:
+  selection: benchmark/apds9960/source/riot/selection.yaml
+  variant: i2c
+target:
+  profile: benchmark/apds9960/target/tock/i2c/target.yaml
+inputs:
+  policy: raw-s-d-sd-v1
+  documents:
+  - benchmark/apds9960/documents/datasheet.pdf
+requirements:
+  functions:
+    channels:
+    - proximity
+    acquisition: continuous_polling
+  connection:
+    i2c:
+      address_7bit: 57
+    interrupt_pin: null
+  sensor_settings:
+    proximity_gain: 2
+    pulse_length_us: 8
+    pulse_count: 8
+    led_drive_ma: 100
+    led_boost_percent: 150
+    proximity_offsets:
+    - 0
+    - 0
+    photodiodes: all_four
+reference:
+  files:
+    capsules/extra/src/apds9960.rs: benchmark/apds9960/reference/tock/i2c/apds9960.rs
+evaluation:
+  suite: benchmark/apds9960/evaluation/suite.yaml

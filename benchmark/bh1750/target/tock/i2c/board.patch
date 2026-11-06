@@ -1,0 +1,167 @@
+--- /dev/null
++++ b/boards/components/src/ambient_light.rs
+@@ -0,0 +1,53 @@
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// SPDX-License-Identifier: Apache-2.0 OR MIT
++// Copyright Tock Contributors 2022.
++// Generic component extracted from boards/components/src/isl29035.rs.
++//! System call component for any AmbientLight HIL implementation.
++
++use capsules_extra::ambient_light::AmbientLight;
++use core::mem::MaybeUninit;
++use kernel::{capabilities, create_capability, hil};
++use kernel::component::Component;
++
++#[macro_export]
++macro_rules! ambient_light_syscall_component_static {
++    () => {{
++        kernel::static_buf!(capsules_extra::ambient_light::AmbientLight<'static>)
++    };};
++}
++
++pub struct AmbientLightComponent<L: 'static + hil::sensors::AmbientLight<'static>> {
++    board_kernel: &'static kernel::Kernel,
++    driver_num: usize,
++    light_sensor: &'static L,
++}
++
++impl<L: 'static + hil::sensors::AmbientLight<'static>> AmbientLightComponent<L> {
++    pub fn new(
++        board_kernel: &'static kernel::Kernel,
++        driver_num: usize,
++        light_sensor: &'static L,
++    ) -> Self {
++        AmbientLightComponent {
++            board_kernel: board_kernel,
++            driver_num: driver_num,
++            light_sensor,
++        }
++    }
++}
++
++impl<L: 'static + hil::sensors::AmbientLight<'static>> Component for AmbientLightComponent<L> {
++    type StaticInput = &'static mut MaybeUninit<AmbientLight<'static>>;
++    type Output = &'static AmbientLight<'static>;
++
++    fn finalize(self, static_buffer: Self::StaticInput) -> Self::Output {
++        let grant_cap = create_capability!(capabilities::MemoryAllocationCapability);
++
++        let ambient_light = static_buffer.write(AmbientLight::new(
++            self.light_sensor,
++            self.board_kernel.create_grant(self.driver_num, &grant_cap),
++        ));
++        hil::sensors::AmbientLight::set_client(self.light_sensor, ambient_light);
++        ambient_light
++    }
++}
+--- /dev/null
++++ b/boards/components/src/bh1750.rs
+@@ -0,0 +1,55 @@
++// Licensed under the Apache License, Version 2.0 or the MIT License.
++// SPDX-License-Identifier: Apache-2.0 OR MIT
++// Resource wiring derived from Tock Contributors' sensor components.
++//! Public BH1750FVI fixture: resources and client wiring only.
++use capsules_core::virtualizers::virtual_alarm::{MuxAlarm, VirtualMuxAlarm};
++use capsules_core::virtualizers::virtual_i2c::{I2CDevice, MuxI2C};
++use capsules_extra::bh1750::Bh1750;
++use core::mem::MaybeUninit;
++use kernel::component::Component;
++use kernel::hil::i2c;
++use kernel::hil::time::{self, Alarm};
++
++#[macro_export]
++macro_rules! bh1750_component_static {
++    ($A:ty, $I:ty $(,)?) => {{
++        let alarm = kernel::static_buf!(capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>);
++        let i2c = kernel::static_buf!(capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>);
++        let buffer = kernel::static_buf!([u8; 2]);
++        let driver = kernel::static_buf!(capsules_extra::bh1750::Bh1750<
++            'static,
++            capsules_core::virtualizers::virtual_i2c::I2CDevice<'static, $I>,
++            capsules_core::virtualizers::virtual_alarm::VirtualMuxAlarm<'static, $A>,
++        >);
++        (alarm, i2c, buffer, driver)
++    }};
++}
++pub struct Bh1750Component<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> {
++    i2c_mux: &'static MuxI2C<'static, I>,
++    alarm_mux: &'static MuxAlarm<'static, A>,
++}
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Bh1750Component<A, I> {
++    pub fn new(i2c_mux: &'static MuxI2C<'static, I>, alarm_mux: &'static MuxAlarm<'static, A>) -> Self {
++        Self { i2c_mux, alarm_mux }
++    }
++}
++impl<A: 'static + time::Alarm<'static>, I: 'static + i2c::I2CMaster<'static>> Component for Bh1750Component<A, I> {
++    type StaticInput = (
++        &'static mut MaybeUninit<VirtualMuxAlarm<'static, A>>,
++        &'static mut MaybeUninit<I2CDevice<'static, I>>,
++        &'static mut MaybeUninit<[u8; 2]>,
++        &'static mut MaybeUninit<Bh1750<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>>,
++    );
++    type Output = &'static Bh1750<'static, I2CDevice<'static, I>, VirtualMuxAlarm<'static, A>>;
++    fn finalize(self, s: Self::StaticInput) -> Self::Output {
++        let alarm = s.0.write(VirtualMuxAlarm::new(self.alarm_mux));
++        alarm.setup();
++        let bus = s.1.write(I2CDevice::new(self.i2c_mux, 0x23));
++        let buffer = s.2.write([0; 2]);
++        let driver = s.3.write(Bh1750::new(bus, alarm, buffer));
++        bus.set_client(driver);
++        alarm.set_alarm_client(driver);
++        let _ = driver.startup();
++        driver
++    }
++}
+--- a/boards/components/src/lib.rs
++++ b/boards/components/src/lib.rs
+@@ -14,6 +14,7 @@
+ pub mod app_flash_driver;
+ pub mod appid;
+ pub mod ble;
++pub mod bh1750;
+ pub mod bme280;
+ pub mod bmm150;
+ pub mod bmp280;
+@@ -91,3 +92,5 @@
+ pub mod udp_driver;
+ pub mod udp_mux;
+ pub mod usb;
++
++pub mod ambient_light;
+--- a/boards/nordic/nrf52840dk/src/main.rs
++++ b/boards/nordic/nrf52840dk/src/main.rs
+@@ -832,16 +832,16 @@
+     )
+     .finalize(components::humidity_component_static!(BME280Sensor));
+ 
+-    let isl29035 = components::isl29035::Isl29035Component::new(sensors_i2c, mux_alarm).finalize(
+-        components::isl29035_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI),
+-    );
+-
+-    let ambient_light = components::isl29035::AmbientLightComponent::new(
++    let bh1750 = components::bh1750::Bh1750Component::new(sensors_i2c, mux_alarm).finalize(
++        components::bh1750_component_static!(nrf52840::rtc::Rtc, nrf52840::i2c::TWI),
++    );
++
++    let ambient_light = components::ambient_light::AmbientLightComponent::new(
+         board_kernel,
+         capsules_extra::ambient_light::DRIVER_NUM,
+-        isl29035,
+-    )
+-    .finalize(components::ambient_light_component_static!());
++        bh1750,
++    )
++    .finalize(components::ambient_light_syscall_component_static!());
+ 
+     let lps22hb = components::lps22hb::Lps22hbComponent::new(sensors_i2c, 0x5C)
+         .finalize(components::lps22hb_component_static!(nrf52840::i2c::TWI));
+--- a/capsules/extra/src/lib.rs
++++ b/capsules/extra/src/lib.rs
+@@ -20,6 +20,7 @@
+ pub mod app_flash_driver;
+ pub mod at24c_eeprom;
+ pub mod ble_advertising_driver;
++pub mod bh1750;
+ pub mod bme280;
+ pub mod bmm150;
+ pub mod bmp280;
